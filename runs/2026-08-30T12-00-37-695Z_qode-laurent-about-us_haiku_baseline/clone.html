@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Us – Laurent</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'dark-bg': '#0c1315',
+                        'gold': '#BC9A6B',
+                        'gold-light': '#9C7C57',
+                    },
+                    fontSize: {
+                        'page-title': '3.5rem',
+                        'section-title': '3rem',
+                    },
+                    spacing: {
+                        '110': '110px',
+                        '530': '530px',
+                    },
+                    fontFamily: {
+                        sans: ['"Open Sans"', 'sans-serif'],
+                        serif: ['"Mrs Saint Delafield"', 'serif'],
+                    }
+                }
+            }
+        };
+    </script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600;700&family=Mrs+Saint+Delafield&display=swap" rel="stylesheet">
+    <style>
+        body {
+            background-color: #0c1315;
+            color: #ddd;
+        }
+        .font-script {
+            font-family: 'Mrs Saint Delafield', serif;
+        }
+        .decor-svg {
+            stroke: #9C7C57;
+            fill: none;
+            stroke-width: 1.5;
+            stroke-miterlimit: 10;
+        }
+        .parallax-bg {
+            background-attachment: fixed;
+            background-position: center;
+            background-size: cover;
+        }
+        .testimonials-carousel {
+            position: relative;
+        }
+        .testimonial-item {
+            opacity: 0;
+            transition: opacity 0.5s ease;
+            position: absolute;
+            width: 100%;
+        }
+        .testimonial-item.active {
+            opacity: 1;
+            position: relative;
+        }
+        .quote-mark {
+            font-size: 3rem;
+            color: #BC9A6B;
+            opacity: 0.3;
+        }
+    </style>
+</head>
+<body class="bg-dark-bg text-gray-300">
+    <!-- Header -->
+    <header class="fixed w-full top-0 z-40">
+        <div class="max-w-full px-8 py-4 flex items-center justify-between" style="height: 110px;">
+            <!-- Logo -->
+            <div class="flex-shrink-0">
+                <a href="https://laurent.qodeinteractive.com/" class="flex items-center">
+                    <img src="https://laurent.qodeinteractive.com/wp-content/uploads/2019/10/logo.png" alt="Laurent Logo" class="h-12 w-auto">
+                </a>
+            </div>
+
+            <!-- Navigation -->
+            <nav class="hidden md:flex items-center space-x-12 flex-1 justify-center">
+                <a href="#" class="text-gray-300 hover:text-gold transition text-xs tracking-widest uppercase">HOME</a>
+                <a href="#" class="text-gray-300 hover:text-gold transition text-xs tracking-widest uppercase">PAGES</a>
+                <a href="#" class="text-gray-300 hover:text-gold transition text-xs tracking-widest uppercase">PORTFOLIO</a>
+                <a href="#" class="text-gray-300 hover:text-gold transition text-xs tracking-widest uppercase">BLOG</a>
+                <a href="#" class="text-gray-300 hover:text-gold transition text-xs tracking-widest uppercase">SHOP</a>
+            </nav>
+
+            <!-- Menu Toggle -->
+            <button class="md:hidden text-gold hover:text-gold-light">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                </svg>
+            </button>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="pt-110">
+        <!-- Title/Hero Section -->
+        <section class="relative flex items-center justify-center overflow-hidden" style="background-image: url('https://laurent.qodeinteractive.com/wp-content/uploads/2019/12/About-us-title-img.jpg'); background-size: cover; background-position: center; height: 530px; background-attachment: fixed;">
+            <div class="absolute inset-0 bg-dark-bg bg-opacity-25"></div>
+            <div class="relative z-10 text-center px-4">
+                <h1 class="text-8xl md:text-9xl text-gold" style="letter-spacing: 0.4em; font-weight: 400; font-family: 'Open Sans', sans-serif;">ABOUT US</h1>
+            </div>
+        </section>
+
+        <!-- Main Content Section with 3-Column Layout -->
+        <section class="py-20 px-4 bg-dark-bg relative">
+            <!-- Sidebar -->
+            <div class="fixed right-0 top-1/3 z-30 space-y-4">
+                <a href="#" class="flex items-center gap-2 bg-red-500 hover:bg-red-600 text-white px-4 py-3 transition text-xs tracking-wider font-bold">
+                    <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+                        <circle cx="10" cy="10" r="8"/>
+                    </svg>
+                    RELATED
+                </a>
+                <a href="#" class="flex items-center gap-2 bg-white hover:bg-gray-200 text-dark-bg px-4 py-3 transition text-xs tracking-wider font-bold">
+                    <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+                        <path d="M3 1a1 1 0 000 2h1.22l.305 1.222a.997.997 0 00.01.042l1.358 5.43-.893.892C3.74 11.846 4.632 14 6.414 14H15a1 1 0 000-2H6.414l1-1h7.586a1 1 0 00.894-.553l3-6A1 1 0 0017 3H6.28l-.31-1.243A1 1 0 005 1H3z"/>
+                    </svg>
+                    BUY NOW
+                </a>
+            </div>
+
+            <div class="max-w-7xl mx-auto">
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8 lg:gap-12">
+                    <!-- Left Column: Decorative SVG -->
+                    <div class="hidden lg:flex items-start justify-center">
+                        <svg version="1.1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 303.083 305.563" class="w-full max-w-xs opacity-60">
+                            <g stroke="#9A7D57" stroke-width="1.5" stroke-miterlimit="10" fill="none">
+                                <path d="M36.927,251.827L1.428,190.62L72.426,67.954L53.591,35.415 M36.927,251.827l35.499-61.207L12.86,87.705"/>
+                                <path d="M107.925,6.621l35.499,61.333L72.426,190.62l65.733,113.572"/>
+                                <path d="M85.728,290.305l57.696-99.685L72.426,67.954l35.47-61.282"/>
+                                <path d="M176.85,3.041l37.572,64.913L143.424,190.62l60.398,104.352"/>
+                                <path d="M148.419,304.655l66.003-114.035L143.424,67.954L180.614,3.7"/>
+                                <path d="M281.166,75.306L214.422,190.62l41.37,71.478"/>
+                                <path d="M233.9,279.635l51.521-89.015L214.422,67.954l23.047-39.817"/>
+                                <path d="M302.023,161.937L285.42,190.62l7.581,13.098"/>
+                            </g>
+                        </svg>
+                    </div>
+
+                    <!-- Center Column: Text Content -->
+                    <div class="lg:col-span-1 text-center flex flex-col justify-center">
+                        <!-- Tagline -->
+                        <p class="text-gold-light font-script text-base mb-6" style="font-size: 1.25rem;">Restaurant life</p>
+
+                        <!-- Title with decorative elements -->
+                        <div class="mb-8">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="41" height="9" viewBox="0 0 41.125 9.146" class="mx-auto mb-4">
+                                <path class="decor-svg" d="M40.881 8.576L20.562.591.244 8.576"/>
+                                <path class="decor-svg" d="M40.881.591L20.562 8.576.243.591"/>
+                            </svg>
+                            <h2 class="text-5xl md:text-6xl font-serif text-gold mb-4" style="letter-spacing: 0.15em;">About Us</h2>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="41" height="9" viewBox="0 0 41.125 9.146" class="mx-auto">
+                                <path class="decor-svg" d="M40.881 8.576L20.562.591.244 8.576"/>
+                                <path class="decor-svg" d="M40.881.591L20.562 8.576.243.591"/>
+                            </svg>
+                        </div>
+
+                        <!-- Main text -->
+                        <p class="text-xs md:text-sm leading-relaxed mb-4 text-gray-400">
+                            Lorem ipsum dolor sit amet, consecte turn se adipisicing elit, sed do eiusmod tempor ens incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exerci reprehenderit in voluptate velit esse cillu sint occaecat error sit volu.
+                        </p>
+
+                        <!-- Additional paragraphs -->
+                        <p class="text-xs md:text-sm leading-relaxed mb-4 text-gray-400">
+                            Cupidatat non proident, sunt in culpa qui cia deserunt mollit anim id est laborum. Sed utsa tat monullamco laboris nisi ut aliquip exe ne com odoconsequat. Duis aute irure dolor in per spiciamt vsun.
+                        </p>
+
+                        <p class="text-xs md:text-sm leading-relaxed mb-8 text-gray-400">
+                            aperiam, eaque ipsa quae ab illo inventor veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nem odit aut fugit, sed quia consequ un turmagnido lors.
+                        </p>
+
+                        <!-- Read More Button -->
+                        <a href="#" class="inline-block px-8 py-2 border border-gold text-gold hover:bg-gold hover:text-dark-bg transition text-xs tracking-wider font-semibold">
+                            Read More
+                        </a>
+                    </div>
+
+                    <!-- Right Column: Image -->
+                    <div class="hidden lg:flex items-start justify-center">
+                        <img src="https://laurent.qodeinteractive.com/wp-content/uploads/2019/10/inner-pages-img-1.jpg" alt="Restaurant Image" class="w-full max-w-xs shadow-lg">
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Video Section -->
+        <section class="relative py-32 px-4 overflow-hidden" style="background-image: url('https://laurent.qodeinteractive.com/wp-content/uploads/2019/12/About-us-video-img.jpg'); background-size: cover; background-position: center;">
+            <div class="absolute inset-0 bg-dark-bg bg-opacity-50"></div>
+            <div class="relative z-10 flex justify-center items-center">
+                <a href="https://vimeo.com/369245407" class="group">
+                    <div class="flex items-center justify-center w-24 h-24 rounded-full border-2 border-gold hover:bg-gold transition">
+                        <svg class="w-8 h-8 text-gold group-hover:text-dark-bg transition fill-current" viewBox="0 0 24 24">
+                            <polygon points="5 3 19 12 5 21 5 3"></polygon>
+                        </svg>
+                    </div>
+                </a>
+            </div>
+        </section>
+
+        <!-- Testimonials Section -->
+        <section class="py-32 px-4 bg-dark-bg">
+            <div class="max-w-2xl mx-auto">
+                <div class="testimonials-carousel">
+                    <!-- Testimonial 1 -->
+                    <div class="testimonial-item active text-center">
+                        <div class="quote-mark mb-6" style="font-size: 4rem; margin-bottom: 2rem;">״</div>
+                        <p class="text-gray-400 text-base md:text-lg leading-relaxed mb-10">
+                            Duis aute irure dolor. Lorem ipsum dolor sit amet, consectetur adipisic sed do eiusmod tempor incidid sens as out labore et. Ut enim ad minim venia quis nostrud exercitation co laboris nisi ut aliquip ex ea commodo conse.
+                        </p>
+                        <h5 class="text-gold font-serif text-2xl mb-3">Andrea Chung</h5>
+                        <p class="text-gold-light text-xs uppercase tracking-widest font-light">Cook</p>
+                    </div>
+
+                    <!-- Testimonial 2 -->
+                    <div class="testimonial-item text-center">
+                        <div class="quote-mark mb-6" style="font-size: 4rem; margin-bottom: 2rem;">״</div>
+                        <p class="text-gray-400 text-base md:text-lg leading-relaxed mb-10">
+                            Ut enim ad minim venia quis nostrud exercitation co laboris nisi ut aliquip ex ea commodo conse.  Duis aute irure dolor. Lorem ipsum dolor sit amet, consectetur adipisic sed do eiusmod tempor incidid sens as out labore et.
+                        </p>
+                        <h5 class="text-gold font-serif text-2xl mb-3">Andrea Chung</h5>
+                        <p class="text-gold-light text-xs uppercase tracking-widest font-light">Cook</p>
+                    </div>
+
+                    <!-- Testimonial 3 -->
+                    <div class="testimonial-item text-center">
+                        <div class="quote-mark mb-6" style="font-size: 4rem; margin-bottom: 2rem;">״</div>
+                        <p class="text-gray-400 text-base md:text-lg leading-relaxed mb-10">
+                            Lorem ipsum dolor sit amet, consectetur adipisic sed do eiusmod tempor incidid sens as out labore et dolore magna aliqua. Ut enim ad minim venia quis nostrud exercitation co laboris nisi ut aliquip ex ea commodo conse.
+                        </p>
+                        <h5 class="text-gold font-serif text-2xl mb-3">Robert Chang</h5>
+                        <p class="text-gold-light text-xs uppercase tracking-widest font-light">Sommelier</p>
+                    </div>
+                </div>
+
+                <!-- Carousel Navigation -->
+                <div class="flex justify-center gap-4 mt-12">
+                    <button onclick="prevTestimonial()" class="p-2 text-gold hover:text-gold-light transition">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path>
+                        </svg>
+                    </button>
+                    <div class="flex gap-2">
+                        <button onclick="showTestimonial(0)" class="w-3 h-3 rounded-full bg-gold testimonial-dot active" data-index="0"></button>
+                        <button onclick="showTestimonial(1)" class="w-3 h-3 rounded-full bg-gray-600 testimonial-dot" data-index="1"></button>
+                        <button onclick="showTestimonial(2)" class="w-3 h-3 rounded-full bg-gray-600 testimonial-dot" data-index="2"></button>
+                    </div>
+                    <button onclick="nextTestimonial()" class="p-2 text-gold hover:text-gold-light transition">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-black border-t border-gray-700 py-16 px-4">
+        <div class="max-w-7xl mx-auto">
+            <div class="text-center mb-12">
+                <img src="https://laurent.qodeinteractive.com/wp-content/uploads/2019/10/footer-logo.png" alt="Laurent Logo" class="h-10 mx-auto mb-8">
+                <div class="w-16 mx-auto h-px bg-gray-700 mb-8"></div>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-12 text-center text-xs leading-relaxed">
+                <div>
+                    <p class="text-gray-400 text-xs">
+                        Laurent Restaurant & Fine dining,<br>
+                        <a href="#" class="text-gold hover:text-gold-light">71 Madison Ave</a>
+                    </p>
+                </div>
+                <div>
+                    <p class="text-gray-400 text-xs">
+                        <a href="#" class="text-gold hover:text-gold-light">10013 New York,</a><br>
+                        <a href="tel:914-309-7030" class="text-gold hover:text-gold-light">914-309-7030,</a><br>
+                        <a href="mailto:info@laurent.com" class="text-gold hover:text-gold-light">info@laurent.com</a>
+                    </p>
+                </div>
+                <div>
+                    <p class="text-gray-400 text-xs">
+                        Open: 09:00 am – 01:00 pm
+                    </p>
+                </div>
+            </div>
+
+            <div class="w-full h-px bg-gray-700 mb-8"></div>
+
+            <!-- Social Links -->
+            <div class="flex justify-center gap-8 text-xs tracking-wider">
+                <a href="https://www.facebook.com/QodeInteractive/" target="_blank" class="text-gold hover:text-gold-light transition uppercase">Facebook</a>
+                <a href="https://www.instagram.com/qodeinteractive/" target="_blank" class="text-gold hover:text-gold-light transition uppercase">Instagram</a>
+                <a href="https://www.tripadvisor.com/" target="_blank" class="text-gold hover:text-gold-light transition uppercase">Trip Advisor</a>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        let currentTestimonial = 0;
+
+        function showTestimonial(index) {
+            const items = document.querySelectorAll('.testimonial-item');
+            const dots = document.querySelectorAll('.testimonial-dot');
+
+            items.forEach(item => item.classList.remove('active'));
+            dots.forEach(dot => dot.classList.remove('bg-gold'));
+            dots.forEach(dot => dot.classList.add('bg-gray-600'));
+
+            items[index].classList.add('active');
+            dots[index].classList.remove('bg-gray-600');
+            dots[index].classList.add('bg-gold');
+
+            currentTestimonial = index;
+        }
+
+        function nextTestimonial() {
+            const total = document.querySelectorAll('.testimonial-item').length;
+            showTestimonial((currentTestimonial + 1) % total);
+        }
+
+        function prevTestimonial() {
+            const total = document.querySelectorAll('.testimonial-item').length;
+            showTestimonial((currentTestimonial - 1 + total) % total);
+        }
+
+        // Auto-rotate testimonials every 5 seconds
+        setInterval(nextTestimonial, 5000);
+    </script>
+</body>
+</html>

@@ -6,7 +6,8 @@
     "test:tier0": "node --test test/tier0.test.js",
     "test:tier1": "node --test test/tier1.test.js",
     "test:tier2": "node --test test/tier2.test.js",
-    "test:live": "node --test test/tier1-live.test.js"
+    "test:live": "node --test test/tier1-live.test.js",
+    "report:runs": "node scripts/build-runs-report.js"
   },
   "devDependencies": {
     "crow-nester": "github:cam5/crow-nester",

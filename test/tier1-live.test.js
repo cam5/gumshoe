@@ -3,6 +3,7 @@ import fs from "node:fs";
 import path from "node:path";
 import yaml from "js-yaml";
 import { runAgentAgainstUrl } from "./lib/run-agent.js";
+import { recordRun } from "./lib/record-run.js";
 
 const FIXTURES_DIR = path.resolve(import.meta.dirname, "..", "fixtures");
 // Real pages are heavier than our synthetic fixtures — more investigation,
@@ -44,6 +45,9 @@ for (const name of fixtureNames) {
 
       t.assert.ok(!run.isError, `[${label}] agent errored out entirely: ${run.resultText}`);
       t.assert.ok(run.cloneHtml, `[${label}] no clone.html found at the exact path the agent was told to write to`);
+
+      const runDir = recordRun(run, { fixture: name, condition: label });
+      t.diagnostic(`[${label}] recorded to ${path.relative(path.resolve(import.meta.dirname, ".."), runDir)} (${run.screenshots.length} screenshot(s))`);
     }
   });
 }
