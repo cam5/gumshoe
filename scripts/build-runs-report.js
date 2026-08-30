@@ -150,6 +150,11 @@ function renderRunCard(run) {
       <pre class="summary">${escapeHtml(transcript.resultText ?? "(no summary)")}</pre>
     </section>
 
+    <section class="run-section">
+      <h3>Annotations</h3>
+      <ul class="annotations-list" data-run-id="${escapeHtml(id)}"><li class="empty">Loading…</li></ul>
+    </section>
+
     ${footerLinks.length ? `<footer class="run-footer">${footerLinks.join("")}</footer>` : ""}
   </article>`;
 }
@@ -373,10 +378,79 @@ function renderPage(runs) {
     font-family: inherit;
   }
   .run-footer { display: flex; gap: 12px; font-size: 0.8rem; }
+  .annotations-list { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 8px; max-height: 260px; overflow-y: auto; }
+  .annotation { border: 1px solid var(--border); border-radius: 6px; padding: 8px; background: var(--bg); }
+  .annotation blockquote {
+    margin: 0 0 4px;
+    font-size: 0.78rem;
+    font-style: italic;
+    color: var(--ink-dim);
+    border-left: 2px solid var(--accent);
+    padding-left: 8px;
+  }
+  .annotation-note { margin: 0 0 4px; font-size: 0.82rem; white-space: pre-wrap; }
+  .annotation-meta { font-size: 0.68rem; color: var(--ink-dim); display: flex; justify-content: space-between; align-items: center; gap: 8px; }
+  .annotation-delete { font-size: 0.68rem; background: none; border: none; color: var(--error); cursor: pointer; padding: 0; }
+  .annotations-list .empty { list-style: none; }
+  #annotate-trigger {
+    position: absolute;
+    z-index: 20;
+    font-size: 0.75rem;
+    padding: 4px 10px;
+    border-radius: 999px;
+    border: 1px solid var(--accent);
+    background: var(--panel);
+    color: var(--accent);
+    cursor: pointer;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+  }
+  #annotate-popover {
+    position: absolute;
+    z-index: 21;
+    width: 280px;
+    background: var(--panel);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 10px;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
+  }
+  .annotate-excerpt {
+    font-size: 0.75rem;
+    font-style: italic;
+    color: var(--ink-dim);
+    border-left: 2px solid var(--accent);
+    padding-left: 8px;
+    margin-bottom: 6px;
+    max-height: 80px;
+    overflow-y: auto;
+  }
+  #annotate-popover textarea {
+    width: 100%;
+    min-height: 60px;
+    font: inherit;
+    font-size: 0.8rem;
+    padding: 6px;
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    resize: vertical;
+    box-sizing: border-box;
+  }
+  .annotate-actions { display: flex; justify-content: flex-end; gap: 6px; margin-top: 6px; }
+  .annotate-actions button {
+    font-size: 0.75rem;
+    padding: 4px 10px;
+    border-radius: 4px;
+    border: 1px solid var(--border);
+    background: var(--bg);
+    cursor: pointer;
+  }
+  .annotate-save { border-color: var(--accent) !important; color: var(--accent); }
+  .hint { font-size: 0.75rem; color: var(--ink-dim); padding: 0 20px; margin: 0; }
 </style>
 </head>
 <body>
 <h1>gumshoe run report — ${runs.length} run${runs.length === 1 ? "" : "s"} in ${groups.length} batch${groups.length === 1 ? "" : "es"}</h1>
+<p class="hint">Select any text in a run card to annotate it. Annotations save to <code>runs/&lt;id&gt;/annotations.json</code> and need the report server (<code>npm run report:serve</code>) to load or save.</p>
 <div class="layout">
   ${filterPanel}
   <div class="cards" id="cards">
@@ -397,6 +471,149 @@ function renderPage(runs) {
   document.getElementById("select-none")?.addEventListener("click", () => { toggles.forEach((t) => (t.checked = false)); apply(); });
   document.getElementById("select-latest")?.addEventListener("click", () => { toggles.forEach((t) => (t.checked = latestGroupId !== null && t.dataset.groupId === latestGroupId)); apply(); });
   apply();
+
+  // Annotations: select any text inside a run card, click "+ Annotate", write a note. Saved
+  // server-side to runs/<id>/annotations.json — needs the report server, not just this static
+  // file, since it round-trips through fetch().
+  const isFileProtocol = location.protocol === "file:";
+
+  function escapeHtmlClient(value) {
+    return String(value).replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" })[c]);
+  }
+
+  function closestClass(node, className) {
+    while (node && node !== document.body) {
+      if (node.nodeType === 1 && node.classList?.contains(className)) return node;
+      node = node.parentNode;
+    }
+    return null;
+  }
+
+  function renderAnnotationLi(runId, a) {
+    const li = document.createElement("li");
+    li.className = "annotation";
+    li.dataset.id = a.id;
+    li.innerHTML = \`
+      <blockquote>\${escapeHtmlClient(a.excerpt)}</blockquote>
+      <p class="annotation-note">\${escapeHtmlClient(a.note)}</p>
+      <div class="annotation-meta">
+        <span>\${a.section ? escapeHtmlClient(a.section) + " · " : ""}\${new Date(a.createdAt).toLocaleString()}</span>
+        <button class="annotation-delete">Delete</button>
+      </div>\`;
+    li.querySelector(".annotation-delete").addEventListener("click", async () => {
+      await fetch(\`/api/annotations/\${encodeURIComponent(runId)}/\${a.id}\`, { method: "DELETE" });
+      li.remove();
+    });
+    return li;
+  }
+
+  function prependAnnotation(runId, annotation) {
+    const list = document.querySelector(\`.annotations-list[data-run-id="\${CSS.escape(runId)}"]\`);
+    if (!list) return;
+    list.querySelector(".empty")?.remove();
+    list.prepend(renderAnnotationLi(runId, annotation));
+  }
+
+  async function loadAnnotations() {
+    for (const list of document.querySelectorAll(".annotations-list")) {
+      const runId = list.dataset.runId;
+      if (isFileProtocol) {
+        list.innerHTML = '<li class="empty">Annotations need the report server — run <code>npm run report:serve</code>.</li>';
+        continue;
+      }
+      try {
+        const res = await fetch(\`/api/annotations/\${encodeURIComponent(runId)}\`);
+        const annotations = await res.json();
+        list.innerHTML = "";
+        if (!annotations.length) {
+          list.innerHTML = '<li class="empty">No annotations yet — select any text in this card to add one.</li>';
+        } else {
+          for (const a of annotations) list.appendChild(renderAnnotationLi(runId, a));
+        }
+      } catch (err) {
+        list.innerHTML = \`<li class="empty">Could not load annotations: \${escapeHtmlClient(err.message)}</li>\`;
+      }
+    }
+  }
+
+  if (!isFileProtocol) {
+    let pending = null;
+
+    const trigger = document.createElement("button");
+    trigger.id = "annotate-trigger";
+    trigger.type = "button";
+    trigger.textContent = "+ Annotate";
+    trigger.hidden = true;
+    document.body.appendChild(trigger);
+
+    const popover = document.createElement("div");
+    popover.id = "annotate-popover";
+    popover.hidden = true;
+    popover.innerHTML = \`
+      <div class="annotate-excerpt"></div>
+      <textarea placeholder="What's off, or worth noting, about this?"></textarea>
+      <div class="annotate-actions">
+        <button type="button" class="annotate-cancel">Cancel</button>
+        <button type="button" class="annotate-save">Save</button>
+      </div>\`;
+    document.body.appendChild(popover);
+
+    document.addEventListener("mouseup", (e) => {
+      const selection = window.getSelection();
+      const text = selection ? selection.toString().trim() : "";
+      if (!text || e.target === trigger) return;
+      const card = closestClass(selection.anchorNode, "run-card");
+      if (!card) {
+        trigger.hidden = true;
+        return;
+      }
+      const section = closestClass(selection.anchorNode, "run-section")?.querySelector("h3")?.textContent ?? null;
+      const rect = selection.getRangeAt(0).getBoundingClientRect();
+      pending = { runId: card.dataset.runId, section, excerpt: text };
+      trigger.style.top = \`\${window.scrollY + rect.bottom + 6}px\`;
+      trigger.style.left = \`\${window.scrollX + rect.left}px\`;
+      trigger.hidden = false;
+    });
+
+    trigger.addEventListener("mousedown", (e) => {
+      e.preventDefault();
+      popover.querySelector(".annotate-excerpt").textContent = pending.excerpt;
+      const textarea = popover.querySelector("textarea");
+      textarea.value = "";
+      popover.style.top = trigger.style.top;
+      popover.style.left = trigger.style.left;
+      popover.hidden = false;
+      trigger.hidden = true;
+      textarea.focus();
+    });
+
+    popover.querySelector(".annotate-cancel").addEventListener("click", () => {
+      popover.hidden = true;
+    });
+
+    popover.querySelector(".annotate-save").addEventListener("click", async () => {
+      const note = popover.querySelector("textarea").value.trim();
+      if (!note || !pending) return;
+      try {
+        const res = await fetch(\`/api/annotations/\${encodeURIComponent(pending.runId)}\`, {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(pending),
+        });
+        if (!res.ok) throw new Error((await res.json()).error ?? res.statusText);
+        prependAnnotation(pending.runId, await res.json());
+      } catch (err) {
+        alert("Could not save annotation: " + err.message);
+      }
+      popover.hidden = true;
+    });
+
+    document.addEventListener("mousedown", (e) => {
+      if (!popover.hidden && !popover.contains(e.target) && e.target !== trigger) popover.hidden = true;
+    });
+  }
+
+  loadAnnotations();
 </script>
 </body>
 </html>`;
