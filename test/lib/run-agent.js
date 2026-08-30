@@ -47,8 +47,9 @@ function loadAgentDefinition(agentFile) {
  * — "cloner" (the tooled agent) or "cloner-baseline" (the control condition,
  * same deliverable spec, no red-twine/windtailor/slowcure).
  */
-export function runAgentAgainstUrl(pageUrl, { agentName = "cloner", maxBudgetUsd = 1.0, live = false } = {}) {
+export function runAgentAgainstUrl(pageUrl, { agentName = "cloner", maxBudgetUsd = 1.0, live = false, model } = {}) {
   const { frontmatter, body } = loadAgentDefinition(path.join(AGENTS_DIR, `${agentName}.md`));
+  const resolvedModel = model ?? frontmatter.model ?? "sonnet";
 
   const workDir = fs.mkdtempSync(path.join(os.tmpdir(), "gumshoe-agent-run-"));
   const prompt = `Clone this page into a single self-contained HTML file: ${pageUrl}`;
@@ -60,7 +61,7 @@ export function runAgentAgainstUrl(pageUrl, { agentName = "cloner", maxBudgetUsd
     "--system-prompt",
     systemPrompt,
     "--model",
-    frontmatter.model ?? "sonnet",
+    resolvedModel,
     "--output-format",
     "json",
     "--permission-mode",
@@ -94,6 +95,7 @@ export function runAgentAgainstUrl(pageUrl, { agentName = "cloner", maxBudgetUsd
 
   return {
     agentName,
+    model: resolvedModel,
     workDir,
     toolCalls,
     resultText: result?.result ?? null,
@@ -110,9 +112,9 @@ export function runAgentAgainstUrl(pageUrl, { agentName = "cloner", maxBudgetUsd
  * (which state the expected answer) or to any other fixture's, the same way
  * a real live site never ships its own answer key next to it.
  */
-export function runAgent(fixtureDir, { agentName = "cloner", maxBudgetUsd = 1.0 } = {}) {
+export function runAgent(fixtureDir, { agentName = "cloner", maxBudgetUsd = 1.0, model } = {}) {
   const stagingDir = fs.mkdtempSync(path.join(os.tmpdir(), "gumshoe-fixture-stage-"));
   fs.copyFileSync(path.join(fixtureDir, "page.html"), path.join(stagingDir, "page.html"));
   const pageUrl = `file://${path.join(stagingDir, "page.html")}`;
-  return runAgentAgainstUrl(pageUrl, { agentName, maxBudgetUsd, live: false });
+  return runAgentAgainstUrl(pageUrl, { agentName, maxBudgetUsd, live: false, model });
 }

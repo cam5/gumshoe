@@ -9,6 +9,10 @@ const FIXTURES_DIR = path.resolve(import.meta.dirname, "..", "fixtures");
 // more tool calls, longer runs. Default budget/timeout are both higher than
 // the local-fixture suites.
 const MAX_BUDGET_USD = Number(process.env.GUMSHOE_LIVE_MAX_BUDGET_USD ?? 3.0);
+// Override both agents' model (default: whatever each .claude/agents/*.md
+// frontmatter declares, currently sonnet for both) — e.g. GUMSHOE_MODEL=haiku
+// to see whether tool access matters more or less for a smaller model.
+const MODEL = process.env.GUMSHOE_MODEL || undefined;
 
 const fixtureNames = fs
   .readdirSync(FIXTURES_DIR, { withFileTypes: true })
@@ -28,9 +32,9 @@ for (const name of fixtureNames) {
 
     for (const agentName of ["cloner", "cloner-baseline"]) {
       const label = agentName === "cloner" ? "tooled" : "baseline";
-      const run = runAgentAgainstUrl(manifest.url, { agentName, maxBudgetUsd: MAX_BUDGET_USD, live: true });
+      const run = runAgentAgainstUrl(manifest.url, { agentName, maxBudgetUsd: MAX_BUDGET_USD, live: true, model: MODEL });
 
-      t.diagnostic(`[${label}] cost: $${run.totalCostUsd} — isError: ${run.isError} — workDir: ${run.workDir}`);
+      t.diagnostic(`[${label}] model: ${run.model} — cost: $${run.totalCostUsd} — isError: ${run.isError} — workDir: ${run.workDir}`);
 
       const calls = run.toolCalls.map((c) => `${c.name} ${c.input?.command ?? c.input?.file_path ?? ""}`);
       t.diagnostic(`[${label}] tool calls (${run.toolCalls.length}):\n  ${calls.join("\n  ")}`);
