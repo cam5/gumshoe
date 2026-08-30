@@ -1,4 +1,7 @@
-import { execFileSync } from "node:child_process";
+import { execFile } from "node:child_process";
+import { promisify } from "node:util";
+
+const execFileAsync = promisify(execFile);
 
 /**
  * Runs an LLM judge call: pure text in, structured verdict out. Unlike
@@ -9,7 +12,7 @@ import { execFileSync } from "node:child_process";
  * expectedOutcome/rubric text — grading against it is the whole job, unlike
  * the agent-under-test, which must never see it.
  */
-export function runJudge({ prompt, jsonSchema, model = "sonnet", maxBudgetUsd = 0.5 }) {
+export async function runJudge({ prompt, jsonSchema, model = "sonnet", maxBudgetUsd = 0.5 }) {
   const args = [
     "-p",
     prompt,
@@ -28,7 +31,9 @@ export function runJudge({ prompt, jsonSchema, model = "sonnet", maxBudgetUsd = 
     "--no-session-persistence",
   ];
 
-  const raw = execFileSync("claude", args, {
+  // Async, not execFileSync: this runs inside tier2's concurrent worker pool alongside many
+  // agent runs at once -- a synchronous call here would stall every other in-flight run too.
+  const { stdout: raw } = await execFileAsync("claude", args, {
     encoding: "utf8",
     maxBuffer: 1024 * 1024 * 64,
   });

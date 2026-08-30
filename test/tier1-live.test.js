@@ -29,7 +29,7 @@ for (const name of fixtureNames) {
   const manifest = yaml.load(fs.readFileSync(manifestPath, "utf8"));
   if (!manifest.tier1?.live) continue;
 
-  test(`tier1-live: ${name}`, { timeout: 20 * 60 * 1000 }, (t) => {
+  test(`tier1-live: ${name}`, { timeout: 20 * 60 * 1000 }, async (t) => {
     t.diagnostic(`Live fixture, purely observational — no pass/fail against a known answer: ${manifest.url}`);
 
     // Both conditions below are dispatched together as one batch — tag them with a shared id so
@@ -38,7 +38,7 @@ for (const name of fixtureNames) {
 
     for (const agentName of ["cloner", "cloner-baseline"]) {
       const label = agentName === "cloner" ? "tooled" : "baseline";
-      const run = runAgentAgainstUrl(manifest.url, { agentName, maxBudgetUsd: MAX_BUDGET_USD, live: true, model: MODEL });
+      const run = await runAgentAgainstUrl(manifest.url, { agentName, maxBudgetUsd: MAX_BUDGET_USD, live: true, model: MODEL });
 
       t.diagnostic(`[${label}] model: ${run.model} — cost: $${run.totalCostUsd} — isError: ${run.isError} — workDir: ${run.workDir}`);
 

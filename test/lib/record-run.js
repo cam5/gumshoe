@@ -21,7 +21,7 @@ function slugify(value) {
  * instead of just by recency. Omit it for a standalone run — the report falls back to treating
  * the run as its own singleton group.
  */
-export function recordRun(run, { fixture, condition, runGroup }) {
+export function recordRun(run, { fixture, condition, runGroup, metrics }) {
   const timestamp = new Date().toISOString().replace(/[:.]/g, "-");
   const dirName = `${timestamp}_${slugify(fixture)}_${run.model}_${condition}`;
   const runDir = path.join(RUNS_DIR, dirName);
@@ -47,6 +47,7 @@ export function recordRun(run, { fixture, condition, runGroup }) {
     screenshotCount: run.screenshots?.length ?? 0,
     promptHash,
     recordedAt: new Date().toISOString(),
+    ...(metrics ?? {}),
   };
   fs.writeFileSync(path.join(runDir, "meta.json"), JSON.stringify(meta, null, 2));
 

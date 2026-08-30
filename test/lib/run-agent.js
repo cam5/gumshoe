@@ -1,8 +1,16 @@
-import { execFileSync } from "node:child_process";
+import { execFile } from "node:child_process";
 import fs from "node:fs";
 import os from "node:os";
 import path from "node:path";
+import { promisify } from "node:util";
 import yaml from "js-yaml";
+
+// execFileSync blocks the entire Node process/event loop for as long as the `claude` call takes
+// -- with many runs meant to happen concurrently (see tier2.test.js's worker pool), even one
+// synchronous call anywhere would stall every other in-flight run too, not just its own. The
+// promisified async execFile is what actually lets multiple `claude` subprocesses make progress
+// at the same time.
+const execFileAsync = promisify(execFile);
 
 const REPO_ROOT = path.resolve(import.meta.dirname, "..", "..");
 const AGENTS_DIR = path.join(REPO_ROOT, ".claude", "agents");
@@ -55,7 +63,7 @@ function loadAgentDefinition(agentFile) {
  * — "cloner" (the tooled agent) or "cloner-baseline" (the control condition,
  * same deliverable spec, no red-twine/windtailor/slowcure).
  */
-export function runAgentAgainstUrl(pageUrl, { agentName = "cloner", maxBudgetUsd = 1.0, live = false, model } = {}) {
+export async function runAgentAgainstUrl(pageUrl, { agentName = "cloner", maxBudgetUsd = 1.0, live = false, model } = {}) {
   const { frontmatter, body } = loadAgentDefinition(path.join(AGENTS_DIR, `${agentName}.md`));
   const resolvedModel = model ?? frontmatter.model ?? "sonnet";
 
@@ -82,7 +90,7 @@ export function runAgentAgainstUrl(pageUrl, { agentName = "cloner", maxBudgetUsd
     "--no-session-persistence",
   ];
 
-  const raw = execFileSync("claude", args, {
+  const { stdout: raw } = await execFileAsync("claude", args, {
     cwd: workDir,
     encoding: "utf8",
     maxBuffer: 1024 * 1024 * 256,

@@ -25,8 +25,8 @@ for (const name of fixtureNames) {
   // test:live` — this suite stays fast/reproducible against local fixtures.
   if (manifest.tier1.live) continue;
 
-  test(`tier1: ${name}`, { timeout: 10 * 60 * 1000 }, (t) => {
-    const run = runAgent(fixtureDir, { maxBudgetUsd: MAX_BUDGET_USD });
+  test(`tier1: ${name}`, { timeout: 10 * 60 * 1000 }, async (t) => {
+    const run = await runAgent(fixtureDir, { maxBudgetUsd: MAX_BUDGET_USD });
     t.diagnostic(`cost: $${run.totalCostUsd} — workDir: ${run.workDir}`);
 
     const calls = run.toolCalls.map((c) => `${c.name} ${c.input?.command ?? c.input?.file_path ?? ""}`);

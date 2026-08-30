@@ -74,11 +74,13 @@ function toolCallLine(call) {
 function renderTranscript(transcript) {
   if (transcript.events?.length) {
     const items = transcript.events
-      .map((e) =>
-        e.type === "text"
-          ? `<li class="event-text">${escapeHtml(e.text)}</li>`
-          : `<li class="event-tool">${escapeHtml(toolCallLine(e))}</li>`,
-      )
+      .map((e) => {
+        if (e.type === "separator") return `<li class="event-separator">${escapeHtml(e.label)}</li>`;
+        const nestedClass = e.nested ? " event-nested" : "";
+        return e.type === "text"
+          ? `<li class="event-text${nestedClass}">${escapeHtml(e.text)}</li>`
+          : `<li class="event-tool${nestedClass}">${escapeHtml(toolCallLine(e))}</li>`;
+      })
       .join("\n");
     return `<ol class="transcript">${items}</ol>`;
   }
@@ -93,6 +95,11 @@ function renderRunCard(run) {
   const statusClass = meta.isError ? "status-error" : "status-ok";
   const promptTag = meta.promptHash
     ? `<span class="tag tag-prompt" title="sha256 of the exact system prompt sent to the model — two runs sharing this mean byte-identical prompts">prompt ${escapeHtml(meta.promptHash)}</span>`
+    : "";
+  const diffLabel = meta.diffRatio != null ? `${(meta.diffRatio * 100).toFixed(2)}% diff` : meta.diffComparable === false ? "diff: n/a" : null;
+  const qualityLabel = meta.qualityScore != null ? `quality ${meta.qualityScore}/10` : null;
+  const blankMatchTag = meta.blankMatch
+    ? `<span class="tag status-error" title="both screenshots are >97% one dominant color -- this diffRatio may be meaningless, not a genuine fidelity match">blank match</span>`
     : "";
 
   const screenshotsHtml = screenshots.length
@@ -123,12 +130,16 @@ function renderRunCard(run) {
         <span class="tag">${escapeHtml(meta.model)}</span>
         <span class="tag ${statusClass}">${statusLabel}</span>
         ${promptTag}
+        ${blankMatchTag}
       </div>
       <div class="run-stats">
         <span>${costLabel}</span>
         <span>${meta.toolCallCount} tool call${meta.toolCallCount === 1 ? "" : "s"}</span>
+        ${diffLabel ? `<span class="stat-metric" title="pixel-diff ratio vs. the fixture's original page, at a fixed 1280x900 viewport">${escapeHtml(diffLabel)}</span>` : ""}
+        ${qualityLabel ? `<span class="stat-metric" title="LLM-judge code-quality score, 1-10">${escapeHtml(qualityLabel)}</span>` : ""}
         <span>${escapeHtml(meta.recordedAt.slice(0, 19).replace("T", " "))}</span>
       </div>
+      ${meta.qualityReasoning ? `<p class="quality-reasoning">${escapeHtml(meta.qualityReasoning)}</p>` : ""}
     </header>
 
     <section class="run-section">
@@ -159,6 +170,50 @@ function renderRunCard(run) {
   </article>`;
 }
 
+function average(values) {
+  const nums = values.filter((v) => typeof v === "number" && Number.isFinite(v));
+  return nums.length ? nums.reduce((a, b) => a + b, 0) / nums.length : null;
+}
+
+/** Rolls a batch's runs up by condition (tooled/baseline) so the two are comparable at a glance
+ * without opening every card — the whole point of running >=1 repeat per condition. */
+function renderConditionRollup(group) {
+  const byCondition = new Map();
+  for (const run of group.runs) {
+    const key = run.meta.condition;
+    if (!byCondition.has(key)) byCondition.set(key, []);
+    byCondition.get(key).push(run);
+  }
+  if (byCondition.size < 2) return "";
+
+  const rows = [...byCondition.entries()]
+    .map(([condition, runs]) => {
+      const n = runs.length;
+      const avgCost = average(runs.map((r) => r.meta.totalCostUsd));
+      const avgDiff = average(runs.map((r) => r.meta.diffRatio));
+      const avgQuality = average(runs.map((r) => r.meta.qualityScore));
+      const errors = runs.filter((r) => r.meta.isError).length;
+      const blanks = runs.filter((r) => r.meta.blankMatch).length;
+      return `
+      <tr>
+        <td>${escapeHtml(condition)}</td>
+        <td>${n}</td>
+        <td>${avgCost != null ? `$${avgCost.toFixed(3)}` : "—"}</td>
+        <td>${avgDiff != null ? `${(avgDiff * 100).toFixed(2)}%` : "—"}</td>
+        <td>${avgQuality != null ? avgQuality.toFixed(1) : "—"}</td>
+        <td>${errors ? `${errors}/${n}` : "0"}</td>
+        <td>${blanks ? `${blanks}/${n}` : "0"}</td>
+      </tr>`;
+    })
+    .join("\n");
+
+  return `
+  <table class="rollup">
+    <thead><tr><th>condition</th><th>n</th><th>avg cost</th><th>avg diff</th><th>avg quality</th><th>errors</th><th title="both screenshots >97% one dominant color -- diff may be meaningless">blank match</th></tr></thead>
+    <tbody>${rows}</tbody>
+  </table>`;
+}
+
 function renderGroupSection(group) {
   const cards = group.runs.map(renderRunCard).join("\n");
   const label = group.runs[0]?.meta?.fixture ?? group.groupId;
@@ -169,6 +224,7 @@ function renderGroupSection(group) {
       <h2>${escapeHtml(label)}</h2>
       <span class="group-meta">batch ${escapeHtml(group.groupId)} · ${group.runs.length} run${group.runs.length === 1 ? "" : "s"} · ${escapeHtml(timestamp)}</span>
     </div>
+    ${renderConditionRollup(group)}
     <div class="group-cards">${cards}</div>
   </section>`;
 }
@@ -332,6 +388,37 @@ function renderPage(runs) {
     color: var(--ink-dim);
     font-variant-numeric: tabular-nums;
   }
+  .stat-metric {
+    font-weight: 600;
+    color: var(--accent);
+  }
+  .quality-reasoning {
+    margin: 6px 0 0;
+    font-size: 0.78rem;
+    color: var(--ink-dim);
+    font-style: italic;
+  }
+  table.rollup {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 10px 0 16px;
+    font-size: 0.8rem;
+    font-variant-numeric: tabular-nums;
+    background: var(--panel);
+    border: 1px solid var(--border);
+  }
+  table.rollup th, table.rollup td {
+    padding: 6px 10px;
+    text-align: left;
+    border-bottom: 1px solid var(--border);
+  }
+  table.rollup th {
+    color: var(--ink-dim);
+    font-weight: 600;
+    font-size: 0.72rem;
+    text-transform: uppercase;
+    letter-spacing: 0.03em;
+  }
   .run-section h3 {
     font-size: 0.75rem;
     text-transform: uppercase;
@@ -359,6 +446,21 @@ function renderPage(runs) {
     font-style: italic;
     color: var(--ink-dim);
     white-space: pre-wrap;
+  }
+  .transcript .event-nested {
+    margin-left: 14px;
+    padding-left: 8px;
+    border-left: 2px dashed var(--accent);
+  }
+  .transcript .event-separator {
+    list-style: none;
+    margin: 6px 0 6px -18px;
+    font-size: 0.68rem;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    color: var(--accent);
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    font-style: normal;
   }
   .raw-json summary { font-size: 0.75rem; color: var(--ink-dim); cursor: pointer; margin-top: 6px; }
   .raw-json pre {
