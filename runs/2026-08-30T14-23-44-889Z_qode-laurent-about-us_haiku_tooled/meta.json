@@ -1,0 +1,13 @@
+{
+  "fixture": "qode-laurent-about-us",
+  "condition": "tooled",
+  "runGroup": "94e61f53",
+  "agentName": "cloner",
+  "model": "haiku",
+  "totalCostUsd": 0.5140575999999999,
+  "isError": false,
+  "toolCallCount": 32,
+  "screenshotCount": 9,
+  "promptHash": "3605260d",
+  "recordedAt": "2026-08-30T14:23:44.893Z"
+}

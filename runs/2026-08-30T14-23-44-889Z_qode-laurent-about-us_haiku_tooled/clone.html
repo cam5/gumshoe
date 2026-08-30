@@ -1,0 +1,572 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=yes" />
+    <title>About Us – Laurent</title>
+    <link href="https://fonts.googleapis.com/css?family=Miniver%3A100%2C300%2C400%2C700%7CJosefin+Sans%3A100%2C300%2C400%2C700%7COpen+Sans+Condensed%3A100%2C300%2C400%2C700%7CMrs+Saint+Delafield%3A100%2C300%2C400%2C700%7CLimelight%3A100%2C300%2C400%2C700&subset=latin-ext" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.theme.default.min.css" />
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html, body {
+            width: 100%;
+            background-color: #0c1315;
+            color: #afb8b8;
+            font-family: "Open Sans", sans-serif;
+            font-size: 14px;
+            line-height: 1.7;
+        }
+
+        /* Header & Navigation */
+        header.page-header {
+            background-color: rgba(0, 0, 0, 0.5);
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+            height: 110px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 60px;
+        }
+
+        .logo img {
+            height: 66px;
+            width: auto;
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            gap: 40px;
+            align-items: center;
+        }
+
+        nav a {
+            color: #ffffff;
+            text-decoration: none;
+            text-transform: uppercase;
+            font-size: 12px;
+            letter-spacing: 1px;
+            font-weight: 600;
+            transition: color 0.3s;
+        }
+
+        nav a:hover {
+            color: #9c7c57;
+        }
+
+        /* Hero Title Section */
+        .hero-section {
+            height: 530px;
+            background: linear-gradient(rgba(12, 19, 21, 0.4), rgba(12, 19, 21, 0.4)),
+                        url('https://laurent.qodeinteractive.com/wp-content/uploads/2019/12/About-us-title-img.jpg') center/cover no-repeat;
+            display: flex;
+            align-items: flex-end;
+            justify-content: center;
+            margin-top: 110px;
+            position: relative;
+            padding-bottom: 120px;
+        }
+
+        .hero-content {
+            text-align: center;
+        }
+
+        .title-decor svg {
+            width: 41px;
+            height: 9px;
+            margin: 0 20px;
+            display: inline-block;
+        }
+
+        .title-decor line, .title-decor path {
+            stroke: #9c7c57;
+            fill: none;
+        }
+
+        h1.page-title {
+            font-size: 56px;
+            color: #c9ab81;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin: 10px 0;
+            font-family: "Mrs Saint Delafield", cursive;
+            font-weight: 400;
+            font-style: italic;
+        }
+
+        /* Main Content Section */
+        .main-content {
+            max-width: 1300px;
+            margin: 0 auto;
+            padding: 160px 60px 170px;
+            display: grid;
+            grid-template-columns: 1fr 1.5fr 1fr;
+            gap: 60px;
+            align-items: center;
+        }
+
+        .content-column {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        /* SVG Pattern */
+        .svg-pattern {
+            width: 100%;
+            height: auto;
+        }
+
+        .svg-pattern svg {
+            width: 100%;
+            height: auto;
+            max-width: 300px;
+        }
+
+        /* Center Column - Text */
+        .text-section h3 {
+            font-size: 13px;
+            color: #c9ab81;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            margin-bottom: 20px;
+            font-family: "Open Sans", sans-serif;
+            font-weight: 600;
+        }
+
+        .text-section h2 {
+            font-size: 40px;
+            color: #c9ab81;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 30px;
+            font-family: "Mrs Saint Delafield", cursive;
+            font-weight: 400;
+            font-style: italic;
+        }
+
+        .text-section p {
+            color: #afb8b8;
+            margin-bottom: 15px;
+            line-height: 1.8;
+            font-size: 14px;
+        }
+
+        .read-more-btn {
+            align-self: flex-start;
+            display: inline-block;
+            color: #c9ab81;
+            text-decoration: none;
+            text-transform: uppercase;
+            font-size: 12px;
+            letter-spacing: 1.5px;
+            padding: 12px 30px;
+            border: 1px solid #9c7c57;
+            background: transparent;
+            cursor: pointer;
+            transition: all 0.3s;
+            margin-top: 30px;
+        }
+
+        .read-more-btn:hover {
+            background-color: #9c7c57;
+            color: #ffffff;
+        }
+
+        /* Right Image */
+        .right-image img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        /* Video Section */
+        .video-section {
+            background: linear-gradient(rgba(12, 19, 21, 0.6), rgba(12, 19, 21, 0.6)),
+                        url('https://laurent.qodeinteractive.com/wp-content/uploads/2019/12/About-us-video-img.jpg') center/cover no-repeat;
+            height: 500px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            padding: 167px 60px 165px;
+        }
+
+        .video-play-btn {
+            width: 97px;
+            height: 97px;
+            border: 2px solid #c9ab81;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            position: relative;
+            transition: all 0.3s;
+        }
+
+        .video-play-btn:hover {
+            border-color: #9c7c57;
+            transform: scale(1.1);
+        }
+
+        .video-play-btn svg {
+            width: 40px;
+            height: 40px;
+            margin-left: 5px;
+        }
+
+        .video-play-btn polygon {
+            fill: #c9ab81;
+            stroke: #c9ab81;
+        }
+
+        /* Testimonials Section */
+        .testimonials-section {
+            padding: 167px 60px 165px;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .testimonials-mark {
+            text-align: center;
+            font-size: 50px;
+            color: #9c7c57;
+            margin-bottom: 40px;
+            font-family: Georgia, serif;
+        }
+
+        .testimonial-item {
+            text-align: center;
+        }
+
+        .testimonial-text {
+            color: #c9ab81;
+            font-size: 16px;
+            line-height: 1.9;
+            margin-bottom: 30px;
+            font-style: italic;
+            font-family: Georgia, serif;
+        }
+
+        .testimonial-author {
+            color: #c9ab81;
+            text-transform: uppercase;
+            font-size: 14px;
+            letter-spacing: 1px;
+            margin-bottom: 8px;
+            font-weight: 600;
+        }
+
+        .testimonial-job {
+            color: #afb8b8;
+            font-size: 12px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .carousel-controls {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-top: 40px;
+        }
+
+        .carousel-dot {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background-color: #3a3a3a;
+            cursor: pointer;
+            border: 1px solid #9c7c57;
+            transition: all 0.3s;
+        }
+
+        .carousel-dot.active {
+            background-color: #9c7c57;
+        }
+
+        /* Footer */
+        footer {
+            background-color: #000000;
+            padding: 60px;
+            border-top: 1px solid #3a3a3a;
+        }
+
+        .footer-content {
+            max-width: 1300px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .footer-logo img {
+            height: 50px;
+            margin-bottom: 30px;
+        }
+
+        .footer-separator {
+            height: 1px;
+            background-color: #3a3a3a;
+            margin: 30px 0;
+        }
+
+        .footer-info {
+            color: #afb8b8;
+            font-size: 13px;
+            line-height: 1.8;
+            margin: 20px 0;
+        }
+
+        .footer-info a {
+            color: #c9ab81;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .footer-info a:hover {
+            color: #9c7c57;
+        }
+
+        .footer-links {
+            list-style: none;
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            margin: 30px 0;
+            font-size: 13px;
+        }
+
+        .footer-links a {
+            color: #c9ab81;
+            text-decoration: none;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: color 0.3s;
+        }
+
+        .footer-links a:hover {
+            color: #9c7c57;
+        }
+
+        /* Responsive */
+        @media (max-width: 1024px) {
+            header.page-header {
+                padding: 0 30px;
+            }
+
+            .main-content {
+                grid-template-columns: 1fr;
+                padding: 100px 30px;
+            }
+
+            .hero-section {
+                padding-bottom: 80px;
+            }
+
+            h1.page-title {
+                font-size: 40px;
+            }
+
+            .text-section h2 {
+                font-size: 32px;
+            }
+        }
+
+        /* Owl Carousel Overrides */
+        .owl-carousel {
+            position: relative;
+        }
+
+        .owl-nav {
+            text-align: center;
+            margin-top: 30px;
+        }
+
+        .owl-prev, .owl-next {
+            color: #9c7c57;
+            font-size: 14px;
+            margin: 0 10px;
+            cursor: pointer;
+            transition: color 0.3s;
+        }
+
+        .owl-prev:hover, .owl-next:hover {
+            color: #c9ab81;
+        }
+
+        .owl-dots {
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        .owl-dot {
+            background-color: #3a3a3a;
+            border: 1px solid #9c7c57;
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            margin: 0 5px;
+            cursor: pointer;
+        }
+
+        .owl-dot.active {
+            background-color: #9c7c57;
+        }
+    </style>
+</head>
+<body>
+    <!-- Header & Navigation -->
+    <header class="page-header">
+        <div class="logo">
+            <a href="https://laurent.qodeinteractive.com/">
+                <img src="https://laurent.qodeinteractive.com/wp-content/uploads/2019/10/logo.png" alt="Laurent Logo" />
+            </a>
+        </div>
+        <nav>
+            <ul>
+                <li><a href="#">HOME</a></li>
+                <li><a href="#">PAGES</a></li>
+                <li><a href="#">PORTFOLIO</a></li>
+                <li><a href="#">BLOG</a></li>
+                <li><a href="#">SHOP</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Hero Title Section -->
+    <div class="hero-section">
+        <div class="hero-content">
+            <div class="title-decor">
+                <svg xmlns="http://www.w3.org/2000/svg" width="41.125" height="9.146" viewBox="0 0 41.125 9.146">
+                    <path fill="none" stroke="#9C7C57" stroke-miterlimit="10" d="M40.881 8.576L20.562.591.244 8.576"/>
+                    <path fill="none" stroke="#9C7C57" stroke-miterlimit="10" d="M40.881.591L20.562 8.576.243.591"/>
+                </svg>
+            </div>
+            <h1 class="page-title">About Us</h1>
+            <div class="title-decor">
+                <svg xmlns="http://www.w3.org/2000/svg" width="41.125" height="9.146" viewBox="0 0 41.125 9.146">
+                    <path fill="none" stroke="#9C7C57" stroke-miterlimit="10" d="M40.881 8.576L20.562.591.244 8.576"/>
+                    <path fill="none" stroke="#9C7C57" stroke-miterlimit="10" d="M40.881.591L20.562 8.576.243.591"/>
+                </svg>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Content Section -->
+    <div class="main-content">
+        <!-- Left Column - SVG Pattern -->
+        <div class="content-column svg-pattern">
+            <svg version="1.1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 303.083 305.563">
+                <path fill="none" stroke="#9A7D57" stroke-width="1.5" stroke-miterlimit="10" d="M36.927,251.827L1.428,190.62L72.426,67.954L53.591,35.415 M36.927,251.827l35.499-61.207L12.86,87.705 M107.925,6.621l35.499,61.333L72.426,190.62l65.733,113.572 M85.728,290.305l57.696-99.685L72.426,67.954l35.47-61.282 M176.85,3.041l37.572,64.913L143.424,190.62l60.398,104.352 M148.419,304.655l66.003-114.035L143.424,67.954L180.614,3.7 M281.166,75.306L214.422,190.62l41.37,71.478 M233.9,279.635l51.521-89.015L214.422,67.954l23.047-39.817 M302.023,161.937L285.42,190.62l7.581,13.098 M96.143,10.63v16.348 M60.644,88.311V70.871L44.853,43.219 M25.145,149.644v-17.439L7.325,101 M60.644,210.977v-17.439l-23.712-41.521L13.21,193.594v17.383 M96.143,272.31V254.87l-23.712-41.521l-23.722,41.578v10.798 M123.73,302.348l-15.8-27.666L96.429,294.84 M192.572,298.572l-13.644-23.891l-16.852,29.537 M167.102,272.31V254.87l-23.712-41.521l-23.722,41.578v17.383 M238.139,272.31V254.87l-23.712-41.521l-23.722,41.578v17.383 M287.81,217.524l-2.385-4.176l-23.722,41.578v1.114 M131.642,210.977v-17.439l-23.712-41.521l-23.722,41.578v17.383 M202.64,210.977v-17.439l-23.712-41.521l-23.722,41.578v17.383 M273.638,210.977v-17.439l-23.712-41.521l-23.722,41.578v17.383 M96.143,149.644v-17.439L72.431,90.683l-23.722,41.578v17.383 M167.102,149.644v-17.439L143.39,90.683l-23.722,41.578v17.383 M238.139,149.644v-17.439l-23.712-41.521l-23.722,41.578v17.383 M295.99,109.182l-10.564-18.499l-23.722,41.578v17.383 M131.642,88.311V70.871L107.93,29.35L84.208,70.928v17.383 M202.64,88.311V70.871L178.928,29.35l-23.722,41.578v17.383 M273.638,88.311V70.871l-12.967-22.705 M246.644,35.104l-20.439,35.824v17.383 M167.141,26.978V9.538l-4.791-8.391 M123.446,3.043l-3.738,6.552v17.383 M192.453,6.533l-1.747,3.062v17.383 M84.248,15.75v31.78 M60.605,47.53V29.963 M48.749,108.863V73.93L36.929,53.236L25.106,73.959v34.904 M13.25,170.196v-34.934L2.607,116.629 M48.749,231.529v-34.934l-11.819-20.693l-11.823,20.723v34.904 M84.248,289.6v-31.671l-11.819-20.693l-11.823,20.723v17.433 M180.675,301.633l-1.75-3.064l-2.172,3.805 M155.246,292.862v-34.934l-11.819-20.693l-11.823,20.723v34.904 M226.244,284.372v-26.443l-11.819-20.693l-11.823,20.723v34.904 M119.747,231.529v-34.934l-11.819-20.693l-11.823,20.723v34.904 M190.745,231.529v-34.934l-11.819-20.693l-11.823,20.723v34.904 M261.743,231.529v-34.934l-11.819-20.693L238.1,196.625v34.904 M84.248,170.196v-34.934l-11.819-20.693l-11.823,20.723v34.904 M155.207,170.196v-34.934l-11.819-20.693l-11.823,20.723v34.904 M226.244,170.196v-34.934l-11.819-20.693l-11.823,20.723v34.904 M297.242,170.196v-34.934l-11.819-20.693l-11.823,20.723v34.904 M119.747,108.863V73.93l-11.819-20.693L96.104,73.959v34.904 M190.745,108.863V73.93l-11.819-20.693l-11.823,20.723v34.904 M261.743,108.863V73.93l-11.819-20.693L238.1,73.959v34.904 M155.246,47.53V12.597L148.445,0.69 M138.147,1.156l-6.544,11.47V47.53 M226.244,20.976V47.53 M203.878,10.387l-1.277,2.239V47.53 M72.426,22.118v45.836 M36.927,73.112v56.051 M1.428,134.444v56.051 M36.927,195.776v56.051 M72.426,257.104v26.128 M143.424,257.104v47.4 M214.422,257.104v33.414 M107.925,195.776v56.051 M178.923,195.776v56.051 M249.921,195.776v56.051 M72.426,134.444v56.051 M143.424,134.444v56.051 M214.422,134.444v56.051 M285.42,134.444v56.051 M107.925,73.112v56.051 M178.923,73.112v56.051 M249.921,73.112v56.051 M143.424,11.903v56.051 M214.422,14.818v53.136 M137.838,304.162"/>
+            </svg>
+        </div>
+
+        <!-- Center Column - Text -->
+        <div class="content-column text-section">
+            <h3>Restaurant life</h3>
+            <h2>About Us</h2>
+            <p>Lorem ipsum dolor sit amet, consecte turn se adipisicing elit, sed do eiusmod tempor ens incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exerci reprehenderit in voluptate velit esse cillu sint occaecat error sit volu.</p>
+            <p>Cupidatat non proident, sunt in culpa qui cia deserunt mollit anim id est laborum. Sed utsa tat monullamco laboris nisi ut aliquip exe ne com odoconsequat. Duis aute irure dolor in per spiciamt vsun.</p>
+            <p>aperiam, eaque ipsa quae ab illo inventor veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nem odit aut fugit, sed quia consequ un turmagnido lors.</p>
+            <a href="#" class="read-more-btn">Read More</a>
+        </div>
+
+        <!-- Right Column - Image -->
+        <div class="content-column right-image">
+            <img src="https://laurent.qodeinteractive.com/wp-content/uploads/2019/10/inner-pages-img-1.jpg" alt="Restaurant" />
+        </div>
+    </div>
+
+    <!-- Video Section -->
+    <div class="video-section">
+        <div class="video-play-btn" onclick="window.open('https://vimeo.com/369245407')">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 97.094 97.094">
+                <circle fill="none" stroke="currentColor" stroke-miterlimit="10" cx="48.558" cy="48.548" r="48" stroke="#c9ab81"/>
+                <circle fill="none" stroke="none" stroke-miterlimit="10" cx="48.558" cy="48.548" r="41.037"/>
+                <polygon fill="none" stroke="currentColor" stroke-miterlimit="10" points="42.578,69.964 42.578,27.13 63.994,48.546" stroke="#c9ab81"/>
+            </svg>
+        </div>
+    </div>
+
+    <!-- Testimonials Section -->
+    <div class="testimonials-section">
+        <div class="testimonials-mark">"</div>
+        <div class="owl-carousel carousel-testimonials">
+            <div class="testimonial-item">
+                <p class="testimonial-text">Duis aute irure dolor. Lorem ipsum dolor sit amet, consectetur adipisic sed do eiusmod tempor incidid sens as out labore et. Ut enim ad minim venia quis nostrud exercitation co laboris nisi ut aliquip ex ea commodo conse.</p>
+                <h5 class="testimonial-author">Andrea Chung</h5>
+                <p class="testimonial-job">Cook</p>
+            </div>
+            <div class="testimonial-item">
+                <p class="testimonial-text">Ut enim ad minim venia quis nostrud exercitation co laboris nisi ut aliquip ex ea commodo conse. Duis aute irure dolor. Lorem ipsum dolor sit amet, consectetur adipisic sed do eiusmod tempor incidid sens as out labore et.</p>
+                <h5 class="testimonial-author">Andrea Chung</h5>
+                <p class="testimonial-job">Cook</p>
+            </div>
+            <div class="testimonial-item">
+                <p class="testimonial-text">Lorem ipsum dolor sit amet, consectetur adipisic sed do eiusmod tempor incidid sens as out labore et dolore magna aliqua. Ut enim ad minim venia quis nostrud exercitation co laboris nisi ut aliquip ex ea commodo conse.</p>
+                <h5 class="testimonial-author">Robert Chang</h5>
+                <p class="testimonial-job">Sommelier</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-logo">
+                <a href="https://laurent.qodeinteractive.com/">
+                    <img src="https://laurent.qodeinteractive.com/wp-content/uploads/2019/10/footer-logo.png" alt="Laurent Logo" />
+                </a>
+            </div>
+            <div class="footer-separator"></div>
+            <div class="footer-info">
+                Laurent Restaurant & Fine dining, <a href="#">71 Madison Ave</a>
+            </div>
+            <div class="footer-info">
+                <a href="#">10013 New York,</a> <a href="tel:914-309-7030">914-309-7030,</a> <a href="mailto:contact@laurent.com">contact@laurent.com</a>
+            </div>
+            <div class="footer-info">
+                Open: 09:00 am – 01:00 pm
+            </div>
+            <div class="footer-separator"></div>
+            <ul class="footer-links">
+                <li><a href="https://www.facebook.com/QodeInteractive/" target="_blank">Facebook</a></li>
+                <li><a href="https://www.instagram.com/qodeinteractive/" target="_blank">Instagram</a></li>
+                <li><a href="https://www.tripadvisor.com/" target="_blank">Trip Advisor</a></li>
+            </ul>
+        </div>
+    </footer>
+
+    <!-- Owl Carousel Script -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            $(".carousel-testimonials").owlCarousel({
+                loop: true,
+                margin: 0,
+                nav: false,
+                dots: true,
+                autoplay: true,
+                autoplayTimeout: 5000,
+                autoplayHoverPause: true,
+                responsive: {
+                    0: {
+                        items: 1
+                    }
+                }
+            });
+        });
+    </script>
+</body>
+</html>
