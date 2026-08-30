@@ -12,6 +12,7 @@
   "devDependencies": {
     "crow-nester": "github:cam5/crow-nester",
     "js-yaml": "^4.1.0",
+    "odiff-bin": "^4.5.0",
     "pixelmatch": "^6.0.0",
     "pngjs": "^7.0.0",
     "puppeteer-core": "^24.10.0",
