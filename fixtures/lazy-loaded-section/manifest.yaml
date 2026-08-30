@@ -1,0 +1,21 @@
+fixture: lazy-loaded-section
+decision: >
+  A "recommended products" widget whose raw HTML is three empty
+  ".placeholder" divs; JS replaces them with real ".product-card" markup
+  shortly after load. slowcure reports "class:placeholder" as clientRemoved
+  and "class:product-card" as clientAdded — the raw HTML alone has none of
+  the real content. Unlike the carousel fixture, no special library is
+  needed here: the fix is simply to read the settled DOM (post-JS) rather
+  than the raw fetch, and build the product-card markup directly.
+
+tier0:
+  - tool: slowcure
+
+tier1:
+  judge: false
+  mustCall: [slowcure]
+  expectedOutcome: >
+    Agent should call slowcure, notice product-card only exists after
+    settling (raw HTML has none of it), and base the rebuilt markup on the
+    settled ".product-card" structure rather than the raw ".placeholder"
+    divs. No CDN dependency is needed for this one.

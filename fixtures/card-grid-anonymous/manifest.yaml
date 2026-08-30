@@ -1,0 +1,23 @@
+fixture: card-grid-anonymous
+decision: >
+  The same three-card shape as card-grid-semantic, but authored purely with
+  Tailwind utility classes and no shared semantic class name. red-twine falls
+  back to its weaker tag-shape signal here (confidence 0.35 — "low structural
+  complexity, could be coincidental"). This is the deliberately ambiguous
+  threshold case: a defensible agent could componentize it anyway (three
+  real, identical occurrences) or leave it as repeated utilities (weak
+  evidence of authorial intent). There is no single correct answer here —
+  what matters is that the agent's reasoning engages with the low confidence
+  rather than treating it the same as the semantic case.
+
+tier0:
+  - tool: red-twine
+
+tier1:
+  judge: true
+  mustCall: [red-twine]
+  expectedOutcome: >
+    Either componentizing or leaving as utilities is acceptable, provided the
+    agent's stated reasoning reflects the lower confidence (0.35, shape-only
+    match) rather than treating this identically to a high-confidence,
+    class-matched group.

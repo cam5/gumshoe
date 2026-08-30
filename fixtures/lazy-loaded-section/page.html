@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>Lazy-loaded section</title>
+</head>
+<body>
+  <main id="main">
+    <h1>Recommended for you</h1>
+    <div id="recommendations">
+      <div class="placeholder"></div>
+      <div class="placeholder"></div>
+      <div class="placeholder"></div>
+    </div>
+  </main>
+  <script>
+    // Simulates a recommendations widget that fetches its own markup
+    // client-side and swaps it in once the "API" responds. The raw HTML
+    // only ever has empty placeholders.
+    var products = [
+      { name: "Trail Runner Jacket", price: "$128" },
+      { name: "Insulated Bottle", price: "$32" },
+      { name: "Camp Lantern", price: "$45" },
+    ];
+
+    setTimeout(function () {
+      var container = document.getElementById("recommendations");
+      container.innerHTML = "";
+      products.forEach(function (product) {
+        var card = document.createElement("div");
+        card.className = "product-card";
+        card.innerHTML =
+          "<img src=\"/product.jpg\" alt=\"" + product.name + "\" />" +
+          "<p>" + product.name + "</p>" +
+          "<span>" + product.price + "</span>";
+        container.appendChild(card);
+      });
+    }, 150);
+  </script>
+</body>
+</html>

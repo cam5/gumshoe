@@ -1,0 +1,24 @@
+fixture: variant-component
+decision: >
+  Four ".product-card" divs, two of which carry an extra ".badge" child
+  ("Featured") the other two don't have. red-twine reports "class:product-card"
+  at only 0.65 confidence, specifically because distinctTagShapes is 2 —
+  its own README calls this out as the same signal as "a generic utility
+  class applied to different kinds of elements," which is exactly what a
+  base-plus-variant component also looks like structurally. This is the
+  fixture's point: the lowered confidence here does not mean "not a real
+  component," it means "a variant exists," and those require different
+  responses. red-twine separately reports "class:badge" as its own
+  high-confidence (0.85) group, which is a useful hint the badge is itself a
+  real, reusable piece.
+
+tier0:
+  - tool: red-twine
+
+tier1:
+  judge: true
+  mustCall: [red-twine]
+  expectedOutcome: >
+    Agent should build one product-card component with an optional
+    "featured" variant (rendering the badge conditionally), not two
+    unrelated components and not a card that silently drops the badge.

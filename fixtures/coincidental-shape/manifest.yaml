@@ -1,0 +1,24 @@
+fixture: coincidental-shape
+decision: >
+  Two unrelated blocks — a founder-bio blurb and a product spec row — happen
+  to share the same div(img,p) shape inside a semantic <section>. red-twine
+  reports this at confidence 0.65 ("structurally rich enough that coincidence
+  is unlikely", "every occurrence uses a semantic HTML tag") — a deceptively
+  high score for two elements that do not serve the same purpose and meet
+  only the bare minimum occurrence/document thresholds (2 occurrences, 1
+  document). This fixture exists to check the agent does not trust a
+  structural confidence score in isolation, without reading what the content
+  actually is.
+
+tier0:
+  - tool: red-twine
+
+tier1:
+  judge: true
+  mustCall: [red-twine]
+  expectedOutcome: >
+    Agent should decline to treat the section(div(img,p)) group as one
+    reusable component, despite its 0.65 confidence, because the two
+    occurrences' content and role are unrelated (a bio, and a spec line).
+    A reasonable agent may still notice the shared shape but should not
+    collapse them into a single named component.

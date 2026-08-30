@@ -1,0 +1,24 @@
+fixture: off-scale-tokens
+decision: >
+  Two CTA buttons with hand-picked, near-identical off-scale values (padding
+  9px/17px vs 10px/18px, border-radius 33px vs 34px, background #017a07 vs
+  #018008). windtailor's default tolerances (2px spacing, 24 color distance)
+  cluster both buttons onto the *same* generated tokens (one border-radius
+  token, one color token) rather than minting near-duplicate tokens per
+  button — confirmed by running windtailor against #buttons, which wraps
+  both. The padding values snap to Tailwind's stock scale entirely (no new
+  token needed there). This fixture checks that the agent accumulates one
+  clean token per distinct value, not one token per element.
+
+tier0:
+  - tool: windtailor
+    selector: "#buttons"
+
+tier1:
+  judge: false
+  mustCall: [windtailor]
+  expectedOutcome: >
+    The generated tailwind.config.tokens.js should end up with one
+    border-radius token and one color token shared by both buttons, not two
+    near-duplicate tokens. Padding differences (9px/17px vs 10px/18px) should
+    resolve to stock Tailwind spacing classes, not new tokens.

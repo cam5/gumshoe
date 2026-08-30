@@ -1,0 +1,30 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>Carousel — JS-cloned slides</title>
+</head>
+<body>
+  <main id="main">
+    <h1>Featured products</h1>
+    <ul id="slides">
+      <li class="slide"><img src="/product-1.jpg" alt="Product one" /></li>
+      <li class="slide"><img src="/product-2.jpg" alt="Product two" /></li>
+    </ul>
+  </main>
+  <script>
+    // Simulates a slick-carousel-style infinite-loop setup: the library
+    // clones the real slides and appends the clones so the loop has no
+    // visible seam. The raw HTML only ever has the two authored slides.
+    (function () {
+      var list = document.getElementById("slides");
+      var originals = Array.prototype.slice.call(list.querySelectorAll("li.slide"));
+      originals.forEach(function (li) {
+        var clone = li.cloneNode(true);
+        clone.setAttribute("aria-hidden", "true");
+        list.appendChild(clone);
+      });
+    })();
+  </script>
+</body>
+</html>

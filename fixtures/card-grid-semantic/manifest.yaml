@@ -1,0 +1,16 @@
+fixture: card-grid-semantic
+decision: >
+  A clean, high-confidence case. Three cards share a hand-written class name
+  ("testimonial-card") and an identical div(img,p) shape. This should read as
+  clearly author-intended and worth naming as a real component.
+
+tier0:
+  - tool: red-twine
+
+tier1:
+  judge: false
+  mustCall: [red-twine]
+  expectedOutcome: >
+    Agent should componentize the testimonial-card group (red-twine reports
+    confidence 0.85, matched by shared class name) into one reusable
+    component, rather than repeating the utility classes three times.

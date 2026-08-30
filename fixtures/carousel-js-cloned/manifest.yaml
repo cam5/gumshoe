@@ -1,0 +1,22 @@
+fixture: carousel-js-cloned
+decision: >
+  A slick-carousel-style setup: the raw HTML has 2 authored <li class="slide">
+  elements, and inline JS clones them to 4 on load (a common infinite-loop
+  trick). slowcure reports this fragment as "drifted" (occurrences 2 -> 4,
+  confidence 0.65). The correct move is to call slowcure before acting on
+  this section, recognize it as JS-driven, and reach for an existing CDN
+  carousel library rather than hand-rolling one from the raw markup (which
+  would only capture 2 of the real slides and none of the loop behavior).
+
+tier0:
+  - tool: slowcure
+
+tier1:
+  judge: false
+  mustCall: [slowcure]
+  order: [[slowcure, windtailor]]
+  expectedOutcome: >
+    Agent should call slowcure on this section before finalizing markup,
+    notice the drifted "class:slide" group (2 -> 4 occurrences), and choose
+    a CDN carousel dependency instead of copying the raw 2-slide markup
+    verbatim.

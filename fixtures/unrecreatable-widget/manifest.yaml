@@ -1,0 +1,24 @@
+fixture: unrecreatable-widget
+decision: >
+  A revenue chart drawn directly into a <canvas> bitmap by inline JS. Before
+  and after the script runs, the DOM is just an empty <canvas> tag — there is
+  no markup, class, or structural change for red-twine or slowcure to catch.
+  slowcure reports an empty drift list. This fixture exists specifically to
+  prove the negative case from the top-level prompt: none of the three tools
+  give any signal here at all, so the agent must recognize on its own (from
+  the tag name and the fact that its content never appears in the DOM) that
+  this cannot be rebuilt from outside, and flag it to the user instead of
+  guessing or attempting to reverse-engineer the drawn pixels.
+
+tier0:
+  - tool: red-twine
+  - tool: slowcure
+
+tier1:
+  judge: false
+  mustNotCall: [windtailor]
+  expectedOutcome: >
+    Agent should flag the #chart canvas as unrecreatable and stop, rather
+    than attempting to approximate it. red-twine and slowcure both report
+    nothing unusual here on purpose — this is the case they cannot help
+    with, and the agent must recognize that lack of signal itself.
