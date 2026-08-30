@@ -3,7 +3,8 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "test:tier0": "node --test test/tier0.test.js"
+    "test:tier0": "node --test test/tier0.test.js",
+    "test:tier1": "node --test test/tier1.test.js"
   },
   "devDependencies": {
     "js-yaml": "^4.1.0",
