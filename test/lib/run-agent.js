@@ -117,6 +117,7 @@ export function runAgentAgainstUrl(pageUrl, { agentName = "cloner", maxBudgetUsd
     isError: result?.is_error ?? false,
     cloneHtml: fs.existsSync(clonePath) ? fs.readFileSync(clonePath, "utf8") : null,
     screenshots,
+    systemPrompt,
   };
 }
 

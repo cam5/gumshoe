@@ -22,9 +22,36 @@ function loadRuns() {
             .map((f) => `${d.name}/screenshots/${f}`)
         : [];
       const hasClone = fs.existsSync(path.join(dir, "clone.html"));
-      return { id: d.name, meta, transcript, screenshots, clonePath: hasClone ? `${d.name}/clone.html` : null };
+      const hasPrompt = fs.existsSync(path.join(dir, "prompt.md"));
+      return {
+        id: d.name,
+        // Older runs recorded before run-groups existed have no meta.runGroup — treat each as
+        // its own singleton group rather than lumping them together under one falsy key.
+        groupId: meta.runGroup || d.name,
+        meta,
+        transcript,
+        screenshots,
+        clonePath: hasClone ? `${d.name}/clone.html` : null,
+        promptPath: hasPrompt ? `${d.name}/prompt.md` : null,
+      };
     })
     .sort((a, b) => (a.meta.recordedAt < b.meta.recordedAt ? 1 : -1));
+}
+
+/** Clusters runs by the batch they were dispatched in, newest batch first. */
+function groupRuns(runs) {
+  const byGroup = new Map();
+  for (const run of runs) {
+    if (!byGroup.has(run.groupId)) byGroup.set(run.groupId, []);
+    byGroup.get(run.groupId).push(run);
+  }
+  return [...byGroup.entries()]
+    .map(([groupId, groupRuns]) => ({
+      groupId,
+      runs: groupRuns.sort((a, b) => (a.meta.recordedAt < b.meta.recordedAt ? -1 : 1)),
+      latestRecordedAt: groupRuns.reduce((max, r) => (r.meta.recordedAt > max ? r.meta.recordedAt : max), ""),
+    }))
+    .sort((a, b) => (a.latestRecordedAt < b.latestRecordedAt ? 1 : -1));
 }
 
 function escapeHtml(value) {
@@ -38,10 +65,13 @@ function toolCallLine(call) {
 }
 
 function renderRunCard(run) {
-  const { meta, transcript, screenshots, clonePath, id } = run;
+  const { meta, transcript, screenshots, clonePath, promptPath, id } = run;
   const costLabel = meta.totalCostUsd != null ? `$${meta.totalCostUsd.toFixed(3)}` : "—";
   const statusLabel = meta.isError ? "ERRORED" : "ok";
   const statusClass = meta.isError ? "status-error" : "status-ok";
+  const promptTag = meta.promptHash
+    ? `<span class="tag tag-prompt" title="sha256 of the exact system prompt sent to the model — two runs sharing this mean byte-identical prompts">prompt ${escapeHtml(meta.promptHash)}</span>`
+    : "";
 
   const screenshotsHtml = screenshots.length
     ? screenshots
@@ -59,6 +89,11 @@ function renderRunCard(run) {
 
   const rawJson = JSON.stringify(transcript.toolCalls, null, 2);
 
+  const footerLinks = [
+    clonePath ? `<a href="${escapeHtml(clonePath)}" target="_blank" rel="noopener">Open clone.html</a>` : "",
+    promptPath ? `<a href="${escapeHtml(promptPath)}" target="_blank" rel="noopener">View system prompt</a>` : "",
+  ].filter(Boolean);
+
   return `
   <article class="run-card" data-run-id="${escapeHtml(id)}">
     <header class="run-header">
@@ -67,6 +102,7 @@ function renderRunCard(run) {
         <span class="tag tag-condition">${escapeHtml(meta.condition)}</span>
         <span class="tag">${escapeHtml(meta.model)}</span>
         <span class="tag ${statusClass}">${statusLabel}</span>
+        ${promptTag}
       </div>
       <div class="run-stats">
         <span>${costLabel}</span>
@@ -94,8 +130,22 @@ function renderRunCard(run) {
       <pre class="summary">${escapeHtml(transcript.resultText ?? "(no summary)")}</pre>
     </section>
 
-    ${clonePath ? `<footer class="run-footer"><a href="${escapeHtml(clonePath)}" target="_blank" rel="noopener">Open clone.html</a></footer>` : ""}
+    ${footerLinks.length ? `<footer class="run-footer">${footerLinks.join("")}</footer>` : ""}
   </article>`;
+}
+
+function renderGroupSection(group) {
+  const cards = group.runs.map(renderRunCard).join("\n");
+  const label = group.runs[0]?.meta?.fixture ?? group.groupId;
+  const timestamp = group.latestRecordedAt ? group.latestRecordedAt.slice(0, 19).replace("T", " ") : "";
+  return `
+  <section class="run-group" data-group-id="${escapeHtml(group.groupId)}">
+    <div class="group-header">
+      <h2>${escapeHtml(label)}</h2>
+      <span class="group-meta">batch ${escapeHtml(group.groupId)} · ${group.runs.length} run${group.runs.length === 1 ? "" : "s"} · ${escapeHtml(timestamp)}</span>
+    </div>
+    <div class="group-cards">${cards}</div>
+  </section>`;
 }
 
 function renderFilterPanel(runs) {
@@ -103,7 +153,7 @@ function renderFilterPanel(runs) {
     .map(
       (r) => `
       <label>
-        <input type="checkbox" class="run-toggle" data-run-id="${escapeHtml(r.id)}" checked>
+        <input type="checkbox" class="run-toggle" data-run-id="${escapeHtml(r.id)}" data-group-id="${escapeHtml(r.groupId)}" checked>
         ${escapeHtml(r.meta.fixture)} — ${escapeHtml(r.meta.condition)}/${escapeHtml(r.meta.model)}
         <span class="filter-meta">${escapeHtml(r.meta.recordedAt.slice(0, 19).replace("T", " "))}</span>
       </label>`,
@@ -114,14 +164,16 @@ function renderFilterPanel(runs) {
     <div class="filter-actions">
       <button id="select-all">All</button>
       <button id="select-none">None</button>
-      <button id="select-latest">Latest 2</button>
+      <button id="select-latest">Latest batch</button>
     </div>
     <div class="filter-list">${items}</div>
   </div>`;
 }
 
 function renderPage(runs) {
-  const cards = runs.map(renderRunCard).join("\n");
+  const groups = groupRuns(runs);
+  const latestGroupId = groups[0]?.groupId ?? null;
+  const groupSections = groups.map(renderGroupSection).join("\n");
   const filterPanel = renderFilterPanel(runs);
 
   return `<!doctype html>
@@ -192,8 +244,34 @@ function renderPage(runs) {
   .cards {
     flex: 1;
     display: flex;
-    gap: 16px;
+    flex-direction: column;
+    gap: 22px;
     padding: 16px;
+    overflow-y: auto;
+  }
+  .run-group {
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 12px;
+    background: rgba(0, 0, 0, 0.015);
+  }
+  .group-header {
+    display: flex;
+    align-items: baseline;
+    gap: 10px;
+    flex-wrap: wrap;
+    padding: 0 2px 10px;
+  }
+  .group-header h2 { margin: 0; font-size: 0.95rem; }
+  .group-meta {
+    font-size: 0.7rem;
+    color: var(--ink-dim);
+    font-variant-numeric: tabular-nums;
+    font-family: ui-monospace, "SF Mono", Menlo, monospace;
+  }
+  .group-cards {
+    display: flex;
+    gap: 16px;
     overflow-x: auto;
     align-items: flex-start;
   }
@@ -219,6 +297,7 @@ function renderPage(runs) {
     color: var(--ink-dim);
   }
   .tag-condition { color: var(--accent); border-color: var(--accent); }
+  .tag-prompt { font-family: ui-monospace, "SF Mono", Menlo, monospace; }
   .status-ok { color: var(--ok); border-color: var(--ok); }
   .status-error { color: var(--error); border-color: var(--error); }
   .run-stats {
@@ -266,19 +345,20 @@ function renderPage(runs) {
     margin: 0;
     font-family: inherit;
   }
-  .run-footer a { font-size: 0.8rem; }
+  .run-footer { display: flex; gap: 12px; font-size: 0.8rem; }
 </style>
 </head>
 <body>
-<h1>gumshoe run report — ${runs.length} run${runs.length === 1 ? "" : "s"}</h1>
+<h1>gumshoe run report — ${runs.length} run${runs.length === 1 ? "" : "s"} in ${groups.length} batch${groups.length === 1 ? "" : "es"}</h1>
 <div class="layout">
   ${filterPanel}
   <div class="cards" id="cards">
-    ${cards || '<p class="empty">No runs recorded yet — run `npm run test:live` to produce some.</p>'}
+    ${groupSections || '<p class="empty">No runs recorded yet — run `npm run test:live` to produce some.</p>'}
   </div>
 </div>
 <script>
   const toggles = document.querySelectorAll(".run-toggle");
+  const latestGroupId = ${JSON.stringify(latestGroupId)};
   function apply() {
     toggles.forEach((t) => {
       const card = document.querySelector('.run-card[data-run-id="' + CSS.escape(t.dataset.runId) + '"]');
@@ -288,7 +368,7 @@ function renderPage(runs) {
   toggles.forEach((t) => t.addEventListener("change", apply));
   document.getElementById("select-all")?.addEventListener("click", () => { toggles.forEach((t) => (t.checked = true)); apply(); });
   document.getElementById("select-none")?.addEventListener("click", () => { toggles.forEach((t) => (t.checked = false)); apply(); });
-  document.getElementById("select-latest")?.addEventListener("click", () => { toggles.forEach((t, i) => (t.checked = i < 2)); apply(); });
+  document.getElementById("select-latest")?.addEventListener("click", () => { toggles.forEach((t) => (t.checked = latestGroupId !== null && t.dataset.groupId === latestGroupId)); apply(); });
   apply();
 </script>
 </body>

@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>About Us – Laurent</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        "dark-bg": "#0c1315",
+                        "gold-accent": "#9C7C57",
+                        "gold-light": "#D4AF93",
+                        "dark-text": "#2a2a2a"
+                    },
+                    fontFamily: {
+                        "sans": ['"Open Sans"', 'sans-serif'],
+                        "serif": ['"Mrs Saint Delafield"', 'serif'],
+                        "display": ['"Josefin Sans"', 'sans-serif']
+                    },
+                    fontSize: {
+                        "sm": "13px",
+                        "base": "16px",
+                        "lg": "18px",
+                        "xl": "20px",
+                        "2xl": "36px",
+                        "3xl": "42px"
+                    }
+                }
+            }
+        };
+    </script>
+    <link href="https://fonts.googleapis.com/css?family=Josefin+Sans:100,300,400,700&subset=latin-ext" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Mrs+Saint+Delafield:100,300,400,700&subset=latin-ext" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans+Condensed:100,300,400,700&subset=latin-ext" rel="stylesheet">
+    <style>
+        body {
+            background-color: #0c1315;
+            color: #fff;
+            font-family: 'Open Sans', sans-serif;
+        }
+
+        .gold-text {
+            color: #D4AF93;
+        }
+
+        .gold-border {
+            border-color: #9C7C57;
+        }
+
+        .decorative-lines {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 20px;
+        }
+
+        .line {
+            width: 40px;
+            height: 1.5px;
+            background-color: #9C7C57;
+        }
+
+        .testimonial-mark {
+            font-size: 80px;
+            color: #9C7C57;
+            line-height: 0.8;
+            margin-bottom: 10px;
+        }
+
+        .carousel-container {
+            position: relative;
+            width: 100%;
+        }
+
+        .carousel-slide {
+            display: none;
+            text-align: center;
+        }
+
+        .carousel-slide.active {
+            display: block;
+        }
+
+        .carousel-dots {
+            display: flex;
+            gap: 8px;
+            justify-content: center;
+            margin-top: 30px;
+        }
+
+        .carousel-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            border: 1px solid #9C7C57;
+            cursor: pointer;
+            background: transparent;
+        }
+
+        .carousel-dot.active {
+            background-color: #9C7C57;
+        }
+    </style>
+</head>
+<body class="bg-dark-bg text-white">
+    <!-- Header/Navigation -->
+    <header class="fixed top-0 left-0 right-0 z-50 bg-dark-bg bg-opacity-95">
+        <div class="max-w-7xl mx-auto px-4 h-28 flex items-center justify-between">
+            <a href="https://laurent.qodeinteractive.com/" class="flex-shrink-0">
+                <img src="https://laurent.qodeinteractive.com/wp-content/uploads/2019/10/logo-heder.png" alt="Laurent Logo" class="h-12">
+            </a>
+            <nav class="flex gap-8 text-sm">
+                <a href="#" class="hover:text-gold-light transition">HOME</a>
+                <a href="#" class="text-gold-light">PAGES</a>
+                <a href="#" class="hover:text-gold-light transition">PORTFOLIO</a>
+                <a href="#" class="hover:text-gold-light transition">BLOG</a>
+                <a href="#" class="hover:text-gold-light transition">SHOP</a>
+            </nav>
+            <button class="w-8 h-8 flex flex-col justify-center gap-1 cursor-pointer">
+                <span class="block w-6 h-0.5 bg-current"></span>
+                <span class="block w-6 h-0.5 bg-current"></span>
+                <span class="block w-6 h-0.5 bg-current"></span>
+            </button>
+        </div>
+    </header>
+
+    <!-- Hero Title Section -->
+    <div class="relative pt-28 pb-16 overflow-hidden" style="background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('https://laurent.qodeinteractive.com/wp-content/uploads/2019/12/About-us-title-img.jpg'); background-size: cover; background-position: center;">
+        <div class="max-w-7xl mx-auto px-4 text-center py-28">
+            <div class="decorative-lines mb-10">
+                <div class="line"></div>
+                <svg xmlns="http://www.w3.org/2000/svg" width="41" height="9" viewBox="0 0 41.125 9.146" class="w-10 h-2">
+                    <path fill="none" stroke="#9C7C57" stroke-miterlimit="10" d="M40.881 8.576L20.562.591.244 8.576"/>
+                    <path fill="none" stroke="#9C7C57" stroke-miterlimit="10" d="M40.881.591L20.562 8.576.243.591"/>
+                </svg>
+                <div class="line"></div>
+            </div>
+            <h1 class="text-6xl gold-text mb-10 font-display font-light tracking-wide">About Us</h1>
+            <div class="decorative-lines">
+                <div class="line"></div>
+                <svg xmlns="http://www.w3.org/2000/svg" width="41" height="9" viewBox="0 0 41.125 9.146" class="w-10 h-2">
+                    <path fill="none" stroke="#9C7C57" stroke-miterlimit="10" d="M40.881 8.576L20.562.591.244 8.576"/>
+                    <path fill="none" stroke="#9C7C57" stroke-miterlimit="10" d="M40.881.591L20.562 8.576.243.591"/>
+                </svg>
+                <div class="line"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Content Section -->
+    <div class="bg-dark-bg py-32 px-4">
+        <div class="max-w-7xl mx-auto">
+            <!-- About Section Layout -->
+            <div class="grid grid-cols-12 gap-12">
+                <!-- Left Column: SVG Decoration -->
+                <div class="col-span-3 flex items-center justify-center">
+                    <svg version="1.1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 303.083 305.563" class="w-full max-w-sm opacity-30">
+                        <path fill="none" stroke="#9A7D57" stroke-width="1.5" stroke-miterlimit="10" d="M36.927,251.827L1.428,190.62L72.426,67.954L53.591,35.415 M36.927,251.827l35.499-61.207L12.86,87.705 M107.925,6.621l35.499,61.333L72.426,190.62l65.733,113.572M85.728,290.305l57.696-99.685L72.426,67.954l35.47-61.282 M176.85,3.041l37.572,64.913L143.424,190.62l60.398,104.352M148.419,304.655l66.003-114.035L143.424,67.954L180.614,3.7 M281.166,75.306L214.422,190.62l41.37,71.478 M233.9,279.635l51.521-89.015L214.422,67.954l23.047-39.817 M302.023,161.937L285.42,190.62l7.581,13.098"/>
+                    </svg>
+                </div>
+
+                <!-- Center Column: Text Content -->
+                <div class="col-span-6">
+                    <div class="text-center mb-12">
+                        <p class="text-base gold-text mb-6 font-serif italic">Restaurant life</p>
+                        <div class="decorative-lines mb-8 justify-center">
+                            <div class="line"></div>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="41" height="9" viewBox="0 0 41.125 9.146" class="w-10 h-2">
+                                <path fill="none" stroke="#9C7C57" stroke-miterlimit="10" d="M40.881 8.576L20.562.591.244 8.576"/>
+                                <path fill="none" stroke="#9C7C57" stroke-miterlimit="10" d="M40.881.591L20.562 8.576.243.591"/>
+                            </svg>
+                            <div class="line"></div>
+                        </div>
+                        <h2 class="text-5xl gold-text mb-8 font-display font-light tracking-wide">About Us</h2>
+                        <div class="decorative-lines mb-8 justify-center">
+                            <div class="line"></div>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="41" height="9" viewBox="0 0 41.125 9.146" class="w-10 h-2">
+                                <path fill="none" stroke="#9C7C57" stroke-miterlimit="10" d="M40.881 8.576L20.562.591.244 8.576"/>
+                                <path fill="none" stroke="#9C7C57" stroke-miterlimit="10" d="M40.881.591L20.562 8.576.243.591"/>
+                            </svg>
+                            <div class="line"></div>
+                        </div>
+                    </div>
+
+                    <div class="text-center space-y-6 text-sm leading-relaxed mb-10">
+                        <p class="text-gray-300">Lorem ipsum dolor sit amet, consecte turn se adipisicing elit, sed do eiusmod tempor ens incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exerci reprehenderit in voluptate velit esse cillu sint occaecat error sit volu.</p>
+                        <p class="text-gray-300">Cupidatat non proident, sunt in culpa qui cia deserunt mollit anim id est laborum. Sed utsa tat monullamco laboris nisi ut aliquip exe ne com odoconsequat. Duis aute irure dolor in per spiciamt vsun.</p>
+                        <p class="text-gray-300">aperiam, eaque ipsa quae ab illo inventor veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nem odit aut fugit, sed quia consequ un turmagnido lors.</p>
+                    </div>
+
+                    <div class="text-center">
+                        <a href="https://laurent.qodeinteractive.com/meet-the-chef/" class="inline-block px-10 py-3 border-2 border-gold-accent text-gold-accent hover:bg-gold-accent hover:text-dark-bg transition text-xs tracking-widest font-display">READ MORE</a>
+                    </div>
+                </div>
+
+                <!-- Right Column: Image -->
+                <div class="col-span-3 flex items-center justify-center">
+                    <div class="w-full max-w-xs overflow-hidden">
+                        <img src="https://laurent.qodeinteractive.com/wp-content/uploads/2019/10/inner-pages-img-1.jpg" alt="Restaurant interior" class="w-full h-auto object-cover">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Video Section -->
+    <div class="relative py-32 overflow-hidden" style="background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('https://laurent.qodeinteractive.com/wp-content/uploads/2019/12/About-us-video-img.jpg'); background-size: cover; background-position: center; background-attachment: fixed;">
+        <div class="max-w-7xl mx-auto px-4 flex justify-center">
+            <button class="w-24 h-24 rounded-full border-2 border-gold-accent flex items-center justify-center hover:border-gold-light transition group">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 97.094 97.094" class="w-12 h-12 text-gold-accent group-hover:text-gold-light transition">
+                    <circle fill="none" stroke="currentColor" stroke-miterlimit="10" cx="48.558" cy="48.548" r="48"/>
+                    <polygon fill="currentColor" points="42.578,69.964 42.578,27.13 63.994,48.546"/>
+                </svg>
+            </button>
+        </div>
+    </div>
+
+    <!-- Testimonials Section -->
+    <div class="bg-dark-bg py-40 px-4">
+        <div class="max-w-3xl mx-auto">
+            <div class="text-center">
+                <div class="testimonial-mark">"</div>
+
+                <div class="carousel-container">
+                    <!-- Slide 1 -->
+                    <div class="carousel-slide active">
+                        <p class="text-center text-sm leading-relaxed mb-8 italic text-gray-300">
+                            Duis aute irure dolor. Lorem ipsum dolor sit amet, consectetur adipisic sed do eiusmod tempor incidid sens as out labore et. Ut enim ad minim venia quis nostrud exercitation co laboris nisi ut aliquip ex ea commodo conse.
+                        </p>
+                        <p class="text-gold-text font-display text-base mb-2 tracking-wider">ANDREA CHUNG</p>
+                        <p class="text-xs text-gray-400 tracking-wide">Cook</p>
+                    </div>
+
+                    <!-- Slide 2 -->
+                    <div class="carousel-slide">
+                        <p class="text-center text-sm leading-relaxed mb-8 italic text-gray-300">
+                            Ut enim ad minim venia quis nostrud exercitation co laboris nisi ut aliquip ex ea commodo conse. Duis aute irure dolor. Lorem ipsum dolor sit amet, consectetur adipisic sed do eiusmod tempor incidid sens as out labore et.
+                        </p>
+                        <p class="text-gold-text font-display text-base mb-2 tracking-wider">ANDREA CHUNG</p>
+                        <p class="text-xs text-gray-400 tracking-wide">Cook</p>
+                    </div>
+
+                    <!-- Slide 3 -->
+                    <div class="carousel-slide">
+                        <p class="text-center text-sm leading-relaxed mb-8 italic text-gray-300">
+                            Lorem ipsum dolor sit amet, consectetur adipisic sed do eiusmod tempor incidid sens as out labore et dolore magna aliqua. Ut enim ad minim venia quis nostrud exercitation co laboris nisi ut aliquip ex ea commodo conse.
+                        </p>
+                        <p class="text-gold-text font-display text-base mb-2 tracking-wider">ROBERT CHANG</p>
+                        <p class="text-xs text-gray-400 tracking-wide">Sommelier</p>
+                    </div>
+                </div>
+
+                <!-- Navigation -->
+                <div class="flex justify-center gap-8 mt-10 mb-8">
+                    <button onclick="prevSlide()" class="text-gold-accent hover:text-gold-light transition">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 25.109 34.906" class="w-5 h-5">
+                            <polyline fill="none" stroke="currentColor" stroke-miterlimit="10" points="24.67,34.59 11.653,17.464 24.67,0.338"/>
+                            <polyline fill="none" stroke="currentColor" stroke-miterlimit="10" points="13.688,34.59 0.671,17.464 13.688,0.338"/>
+                        </svg>
+                    </button>
+                    <button onclick="nextSlide()" class="text-gold-accent hover:text-gold-light transition">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 25.109 34.906" class="w-5 h-5">
+                            <polyline fill="none" stroke="currentColor" stroke-miterlimit="10" points="0.442,34.59 13.459,17.464 0.442,0.338"/>
+                            <polyline fill="none" stroke="currentColor" stroke-miterlimit="10" points="11.425,34.59 24.441,17.464 11.425,0.338"/>
+                        </svg>
+                    </button>
+                </div>
+
+                <!-- Dots -->
+                <div class="carousel-dots">
+                    <button class="carousel-dot active" onclick="goToSlide(0)"></button>
+                    <button class="carousel-dot" onclick="goToSlide(1)"></button>
+                    <button class="carousel-dot" onclick="goToSlide(2)"></button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="border-t border-gold-accent border-opacity-30 py-16 bg-dark-bg">
+        <div class="max-w-7xl mx-auto px-4">
+            <div class="flex flex-col items-center mb-8">
+                <img src="https://laurent.qodeinteractive.com/wp-content/uploads/2019/10/footer-logo.png" alt="Laurent Footer Logo" class="h-12 mb-8">
+                <div class="h-px w-16 bg-gold-accent mb-8"></div>
+            </div>
+
+            <div class="text-center space-y-2 text-xs mb-8">
+                <p>Laurent Restaurant & Fine dining, <a href="https://www.google.com/maps/place/Iron+Chef+House/@40.6988193,-73.9964619,17z" class="text-gold-light hover:underline">71 Madison Ave</a></p>
+                <p><a href="https://www.google.com/maps/place/Iron+Chef+House/@40.6988193,-73.9964619,17z" class="text-gold-light hover:underline">10013 New York</a>, <a href="tel:914-309-7030" class="text-gold-light hover:underline">914-309-7030</a>, <a href="mailto:reservations@laurent.com" class="text-gold-light hover:underline">reservations@laurent.com</a></p>
+                <p>Open: 09:00 am – 01:00 pm</p>
+            </div>
+
+            <div class="h-px w-full bg-gold-accent bg-opacity-20 my-8"></div>
+
+            <div class="text-center space-y-3 text-xs">
+                <p>
+                    <a href="https://www.facebook.com/QodeInteractive/" class="text-gold-light hover:underline">Facebook</a>
+                    <span class="mx-3">•</span>
+                    <a href="https://www.instagram.com/qodeinteractive/" class="text-gold-light hover:underline">Instagram</a>
+                    <span class="mx-3">•</span>
+                    <a href="https://www.tripadvisor.com/" class="text-gold-light hover:underline">Trip Advisor</a>
+                </p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Carousel Script -->
+    <script>
+        let currentSlide = 0;
+        const slides = document.querySelectorAll('.carousel-slide');
+        const dots = document.querySelectorAll('.carousel-dot');
+
+        function showSlide(n) {
+            slides.forEach(slide => slide.classList.remove('active'));
+            dots.forEach(dot => dot.classList.remove('active'));
+
+            slides[n].classList.add('active');
+            dots[n].classList.add('active');
+        }
+
+        function nextSlide() {
+            currentSlide = (currentSlide + 1) % slides.length;
+            showSlide(currentSlide);
+        }
+
+        function prevSlide() {
+            currentSlide = (currentSlide - 1 + slides.length) % slides.length;
+            showSlide(currentSlide);
+        }
+
+        function goToSlide(n) {
+            currentSlide = n;
+            showSlide(currentSlide);
+        }
+
+        // Auto-play carousel
+        setInterval(nextSlide, 5000);
+    </script>
+</body>
+</html>

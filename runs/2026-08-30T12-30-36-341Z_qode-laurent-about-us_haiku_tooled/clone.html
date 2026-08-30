@@ -1,0 +1,612 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Us – Laurent</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'accent-tan': '#c9ab81',
+                        'accent-brown': '#9c7c57',
+                        'dark-brown': '#715b3e',
+                        'light-gray': '#afb8b8',
+                        'accent-red': '#ef2853',
+                        'dark-bg': '#1a1a1a'
+                    },
+                    fontFamily: {
+                        'serif': ['Georgia', 'serif'],
+                        'sans': ['Segoe UI', 'Tahoma', 'Geneva', 'Verdana', 'sans-serif']
+                    },
+                    fontSize: {
+                        'xs': '0.75rem',
+                        'sm': '0.875rem',
+                        'base': '1rem',
+                        'lg': '1.125rem',
+                        'xl': '1.25rem',
+                        '2xl': '1.5rem',
+                        '3xl': '1.875rem',
+                        '4xl': '2.25rem',
+                        '5xl': '3rem'
+                    }
+                }
+            }
+        };
+    </script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: #000;
+            color: #e0e0e0;
+            font-family: 'Segoe UI', sans-serif;
+        }
+
+        .hero-section {
+            background-image: url('https://laurent.qodeinteractive.com/wp-content/uploads/2019/12/About-us-title-img.jpg');
+            background-size: cover;
+            background-position: center;
+            height: 900px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+        }
+
+        .hero-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: rgba(0, 0, 0, 0.25);
+            z-index: 1;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            text-align: center;
+        }
+
+        .page-title {
+            font-size: 4rem;
+            color: #c9ab81;
+            font-family: Georgia, serif;
+            letter-spacing: 0.2em;
+            font-weight: normal;
+        }
+
+        .main-container {
+            background-color: #000;
+            padding: 80px 0;
+        }
+
+        .content-section {
+            max-width: 1320px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 1.8fr 1fr;
+            gap: 50px;
+            padding: 0 60px;
+            align-items: center;
+        }
+
+        @media (max-width: 1024px) {
+            .content-section {
+                grid-template-columns: 1fr;
+                gap: 40px;
+                padding: 0 40px;
+            }
+        }
+
+        .svg-pattern {
+            height: 450px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 25px;
+        }
+
+        .tagline {
+            font-size: 0.8rem;
+            letter-spacing: 0.15em;
+            color: #9c7c57;
+            font-style: italic;
+            display: block;
+            margin-bottom: 20px;
+            text-transform: uppercase;
+        }
+
+        .title-with-decor {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 25px;
+            margin-bottom: 25px;
+        }
+
+        .title-decor {
+            width: 40px;
+            height: 2px;
+            background: linear-gradient(to right, #9c7c57, transparent, #9c7c57);
+        }
+
+        .section-heading {
+            font-size: 2.8rem;
+            font-family: Georgia, serif;
+            color: #c9ab81;
+            font-weight: normal;
+            letter-spacing: 0.1em;
+            margin-bottom: 20px;
+        }
+
+        .section-description {
+            font-size: 0.95rem;
+            color: #a8a8a8;
+            line-height: 1.9;
+            margin-bottom: 18px;
+        }
+
+        .description-paragraph {
+            font-size: 0.9rem;
+            color: #909090;
+            line-height: 1.8;
+            margin-bottom: 15px;
+        }
+
+        .read-more-btn {
+            display: inline-block;
+            padding: 12px 45px;
+            border: 1px solid #9c7c57;
+            color: #c9ab81;
+            text-decoration: none;
+            font-size: 0.8rem;
+            letter-spacing: 0.12em;
+            transition: all 0.3s ease;
+            margin-top: 20px;
+            text-transform: uppercase;
+        }
+
+        .read-more-btn:hover {
+            background-color: #9c7c57;
+            color: #fff;
+        }
+
+        .image-container {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .image-container img {
+            width: 100%;
+            max-width: 450px;
+            height: auto;
+        }
+
+        .video-section {
+            background-image: url('https://laurent.qodeinteractive.com/wp-content/uploads/2019/12/About-us-video-img.jpg');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            min-height: 550px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            margin: 100px 0;
+        }
+
+        .video-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: rgba(0, 0, 0, 0.35);
+        }
+
+        .video-play-button {
+            position: relative;
+            z-index: 2;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 120px;
+            height: 120px;
+            border: 2px solid #c9ab81;
+            border-radius: 50%;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .video-play-button:hover {
+            border-color: #fff;
+        }
+
+        .play-triangle {
+            width: 0;
+            height: 0;
+            border-left: 40px solid #c9ab81;
+            border-top: 25px solid transparent;
+            border-bottom: 25px solid transparent;
+            margin-left: 8px;
+            transition: border-left-color 0.3s ease;
+        }
+
+        .video-play-button:hover .play-triangle {
+            border-left-color: #fff;
+        }
+
+        .testimonials-section {
+            background-color: #000;
+            padding: 100px 0;
+        }
+
+        .testimonials-container {
+            max-width: 950px;
+            margin: 0 auto;
+            padding: 0 60px;
+        }
+
+        .testimonials-mark {
+            text-align: center;
+            margin-bottom: 50px;
+            font-size: 2.5rem;
+            color: #9c7c57;
+            font-family: Georgia, serif;
+        }
+
+        .carousel-wrapper {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 30px;
+        }
+
+        .carousel-nav {
+            background: none;
+            border: none;
+            color: #9c7c57;
+            font-size: 2rem;
+            cursor: pointer;
+            transition: color 0.3s ease;
+            padding: 0;
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .carousel-nav:hover {
+            color: #c9ab81;
+        }
+
+        .carousel-prev, .carousel-next {
+            flex-shrink: 0;
+        }
+
+        .testimonial-carousel {
+            position: relative;
+            flex: 1;
+        }
+
+        .testimonial {
+            text-align: center;
+            padding: 30px;
+            animation: fadeIn 0.5s ease-in;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        .testimonial-text {
+            font-size: 1rem;
+            color: #b5b5b5;
+            line-height: 1.85;
+            margin-bottom: 35px;
+            font-style: italic;
+        }
+
+        .testimonial-author {
+            font-family: Georgia, serif;
+            font-size: 1.05rem;
+            color: #c9ab81;
+            font-weight: normal;
+            margin-bottom: 5px;
+            letter-spacing: 0.05em;
+        }
+
+        .testimonial-job {
+            font-size: 0.8rem;
+            color: #8a8a8a;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+        }
+
+        .carousel-dots {
+            display: flex;
+            justify-content: center;
+            gap: 12px;
+            margin-top: 50px;
+        }
+
+        .dot {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background-color: #333;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .dot.active {
+            background-color: #c9ab81;
+        }
+
+        footer {
+            background-color: #000;
+            border-top: 1px solid #1a1a1a;
+            padding: 70px 0;
+        }
+
+        .footer-content {
+            max-width: 1320px;
+            margin: 0 auto;
+            padding: 0 60px;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 30px;
+            text-align: center;
+        }
+
+        .footer-logo {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 15px;
+        }
+
+        .footer-logo img {
+            width: 40px;
+            height: auto;
+        }
+
+        .footer-info {
+            font-size: 0.8rem;
+            color: #888;
+            line-height: 1.9;
+        }
+
+        .footer-info a {
+            color: #c9ab81;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .footer-info a:hover {
+            color: #fff;
+        }
+
+        .footer-separator {
+            width: 50px;
+            height: 1px;
+            background-color: #9c7c57;
+            margin: 15px auto;
+        }
+
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin-top: 15px;
+        }
+
+        .social-links a {
+            color: #888;
+            text-decoration: none;
+            font-size: 0.8rem;
+            letter-spacing: 0.08em;
+            transition: color 0.3s ease;
+            text-transform: uppercase;
+        }
+
+        .social-links a:hover {
+            color: #c9ab81;
+        }
+    </style>
+</head>
+<body>
+    <!-- Hero Section -->
+    <div class="hero-section">
+        <div class="hero-content">
+            <h1 class="page-title">ABOUT US</h1>
+        </div>
+    </div>
+
+    <!-- Main Content Section -->
+    <div class="main-container">
+        <div class="content-section">
+            <!-- Left Column - SVG Pattern -->
+            <div class="svg-pattern">
+                <svg version="1.1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 303.083 305.563" style="width: 100%; max-width: 280px; height: auto;">
+                    <path fill="none" stroke="#9A7D57" stroke-width="1.5" stroke-miterlimit="10" d="M36.927,251.827L1.428,190.62L72.426,67.954L53.591,35.415 M36.927,251.827l35.499-61.207L12.86,87.705 M107.925,6.621l35.499,61.333L72.426,190.62l65.733,113.572 M85.728,290.305l57.696-99.685L72.426,67.954l35.47-61.282 M176.85,3.041l37.572,64.913L143.424,190.62l60.398,104.352 M148.419,304.655l66.003-114.035L143.424,67.954L180.614,3.7 M281.166,75.306L214.422,190.62l41.37,71.478 M233.9,279.635l51.521-89.015L214.422,67.954l23.047-39.817 M302.023,161.937L285.42,190.62l7.581,13.098 M96.143,10.63v16.348 M60.644,88.311V70.871L44.853,43.219 M25.145,149.644v-17.439L7.325,101 M60.644,210.977v-17.439l-23.712-41.521L13.21,193.594v17.383 M96.143,272.31V254.87l-23.712-41.521l-23.722,41.578v10.798 M123.73,302.348l-15.8-27.666L96.429,294.84 M192.572,298.572l-13.644-23.891l-16.852,29.537 M167.102,272.31V254.87l-23.712-41.521l-23.722,41.578v17.383 M238.139,272.31V254.87l-23.712-41.521l-23.722,41.578v17.383 M287.81,217.524l-2.385-4.176l-23.722,41.578v1.114 M131.642,210.977v-17.439l-23.712-41.521l-23.722,41.578v17.383 M202.64,210.977v-17.439l-23.712-41.521l-23.722,41.578v17.383 M273.638,210.977v-17.439l-23.712-41.521l-23.722,41.578v17.383 M96.143,149.644v-17.439L72.431,90.683l-23.722,41.578v17.383 M167.102,149.644v-17.439L143.39,90.683l-23.722,41.578v17.383 M238.139,149.644v-17.439l-23.712-41.521l-23.722,41.578v17.383 M295.99,109.182l-10.564-18.499l-23.722,41.578v17.383 M131.642,88.311V70.871L107.93,29.35L84.208,70.928v17.383 M202.64,88.311V70.871L178.928,29.35l-23.722,41.578v17.383 M273.638,88.311V70.871l-12.967-22.705 M246.644,35.104l-20.439,35.824v17.383 M167.141,26.978V9.538l-4.791-8.391 M123.446,3.043l-3.738,6.552v17.383 M192.453,6.533l-1.747,3.062v17.383 M84.248,15.75v31.78 M60.605,47.53V29.963 M48.749,108.863V73.93L36.929,53.236L25.106,73.959v34.904 M13.25,170.196v-34.934L2.607,116.629 M48.749,231.529v-34.934l-11.819-20.693l-11.823,20.723v34.904 M84.248,289.6v-31.671l-11.819-20.693l-11.823,20.723v17.433 M180.675,301.633l-1.75-3.064l-2.172,3.805 M155.246,292.862v-34.934l-11.819-20.693l-11.823,20.723v34.904 M226.244,284.372v-26.443l-11.819-20.693l-11.823,20.723v34.904 M119.747,231.529v-34.934l-11.819-20.693l-11.823,20.723v34.904 M190.745,231.529v-34.934l-11.819-20.693l-11.823,20.723v34.904 M261.743,231.529v-34.934l-11.819-20.693L238.1,196.625v34.904 M84.248,170.196v-34.934l-11.819-20.693l-11.823,20.723v34.904 M155.207,170.196v-34.934l-11.819-20.693l-11.823,20.723v34.904 M226.244,170.196v-34.934l-11.819-20.693l-11.823,20.723v34.904 M297.242,170.196v-34.934l-11.819-20.693l-11.823,20.723v34.904 M119.747,108.863V73.93l-11.819-20.693L96.104,73.959v34.904 M190.745,108.863V73.93l-11.819-20.693l-11.823,20.723v34.904 M261.743,108.863V73.93l-11.819-20.693L238.1,73.959v34.904 M155.246,47.53V12.597L148.445,0.69 M138.147,1.156l-6.544,11.47V47.53 M226.244,20.976V47.53 M203.878,10.387l-1.277,2.239V47.53 M72.426,22.118v45.836 M36.927,73.112v56.051 M1.428,134.444v56.051 M36.927,195.776v56.051 M72.426,257.104v26.128 M143.424,257.104v47.4 M214.422,257.104v33.414 M107.925,195.776v56.051 M178.923,195.776v56.051 M249.921,195.776v56.051 M72.426,134.444v56.051 M143.424,134.444v56.051 M214.422,134.444v56.051 M285.42,134.444v56.051 M107.925,73.112v56.051 M178.923,73.112v56.051 M249.921,73.112v56.051 M143.424,11.903v56.051 M214.422,14.818v53.136 M137.838,304.162"/>
+                </svg>
+            </div>
+
+            <!-- Middle Column - Text Content -->
+            <div class="section-title">
+                <span class="tagline">Restaurant life</span>
+                <div class="title-with-decor">
+                    <div class="title-decor"></div>
+                    <h2 class="section-heading">About Us</h2>
+                    <div class="title-decor"></div>
+                </div>
+                <p class="section-description">Lorem ipsum dolor sit amet, consecte turn se adipisicing elit, sed do eiusmod tempor ens incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exerci reprehenderit in voluptate velit esse cillu sint occaecat error sit volu.</p>
+                <div style="height: 12px;"></div>
+                <p class="description-paragraph">Cupidatat non proident, sunt in culpa qui cia deserunt mollit anim id est laborum. Sed utsa tat monullamco laboris nisi ut aliquip exe ne com odoconsequat. Duis aute irure dolor in per spiciamt vsun.</p>
+                <div style="height: 12px;"></div>
+                <p class="description-paragraph">aperiam, eaque ipsa quae ab illo inventor veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nem odit aut fugit, sed quia consequ un turmagnido lors.</p>
+                <a href="#" class="read-more-btn">READ MORE</a>
+            </div>
+
+            <!-- Right Column - Image -->
+            <div class="image-container">
+                <img src="https://laurent.qodeinteractive.com/wp-content/uploads/2019/10/inner-pages-img-1.jpg" alt="Restaurant interior">
+            </div>
+        </div>
+    </div>
+
+    <!-- Video Section -->
+    <div class="video-section">
+        <a href="https://vimeo.com/369245407" class="video-play-button" target="_blank">
+            <div class="play-triangle"></div>
+        </a>
+    </div>
+
+    <!-- Testimonials Section -->
+    <div class="testimonials-section">
+        <div class="testimonials-container">
+            <div class="testimonials-mark">"</div>
+            <div class="carousel-wrapper">
+                <button class="carousel-nav carousel-prev" id="prevBtn">&lt;</button>
+                <div class="testimonial-carousel" id="testimonialCarousel">
+                    <!-- Testimonial 1 -->
+                    <div class="testimonial active-slide" data-index="0">
+                        <p class="testimonial-text">Duis aute irure dolor. Lorem ipsum dolor sit amet, consectetur adipisic sed do eiusmod tempor incidid sens as out labore et. Ut enim ad minim venia quis nostrud exercitation co laboris nisi ut aliquip ex ea commodo conse.</p>
+                        <h5 class="testimonial-author">Andrea Chung</h5>
+                        <p class="testimonial-job">Cook</p>
+                    </div>
+                    <!-- Testimonial 2 -->
+                    <div class="testimonial" data-index="1" style="display: none;">
+                        <p class="testimonial-text">Ut enim ad minim venia quis nostrud exercitation co laboris nisi ut aliquip ex ea commodo conse. Duis aute irure dolor. Lorem ipsum dolor sit amet, consectetur adipisic sed do eiusmod tempor incidid sens as out labore et.</p>
+                        <h5 class="testimonial-author">Andrea Chung</h5>
+                        <p class="testimonial-job">Cook</p>
+                    </div>
+                    <!-- Testimonial 3 -->
+                    <div class="testimonial" data-index="2" style="display: none;">
+                        <p class="testimonial-text">Lorem ipsum dolor sit amet, consectetur adipisic sed do eiusmod tempor incidid sens as out labore et dolore magna aliqua. Ut enim ad minim venia quis nostrud exercitation co laboris nisi ut aliquip ex ea commodo conse.</p>
+                        <h5 class="testimonial-author">Robert Chang</h5>
+                        <p class="testimonial-job">Sommelier</p>
+                    </div>
+                </div>
+                <button class="carousel-nav carousel-next" id="nextBtn">&gt;</button>
+            </div>
+            <div class="carousel-dots" id="carouselDots">
+                <span class="dot active" data-index="0"></span>
+                <span class="dot" data-index="1"></span>
+                <span class="dot" data-index="2"></span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div>
+                <div class="footer-logo">
+                    <img src="https://laurent.qodeinteractive.com/wp-content/uploads/2019/10/footer-logo.png" alt="Laurent Logo">
+                </div>
+            </div>
+            <div>
+                <div class="footer-separator"></div>
+                <div class="footer-info">
+                    Laurent Restaurant & Fine dining, <a href="#">71 Madison Ave</a>
+                </div>
+            </div>
+            <div>
+                <div class="footer-info">
+                    <a href="#">10013 New York,</a> <a href="tel:914-309-7030">914-309-7030,</a><br>
+                    <a href="mailto:info@laurent.com">reservations@laurent.com</a>
+                </div>
+            </div>
+            <div>
+                <div class="footer-info">
+                    Open: 09:00 am – 01:00 pm
+                </div>
+            </div>
+            <div>
+                <div class="footer-separator"></div>
+                <div class="social-links">
+                    <a href="#">Facebook</a>
+                    <a href="#">Instagram</a>
+                    <a href="#">Trip Advisor</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Testimonial carousel functionality
+        const testimonials = document.querySelectorAll('.testimonial');
+        const dots = document.querySelectorAll('.dot');
+        const prevBtn = document.getElementById('prevBtn');
+        const nextBtn = document.getElementById('nextBtn');
+        let currentIndex = 0;
+        let autoPlayInterval;
+
+        function showTestimonial(index) {
+            // Hide all testimonials
+            testimonials.forEach((t, i) => {
+                t.style.display = i === index ? 'block' : 'none';
+            });
+
+            // Update dots
+            dots.forEach((d, i) => {
+                d.classList.toggle('active', i === index);
+            });
+
+            currentIndex = index;
+
+            // Reset auto-play timer
+            clearInterval(autoPlayInterval);
+            startAutoPlay();
+        }
+
+        function startAutoPlay() {
+            autoPlayInterval = setInterval(() => {
+                currentIndex = (currentIndex + 1) % testimonials.length;
+                showTestimonial(currentIndex);
+            }, 5000);
+        }
+
+        // Click handlers for navigation buttons
+        prevBtn.addEventListener('click', () => {
+            currentIndex = (currentIndex - 1 + testimonials.length) % testimonials.length;
+            showTestimonial(currentIndex);
+        });
+
+        nextBtn.addEventListener('click', () => {
+            currentIndex = (currentIndex + 1) % testimonials.length;
+            showTestimonial(currentIndex);
+        });
+
+        // Click handlers for dots
+        dots.forEach(dot => {
+            dot.addEventListener('click', () => {
+                const index = parseInt(dot.dataset.index);
+                showTestimonial(index);
+            });
+        });
+
+        // Start auto-play on load
+        startAutoPlay();
+    </script>
+</body>
+</html>

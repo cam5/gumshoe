@@ -1,4 +1,5 @@
 import { test } from "node:test";
+import crypto from "node:crypto";
 import fs from "node:fs";
 import path from "node:path";
 import yaml from "js-yaml";
@@ -31,6 +32,10 @@ for (const name of fixtureNames) {
   test(`tier1-live: ${name}`, { timeout: 20 * 60 * 1000 }, (t) => {
     t.diagnostic(`Live fixture, purely observational — no pass/fail against a known answer: ${manifest.url}`);
 
+    // Both conditions below are dispatched together as one batch — tag them with a shared id so
+    // the report can render this tooled/baseline pair side by side instead of just by recency.
+    const runGroup = crypto.randomUUID().slice(0, 8);
+
     for (const agentName of ["cloner", "cloner-baseline"]) {
       const label = agentName === "cloner" ? "tooled" : "baseline";
       const run = runAgentAgainstUrl(manifest.url, { agentName, maxBudgetUsd: MAX_BUDGET_USD, live: true, model: MODEL });
@@ -46,8 +51,8 @@ for (const name of fixtureNames) {
       t.assert.ok(!run.isError, `[${label}] agent errored out entirely: ${run.resultText}`);
       t.assert.ok(run.cloneHtml, `[${label}] no clone.html found at the exact path the agent was told to write to`);
 
-      const runDir = recordRun(run, { fixture: name, condition: label });
-      t.diagnostic(`[${label}] recorded to ${path.relative(path.resolve(import.meta.dirname, ".."), runDir)} (${run.screenshots.length} screenshot(s))`);
+      const runDir = recordRun(run, { fixture: name, condition: label, runGroup });
+      t.diagnostic(`[${label}] recorded to ${path.relative(path.resolve(import.meta.dirname, ".."), runDir)} (${run.screenshots.length} screenshot(s), group ${runGroup})`);
     }
   });
 }
