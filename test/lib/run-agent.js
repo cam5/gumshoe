@@ -7,22 +7,28 @@ import yaml from "js-yaml";
 const REPO_ROOT = path.resolve(import.meta.dirname, "..", "..");
 const AGENTS_DIR = path.join(REPO_ROOT, ".claude", "agents");
 
-function harnessAddendum(live, outputPath) {
+function harnessAddendum(live, outputPath, workDir) {
   const pageDescription = live
     ? "the page to clone is a real, live URL"
     : "the page to clone is at a local file:// URL, not a live site";
   return `
-For this test run: ${pageDescription}. You do not have Playwright, Kitesurf,
-or any screenshot tool available in this environment — skip the
-visual-comparison-and-iterate step entirely regardless. Do your best
-single-pass build instead: investigate the page, make your
-componentization/tooling decisions, and write the reconciled output to
-this exact absolute path: ${outputPath} — do not guess at "the current
-directory" or write anywhere else; if you're ever unsure, that path is
-authoritative. Finish with a short plain-text summary of the key decisions
+For this test run: ${pageDescription}. There is no interactive display, but a
+real local Chrome is available headlessly — crow-nester's --screenshot flag
+(or your own headless-browser script, if you're not using crow-nester) can
+drive it without downloading a browser, so the screenshot-and-iterate step
+is genuinely possible here; do it. Write the reconciled output to this exact
+absolute path: ${outputPath} — do not guess at "the current directory" or
+write anywhere else; if you're ever unsure, that path is authoritative. Write
+every screenshot PNG you take, at every round, into this same directory —
+${workDir} — not /tmp or anywhere else, and use a distinct filename per round
+(e.g. original.png, clone-round1.png, clone-round2.png) rather than
+overwriting one filename, so every round is still on disk afterward, not
+just the last one. This run has a fixed cost budget, so bound your iteration
+to two or three screenshot-compare passes rather than continuing
+indefinitely. Finish with a short plain-text summary of the key decisions
 you made (what you componentized, what needed special handling, anything
-you flagged as unrecreatable) — this is what will be graded, not visual
-fidelity.
+you flagged as unrecreatable, and how the screenshot comparison went) — this
+is what will be graded.
 `.trim();
 }
 
@@ -56,7 +62,7 @@ export function runAgentAgainstUrl(pageUrl, { agentName = "cloner", maxBudgetUsd
   const workDir = fs.mkdtempSync(path.join(os.tmpdir(), "gumshoe-agent-run-"));
   const clonePath = path.join(workDir, "clone.html");
   const prompt = `Clone this page into a single self-contained HTML file: ${pageUrl}`;
-  const systemPrompt = `${body}\n\n${harnessAddendum(live, clonePath)}`;
+  const systemPrompt = `${body}\n\n${harnessAddendum(live, clonePath, workDir)}`;
 
   const args = [
     "-p",
@@ -95,6 +101,12 @@ export function runAgentAgainstUrl(pageUrl, { agentName = "cloner", maxBudgetUsd
 
   const result = messages.find((m) => m.type === "result");
 
+  const screenshots = fs
+    .readdirSync(workDir)
+    .filter((name) => name.toLowerCase().endsWith(".png"))
+    .map((name) => path.join(workDir, name))
+    .sort((a, b) => fs.statSync(a).mtimeMs - fs.statSync(b).mtimeMs);
+
   return {
     agentName,
     model: resolvedModel,
@@ -104,6 +116,7 @@ export function runAgentAgainstUrl(pageUrl, { agentName = "cloner", maxBudgetUsd
     totalCostUsd: result?.total_cost_usd ?? null,
     isError: result?.is_error ?? false,
     cloneHtml: fs.existsSync(clonePath) ? fs.readFileSync(clonePath, "utf8") : null,
+    screenshots,
   };
 }
 

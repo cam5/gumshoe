@@ -9,6 +9,7 @@
     "test:live": "node --test test/tier1-live.test.js"
   },
   "devDependencies": {
+    "crow-nester": "github:cam5/crow-nester",
     "js-yaml": "^4.1.0",
     "pixelmatch": "^6.0.0",
     "pngjs": "^7.0.0",
