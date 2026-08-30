@@ -32,6 +32,9 @@ for (const name of fixtureNames) {
     const calls = run.toolCalls.map((c) => `${c.name} ${c.input?.command ?? c.input?.file_path ?? ""}`);
     t.diagnostic(`tool calls:\n  ${calls.join("\n  ")}`);
 
+    t.assert.ok(!run.isError, `agent errored out entirely: ${run.resultText}`);
+    t.assert.ok(run.cloneHtml, "no clone.html found at the exact path the agent was told to write to");
+
     const score = scoreTrajectory(run.toolCalls, manifest.tier1);
 
     if (score.judge) {

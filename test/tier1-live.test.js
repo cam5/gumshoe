@@ -43,6 +43,7 @@ for (const name of fixtureNames) {
       t.diagnostic(`[${label}] agent's own summary:\n${run.resultText}`);
 
       t.assert.ok(!run.isError, `[${label}] agent errored out entirely: ${run.resultText}`);
+      t.assert.ok(run.cloneHtml, `[${label}] no clone.html found at the exact path the agent was told to write to`);
     }
   });
 }

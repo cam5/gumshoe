@@ -7,7 +7,7 @@ import yaml from "js-yaml";
 const REPO_ROOT = path.resolve(import.meta.dirname, "..", "..");
 const AGENTS_DIR = path.join(REPO_ROOT, ".claude", "agents");
 
-function harnessAddendum(live) {
+function harnessAddendum(live, outputPath) {
   const pageDescription = live
     ? "the page to clone is a real, live URL"
     : "the page to clone is at a local file:// URL, not a live site";
@@ -17,10 +17,12 @@ or any screenshot tool available in this environment — skip the
 visual-comparison-and-iterate step entirely regardless. Do your best
 single-pass build instead: investigate the page, make your
 componentization/tooling decisions, and write the reconciled output to
-clone.html in the current directory. Finish with a short plain-text summary
-of the key decisions you made (what you componentized, what needed special
-handling, anything you flagged as unrecreatable) — this is what will be
-graded, not visual fidelity.
+this exact absolute path: ${outputPath} — do not guess at "the current
+directory" or write anywhere else; if you're ever unsure, that path is
+authoritative. Finish with a short plain-text summary of the key decisions
+you made (what you componentized, what needed special handling, anything
+you flagged as unrecreatable) — this is what will be graded, not visual
+fidelity.
 `.trim();
 }
 
@@ -52,8 +54,9 @@ export function runAgentAgainstUrl(pageUrl, { agentName = "cloner", maxBudgetUsd
   const resolvedModel = model ?? frontmatter.model ?? "sonnet";
 
   const workDir = fs.mkdtempSync(path.join(os.tmpdir(), "gumshoe-agent-run-"));
+  const clonePath = path.join(workDir, "clone.html");
   const prompt = `Clone this page into a single self-contained HTML file: ${pageUrl}`;
-  const systemPrompt = `${body}\n\n${harnessAddendum(live)}`;
+  const systemPrompt = `${body}\n\n${harnessAddendum(live, clonePath)}`;
 
   const args = [
     "-p",
@@ -91,7 +94,6 @@ export function runAgentAgainstUrl(pageUrl, { agentName = "cloner", maxBudgetUsd
   }
 
   const result = messages.find((m) => m.type === "result");
-  const clonePath = path.join(workDir, "clone.html");
 
   return {
     agentName,
