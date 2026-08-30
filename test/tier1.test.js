@@ -21,6 +21,9 @@ for (const name of fixtureNames) {
 
   const manifest = yaml.load(fs.readFileSync(manifestPath, "utf8"));
   if (!manifest.tier1) continue;
+  // Live fixtures (a real URL, no local page.html) run only via `npm run
+  // test:live` — this suite stays fast/reproducible against local fixtures.
+  if (manifest.tier1.live) continue;
 
   test(`tier1: ${name}`, { timeout: 10 * 60 * 1000 }, (t) => {
     const run = runAgent(fixtureDir, { maxBudgetUsd: MAX_BUDGET_USD });

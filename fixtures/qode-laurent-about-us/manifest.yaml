@@ -1,0 +1,26 @@
+fixture: qode-laurent-about-us
+type: live
+url: https://laurent.qodeinteractive.com/about-us/
+decision: >
+  A real, live WordPress theme-demo page (Qode Interactive's "Laurent" theme,
+  About Us page) — not a synthetic fixture. Added because our synthetic
+  fixtures are small enough that both the tooled and baseline agent succeed
+  by eye, which meant the tooled-vs-baseline comparison wasn't under any
+  real pressure. This page has real-world complexity (~112KB raw HTML, 74
+  <script> tags, 631 class attributes as of the initial check) — parallax
+  sections, counters, likely sliders. Chosen deliberately as a public theme
+  demo rather than a live client site.
+
+  There is no scripted correct answer here. This fixture is purely
+  observational: run both agents and compare tool-call trajectories, cost,
+  and output directly, rather than asserting pass/fail against a known
+  expectation the way the synthetic fixtures do.
+
+tier1:
+  judge: true
+  live: true
+  notes: >
+    No mustCall/mustNotCall — there's no predetermined correct tool sequence
+    for a page nobody has pre-analyzed. Not part of `npm run test:tier1`
+    (that suite stays fast/reproducible against local fixtures); run via
+    `npm run test:live` instead.
