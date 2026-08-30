@@ -89,15 +89,22 @@ export function runAgentAgainstUrl(pageUrl, { agentName = "cloner", maxBudgetUsd
   });
 
   const messages = JSON.parse(raw);
-  const toolCalls = [];
+  // Ordered, chronological record of what the agent did: its own reasoning text interleaved with
+  // the tool calls it made. Without this, a prompt instruction that asks for explicit reasoning
+  // ("state a priority list before doing X") is unverifiable after the fact — only the tool calls
+  // and the final summary survived, never what the model actually said in between.
+  const events = [];
   for (const msg of messages) {
     if (msg.type !== "assistant") continue;
     for (const block of msg.message?.content ?? []) {
       if (block.type === "tool_use") {
-        toolCalls.push({ name: block.name, input: block.input });
+        events.push({ type: "tool_use", name: block.name, input: block.input });
+      } else if (block.type === "text" && block.text?.trim()) {
+        events.push({ type: "text", text: block.text.trim() });
       }
     }
   }
+  const toolCalls = events.filter((e) => e.type === "tool_use").map(({ name, input }) => ({ name, input }));
 
   const result = messages.find((m) => m.type === "result");
 
@@ -112,6 +119,7 @@ export function runAgentAgainstUrl(pageUrl, { agentName = "cloner", maxBudgetUsd
     model: resolvedModel,
     workDir,
     toolCalls,
+    events,
     resultText: result?.result ?? null,
     totalCostUsd: result?.total_cost_usd ?? null,
     isError: result?.is_error ?? false,

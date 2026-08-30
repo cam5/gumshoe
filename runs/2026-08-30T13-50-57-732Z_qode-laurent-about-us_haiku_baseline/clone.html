@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=yes">
+    <title>About Us – Laurent</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css?family=Miniver%3A100%2C300%2C400%2C700%7CJosefin+Sans%3A100%2C300%2C400%2C700%7COpen+Sans+Condensed%3A100%2C300%2C400%2C700&subset=latin-ext" rel="stylesheet">
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: {
+              'dark-bg': '#0c1315',
+              'gold-accent': '#9C7C57',
+              'gold-light': '#BC9A6B',
+              'text-light': '#e8e8e8'
+            },
+            fontFamily: {
+              'serif': ['"Miniver"', 'serif'],
+              'sans': ['"Josefin Sans"', 'sans-serif'],
+              'body': ['"Open Sans Condensed"', 'sans-serif']
+            },
+            fontSize: {
+              'page-title': '3.5rem',
+              'section-title': '2.5rem',
+              'tagline': '1rem'
+            }
+          }
+        }
+      };
+    </script>
+    <style>
+      body {
+        background-color: #0c1315;
+        color: #e8e8e8;
+        font-family: 'Open Sans Condensed', sans-serif;
+      }
+      .gold-text {
+        color: #9C7C57;
+      }
+      .decorative-line {
+        border: none;
+        height: 1.5px;
+        background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="41.125" height="9.146" viewBox="0 0 41.125 9.146"><path fill="none" stroke="%239C7C57" stroke-miterlimit="10" d="M40.881 8.576L20.562.591.244 8.576"/><path fill="none" stroke="%239C7C57" stroke-miterlimit="10" d="M40.881.591L20.562 8.576.243.591"/></svg>') center/contain no-repeat;
+        height: 15px;
+      }
+      .hero-section {
+        background: linear-gradient(rgba(12, 19, 21, 0.4), rgba(12, 19, 21, 0.4)), url('https://laurent.qodeinteractive.com/wp-content/uploads/2019/12/About-us-title-img.jpg') center/cover;
+        background-attachment: fixed;
+      }
+    </style>
+</head>
+<body class="bg-dark-bg text-text-light">
+    <!-- Header Navigation -->
+    <header class="bg-dark-bg bg-opacity-95 sticky top-0 z-50 border-b border-gold-accent border-opacity-20">
+        <div class="max-w-6xl mx-auto px-8 py-6 flex justify-between items-center">
+            <!-- Logo -->
+            <div class="w-16">
+                <img src="https://laurent.qodeinteractive.com/wp-content/uploads/2019/10/logo-heder.png" alt="Laurent Logo" class="w-full">
+            </div>
+
+            <!-- Navigation Menu -->
+            <nav class="hidden md:flex gap-12 text-center">
+                <div class="cursor-pointer hover:text-gold-accent transition">HOME</div>
+                <div class="cursor-pointer hover:text-gold-accent transition">PAGES</div>
+                <div class="cursor-pointer hover:text-gold-accent transition">PORTFOLIO</div>
+                <div class="cursor-pointer hover:text-gold-accent transition">BLOG</div>
+                <div class="cursor-pointer hover:text-gold-accent transition">SHOP</div>
+            </nav>
+
+            <!-- Menu Toggle Mobile -->
+            <div class="md:hidden cursor-pointer">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 37 25.2" class="w-6 h-6">
+                    <line y1="7.6" x2="24" y2="7.6" stroke="currentColor" stroke-width="1"/>
+                    <line x1="4.1" y1="0.5" x2="28.1" y2="0.5" stroke="currentColor" stroke-width="1"/>
+                    <line x1="10.1" y1="24.6" x2="34.1" y2="24.6" stroke="currentColor" stroke-width="1"/>
+                    <line x1="13" y1="17.6" x2="37" y2="17.6" stroke="currentColor" stroke-width="1"/>
+                </svg>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Title Section -->
+    <section class="hero-section h-screen flex items-center justify-center relative">
+        <div class="text-center">
+            <div class="decorative-line mb-8 w-16 mx-auto"></div>
+            <h1 class="text-6xl md:text-7xl font-serif gold-text tracking-widest mb-8">ABOUT US</h1>
+            <div class="decorative-line mt-8 w-16 mx-auto"></div>
+        </div>
+    </section>
+
+    <!-- Main Content Section -->
+    <main class="bg-dark-bg">
+        <!-- About Section -->
+        <section class="py-20 px-8">
+            <div class="max-w-6xl mx-auto">
+                <div class="grid grid-cols-1 md:grid-cols-12 gap-12 items-center mb-20">
+
+                    <!-- Left Decorative Pattern -->
+                    <div class="md:col-span-3 flex justify-center">
+                        <svg version="1.1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 303.083 305.563" class="w-48 h-48 opacity-60">
+                            <path fill="none" stroke="#9A7D57" stroke-width="1.5" stroke-miterlimit="10" d="M36.927,251.827L1.428,190.62L72.426,67.954 L53.591,35.415 M36.927,251.827l35.499-61.207L12.86,87.705 M107.925,6.621l35.499,61.333L72.426,190.62l65.733,113.572 M85.728,290.305l57.696-99.685L72.426,67.954l35.47-61.282 M176.85,3.041l37.572,64.913L143.424,190.62l60.398,104.352 M148.419,304.655l66.003-114.035L143.424,67.954L180.614,3.7 M281.166,75.306L214.422,190.62l41.37,71.478"/>
+                        </svg>
+                    </div>
+
+                    <!-- Center Content -->
+                    <div class="md:col-span-6">
+                        <div class="text-center mb-8">
+                            <p class="text-gold-accent text-lg tracking-widest mb-4">Restaurant life</p>
+                            <div class="decorative-line mb-6 w-12 mx-auto"></div>
+                            <h2 class="text-5xl font-serif gold-text mb-8">About Us</h2>
+                            <div class="decorative-line mt-6 w-12 mx-auto mb-8"></div>
+                        </div>
+
+                        <p class="text-text-light text-center leading-relaxed mb-6">
+                            Lorem ipsum dolor sit amet, consecte turn se adipisicing elit, sed do eiusmod tempor ens incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exerci reprehenderit in voluptate velit esse cillu sint occaecat error sit volu.
+                        </p>
+
+                        <p class="text-text-light text-center leading-relaxed mb-6">
+                            Cupidatat non proident, sunt in culpa qui cia deserunt mollit anim id est laborum. Sed utsa tat monullamco laboris nisi ut aliquip exe ne com odoconsequat. Duis aute irure dolor in per spiciamt vsun.
+                        </p>
+
+                        <p class="text-text-light text-center leading-relaxed mb-12">
+                            aperiam, eaque ipsa quae ab illo inventor veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nem odit aut fugit, sed quia consequ un turmagnido lors.
+                        </p>
+
+                        <div class="flex justify-center">
+                            <button class="px-12 py-3 border-2 border-gold-accent text-gold-accent hover:bg-gold-accent hover:text-dark-bg transition duration-300 font-semibold tracking-wide">
+                                Read More
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Right Image -->
+                    <div class="md:col-span-3 flex justify-center">
+                        <img src="https://laurent.qodeinteractive.com/wp-content/uploads/2019/10/inner-pages-img-1.jpg" alt="About Us Image" class="w-full max-w-xs rounded-sm shadow-xl">
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Video Section with Parallax -->
+        <section class="py-20 px-8 relative" style="background: linear-gradient(rgba(12, 19, 21, 0.6), rgba(12, 19, 21, 0.6)), url('https://laurent.qodeinteractive.com/wp-content/uploads/2019/12/About-us-video-img.jpg') center/cover; background-attachment: fixed;">
+            <div class="max-w-2xl mx-auto flex justify-center items-center h-96">
+                <button class="relative">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 97.094 97.094" class="w-24 h-24">
+                        <circle fill="none" stroke="currentColor" stroke-miterlimit="10" cx="48.558" cy="48.548" r="48" class="text-gold-light"></circle>
+                        <polygon fill="none" stroke="currentColor" stroke-miterlimit="10" points="42.578,69.964 42.578,27.13 63.994,48.546" class="text-gold-light"></polygon>
+                    </svg>
+                </button>
+            </div>
+        </section>
+
+        <!-- Testimonials Section -->
+        <section class="py-20 px-8">
+            <div class="max-w-4xl mx-auto">
+                <div class="text-center mb-12">
+                    <svg class="w-12 h-12 mx-auto mb-8 opacity-50" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 50 50">
+                        <path fill="none" stroke="#9C7C57" stroke-width="2" d="M10,15 Q5,25 10,35 M40,15 Q35,25 40,35"/>
+                    </svg>
+                </div>
+
+                <!-- Testimonials Carousel -->
+                <div class="space-y-12">
+                    <!-- Testimonial 1 -->
+                    <div class="text-center">
+                        <p class="text-text-light leading-relaxed mb-8 text-lg">
+                            "Duis aute irure dolor. Lorem ipsum dolor sit amet, consectetur adipisic sed do eiusmod tempor incidid sens as out labore et. Ut enim ad minim venia quis nostrud exercitation co laboris nisi ut aliquip ex ea commodo conse."
+                        </p>
+                        <h5 class="text-gold-accent text-xl font-semibold mb-2">Andrea Chung</h5>
+                        <p class="text-gold-accent text-sm">Cook</p>
+                    </div>
+
+                    <!-- Testimonial 2 (hidden by default, would rotate) -->
+                    <div class="text-center hidden">
+                        <p class="text-text-light leading-relaxed mb-8 text-lg">
+                            "Ut enim ad minim venia quis nostrud exercitation co laboris nisi ut aliquip ex ea commodo conse. Duis aute irure dolor. Lorem ipsum dolor sit amet, consectetur adipisic sed do eiusmod tempor incidid sens as out labore et."
+                        </p>
+                        <h5 class="text-gold-accent text-xl font-semibold mb-2">Andrea Chung</h5>
+                        <p class="text-gold-accent text-sm">Cook</p>
+                    </div>
+
+                    <!-- Testimonial 3 (hidden by default, would rotate) -->
+                    <div class="text-center hidden">
+                        <p class="text-text-light leading-relaxed mb-8 text-lg">
+                            "Lorem ipsum dolor sit amet, consectetur adipisic sed do eiusmod tempor incidid sens as out labore et dolore magna aliqua. Ut enim ad minim venia quis nostrud exercitation co laboris nisi ut aliquip ex ea commodo conse."
+                        </p>
+                        <h5 class="text-gold-accent text-xl font-semibold mb-2">Robert Chang</h5>
+                        <p class="text-gold-accent text-sm">Sommelier</p>
+                    </div>
+                </div>
+
+                <!-- Pagination dots -->
+                <div class="flex justify-center gap-2 mt-12">
+                    <button class="w-3 h-3 rounded-full bg-gold-accent"></button>
+                    <button class="w-3 h-3 rounded-full bg-gray-600 hover:bg-gold-accent"></button>
+                    <button class="w-3 h-3 rounded-full bg-gray-600 hover:bg-gold-accent"></button>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-dark-bg border-t border-gold-accent border-opacity-20 py-12 px-8">
+        <div class="max-w-6xl mx-auto">
+            <!-- Logo and Info -->
+            <div class="flex flex-col items-center mb-8">
+                <img src="https://laurent.qodeinteractive.com/wp-content/uploads/2019/10/footer-logo.png" alt="Laurent" class="w-12 mb-6">
+                <div class="w-full h-px bg-gold-accent opacity-30 mb-6"></div>
+
+                <p class="text-center text-text-light mb-4 text-sm leading-relaxed">
+                    Laurent Restaurant & Fine dining, <a href="#" class="text-gold-accent hover:underline">71 Madison Ave</a>
+                </p>
+
+                <p class="text-center text-text-light mb-4 text-sm leading-relaxed">
+                    <a href="#" class="text-gold-accent hover:underline">10013 New York,</a> <a href="tel:914-309-7030" class="text-gold-accent hover:underline">914-309-7030,</a> <a href="#" class="text-gold-accent hover:underline">info@laurent.com</a>
+                </p>
+
+                <p class="text-center text-text-light mb-6 text-sm">
+                    Open: 09:00 am – 01:00 pm
+                </p>
+
+                <div class="w-full h-px bg-gold-accent opacity-30 mb-6"></div>
+
+                <!-- Social Links -->
+                <nav class="flex gap-6">
+                    <a href="#" class="text-gold-accent hover:text-gold-light transition text-sm font-semibold">Facebook</a>
+                    <a href="#" class="text-gold-accent hover:text-gold-light transition text-sm font-semibold">Instagram</a>
+                    <a href="#" class="text-gold-accent hover:text-gold-light transition text-sm font-semibold">Trip Advisor</a>
+                </nav>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Back to Top Button -->
+    <button id="backToTop" class="fixed bottom-8 right-8 w-12 h-12 rounded-full border-2 border-gold-light flex items-center justify-center text-gold-light opacity-0 hover:text-gold-accent transition cursor-pointer">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 43.047 43.031" class="w-6 h-6">
+            <circle fill="none" stroke="currentColor" stroke-miterlimit="10" cx="21.523" cy="21.531" r="20.986"/>
+            <polyline fill="none" stroke="currentColor" stroke-miterlimit="10" points="15.205,23.875 21.523,18.573 27.842,23.875"/>
+        </svg>
+    </button>
+
+    <script>
+        // Back to top button functionality
+        const backToTopBtn = document.getElementById('backToTop');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 300) {
+                backToTopBtn.classList.remove('opacity-0');
+                backToTopBtn.classList.add('opacity-100');
+            } else {
+                backToTopBtn.classList.add('opacity-0');
+                backToTopBtn.classList.remove('opacity-100');
+            }
+        });
+
+        backToTopBtn.addEventListener('click', () => {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+
+        // Simple testimonial rotation (optional)
+        let currentTestimonial = 0;
+        const testimonials = document.querySelectorAll('.space-y-12 > div');
+
+        function showTestimonial(index) {
+            testimonials.forEach((t, i) => {
+                if (i === index) {
+                    t.classList.remove('hidden');
+                } else {
+                    t.classList.add('hidden');
+                }
+            });
+        }
+
+        // Auto-rotate testimonials every 5 seconds
+        setInterval(() => {
+            currentTestimonial = (currentTestimonial + 1) % testimonials.length;
+            showTestimonial(currentTestimonial);
+            // Update pagination dots
+            document.querySelectorAll('footer + button').forEach((dot, i) => {
+                if (i === currentTestimonial) {
+                    dot.classList.remove('bg-gray-600');
+                    dot.classList.add('bg-gold-accent');
+                } else {
+                    dot.classList.add('bg-gray-600');
+                    dot.classList.remove('bg-gold-accent');
+                }
+            });
+        }, 5000);
+    </script>
+</body>
+</html>

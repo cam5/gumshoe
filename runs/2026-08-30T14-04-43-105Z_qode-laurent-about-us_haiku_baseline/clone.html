@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Us — Laurent</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'gold': '#9C7C57',
+                        'dark-bg': '#0c1315',
+                        'body-text': '#333333',
+                        'light-gray': '#f5f5f5'
+                    },
+                    fontFamily: {
+                        sans: ['"Open Sans"', 'sans-serif'],
+                        elegant: ['"Mrs Saint Delafield"', 'serif']
+                    },
+                    spacing: {
+                        '110': '110px'
+                    }
+                }
+            }
+        };
+    </script>
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            color: #ffffff;
+            background-color: #0f1316;
+        }
+        .page-title {
+            font-family: "Open Sans", sans-serif;
+            font-size: 48px;
+            font-weight: 400;
+            letter-spacing: 1px;
+            color: white;
+            text-transform: capitalize;
+        }
+        .tagline {
+            font-size: 14px;
+            letter-spacing: 2px;
+            color: #9C7C57;
+            text-transform: capitalize;
+            margin-bottom: 20px;
+            font-style: italic;
+            font-weight: 300;
+        }
+        .section-title {
+            font-size: 42px;
+            font-weight: 400;
+            color: #9C7C57;
+            text-align: center;
+            margin: 20px 0;
+        }
+        .section-text {
+            font-size: 14px;
+            line-height: 1.8;
+            color: #b8b8b8;
+            text-align: center;
+            margin: 15px 0;
+        }
+        .btn-read-more {
+            display: inline-block;
+            padding: 12px 30px;
+            border: 1px solid #9C7C57;
+            color: #9C7C57;
+            text-decoration: none;
+            font-size: 13px;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            transition: all 0.3s ease;
+            background: transparent;
+        }
+        .btn-read-more:hover {
+            background: #9C7C57;
+            color: white;
+        }
+        .testimonial-text {
+            font-size: 14px;
+            line-height: 1.8;
+            color: #b8b8b8;
+            text-align: center;
+            margin-bottom: 20px;
+            font-style: italic;
+        }
+        .testimonial-author {
+            font-size: 14px;
+            font-weight: 600;
+            color: #9C7C57;
+        }
+        .testimonial-job {
+            font-size: 12px;
+            color: #999;
+            margin-top: 5px;
+        }
+        .video-button-play {
+            display: inline-block;
+            position: relative;
+        }
+        .video-button-play svg {
+            width: 80px;
+            height: 80px;
+            color: #9C7C57;
+        }
+        .decor-line {
+            width: 41px;
+            height: 9px;
+            display: inline-block;
+            margin: 0 15px;
+        }
+        .footer-section {
+            background-color: #0c0f12;
+            border-top-color: #2a2a2a;
+        }
+    </style>
+</head>
+<body class="bg-white">
+    <!-- Header Navigation (Simplified) -->
+    <header class="sticky top-0 z-50" style="background-color: #0a0d10; border-bottom: 1px solid #1a1a1a;">
+        <div class="max-w-6xl mx-auto flex justify-between items-center h-24 px-4">
+            <div class="flex-shrink-0">
+                <a href="https://laurent.qodeinteractive.com/">
+                    <img src="https://laurent.qodeinteractive.com/wp-content/uploads/2019/10/logo-heder.png" alt="Laurent Logo" class="h-16">
+                </a>
+            </div>
+            <nav class="hidden md:flex space-x-8">
+                <a href="#" class="text-sm" style="color: #999; text-transform: uppercase; font-size: 12px; letter-spacing: 1px;">Home</a>
+                <a href="#" class="text-sm" style="color: #999; text-transform: uppercase; font-size: 12px; letter-spacing: 1px;">Pages</a>
+                <a href="#" class="text-sm" style="color: #999; text-transform: uppercase; font-size: 12px; letter-spacing: 1px;">Portfolio</a>
+                <a href="#" class="text-sm" style="color: #999; text-transform: uppercase; font-size: 12px; letter-spacing: 1px;">Blog</a>
+                <a href="#" class="text-sm" style="color: #999; text-transform: uppercase; font-size: 12px; letter-spacing: 1px;">Shop</a>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section with Background Image -->
+    <section class="relative bg-dark-bg overflow-hidden" style="height: 530px; background-image: url('https://laurent.qodeinteractive.com/wp-content/uploads/2019/12/About-us-title-img.jpg'); background-size: cover; background-position: center;">
+        <div class="absolute inset-0 bg-black bg-opacity-40"></div>
+        <div class="relative h-full flex items-center justify-center">
+            <div class="text-center">
+                <svg class="inline-block mb-4" width="41.125" height="9.146" viewBox="0 0 41.125 9.146" xmlns="http://www.w3.org/2000/svg">
+                    <path fill="none" stroke="#9C7C57" stroke-miterlimit="10" d="M40.881 8.576L20.562.591.244 8.576"/>
+                    <path fill="none" stroke="#9C7C57" stroke-miterlimit="10" d="M40.881.591L20.562 8.576.243.591"/>
+                </svg>
+                <h1 class="page-title">About Us</h1>
+                <svg class="inline-block mt-4" width="41.125" height="9.146" viewBox="0 0 41.125 9.146" xmlns="http://www.w3.org/2000/svg">
+                    <path fill="none" stroke="#9C7C57" stroke-miterlimit="10" d="M40.881 8.576L20.562.591.244 8.576"/>
+                    <path fill="none" stroke="#9C7C57" stroke-miterlimit="10" d="M40.881.591L20.562 8.576.243.591"/>
+                </svg>
+            </div>
+        </div>
+    </section>
+
+    <!-- Main Content Section -->
+    <section class="py-20 px-4 bg-dark-bg" style="background-color: #0f1316;">
+        <div class="max-w-7xl mx-auto">
+            <div class="grid grid-cols-12 gap-8">
+                <!-- Left Column - Decorative SVG -->
+                <div class="col-span-3 hidden lg:block">
+                    <div style="padding-top: 60%; position: relative;">
+                        <svg version="1.1" viewBox="0 0 303.083 305.563" xmlns="http://www.w3.org/2000/svg" class="absolute top-0 left-0 w-full h-full">
+                            <path fill="none" stroke="#9A7D57" stroke-width="1.5" stroke-miterlimit="10" d="M36.927,251.827L1.428,190.62L72.426,67.954 L53.591,35.415 M36.927,251.827l35.499-61.207L12.86,87.705 M107.925,6.621l35.499,61.333L72.426,190.62l65.733,113.572 M85.728,290.305l57.696-99.685L72.426,67.954l35.47-61.282 M176.85,3.041l37.572,64.913L143.424,190.62l60.398,104.352 M148.419,304.655l66.003-114.035L143.424,67.954L180.614,3.7 M281.166,75.306L214.422,190.62l41.37,71.478 M233.9,279.635 l51.521-89.015L214.422,67.954l23.047-39.817 M302.023,161.937L285.42,190.62l7.581,13.098 M96.143,10.63v16.348 M60.644,88.311 V70.871L44.853,43.219 M25.145,149.644v-17.439L7.325,101 M60.644,210.977v-17.439l-23.712-41.521L13.21,193.594v17.383 M96.143,272.31V254.87l-23.712-41.521l-23.722,41.578v10.798 M123.73,302.348l-15.8-27.666L96.429,294.84 M192.572,298.572 l-13.644-23.891l-16.852,29.537 M167.102,272.31V254.87l-23.712-41.521l-23.722,41.578v17.383 M238.139,272.31V254.87 l-23.712-41.521l-23.722,41.578v17.383 M287.81,217.524l-2.385-4.176l-23.722,41.578v1.114 M131.642,210.977v-17.439l-23.712-41.521 l-23.722,41.578v17.383 M202.64,210.977v-17.439l-23.712-41.521l-23.722,41.578v17.383 M273.638,210.977v-17.439l-23.712-41.521 l-23.722,41.578v17.383 M96.143,149.644v-17.439L72.431,90.683l-23.722,41.578v17.383 M167.102,149.644v-17.439L143.39,90.683 l-23.722,41.578v17.383 M238.139,149.644v-17.439l-23.712-41.521l-23.722,41.578v17.383 M295.99,109.182l-10.564-18.499 l-23.722,41.578v17.383 M131.642,88.311V70.871L107.93,29.35L84.208,70.928v17.383 M202.64,88.311V70.871L178.928,29.35 l-23.722,41.578v17.383 M273.638,88.311V70.871l-12.967-22.705 M246.644,35.104l-20.439,35.824v17.383 M167.141,26.978V9.538 l-4.791-8.391 M123.446,3.043l-3.738,6.552v17.383 M192.453,6.533l-1.747,3.062v17.383 M84.248,15.75v31.78 M60.605,47.53V29.963 M48.749,108.863V73.93L36.929,53.236L25.106,73.959v34.904 M13.25,170.196v-34.934L2.607,116.629 M48.749,231.529v-34.934 l-11.819-20.693l-11.823,20.723v34.904 M84.248,289.6v-31.671l-11.819-20.693l-11.823,20.723v17.433 M180.675,301.633l-1.75-3.064 l-2.172,3.805 M155.246,292.862v-34.934l-11.819-20.693l-11.823,20.723v34.904 M226.244,284.372v-26.443l-11.819-20.693 l-11.823,20.723v34.904 M119.747,231.529v-34.934l-11.819-20.693l-11.823,20.723v34.904 M190.745,231.529v-34.934l-11.819-20.693 l-11.823,20.723v34.904 M261.743,231.529v-34.934l-11.819-20.693L238.1,196.625v34.904 M84.248,170.196v-34.934l-11.819-20.693 l-11.823,20.723v34.904 M155.207,170.196v-34.934l-11.819-20.693l-11.823,20.723v34.904 M226.244,170.196v-34.934l-11.819-20.693 l-11.823,20.723v34.904 M297.242,170.196v-34.934l-11.819-20.693l-11.823,20.723v34.904 M119.747,108.863V73.93l-11.819-20.693 L96.104,73.959v34.904 M190.745,108.863V73.93l-11.819-20.693l-11.823,20.723v34.904 M261.743,108.863V73.93l-11.819-20.693 L238.1,73.959v34.904 M155.246,47.53V12.597L148.445,0.69 M138.147,1.156l-6.544,11.47V47.53 M226.244,20.976V47.53 M203.878,10.387 l-1.277,2.239V47.53 M72.426,22.118v45.836 M36.927,73.112v56.051 M1.428,134.444v56.051 M36.927,195.776v56.051 M72.426,257.104 v26.128 M143.424,257.104v47.4 M214.422,257.104v33.414 M107.925,195.776v56.051 M178.923,195.776v56.051 M249.921,195.776v56.051 M72.426,134.444v56.051 M143.424,134.444v56.051 M214.422,134.444v56.051 M285.42,134.444v56.051 M107.925,73.112v56.051 M178.923,73.112v56.051 M249.921,73.112v56.051 M143.424,11.903v56.051 M214.422,14.818v53.136 M137.838,304.162"/>
+                        </svg>
+                    </div>
+                </div>
+
+                <!-- Center Column - Main Content -->
+                <div class="col-span-12 lg:col-span-6">
+                    <div class="text-center">
+                        <div class="tagline">Restaurant life</div>
+                        <h2 class="section-title flex items-center justify-center">
+                            <svg class="decor-line" viewBox="0 0 41.125 9.146" xmlns="http://www.w3.org/2000/svg">
+                                <path fill="none" stroke="#9C7C57" stroke-miterlimit="10" d="M40.881 8.576L20.562.591.244 8.576"/>
+                                <path fill="none" stroke="#9C7C57" stroke-miterlimit="10" d="M40.881.591L20.562 8.576.243.591"/>
+                            </svg>
+                            About Us
+                            <svg class="decor-line" viewBox="0 0 41.125 9.146" xmlns="http://www.w3.org/2000/svg">
+                                <path fill="none" stroke="#9C7C57" stroke-miterlimit="10" d="M40.881 8.576L20.562.591.244 8.576"/>
+                                <path fill="none" stroke="#9C7C57" stroke-miterlimit="10" d="M40.881.591L20.562 8.576.243.591"/>
+                            </svg>
+                        </h2>
+                        <p class="section-text">
+                            Lorem ipsum dolor sit amet, consecte turn se adipisicing elit, sed do eiusmod tempor ens incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exerci reprehenderit in voluptate velit esse cillu sint occaecat error sit volu.
+                        </p>
+                        <p class="section-text">
+                            Cupidatat non proident, sunt in culpa qui cia deserunt mollit anim id est laborum. Sed utsa tat monullamco laboris nisi ut aliquip exe ne com odoconsequat. Duis aute irure dolor in per spiciamt vsun.
+                        </p>
+                        <p class="section-text">
+                            aperiam, eaque ipsa quae ab illo inventor veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nem odit aut fugit, sed quia consequ un turmagnido lors.
+                        </p>
+                        <div class="mt-8">
+                            <a href="https://laurent.qodeinteractive.com/meet-the-chef/" class="btn-read-more">Read More</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Right Column - Image -->
+                <div class="col-span-12 lg:col-span-3">
+                    <img src="https://laurent.qodeinteractive.com/wp-content/uploads/2019/10/inner-pages-img-1.jpg" alt="Restaurant" class="w-full h-auto">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Video Section -->
+    <section class="relative" style="background-image: url('https://laurent.qodeinteractive.com/wp-content/uploads/2019/12/About-us-video-img.jpg'); background-size: cover; background-position: center; background-attachment: fixed; min-height: 500px; display: flex; align-items: center; justify-content: center;">
+        <div style="position: absolute; top: 0; left: 0; right: 0; bottom: 0; background-color: rgba(0, 0, 0, 0.6);"></div>
+        <div style="position: relative; z-index: 10;">
+            <a href="https://vimeo.com/369245407?iframe=true" class="video-button-play group" target="_blank" rel="noopener noreferrer">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 97.094 97.094" enable-background="new 0 0 97.094 97.094" style="width: 100px; height: 100px; color: #9C7C57; transition: transform 0.3s ease;">
+                    <circle fill="none" stroke="currentColor" stroke-miterlimit="10" cx="48.558" cy="48.548" r="48"/>
+                    <circle fill="none" stroke="none" stroke-miterlimit="10" cx="48.558" cy="48.548" r="41.037"/>
+                    <polygon fill="none" stroke="currentColor" stroke-miterlimit="10" points="42.578,69.964 42.578,27.13 63.994,48.546 "/>
+                </svg>
+            </a>
+        </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section class="py-20 px-4" style="background-color: #0f1316;">
+        <div class="max-w-4xl mx-auto">
+            <!-- Quotation Mark -->
+            <div class="text-center mb-12">
+                <p style="font-size: 60px; color: #9C7C57; line-height: 1; margin: 0;">〟</p>
+            </div>
+            <!-- Testimonial 1 -->
+            <div class="text-center mb-12">
+                <p class="testimonial-text">
+                    Duis aute irure dolor. Lorem ipsum dolor sit amet, consectetur adipisic sed do eiusmod tempor incidid sens as out labore et. Ut enim ad minim venia quis nostrud exercitation co laboris nisi ut aliquip ex ea commodo conse.
+                </p>
+                <div>
+                    <p class="testimonial-author">Andrea Chung</p>
+                    <p class="testimonial-job">Cook</p>
+                </div>
+            </div>
+
+            <!-- Testimonial 2 -->
+            <div class="text-center mb-12">
+                <p class="testimonial-text">
+                    Ut enim ad minim venia quis nostrud exercitation co laboris nisi ut aliquip ex ea commodo conse. Duis aute irure dolor. Lorem ipsum dolor sit amet, consectetur adipisic sed do eiusmod tempor incidid sens as out labore et.
+                </p>
+                <div>
+                    <p class="testimonial-author">Andrea Chung</p>
+                    <p class="testimonial-job">Cook</p>
+                </div>
+            </div>
+
+            <!-- Testimonial 3 -->
+            <div class="text-center">
+                <p class="testimonial-text">
+                    Lorem ipsum dolor sit amet, consectetur adipisic sed do eiusmod tempor incidid sens as out labore et dolore magna aliqua. Ut enim ad minim venia quis nostrud exercitation co laboris nisi ut aliquip ex ea commodo conse.
+                </p>
+                <div>
+                    <p class="testimonial-author">Robert Chang</p>
+                    <p class="testimonial-job">Sommelier</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer-section py-12 px-4" style="background-color: #0c0f12; border-top: 1px solid #2a2a2a;">
+        <div class="max-w-7xl mx-auto">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8 mb-8">
+                <!-- Logo -->
+                <div class="text-center md:text-left">
+                    <img src="https://laurent.qodeinteractive.com/wp-content/uploads/2019/10/footer-logo.png" alt="Laurent Logo" class="h-12 mx-auto md:mx-0">
+                </div>
+
+                <!-- Address -->
+                <div class="text-center">
+                    <p class="text-sm leading-relaxed" style="color: #999;">
+                        Laurent Restaurant & Fine dining,<br>
+                        <a href="https://www.google.com/maps/place/Iron+Chef+House/" target="_blank" class="text-gold hover:underline">71 Madison Ave</a><br>
+                        <a href="https://www.google.com/maps/place/Iron+Chef+House/" target="_blank" class="text-gold hover:underline">10013 New York</a>
+                    </p>
+                </div>
+
+                <!-- Contact -->
+                <div class="text-center">
+                    <p class="text-sm leading-relaxed" style="color: #999;">
+                        <a href="tel:914-309-7030" class="text-gold hover:underline">914-309-7030</a><br>
+                        Open: 09:00 am – 01:00 pm
+                    </p>
+                </div>
+
+                <!-- Social -->
+                <div class="text-center">
+                    <div class="flex justify-center space-x-6">
+                        <a href="https://www.facebook.com/QodeInteractive/" target="_blank" class="text-gold hover:text-gold-dark text-sm">Facebook</a>
+                        <a href="https://www.instagram.com/qodeinteractive/" target="_blank" class="text-gold hover:text-gold-dark text-sm">Instagram</a>
+                        <a href="https://www.tripadvisor.com/" target="_blank" class="text-gold hover:text-gold-dark text-sm">TripAdvisor</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Secondary Location -->
+            <div class="pt-8 text-center text-sm" style="border-top: 1px solid #2a2a2a; color: #999;">
+                <p>
+                    Laurent Fine dining,<br>
+                    <a href="https://www.google.com/maps/place/Iron+Chef+House/" target="_blank" class="text-gold hover:underline">107 Duncan Avenue, New York</a><br>
+                    <a href="tel:914-309-7030" class="text-gold hover:underline">914-309-7030</a><br>
+                    Open: 09:00 am – 01:00 pm
+                </p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Simple testimonial carousel logic (if needed)
+        let currentTestimonial = 0;
+        const testimonials = document.querySelectorAll('.testimonial-section');
+
+        if (testimonials.length > 0) {
+            setInterval(() => {
+                currentTestimonial = (currentTestimonial + 1) % testimonials.length;
+                // Basic rotation if using CSS classes
+            }, 5000);
+        }
+    </script>
+</body>
+</html>

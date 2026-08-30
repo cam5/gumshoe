@@ -1,0 +1,540 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Us &#8211; Laurent</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css?family=Mrs+Saint+Delafield:100,300,400,700&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        "gold-dark": "#715b3e",
+                        "gold-light": "#c9ab81",
+                        "gold-med": "#9c7c57",
+                        "gray-custom": "#afb8b8",
+                        "accent": "#ef2853"
+                    },
+                    fontFamily: {
+                        "serif": ['Mrs Saint Delafield', 'serif'],
+                        "sans": ['Open Sans', 'sans-serif']
+                    },
+                    spacing: {
+                        "45": "11.25rem",
+                        "160": "40rem",
+                        "192": "48rem",
+                        "212": "53rem"
+                    },
+                    fontSize: {
+                        "22": "1.375rem",
+                        "41": "2.5625rem",
+                        "46": "2.875rem"
+                    }
+                }
+            }
+        };
+    </script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: #1a1410;
+            color: #ffffff;
+            font-family: 'Open Sans', sans-serif;
+            font-size: 16px;
+            line-height: 1.6;
+        }
+
+        /* Hero Section */
+        .hero-section {
+            position: relative;
+            width: 100%;
+            height: 900px;
+            background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('https://laurent.qodeinteractive.com/wp-content/uploads/2019/12/About-us-header-img.jpg') center/cover;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+
+        .hero-content {
+            text-align: center;
+            z-index: 10;
+        }
+
+        .hero-title {
+            font-size: 72px;
+            font-weight: 300;
+            letter-spacing: 8px;
+            color: #c9ab81;
+            font-family: 'Mrs Saint Delafield', serif;
+            text-transform: uppercase;
+        }
+
+        /* Header/Navigation */
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 100;
+            background-color: transparent;
+            padding: 20px 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            width: 70px;
+            height: auto;
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            gap: 40px;
+            justify-content: center;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: #ffffff;
+            font-size: 12px;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            transition: color 0.3s;
+        }
+
+        nav a:hover {
+            color: #c9ab81;
+        }
+
+        /* Page Title */
+        .page-title-section {
+            text-align: center;
+            padding: 80px 20px 100px;
+            position: relative;
+            background-color: #1a1410;
+        }
+
+        .page-title {
+            font-size: 50px;
+            font-weight: 300;
+            margin: 30px 0;
+            color: #ffffff;
+            letter-spacing: 3px;
+        }
+
+        .title-decor {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin: 20px 0;
+            align-items: center;
+        }
+
+        .decor-line {
+            width: 40px;
+            height: 1px;
+            background-color: #9c7c57;
+        }
+
+        /* Main Content Section */
+        .main-content {
+            background-color: #1a1410;
+            padding: 100px 40px 120px;
+        }
+
+        .content-wrapper {
+            max-width: 1300px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 2.2fr 1fr;
+            gap: 50px;
+            align-items: start;
+        }
+
+        .left-pattern {
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+            padding-top: 40px;
+        }
+
+        .pattern-svg {
+            width: 260px;
+            height: 260px;
+            opacity: 0.6;
+        }
+
+        .center-content {
+            text-align: center;
+        }
+
+        .section-tagline {
+            font-size: 13px;
+            letter-spacing: 2px;
+            color: #9c7c57;
+            text-transform: uppercase;
+            margin-bottom: 20px;
+        }
+
+        .section-title {
+            font-size: 45px;
+            font-weight: 400;
+            margin: 25px 0;
+            color: #ffffff;
+            font-family: 'Open Sans', sans-serif;
+            letter-spacing: 3px;
+        }
+
+        .content-text {
+            font-size: 14px;
+            line-height: 1.8;
+            color: #999999;
+            margin: 18px 0;
+            text-align: center;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 14px 35px;
+            border: 1px solid #9c7c57;
+            color: #ffffff;
+            text-decoration: none;
+            font-size: 11px;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            margin-top: 30px;
+            transition: all 0.3s;
+            background-color: transparent;
+        }
+
+        .btn:hover {
+            background-color: #9c7c57;
+        }
+
+        .right-image {
+            display: flex;
+            justify-content: center;
+        }
+
+        .right-image img {
+            width: 100%;
+            max-width: 400px;
+            height: auto;
+        }
+
+        /* Video Section */
+        .video-section {
+            position: relative;
+            width: 100%;
+            height: 600px;
+            background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('https://laurent.qodeinteractive.com/wp-content/uploads/2019/12/About-us-video-img.jpg');
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 80px 0;
+        }
+
+        .play-button {
+            width: 100px;
+            height: 100px;
+            border: 2px solid #ffffff;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .play-button:hover {
+            border-color: #c9ab81;
+        }
+
+        .play-icon {
+            width: 0;
+            height: 0;
+            border-left: 30px solid #ffffff;
+            border-top: 20px solid transparent;
+            border-bottom: 20px solid transparent;
+            margin-left: 8px;
+        }
+
+        /* Testimonials Section */
+        .testimonials-section {
+            background-color: #1a1410;
+            padding: 100px 40px;
+            text-align: center;
+        }
+
+        .testimonials-container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .testimonial-mark {
+            font-size: 60px;
+            color: #9c7c57;
+            margin-bottom: 20px;
+        }
+
+        .testimonial-text {
+            font-size: 16px;
+            line-height: 1.8;
+            color: #b8b8b8;
+            margin-bottom: 30px;
+            font-style: italic;
+        }
+
+        .testimonial-author {
+            font-size: 14px;
+            font-weight: 600;
+            color: #ffffff;
+            margin-bottom: 5px;
+        }
+
+        .testimonial-job {
+            font-size: 12px;
+            color: #9c7c57;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .testimonials-nav {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-top: 40px;
+        }
+
+        .nav-dot {
+            width: 10px;
+            height: 10px;
+            border: 1px solid #9c7c57;
+            border-radius: 50%;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .nav-dot.active {
+            background-color: #9c7c57;
+        }
+
+        /* Footer */
+        footer {
+            background-color: #0f0c0a;
+            border-top: 1px solid #2a2318;
+            padding: 60px 40px;
+            text-align: center;
+        }
+
+        .footer-content {
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .footer-logo {
+            width: 50px;
+            height: auto;
+            margin-bottom: 20px;
+        }
+
+        .footer-separator {
+            width: 100%;
+            height: 1px;
+            background-color: #2a2318;
+            margin: 20px 0;
+        }
+
+        .footer-info {
+            font-size: 13px;
+            line-height: 1.8;
+            color: #7a7a7a;
+            margin: 20px 0;
+        }
+
+        .footer-info a {
+            color: #9c7c57;
+            text-decoration: none;
+        }
+
+        .footer-info a:hover {
+            color: #c9ab81;
+        }
+
+        .footer-social {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            margin-top: 30px;
+        }
+
+        .footer-social a {
+            color: #7a7a7a;
+            text-decoration: none;
+            font-size: 12px;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            transition: color 0.3s;
+        }
+
+        .footer-social a:hover {
+            color: #9c7c57;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .content-wrapper {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+
+            .hero-title {
+                font-size: 48px;
+            }
+
+            .section-title {
+                font-size: 32px;
+            }
+
+            nav ul {
+                gap: 15px;
+                font-size: 10px;
+            }
+
+            header {
+                padding: 15px 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header/Navigation -->
+    <header>
+        <div class="logo">
+            <img src="https://laurent.qodeinteractive.com/wp-content/uploads/2019/10/logo-heder.png" alt="Laurent Logo" style="width: 100%; height: auto;">
+        </div>
+        <nav>
+            <ul>
+                <li><a href="#">Home</a></li>
+                <li><a href="#">Pages</a></li>
+                <li><a href="#">Portfolio</a></li>
+                <li><a href="#">Blog</a></li>
+                <li><a href="#">Shop</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero-section">
+        <div class="hero-content">
+            <h1 class="hero-title">About Us</h1>
+        </div>
+    </section>
+
+    <!-- Page Title -->
+    <section class="page-title-section">
+        <div class="title-decor">
+            <svg xmlns="http://www.w3.org/2000/svg" width="41" height="9" viewBox="0 0 41 9" style="stroke: #9C7C57; fill: none; stroke-width: 1.5;">
+                <path d="M40 8L20 1L0 8"/>
+            </svg>
+        </div>
+        <h1 class="page-title">About Us</h1>
+        <div class="title-decor">
+            <svg xmlns="http://www.w3.org/2000/svg" width="41" height="9" viewBox="0 0 41 9" style="stroke: #9C7C57; fill: none; stroke-width: 1.5;">
+                <path d="M40 1L20 8L0 1"/>
+            </svg>
+        </div>
+    </section>
+
+    <!-- Main Content -->
+    <section class="main-content">
+        <div class="content-wrapper">
+            <!-- Left Pattern -->
+            <div class="left-pattern">
+                <svg class="pattern-svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 303 306" fill="none" stroke="#9A7D57" stroke-width="1.5">
+                    <g opacity="0.6">
+                        <path d="M36.9 251.8L1.4 190.6L72.4 67.9L53.6 35.4M36.9 251.8l35.5-61.2L12.9 87.7M107.9 6.6l35.5 61.3L72.4 190.6l65.7 113.6M85.7 290.3l57.7-99.7L72.4 67.9l35.5-61.3M176.8 3l37.6 64.9L143.4 190.6l60.4 104.4M148.4 304.7l66-114L143.4 67.9l37.2-63.3"/>
+                        <path d="M281.2 75.3L214.4 190.6l41.4 71.5M233.9 279.6l51.5-89L214.4 67.9l23-39.8M302 161.9L285.4 190.6l7.6 13.1"/>
+                        <line x1="96.1" y1="10.6" x2="96.1" y2="27"/>
+                        <line x1="60.6" y1="88.3" x2="60.6" y2="70.9"/>
+                    </g>
+                </svg>
+            </div>
+
+            <!-- Center Content -->
+            <div class="center-content">
+                <p class="section-tagline">Restaurant life</p>
+                <h2 class="section-title">About Us</h2>
+                <p class="content-text">Lorem ipsum dolor sit amet, consecte turn se adipisicing elit, sed do eiusmod tempor ens incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exerci reprehenderit in voluptate velit esse cillu sint occaecat error sit volu.</p>
+                <p class="content-text">Cupidatat non proident, sunt in culpa qui cia deserunt mollit anim id est laborum. Sed utsa tat monullamco laboris nisi ut aliquip exe ne com odoconsequat. Duis aute irure dolor in per spiciamt vsun.</p>
+                <p class="content-text">aperiam, eaque ipsa quae ab illo inventor veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nem odit aut fugit, sed quia consequ un turmagnido lors.</p>
+                <a href="#" class="btn">Read More</a>
+            </div>
+
+            <!-- Right Image -->
+            <div class="right-image">
+                <img src="https://laurent.qodeinteractive.com/wp-content/uploads/2019/10/inner-pages-img-1.jpg" alt="Restaurant Image">
+            </div>
+        </div>
+    </section>
+
+    <!-- Video Section -->
+    <section class="video-section">
+        <div class="play-button">
+            <div class="play-icon"></div>
+        </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section class="testimonials-section">
+        <div class="testimonials-container">
+            <div class="testimonial-mark">"</div>
+            <p class="testimonial-text">
+                Duis aute irure dolor. Lorem ipsum dolor sit amet, consectetur adipisic sed do eiusmod tempor incidid sens as out labore et. Ut enim ad minim venia quis nostrud exercitation co laboris nisi ut aliquip ex ea commodo conse.
+            </p>
+            <p class="testimonial-author">Andrea Chung</p>
+            <p class="testimonial-job">Cook</p>
+            <div class="testimonials-nav">
+                <div class="nav-dot active"></div>
+                <div class="nav-dot"></div>
+                <div class="nav-dot"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <img src="https://laurent.qodeinteractive.com/wp-content/uploads/2019/10/footer-logo.png" alt="Footer Logo" class="footer-logo">
+            <div class="footer-separator"></div>
+            <div class="footer-info">
+                Laurent Restaurant & Fine dining, <a href="#">71 Madison Ave</a>
+            </div>
+            <div class="footer-info">
+                <a href="tel:914-309-7030">914-309-7030</a>, <a href="mailto:reservations@laurent.com">reservations@laurent.com</a>
+            </div>
+            <div class="footer-info">
+                Open: 09:00 am – 01:00 pm
+            </div>
+            <div class="footer-separator"></div>
+            <div class="footer-social">
+                <a href="#">Facebook</a>
+                <a href="#">Instagram</a>
+                <a href="#">Trip Advisor</a>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>

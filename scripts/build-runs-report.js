@@ -64,6 +64,28 @@ function toolCallLine(call) {
   return detail ? `${call.name} — ${detail}` : call.name;
 }
 
+/**
+ * Renders the chronological events list — the agent's own reasoning text interleaved with its
+ * tool calls — so a prompt instruction that asks for explicit reasoning ("state a priority list
+ * before doing X") can actually be checked against what happened, not just assumed from the
+ * final summary. Older recorded runs have no `events` (only `toolCalls`); those fall back to a
+ * tool-calls-only list with no reasoning shown.
+ */
+function renderTranscript(transcript) {
+  if (transcript.events?.length) {
+    const items = transcript.events
+      .map((e) =>
+        e.type === "text"
+          ? `<li class="event-text">${escapeHtml(e.text)}</li>`
+          : `<li class="event-tool">${escapeHtml(toolCallLine(e))}</li>`,
+      )
+      .join("\n");
+    return `<ol class="transcript">${items}</ol>`;
+  }
+  const items = transcript.toolCalls.map((c) => `<li class="event-tool">${escapeHtml(toolCallLine(c))}</li>`).join("\n");
+  return `<ol class="transcript">${items}</ol>`;
+}
+
 function renderRunCard(run) {
   const { meta, transcript, screenshots, clonePath, promptPath, id } = run;
   const costLabel = meta.totalCostUsd != null ? `$${meta.totalCostUsd.toFixed(3)}` : "—";
@@ -85,9 +107,7 @@ function renderRunCard(run) {
         .join("\n")
     : `<p class="empty">No screenshots recorded.</p>`;
 
-  const transcriptLines = transcript.toolCalls.map((c) => `<li>${escapeHtml(toolCallLine(c))}</li>`).join("\n");
-
-  const rawJson = JSON.stringify(transcript.toolCalls, null, 2);
+  const rawJson = JSON.stringify(transcript.events?.length ? transcript.events : transcript.toolCalls, null, 2);
 
   const footerLinks = [
     clonePath ? `<a href="${escapeHtml(clonePath)}" target="_blank" rel="noopener">Open clone.html</a>` : "",
@@ -117,8 +137,8 @@ function renderRunCard(run) {
     </section>
 
     <section class="run-section">
-      <h3>Tool calls</h3>
-      <ol class="transcript">${transcriptLines}</ol>
+      <h3>Transcript</h3>
+      ${renderTranscript(transcript)}
       <details class="raw-json">
         <summary>Raw JSON</summary>
         <pre>${escapeHtml(rawJson)}</pre>
@@ -327,7 +347,14 @@ function renderPage(runs) {
     overflow-y: auto;
     font-family: ui-monospace, "SF Mono", Menlo, monospace;
   }
-  .transcript li { margin-bottom: 3px; word-break: break-all; }
+  .transcript li { margin-bottom: 6px; word-break: break-word; }
+  .transcript .event-tool { word-break: break-all; }
+  .transcript .event-text {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    font-style: italic;
+    color: var(--ink-dim);
+    white-space: pre-wrap;
+  }
   .raw-json summary { font-size: 0.75rem; color: var(--ink-dim); cursor: pointer; margin-top: 6px; }
   .raw-json pre {
     max-height: 300px;

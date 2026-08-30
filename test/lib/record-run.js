@@ -51,6 +51,7 @@ export function recordRun(run, { fixture, condition, runGroup }) {
   fs.writeFileSync(path.join(runDir, "meta.json"), JSON.stringify(meta, null, 2));
 
   const transcript = {
+    events: run.events ?? [],
     toolCalls: run.toolCalls,
     resultText: run.resultText,
   };
