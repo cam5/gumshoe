@@ -1,0 +1,365 @@
+<!doctype html>
+<html lang="en" class="scroll-smooth">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Good Vibes on Main - the best selection of Life is Good in the GTA.</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&family=Alegreya+Sans:wght@400;700&family=Questrial&display=swap" rel="stylesheet">
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+  tailwind.config = {
+    theme: {
+      extend: {
+        colors: {
+          "text-dark": "#656565",     // == --color-text-dark
+          "text-body": "#747474",     // == --color-text
+          "text-light": "#848484",    // == --color-text-light
+          "brand-hover": "#483535",   // == --color-primary-hover / --color-secondary-hover
+          "announce-bg": "#efe9db",   // == --color-announcement-bg
+          "nav-border": "#f7f7f7",    // == --color-nav-border
+          "bg-accent": "#f7f7f7"      // == --color-bg-accent
+        },
+        maxWidth: {
+          "wrapper": "1180px"          // == .wrapper max-width in theme.css
+        },
+        fontFamily: {
+          sans: ['Poppins', 'sans-serif'],       // == ---font-stack-body
+          heading: ['"Alegreya Sans"', 'sans-serif'], // == ---font-stack-heading
+          accent: ['Questrial', 'sans-serif']    // == ---font-stack-accent
+        }
+      }
+    }
+  };
+</script>
+<style>
+  body{ -webkit-font-smoothing:antialiased; }
+  .subtitle{ position:relative; padding-bottom:16px; margin-bottom:32px; }
+  .subtitle:after{ content:""; position:absolute; bottom:0; left:50%; transform:translateX(-50%); width:30px; height:3px; background:#000; opacity:.2; }
+  .subtitle--light:after{ background:#fff; opacity:.5; }
+  .slide{ transition: opacity .8s ease; }
+  .fade-carousel .slide{ position:absolute; inset:0; opacity:0; height:100%; width:100%; }
+  .fade-carousel .slide.active{ opacity:1; }
+  .navdrop{ opacity:0; visibility:hidden; pointer-events:none; }
+  .navgroup.open .navdrop{ opacity:1; visibility:visible; pointer-events:auto; }
+</style>
+</head>
+<body class="bg-white text-text-dark font-sans text-[13.6px] leading-[21.8px]">
+
+<!-- Announcement bar -->
+<div class="bg-announce-bg text-text-dark text-[12px]">
+  <div class="max-w-wrapper mx-auto px-8 flex items-center justify-between h-[30px]">
+    <div></div>
+    <a href="https://goodvibesonmain.ca/pages/shipping-information" class="hover:underline tracking-wide">WE HAVE SUSPENDED SHIPPING TO THE US - CLICK HERE FOR MORE INFO</a>
+    <a href="/search" aria-label="Search" class="text-text-dark">
+      <svg class="w-3.5 h-3.5" aria-hidden="true" viewBox="0 0 16 16"><path fill="currentColor" d="M16 14.864L14.863 16l-4.24-4.241a6.406 6.406 0 01-4.048 1.392 6.61 6.61 0 01-4.65-1.925A6.493 6.493 0 01.5 9.098 6.51 6.51 0 010 6.575a6.536 6.536 0 011.922-4.652A6.62 6.62 0 014.062.5 6.52 6.52 0 016.575 0 6.5 6.5 0 019.1.5c.8.332 1.51.806 2.129 1.423a6.454 6.454 0 011.436 2.13 6.54 6.54 0 01.498 2.522c0 1.503-.468 2.853-1.4 4.048L16 14.864zM3.053 10.091c.973.972 2.147 1.461 3.522 1.461 1.378 0 2.551-.489 3.525-1.461.968-.967 1.45-2.138 1.45-3.514 0-1.37-.482-2.545-1.45-3.524-.981-.968-2.154-1.45-3.525-1.45-1.376 0-2.547.483-3.513 1.45-.973.973-1.46 2.146-1.46 3.523 0 1.375.483 2.548 1.45 3.515z"/></svg>
+    </a>
+  </div>
+</div>
+
+<!-- Header -->
+<header class="bg-white border-b border-nav-border relative z-40">
+  <div class="max-w-wrapper mx-auto px-8 h-[130px] flex items-center justify-between gap-8">
+    <a href="/" class="shrink-0 w-[100px]">
+      <img src="https://goodvibesonmain.ca/cdn/shop/files/NEWLIGNEWMARKETLOGO_1_220x.png?v=1759332633" alt="Good Vibes on Main" class="w-[100px]">
+    </a>
+
+    <nav class="hidden lg:flex items-center gap-7 font-accent uppercase text-[12px] tracking-wide text-text-dark">
+      <div class="navgroup relative">
+        <a href="/collections" class="hover:text-brand-hover py-8 inline-block">Shop</a>
+        <div class="navdrop absolute left-1/2 -translate-x-1/2 top-full bg-white shadow-lg border border-nav-border p-6 w-[720px] grid grid-cols-5 gap-6 text-[11px] normal-case">
+          <div><p class="uppercase font-bold text-[11px] mb-2 tracking-wide">Women's</p><ul class="space-y-1 text-text-body"><li><a href="/collections/womens-short-sleeve" class="hover:text-brand-hover">Short Sleeve</a></li><li><a href="/collections/womens-long-sleeve" class="hover:text-brand-hover">Long Sleeve</a></li><li><a href="/collections/womens-hoodie" class="hover:text-brand-hover">Hoodie</a></li><li><a href="/collections/womens-sleepwear" class="hover:text-brand-hover">Sleepwear</a></li><li><a href="/collections/womens-pants" class="hover:text-brand-hover">Pants</a></li><li><a href="/collections/womens-tanks" class="hover:text-brand-hover">Tanks</a></li><li><a href="/collections/womens-accessories" class="hover:text-brand-hover">Accessories</a></li><li><a href="/collections/womens-headgear" class="hover:text-brand-hover">Headgear</a></li></ul></div>
+          <div><p class="uppercase font-bold text-[11px] mb-2 tracking-wide">Men's</p><ul class="space-y-1 text-text-body"><li><a href="/collections/mens-short-sleeve" class="hover:text-brand-hover">Short Sleeve</a></li><li><a href="/collections/mens-long-sleeve" class="hover:text-brand-hover">Long Sleeve</a></li><li><a href="/collections/mens-hoodie" class="hover:text-brand-hover">Hoodie</a></li><li><a href="/collections/mens-sleepwear" class="hover:text-brand-hover">Sleepwear</a></li><li><a href="/collections/mens-pants" class="hover:text-brand-hover">Pants</a></li><li><a href="/collections/mens-headgear" class="hover:text-brand-hover">Headgear</a></li></ul></div>
+          <div><p class="uppercase font-bold text-[11px] mb-2 tracking-wide">Kids</p><ul class="space-y-1 text-text-body"><li><a href="/collections/boys-short-sleeve" class="hover:text-brand-hover">Boys Short Sleeve</a></li><li><a href="/collections/boys-long-sleeve" class="hover:text-brand-hover">Boys Long Sleeve</a></li><li><a href="/collections/girls-short-sleeve" class="hover:text-brand-hover">Girls Short Sleeve</a></li><li><a href="/collections/girls-long-sleeve" class="hover:text-brand-hover">Girls Long Sleeve</a></li><li><a href="/collections/toddler" class="hover:text-brand-hover">Toddler</a></li><li><a href="/collections/baby" class="hover:text-brand-hover">Baby</a></li></ul></div>
+          <div><p class="uppercase font-bold text-[11px] mb-2 tracking-wide">Headgear</p><ul class="space-y-1 text-text-body"><li><a href="/collections/baseball-caps" class="hover:text-brand-hover">Baseball Caps</a></li><li><a href="/collections/winter-hats" class="hover:text-brand-hover">Winter Hats</a></li></ul>
+            <p class="uppercase font-bold text-[11px] mb-2 mt-4 tracking-wide">Home &amp; Accessories</p><ul class="space-y-1 text-text-body"><li><a href="/collections/martin-guitar" class="hover:text-brand-hover">Martin Guitar</a></li><li><a href="/collections/blankets" class="hover:text-brand-hover">Blankets</a></li><li><a href="/collections/mugs" class="hover:text-brand-hover">Mugs</a></li><li><a href="/collections/socks" class="hover:text-brand-hover">Socks</a></li><li><a href="/collections/stickers-decals" class="hover:text-brand-hover">Stickers &amp; Decals</a></li></ul>
+          </div>
+          <div><ul class="space-y-1 text-text-body"><li><a href="/collections/new-arrivals" class="hover:text-brand-hover">New Arrivals</a></li><li><a href="/collections/canadian-eh" class="hover:text-brand-hover">Canadian Eh!</a></li><li><a href="/collections/pets" class="hover:text-brand-hover">Pets</a></li><li><a href="/collections/vintage" class="hover:text-brand-hover">Vintage</a></li><li><a href="/collections/sale-1" class="hover:text-brand-hover">Sale</a></li></ul></div>
+        </div>
+      </div>
+      <a href="/pages/about-us" class="hover:text-brand-hover py-8">About Us</a>
+      <a href="/pages/lifeisgood-com" class="hover:text-brand-hover py-8">LIFEISGOOD.COM</a>
+      <a href="/pages/contact-us" class="hover:text-brand-hover py-8">Contact Us</a>
+      <a href="/blogs/news" class="hover:text-brand-hover py-8">Good Vibes Blog</a>
+      <a href="/pages/fit-guides" class="hover:text-brand-hover py-8">Size Guide</a>
+    </nav>
+
+    <div class="flex items-center gap-4 text-text-dark shrink-0">
+      <a href="/account" aria-label="My Account" class="hidden sm:inline-block"><svg class="w-4 h-4" viewBox="0 0 16 16"><path fill="currentColor" d="M10.713 8.771c.31.112.53.191.743.27.555.204.985.372 1.367.539 1.229.535 1.993 1.055 2.418 1.885.464.937.722 1.958.758 2.997.03.84-.662 1.538-1.524 1.538H1.525c-.862 0-1.554-.697-1.524-1.538a7.36 7.36 0 01.767-3.016c.416-.811 1.18-1.33 2.41-1.866a25.25 25.25 0 011.366-.54l.972-.35a1.42 1.42 0 00-.006-.072c-.937-1.086-1.369-2.267-1.369-4.17C4.141 1.756 5.517 0 8.003 0c2.485 0 3.856 1.755 3.856 4.448 0 2.03-.492 3.237-1.563 4.386.169-.18.197-.253.207-.305a1.2 1.2 0 00-.019.16l.228.082z"/></svg></a>
+      <a href="/search" aria-label="Search"><svg class="w-4 h-4" viewBox="0 0 16 16"><path fill="currentColor" d="M16 14.864L14.863 16l-4.24-4.241a6.406 6.406 0 01-4.048 1.392 6.61 6.61 0 01-4.65-1.925A6.493 6.493 0 01.5 9.098 6.51 6.51 0 010 6.575a6.536 6.536 0 011.922-4.652A6.62 6.62 0 014.062.5 6.52 6.52 0 016.575 0 6.5 6.5 0 019.1.5c.8.332 1.51.806 2.129 1.423a6.454 6.454 0 011.436 2.13 6.54 6.54 0 01.498 2.522c0 1.503-.468 2.853-1.4 4.048L16 14.864zM3.053 10.091c.973.972 2.147 1.461 3.522 1.461 1.378 0 2.551-.489 3.525-1.461.968-.967 1.45-2.138 1.45-3.514 0-1.37-.482-2.545-1.45-3.524-.981-.968-2.154-1.45-3.525-1.45-1.376 0-2.547.483-3.513 1.45-.973.973-1.46 2.146-1.46 3.523 0 1.375.483 2.548 1.45 3.515z"/></svg></a>
+      <a href="/cart" aria-label="Cart" class="flex items-center gap-1">
+        <svg class="w-5 h-5" viewBox="0 0 25 25"><path fill="currentColor" d="M5.058 23a2 2 0 104.001-.001A2 2 0 005.058 23zm12.079 0c0 1.104.896 2 2 2s1.942-.896 1.942-2-.838-2-1.942-2-2 .896-2 2zM0 1a1 1 0 001 1h1.078l.894 3.341L5.058 13c0 .072.034.134.042.204l-1.018 4.58A.997.997 0 005.058 19h16.71a1 1 0 000-2H6.306l.458-2.061c.1.017.19.061.294.061h12.31c1.104 0 1.712-.218 2.244-1.5l3.248-6.964C25.423 4.75 24.186 4 23.079 4H5.058c-.157 0-.292.054-.438.088L3.844.772A1 1 0 002.87 0H1a1 1 0 00-1 1zm5.098 5H22.93l-3.192 6.798c-.038.086-.07.147-.094.19-.067.006-.113.012-.277.012H7.058v-.198l-.038-.195L5.098 6z"/></svg>
+        <span class="text-xs">(0)</span>
+      </a>
+      <button aria-label="Open menu" class="lg:hidden"><svg class="w-6 h-6" viewBox="0 0 25 25"><path fill="currentColor" d="M0 4.062h25v2H0zm0 7h25v2H0zm0 7h25v2H0z"/></svg></button>
+    </div>
+  </div>
+</header>
+
+<!-- Hero slideshow -->
+<section class="relative w-full overflow-hidden bg-black fade-carousel h-[720px]" id="hero">
+  <div class="slide active">
+    <img src="https://goodvibesonmain.ca/cdn/shop/files/GWPAPR26Web_2_1512x.png?v=1776366169" alt="" class="w-full h-full object-cover">
+  </div>
+  <div class="slide">
+    <img src="https://goodvibesonmain.ca/cdn/shop/files/FrameTemplate_1_1512x.png?v=1732567116" alt="" class="w-full h-full object-cover">
+    <div class="absolute inset-0 bg-black/15"></div>
+    <div class="absolute inset-0 flex items-end justify-start">
+      <div class="max-w-wrapper w-full mx-auto px-16 pb-16">
+        <a href="/collections/martin-guitar" class="inline-block uppercase font-bold text-[13px] tracking-wide text-white border border-white px-6 py-4 hover:bg-white/10">SHOP MARTIN GUITAR</a>
+      </div>
+    </div>
+  </div>
+  <button onclick="heroPrev()" aria-label="Previous" class="absolute left-4 top-1/2 -translate-y-1/2 text-white/80 hover:text-white z-10"><svg class="w-8 h-8" viewBox="0 0 44 44"><path fill="currentColor" d="M10.366 22.502l.412.392L33.268 44l.732-.742-22.488-21.106L34 .742 33.268 0 10 22.152z"/></svg></button>
+  <button onclick="heroNext()" aria-label="Next" class="absolute right-4 top-1/2 -translate-y-1/2 text-white/80 hover:text-white z-10"><svg class="w-8 h-8" viewBox="0 0 44 44"><path fill="currentColor" d="M33.634 22.502l-.412.392L10.732 44 10 43.258l22.488-21.106L10 .742 10.732 0 34 22.152z"/></svg></button>
+</section>
+
+<!-- New Arrivals -->
+<section id="new-arrivals" class="min-h-[1037px] flex items-center py-10">
+  <div class="max-w-wrapper mx-auto px-8 w-full">
+    <h2 class="subtitle text-center font-accent font-bold uppercase text-[13px] tracking-wide text-text-dark opacity-75">New Arrivals</h2>
+    <div class="grid grid-cols-2 md:grid-cols-4 gap-x-6 gap-y-10">
+
+      <a href="/products/life-is-good-womens-breathe-more-worry-less-floral-tie-dye-long-sleeve-crusher-lite-hooded-tee" class="group block text-center">
+        <img src="https://goodvibesonmain.ca/cdn/shop/files/xpdrvsrtu1axht3gferl_720x.png?v=1784125246" alt="Life is Good Women's Breathe More Worry Less Floral Tie Dye Long Sleeve Crusher Lite Hooded Tee" class="w-full aspect-square object-cover mb-3">
+        <p class="text-[12px] leading-snug text-text-dark px-2">Life is Good Women's Breathe More Worry Less Floral Tie Dye Long Sleeve Crusher Lite Hooded Tee</p>
+        <span class="text-[12px] text-text-light">$60.00</span>
+      </a>
+      <a href="/products/life-is-good-womens-best-things-floral-paw-tie-dye-long-sleeve-crusher-lite-hooded-tee" class="group block text-center">
+        <img src="https://goodvibesonmain.ca/cdn/shop/files/ybvdybkvxq4tcv44isd1_720x.png?v=1784123071" alt="Life is Good Women's Best Things Floral Paw Tie Dye Long Sleeve Crusher Lite Hooded Tee" class="w-full aspect-square object-cover mb-3">
+        <p class="text-[12px] leading-snug text-text-dark px-2">Life is Good Women's Best Things Floral Paw Tie Dye Long Sleeve Crusher Lite Hooded Tee</p>
+        <span class="text-[12px] text-text-light">$60.00</span>
+      </a>
+      <a href="/products/life-is-good-womens-rally-swimming-turtles-crusher-lite-vee" class="group block text-center">
+        <img src="https://goodvibesonmain.ca/cdn/shop/files/k6mjn4erw8f1ghk4s9ae_720x.png?v=1784061755" alt="Life is Good Women's Rally Swimming Turtles Crusher Lite Vee" class="w-full aspect-square object-cover mb-3">
+        <p class="text-[12px] leading-snug text-text-dark px-2">Life is Good Women's Rally Swimming Turtles Crusher Lite Vee</p>
+        <span class="text-[12px] text-text-light">$39.00</span>
+      </a>
+      <a href="/products/life-is-good-womens-rally-hummingbirds-crusher-lite-vee" class="group block text-center">
+        <img src="https://goodvibesonmain.ca/cdn/shop/files/hbgckcz5bcux4yrrx4nt_720x.png?v=1784061568" alt="Life is Good Women's Rally Hummingbirds Crusher Lite Vee" class="w-full aspect-square object-cover mb-3">
+        <p class="text-[12px] leading-snug text-text-dark px-2">Life is Good Women's Rally Hummingbirds Crusher Lite Vee</p>
+        <span class="text-[12px] text-text-light">$39.00</span>
+      </a>
+      <a href="/products/life-is-good-womens-friends-in-low-places-crusher-lite-vee" class="group block text-center">
+        <img src="https://goodvibesonmain.ca/cdn/shop/files/dyww4eoag8fabuzxxvdk_720x.png?v=1784060423" alt="Life is Good Women's Friends in Low Places Crusher Lite Vee" class="w-full aspect-square object-cover mb-3">
+        <p class="text-[12px] leading-snug text-text-dark px-2">Life is Good Women's Friends in Low Places Crusher Lite Vee</p>
+        <span class="text-[12px] text-text-light">$39.00</span>
+      </a>
+      <a href="/products/life-is-good-womens-retro-flowerball-crusher-vee" class="group block text-center">
+        <img src="https://goodvibesonmain.ca/cdn/shop/files/uzwtlhkoeqkzmpqyvgzb_720x.png?v=1784059879" alt="Life is Good Women's Retro Flowerball Crusher Vee" class="w-full aspect-square object-cover mb-3">
+        <p class="text-[12px] leading-snug text-text-dark px-2">Life is Good Women's Retro Flowerball Crusher Vee</p>
+        <span class="text-[12px] text-text-light">$39.00</span>
+      </a>
+      <a href="/products/life-is-good-womens-beach-umbrella-scene-crusher-vee" class="group block text-center">
+        <img src="https://goodvibesonmain.ca/cdn/shop/files/daxfmyl7mawekvgasxaj_720x.png?v=1784059624" alt="Life is Good Women's Beach Umbrella Scene Crusher Vee" class="w-full aspect-square object-cover mb-3">
+        <p class="text-[12px] leading-snug text-text-dark px-2">Life is Good Women's Beach Umbrella Scene Crusher Vee</p>
+        <span class="text-[12px] text-text-light">$39.00</span>
+      </a>
+      <a href="/products/life-is-good-mens-berts-herd-that-shepherd-crusher-lite-tee" class="group block text-center">
+        <img src="https://goodvibesonmain.ca/cdn/shop/files/e6242gncckhrvv8z6zqw_720x.png?v=1784059112" alt="Life is Good Men's Bert's Herd That Shepherd Crusher Lite Tee" class="w-full aspect-square object-cover mb-3">
+        <p class="text-[12px] leading-snug text-text-dark px-2">Life is Good Men's Bert's Herd That Shepherd Crusher Lite Tee</p>
+        <span class="text-[12px] text-text-light">$39.00</span>
+      </a>
+
+    </div>
+  </div>
+</section>
+
+<!-- Shop Today grid -->
+<section id="shop-today" class="min-h-[922px] flex items-center py-10">
+  <div class="max-w-wrapper mx-auto px-8 w-full">
+    <h2 class="subtitle text-center font-accent font-bold uppercase text-[13px] tracking-wide text-text-dark opacity-75">SHOP TODAY</h2>
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-1">
+      <a href="/collections/womens" class="relative block aspect-square group overflow-hidden">
+        <img src="https://goodvibesonmain.ca/cdn/shop/files/xpg3ap1f3x9pkvdgbvtu_720x.jpg?v=1767043740" alt="Women's" class="w-full h-full object-cover group-hover:scale-105 transition">
+        <div class="absolute inset-0 flex items-center justify-center">
+          <span class="bg-white/10 text-white uppercase text-[11px] tracking-wide px-4 py-3 backdrop-blur-[1px]">Shop Women's</span>
+        </div>
+      </a>
+      <a href="/collections/mens" class="relative block aspect-square group overflow-hidden">
+        <img src="https://goodvibesonmain.ca/cdn/shop/files/hfejjbgb53zqk9dqespo_720x.jpg?v=1763318918" alt="Men's" class="w-full h-full object-cover group-hover:scale-105 transition">
+        <div class="absolute inset-0 flex items-center justify-center">
+          <span class="bg-white/10 text-white uppercase text-[11px] tracking-wide px-4 py-3 backdrop-blur-[1px]">Shop Men's</span>
+        </div>
+      </a>
+      <a href="/collections/home-accessories" class="relative block aspect-square group overflow-hidden">
+        <img src="https://goodvibesonmain.ca/cdn/shop/files/nsdt240tyown7nwquvxi_720x.jpg?v=1764345571" alt="Home & Accessories" class="w-full h-full object-cover group-hover:scale-105 transition">
+        <div class="absolute inset-0 flex items-center justify-center">
+          <span class="bg-white/10 text-white uppercase text-[11px] tracking-wide px-4 py-3 backdrop-blur-[1px]">Shop Home</span>
+        </div>
+      </a>
+      <a href="/collections/kids" class="relative block aspect-square group overflow-hidden">
+        <img src="https://goodvibesonmain.ca/cdn/shop/files/lsflxilo936110b2txum_720x.jpg?v=1746636593" alt="Kids" class="w-full h-full object-cover group-hover:scale-105 transition">
+        <div class="absolute inset-0 flex items-center justify-center">
+          <span class="bg-white/10 text-white uppercase text-[11px] tracking-wide px-4 py-3 backdrop-blur-[1px]">Shop Kids</span>
+        </div>
+      </a>
+      <a href="/collections/sale-1" class="relative block aspect-square group overflow-hidden">
+        <img src="https://goodvibesonmain.ca/cdn/shop/files/SS25_LIFESTYLE_ON_MODEL_CHEWY_LG1244C2_AND_LG1008C3_625_720x.png?v=1745871295" alt="Pets" class="w-full h-full object-cover group-hover:scale-105 transition">
+        <div class="absolute inset-0 flex items-center justify-center">
+          <span class="text-white font-heading text-2xl">Shop Pets</span>
+        </div>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- Double: image + Spreading Optimism -->
+<section class="grid grid-cols-1 md:grid-cols-2 md:h-[450px]">
+  <div class="h-[380px] md:h-full">
+    <img src="https://goodvibesonmain.ca/cdn/shop/files/PXL_20220825_145739283.PORTRAIT_2_1080x.jpg?v=1661875953" alt="" class="w-full h-full object-cover">
+  </div>
+  <div class="flex items-center justify-center bg-white px-8 py-16 md:py-0">
+    <div class="max-w-md text-center">
+      <h2 class="subtitle font-accent font-bold uppercase text-[13px] tracking-wide text-text-dark opacity-75">Spreading Optimism &amp; Good vibes!</h2>
+      <p class="text-[13px] text-text-body mb-2">Good Vibes on Main is your local Life is Good shop - 100% Canadian owned - nestled on historic Main Street in Newmarket.</p>
+      <p class="text-[13px] text-text-body">Shop local. Support your community. Spread Good Vibes!</p>
+    </div>
+  </div>
+</section>
+
+<!-- Map / location -->
+<section class="grid grid-cols-1 md:grid-cols-2 md:h-[450px]">
+  <div class="flex items-center justify-center bg-white px-8 py-16 order-2 md:order-1">
+    <div class="max-w-md text-center">
+      <h2 class="subtitle font-accent font-bold uppercase text-[13px] tracking-wide text-text-dark opacity-75">Where to find good vibes!</h2>
+      <p class="text-[13px] text-text-body mb-1">222 Main Street S., Newmarket, ON. L3Y 3Z3</p>
+      <p class="text-[13px] text-text-body mb-1">+1 905 895 0606</p>
+      <p class="text-[13px] text-text-body mb-6">If you have any questions, please contact us at <a href="mailto:info@goodvibesonmain.ca" class="underline">info@goodvibesonmain.ca</a></p>
+      <a href="https://maps.google.com?daddr=254 Main Street South, Newmarket" target="_blank" rel="noopener" class="inline-block uppercase text-[12px] tracking-wide bg-text-dark text-white px-6 py-3 hover:bg-brand-hover">Directions</a>
+    </div>
+  </div>
+  <div class="h-[380px] md:h-full order-1 md:order-2">
+    <img src="https://goodvibesonmain.ca/cdn/shop/files/PXL_20220825_123738063_1296x.jpg?v=1661876405" alt="" class="w-full h-full object-cover">
+  </div>
+</section>
+
+<!-- Life is Good Story -->
+<section class="min-h-[282px] flex flex-col items-center justify-center text-center">
+  <div class="max-w-wrapper mx-auto px-8">
+    <h2 class="subtitle font-accent font-bold uppercase text-[13px] tracking-wide text-text-dark opacity-75">The Life is Good Story</h2>
+    <p class="text-[13px] text-text-body max-w-2xl mx-auto">Discover the power of optimism from Life is Good Co-Founders, Bert &amp; John Jacobs.</p>
+  </div>
+</section>
+
+<!-- Video section -->
+<section class="relative w-full bg-black flex items-center justify-center" style="height:900px;">
+  <button onclick="document.getElementById('video-modal').classList.remove('hidden')" aria-label="Play video" class="relative z-10 w-16 h-16 rounded-full bg-white/90 flex items-center justify-center hover:bg-white transition">
+    <svg class="w-6 h-6 text-black translate-x-0.5" viewBox="0 0 20 20"><path fill="currentColor" d="M10.12.233C4.702.233.31 4.626.31 10.044c0 5.419 4.392 9.811 9.81 9.811 5.419 0 9.811-4.392 9.811-9.81 0-5.42-4.392-9.812-9.81-9.812zM7.86 12.891V7.198l5.346 2.846-5.347 2.847z"/></svg>
+  </button>
+  <button onclick="document.querySelector('#hero').scrollIntoView({behavior:'smooth'})" aria-label="Scroll down" class="absolute bottom-6 left-1/2 -translate-x-1/2 text-white/70 hover:text-white">
+    <svg class="w-5 h-5" viewBox="0 0 20 10"><path fill="currentColor" d="M10 7.932L1.059 0 0 1.129 10 10l10-8.871L18.941 0z"/></svg>
+  </button>
+</section>
+<div id="video-modal" class="hidden fixed inset-0 z-50 bg-black/90 flex items-center justify-center p-6">
+  <button onclick="document.getElementById('video-modal').classList.add('hidden'); document.getElementById('yt-frame').src=document.getElementById('yt-frame').src;" aria-label="Close" class="absolute top-6 right-6 text-white text-3xl leading-none">&times;</button>
+  <div class="w-full max-w-4xl aspect-video">
+    <iframe id="yt-frame" class="w-full h-full" src="https://www.youtube.com/embed/asQcvDjkrEo" title="The Life is Good Story" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+  </div>
+</div>
+
+<!-- Brand logos -->
+<section class="min-h-[314px] flex flex-col items-center justify-center">
+  <div class="max-w-wrapper mx-auto px-8 w-full">
+    <h2 class="subtitle text-center font-accent font-bold uppercase text-[13px] tracking-wide text-text-dark opacity-75">BRANDS AVAILABLE AT GOOD Vibes on main</h2>
+    <div class="flex flex-nowrap items-center justify-between gap-4">
+      <a href="/collections/life-is-good" target="_blank" rel="noopener" class="w-14 shrink-0"><img src="https://goodvibesonmain.ca/cdn/shop/files/Coin_FadedBlack_1_220x.png?v=1764087194" alt="Life is Good" class="w-full"></a>
+      <a href="/collections/watuko-headgear" target="_blank" rel="noopener" class="w-20 shrink-0"><img src="https://goodvibesonmain.ca/cdn/shop/files/Martin_co_optimized_cleaned_svg_220x.png?v=1728498055" alt="Martin" class="w-full"></a>
+      <a href="/collections/spice-of-life" target="_blank" rel="noopener" class="w-16 shrink-0"><img src="https://goodvibesonmain.ca/cdn/shop/files/watuko-banner-logo_220x.webp?v=1741112043" alt="Watuko" class="w-full"></a>
+      <a href="/collections/juno-pet-foods" target="_blank" rel="noopener" class="w-14 shrink-0"><img src="https://goodvibesonmain.ca/cdn/shop/files/Kawigga_220x.jpg?v=1702148156" alt="Kawigga" class="w-full"></a>
+      <div class="w-14 shrink-0"><img src="https://goodvibesonmain.ca/cdn/shop/files/KanineKookies_220x.jpg?v=1723838580" alt="Kanine Kookies" class="w-full"></div>
+      <a href="/collections/julius-k9" target="_blank" rel="noopener" class="w-20 shrink-0"><img src="https://goodvibesonmain.ca/cdn/shop/files/Julius-K9_logo_220x.png?v=1614309660" alt="Julius K9" class="w-full"></a>
+      <div class="w-14 shrink-0"><img src="https://goodvibesonmain.ca/cdn/shop/files/carolyndraws_logo_2020_1_360x_9c4910dc-711a-4355-b75d-77f8f760b809_220x.webp?v=1767989932" alt="Carolyn Draws" class="w-full"></div>
+      <div class="w-20 shrink-0"><img src="https://goodvibesonmain.ca/cdn/shop/files/Logo-Black_2to1_ratio_small.avif?v=1767989968" alt="Brand" class="w-full"></div>
+    </div>
+  </div>
+</section>
+
+<!-- Blog -->
+<section class="min-h-[572px] flex flex-col items-center justify-center">
+  <div class="max-w-wrapper mx-auto px-8 w-full">
+    <h2 class="subtitle text-center font-accent font-bold uppercase text-[13px] tracking-wide text-text-dark opacity-75">Good News. good vibes!</h2>
+    <a href="/blogs/news/beat-the-winter-blues-with-cookies" class="relative block max-w-2xl mx-auto aspect-[10/7] overflow-hidden group">
+      <img src="https://goodvibesonmain.ca/cdn/shop/articles/BlogImage_1080x.png?v=1768851323" alt="Beat the Winter Blues with Cookies!" class="w-full h-full object-cover group-hover:scale-105 transition">
+      <div class="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent"></div>
+      <h3 class="absolute bottom-6 left-6 text-white font-heading text-2xl">Beat the Winter Blues with Cookies!</h3>
+    </a>
+  </div>
+</section>
+
+<!-- Footer -->
+<footer class="bg-white text-text-dark border-t border-nav-border">
+  <div class="max-w-wrapper mx-auto px-8 py-16 grid grid-cols-1 md:grid-cols-3 gap-10">
+    <div>
+      <p class="uppercase text-[12px] font-bold tracking-wide mb-3">Quick Links</p>
+      <hr class="border-nav-border mb-4">
+      <ul class="space-y-2 text-[13px] text-text-body">
+        <li><a href="/collections" class="hover:text-brand-hover">Shop</a></li>
+        <li><a href="/pages/about-us" class="hover:text-brand-hover">About Us</a></li>
+        <li><a href="/pages/lifeisgood-com" class="hover:text-brand-hover">LIFEISGOOD.COM</a></li>
+        <li><a href="/pages/contact-us" class="hover:text-brand-hover">Contact Us</a></li>
+        <li><a href="/blogs/news" class="hover:text-brand-hover">Good Vibes Blog</a></li>
+        <li><a href="/pages/fit-guides" class="hover:text-brand-hover">Size Guide</a></li>
+      </ul>
+    </div>
+    <div>
+      <p class="uppercase text-[12px] font-bold tracking-wide mb-3">Good Vibes on Main</p>
+      <hr class="border-nav-border mb-4">
+      <p class="text-[13px] text-text-body mb-2">Good Vibes on Main specializes in Life is Good products and is located on historic Main Street in Newmarket, Ontario, nestled among unique shops and restaurants, and just half an hour north of Toronto.</p>
+      <p class="text-[13px] text-text-body">#shoplocal #supportyourcommunity #spreadgoodvibes #lifeisgoodcanada</p>
+    </div>
+    <div>
+      <p class="uppercase text-[12px] font-bold tracking-wide mb-3">Newsletter</p>
+      <hr class="border-nav-border mb-4">
+      <p class="text-[13px] text-text-body mb-4">Join our newsletter for all the latest good vibes, news and offers!</p>
+      <form class="flex" onsubmit="return false;">
+        <input type="email" placeholder="your-email@example.com" aria-label="Email" class="flex-1 border border-nav-border px-3 py-2 text-[13px] focus:outline-none">
+        <button type="submit" class="bg-text-dark text-white uppercase text-[12px] px-5 py-2 hover:bg-brand-hover">Join</button>
+      </form>
+    </div>
+  </div>
+
+  <div class="max-w-wrapper mx-auto px-8 pb-8 flex flex-col md:flex-row items-center justify-between gap-4 text-[12px] text-text-body">
+    <div class="relative">
+      <button class="uppercase flex items-center gap-1 border border-nav-border px-3 py-1.5">CAD $
+        <svg class="w-3 h-3" viewBox="0 0 30 17"><path fill="currentColor" fill-rule="evenodd" d="M0 3.235L3.525 0l11.473 10.509L26.473 0 30 3.235 14.998 17z"/></svg>
+      </button>
+    </div>
+  </div>
+
+  <div class="border-t border-nav-border">
+    <div class="max-w-wrapper mx-auto px-8 py-6 flex flex-col md:flex-row items-center justify-between gap-4 text-[12px] text-text-body">
+      <p>© Good Vibes on Main 2026</p>
+      <div class="flex items-center gap-4">
+        <a href="/pages/shipping-information" class="hover:text-brand-hover">Shipping Information</a>
+        <a href="https://www.shopify.com?utm_campaign=poweredby&utm_medium=shopify&utm_source=onlinestore" class="hover:text-brand-hover">Powered by Shopify</a>
+      </div>
+      <div class="flex items-center gap-3">
+        <a href="#" aria-label="Facebook"><svg class="w-4 h-4" viewBox="0 0 20 20"><path fill="#444" d="M18.05.811q.439 0 .744.305t.305.744v16.637q0 .439-.305.744t-.744.305h-4.732v-7.221h2.415l.342-2.854h-2.757v-1.83q0-.659.293-1t1.073-.342h1.488V3.762q-.976-.098-2.171-.098-1.634 0-2.635.964t-1 2.72V9.47H7.951v2.854h2.415v7.221H1.413q-.439 0-.744-.305t-.305-.744V1.859q0-.439.305-.744T1.413.81H18.05z"/></svg></a>
+        <a href="#" aria-label="Instagram"><svg class="w-4 h-4" viewBox="0 0 20 20"><path fill="#444" d="M10.034 1.763h2.644c.407 0 .881 0 1.424.068.474 0 .881.067 1.152.135.271.068.543.136.678.203.271.068.475.204.61.34.136.135.34.27.543.406.203.204.339.34.407.543.067.203.203.406.339.61.067.203.135.407.203.678.068.27.135.678.135 1.152 0 .543.068 1.017.068 1.424v5.288c0 .407 0 .882-.068 1.424 0 .474-.067.881-.135 1.152-.068.272-.136.543-.203.678a1.31 1.31 0 01-.34.61c-.135.204-.27.34-.406.543-.204.203-.34.339-.543.407a2.38 2.38 0 01-.61.27 7.737 7.737 0 01-.678.204 4.868 4.868 0 01-1.152.136c-.543 0-1.017.068-1.424.068H7.39c-.407 0-.882 0-1.424-.068-.474 0-.881-.068-1.152-.136-.272-.067-.543-.135-.678-.203-.272-.068-.475-.203-.61-.271-.204-.136-.34-.271-.543-.407-.203-.203-.339-.339-.407-.542-.135-.204-.203-.407-.339-.61a8.558 8.558 0 01-.203-.679 4.868 4.868 0 01-.136-1.152c0-.542-.067-1.017-.067-1.424V7.322c0-.407 0-.881.067-1.424 0-.474.068-.881.136-1.152.068-.271.135-.543.203-.678.068-.204.204-.407.34-.61.135-.204.27-.34.406-.543.203-.203.339-.339.542-.407.204-.135.407-.203.61-.339.204-.067.407-.135.679-.203a4.868 4.868 0 011.152-.135c.542 0 1.017-.068 1.424-.068h2.644zM10 5c-2.76 0-5 2.24-5 5s2.24 5 5 5 5-2.24 5-5-2.24-5-5-5zm0 8.25A3.25 3.25 0 1113.25 10 3.254 3.254 0 0110 13.25zm5.2-9.53a1.17 1.17 0 100 2.34 1.17 1.17 0 000-2.34z"/></svg></a>
+      </div>
+      <div class="flex items-center gap-2 opacity-70">
+        <span class="text-[10px] border border-nav-border rounded px-1">AMEX</span>
+        <span class="text-[10px] border border-nav-border rounded px-1">GPAY</span>
+        <span class="text-[10px] border border-nav-border rounded px-1">MC</span>
+        <span class="text-[10px] border border-nav-border rounded px-1">PayPal</span>
+        <span class="text-[10px] border border-nav-border rounded px-1">Visa</span>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script>
+  let heroIdx = 0;
+  const slides = document.querySelectorAll('#hero .slide');
+  function showSlide(i){
+    slides.forEach((s,idx)=> s.classList.toggle('active', idx===i));
+  }
+  function heroNext(){ heroIdx = (heroIdx+1) % slides.length; showSlide(heroIdx); }
+  function heroPrev(){ heroIdx = (heroIdx-1+slides.length) % slides.length; showSlide(heroIdx); }
+  setInterval(heroNext, 8000);
+</script>
+
+</body>
+</html>

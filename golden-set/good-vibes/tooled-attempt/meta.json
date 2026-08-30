@@ -1,0 +1,23 @@
+{
+  "url": "https://goodvibesonmain.ca/",
+  "model": "sonnet",
+  "totalCostUsd": 2.388957000000001,
+  "isError": false,
+  "toolCallCount": 67,
+  "comparisonToGoldenSet": {
+    "note": "Same page as golden-set/good-vibes/workdir/, cloned unsupervised with the current unmodified cloner.md prompt, then hand-tuned against the human golden result (not the live page) to measure convergence.",
+    "initialDiffVsLivePage": 0.3975,
+    "initialDiffVsGoldenResult": 0.3369,
+    "finalDiffVsGoldenResult": 0.0061,
+    "fixesApplied": [
+      "container max-w-[1280px] -> max-w-[1180px] (guessed vs. real theme.css value)",
+      "header height: added explicit height:130px (was unconstrained py-5)",
+      "hero slideshow: added height:56.25vw;max-height:720px + object-cover (was unconstrained h-auto)",
+      "announcement bar: h-8 fixed height (was py-2 auto height)",
+      "Shop Today grid: aspect-[3/4] -> aspect-square",
+      "footer Instagram icon: replaced fabricated placeholder glyph with the real SVG path",
+      "nav font-family: Alegreya Sans -> Questrial (font-accent), matching golden; letter-spacing 1px -> 0.025em"
+    ],
+    "remainingGap": "Almost entirely the hero slideshow first image: the live CDN URL both clones hotlink intermittently serves a different image (a beach-foam \"Summer Vibes Loading\" placeholder vs. a real lifestyle photo) -- live resource flakiness, not a markup defect. A residual sub-pixel nav text artifact remains too small to be worth further chasing."
+  }
+}

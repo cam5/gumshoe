@@ -1,0 +1,1070 @@
+{
+  "events": [
+    {
+      "type": "tool_use",
+      "name": "Bash",
+      "input": {
+        "command": "cd /var/folders/gb/m6478s0n5mx9wqlz8t_c03800000gn/T/gumshoe-agent-run-W7bwLe && npx github:cam5/crow-nester https://goodvibesonmain.ca/ --sort-by area 2>&1 | head -300",
+        "description": "Run crow-nester on target URL sorted by area"
+      }
+    },
+    {
+      "type": "tool_use",
+      "name": "Bash",
+      "input": {
+        "command": "cd /var/folders/gb/m6478s0n5mx9wqlz8t_c03800000gn/T/gumshoe-agent-run-W7bwLe && npx github:cam5/crow-nester https://goodvibesonmain.ca/ --sort-by area > crow-full.json 2>crow-err.log; wc -l crow-full.json; echo \"---ERR---\"; cat crow-err.log | head -20",
+        "description": "Save full crow-nester output to file"
+      }
+    },
+    {
+      "type": "tool_use",
+      "name": "Bash",
+      "input": {
+        "command": "cd /var/folders/gb/m6478s0n5mx9wqlz8t_c03800000gn/T/gumshoe-agent-run-W7bwLe && jq '.nodeCount' crow-full.json\necho \"--- top 20 by area (already sorted) ---\"\njq -r '.nodes[0:20][] | \"\\(.rendered.area|floor)\\t\\(.tag)\\t\\(.selector)\\t\\(.text|.[0:60])\"' crow-full.json\necho \"--- headings ---\"\njq -r '.nodes[] | select(.tag==\"h1\" or .tag==\"h2\" or .tag==\"h3\" or .tag==\"h4\") | \"\\(.tag)\\t\\(.selector)\\t\\(.text)\"' crow-full.json\necho \"--- nav links ---\"\njq -r '.nodes[] | select(.tag==\"a\" and (.selector|test(\"nav|header|menu\";\"i\"))) | \"\\(.selector)\\t\\(.text)\"' crow-full.json | head -60",
+        "description": "Extract key info from crow-nester JSON"
+      }
+    },
+    {
+      "type": "tool_use",
+      "name": "Bash",
+      "input": {
+        "command": "cd /var/folders/gb/m6478s0n5mx9wqlz8t_c03800000gn/T/gumshoe-agent-run-W7bwLe && echo \"--- header area (selector contains header) ---\"\njq -r '.nodes[] | select(.selector|test(\"header\")) | \"\\(.tag)\\t\\(.selector)\\t\\(.text)\"' crow-full.json | head -80\necho \"--- footer ---\"\njq -r '.nodes[] | select(.selector|test(\"footer\";\"i\")) | \"\\(.tag)\\t\\(.selector)\\t\\(.text)\"' crow-full.json | head -80",
+        "description": "Extract header and footer nodes"
+      }
+    },
+    {
+      "type": "tool_use",
+      "name": "Bash",
+      "input": {
+        "command": "cd /var/folders/gb/m6478s0n5mx9wqlz8t_c03800000gn/T/gumshoe-agent-run-W7bwLe && curl -s -A \"Mozilla/5.0\" https://goodvibesonmain.ca/ -o raw.html; wc -l raw.html; wc -c raw.html",
+        "description": "Fetch raw HTML of the page"
+      }
+    },
+    {
+      "type": "tool_use",
+      "name": "Bash",
+      "input": {
+        "command": "cd /var/folders/gb/m6478s0n5mx9wqlz8t_c03800000gn/T/gumshoe-agent-run-W7bwLe && grep -n \"shopify-section-header\" raw.html | head -5\necho \"---\"\ngrep -n \"logo\" raw.html | grep -i \"img\\|src\" | head -10",
+        "description": "Find header section and logo images in raw HTML"
+      }
+    },
+    {
+      "type": "tool_use",
+      "name": "Read",
+      "input": {
+        "file_path": "/var/folders/gb/m6478s0n5mx9wqlz8t_c03800000gn/T/gumshoe-agent-run-W7bwLe/raw.html",
+        "offset": 818,
+        "limit": 220
+      }
+    },
+    {
+      "type": "tool_use",
+      "name": "Bash",
+      "input": {
+        "command": "cd /var/folders/gb/m6478s0n5mx9wqlz8t_c03800000gn/T/gumshoe-agent-run-W7bwLe && grep -n \"id=\\\"shopify-section-index-slideshow\\\"\\|id=\\\"slideshow-index-slideshow\\\"\" raw.html",
+        "description": "Find slideshow section line number"
+      }
+    },
+    {
+      "type": "tool_use",
+      "name": "Read",
+      "input": {
+        "file_path": "/var/folders/gb/m6478s0n5mx9wqlz8t_c03800000gn/T/gumshoe-agent-run-W7bwLe/raw.html",
+        "offset": 2382,
+        "limit": 200
+      }
+    },
+    {
+      "type": "tool_use",
+      "name": "Bash",
+      "input": {
+        "command": "cd /var/folders/gb/m6478s0n5mx9wqlz8t_c03800000gn/T/gumshoe-agent-run-W7bwLe && sed -n '2535,2900p' raw.html | grep -n \"product-grid-item__title\\|money\\|alt=\\\"\" ",
+        "description": "Search for product titles and prices in New Arrivals grid"
+      }
+    },
+    {
+      "type": "tool_use",
+      "name": "Bash",
+      "input": {
+        "command": "cd /var/folders/gb/m6478s0n5mx9wqlz8t_c03800000gn/T/gumshoe-agent-run-W7bwLe && sed -n '2581,2620p' raw.html",
+        "description": "Look at rest of first product grid item markup"
+      }
+    },
+    {
+      "type": "text",
+      "text": "Good, I have the pattern. Let me extract all 5 product titles/prices, then look at the collection-grid, logos, blog, video, double, and map sections."
+    },
+    {
+      "type": "tool_use",
+      "name": "Bash",
+      "input": {
+        "command": "cd /var/folders/gb/m6478s0n5mx9wqlz8t_c03800000gn/T/gumshoe-agent-run-W7bwLe && sed -n '2535,2900p' raw.html | grep -A1 \"grid__title\" | grep -v \"grid__title\\|--\"\necho \"---prices---\"\nsed -n '2535,2900p' raw.html | grep -B1 '\\$[0-9]' | grep '\\$'\necho \"=== collection-grid section ===\"\ngrep -n \"shopify-section-index-collection-grid\" raw.html",
+        "description": "Extract product titles and prices, find collection-grid section"
+      }
+    },
+    {
+      "type": "tool_use",
+      "name": "Bash",
+      "input": {
+        "command": "cd /var/folders/gb/m6478s0n5mx9wqlz8t_c03800000gn/T/gumshoe-agent-run-W7bwLe && sed -n '2535,3071p' raw.html | grep -c '<div class=\"product-grid-item \"'\necho \"=== collection-grid content ===\"\nsed -n '3071,3250p' raw.html",
+        "description": "Count product items and view collection-grid section"
+      }
+    },
+    {
+      "type": "tool_use",
+      "name": "Bash",
+      "input": {
+        "command": "cd /var/folders/gb/m6478s0n5mx9wqlz8t_c03800000gn/T/gumshoe-agent-run-W7bwLe && grep -n \"Shop Pets\\|grid__item medium-up--one-third\" raw.html | head -10\necho \"=== section boundaries ===\"\ngrep -n 'id=\"shopify-section-' raw.html",
+        "description": "Find Shop Pets item and all section boundaries"
+      }
+    },
+    {
+      "type": "tool_use",
+      "name": "Read",
+      "input": {
+        "file_path": "/var/folders/gb/m6478s0n5mx9wqlz8t_c03800000gn/T/gumshoe-agent-run-W7bwLe/raw.html",
+        "offset": 791,
+        "limit": 27
+      }
+    },
+    {
+      "type": "tool_use",
+      "name": "Read",
+      "input": {
+        "file_path": "/var/folders/gb/m6478s0n5mx9wqlz8t_c03800000gn/T/gumshoe-agent-run-W7bwLe/raw.html",
+        "offset": 3318,
+        "limit": 160
+      }
+    },
+    {
+      "type": "text",
+      "text": "Good. Now the richtext, video, logos, and blog sections."
+    },
+    {
+      "type": "tool_use",
+      "name": "Read",
+      "input": {
+        "file_path": "/var/folders/gb/m6478s0n5mx9wqlz8t_c03800000gn/T/gumshoe-agent-run-W7bwLe/raw.html",
+        "offset": 3476,
+        "limit": 120
+      }
+    },
+    {
+      "type": "tool_use",
+      "name": "Read",
+      "input": {
+        "__unparsedToolInput": {
+          "raw": "{\"file_path\": \"/var/folders/gb/m6478s0n5mx9wqlz8t_c03800000gn/T/gumshoe-agent-run-W7bwLe/raw.html\", \"offset\": 3595, 3595\n}",
+          "len": 122
+        }
+      }
+    },
+    {
+      "type": "tool_use",
+      "name": "Read",
+      "input": {
+        "file_path": "/var/folders/gb/m6478s0n5mx9wqlz8t_c03800000gn/T/gumshoe-agent-run-W7bwLe/raw.html",
+        "offset": 3595,
+        "limit": 200
+      }
+    },
+    {
+      "type": "text",
+      "text": "8 logo items. Now the blog section and footer."
+    },
+    {
+      "type": "tool_use",
+      "name": "Read",
+      "input": {
+        "file_path": "/var/folders/gb/m6478s0n5mx9wqlz8t_c03800000gn/T/gumshoe-agent-run-W7bwLe/raw.html",
+        "offset": 3794,
+        "limit": 65
+      }
+    },
+    {
+      "type": "text",
+      "text": "Now let's look at the footer content, and the widget2 iframe (1.44M area — likely a review/loyalty widget)."
+    },
+    {
+      "type": "tool_use",
+      "name": "Bash",
+      "input": {
+        "command": "cd /var/folders/gb/m6478s0n5mx9wqlz8t_c03800000gn/T/gumshoe-agent-run-W7bwLe && jq -r '.nodes[] | select(.selector==\"#widget2\") | .' crow-full.json\necho \"=== raw context around widget2 ===\"\ngrep -n \"widget2\" raw.html",
+        "description": "Check widget2 iframe details"
+      }
+    },
+    {
+      "type": "tool_use",
+      "name": "Read",
+      "input": {
+        "file_path": "/var/folders/gb/m6478s0n5mx9wqlz8t_c03800000gn/T/gumshoe-agent-run-W7bwLe/raw.html",
+        "offset": 3857,
+        "limit": 200
+      }
+    },
+    {
+      "type": "tool_use",
+      "name": "Bash",
+      "input": {
+        "command": "cd /var/folders/gb/m6478s0n5mx9wqlz8t_c03800000gn/T/gumshoe-agent-run-W7bwLe && grep -n \"footer-social\\|payment-icons\\|icon-facebook\\|icon-instagram\\|Powered by Shopify\\|copyright\\|footer-legal\" raw.html | head -20",
+        "description": "Find footer social and legal sections"
+      }
+    },
+    {
+      "type": "text",
+      "text": "I now have enough content. Let me run windtailor on key elements for real colors/fonts, and check the screenshot to understand the theme visually. Let's do these in parallel."
+    },
+    {
+      "type": "tool_use",
+      "name": "Bash",
+      "input": {
+        "command": "cd /var/folders/gb/m6478s0n5mx9wqlz8t_c03800000gn/T/gumshoe-agent-run-W7bwLe && npx github:cam5/windtailor https://goodvibesonmain.ca/ --selector \"body\" > windtailor-body.json 2>&1 &\nnpx github:cam5/windtailor https://goodvibesonmain.ca/ --selector \".theme__header\" > windtailor-header.json 2>&1 &\nnpx github:cam5/windtailor https://goodvibesonmain.ca/ --selector \".home__subtitle\" > windtailor-subtitle.json 2>&1 &\nnpx github:cam5/windtailor https://goodvibesonmain.ca/ --selector \".btn--outline.cta--overlay\" > windtailor-btn.json 2>&1 &\nwait\necho done",
+        "description": "Run windtailor on body, header, subtitle heading, and button"
+      }
+    },
+    {
+      "type": "tool_use",
+      "name": "Bash",
+      "input": {
+        "command": "cd /var/folders/gb/m6478s0n5mx9wqlz8t_c03800000gn/T/gumshoe-agent-run-W7bwLe && for f in windtailor-body.json windtailor-header.json windtailor-subtitle.json windtailor-btn.json; do echo \"=== $f ===\"; cat \"$f\"; echo; done",
+        "description": "Print windtailor results"
+      }
+    },
+    {
+      "type": "tool_use",
+      "name": "Bash",
+      "input": {
+        "command": "cd /var/folders/gb/m6478s0n5mx9wqlz8t_c03800000gn/T/gumshoe-agent-run-W7bwLe && npx github:cam5/windtailor --help 2>&1 | head -50",
+        "description": "Check windtailor CLI options"
+      }
+    },
+    {
+      "type": "tool_use",
+      "name": "Bash",
+      "input": {
+        "command": "cd /var/folders/gb/m6478s0n5mx9wqlz8t_c03800000gn/T/gumshoe-agent-run-W7bwLe && \\\nnpx github:cam5/windtailor https://goodvibesonmain.ca/ --selector \"body\" --out ./out-body > /dev/null 2>&1 &\nnpx github:cam5/windtailor https://goodvibesonmain.ca/ --selector \".theme__header\" --out ./out-header > /dev/null 2>&1 &\nnpx github:cam5/windtailor https://goodvibesonmain.ca/ --selector \".home__subtitle\" --out ./out-subtitle > /dev/null 2>&1 &\nnpx github:cam5/windtailor https://goodvibesonmain.ca/ --selector \".btn--outline.cta--overlay\" --out ./out-btn > /dev/null 2>&1 &\nwait\necho done",
+        "description": "Run windtailor with separate output directories"
+      }
+    },
+    {
+      "type": "tool_use",
+      "name": "Bash",
+      "input": {
+        "command": "cd /var/folders/gb/m6478s0n5mx9wqlz8t_c03800000gn/T/gumshoe-agent-run-W7bwLe && echo \"=== BODY reconciled classes ===\" && jq -r '.className // .classes // empty' out-body/report.json 2>/dev/null | head -5\njq 'keys' out-body/report.json\necho \"--- computed top-level styles ---\"\njq '.computed // .styles // .target // empty' out-body/report.json 2>/dev/null | head -60",
+        "description": "Inspect windtailor report structure for body"
+      }
+    },
+    {
+      "type": "tool_use",
+      "name": "Bash",
+      "input": {
+        "command": "cd /var/folders/gb/m6478s0n5mx9wqlz8t_c03800000gn/T/gumshoe-agent-run-W7bwLe && echo \"=== body classes ===\" \njq -r '.classes.\"0\" | join(\" \")' out-body/report.json\necho \"=== body suggestions (color/font related) ===\"\njq -r '.suggestions[] | select(.property==\"color\" or .property==\"background-color\" or .property==\"font-family\" or .property==\"font-size\") | \"\\(.property): \\(.value) -> \\(.suggestion // .class // .token)\"' out-body/report.json 2>/dev/null | head -20\necho \"=== body tokens ===\"\njq '.tokens' out-body/report.json | head -60",
+        "description": "Extract body classes, key suggestions, tokens"
+      }
+    },
+    {
+      "type": "tool_use",
+      "name": "Bash",
+      "input": {
+        "command": "cd /var/folders/gb/m6478s0n5mx9wqlz8t_c03800000gn/T/gumshoe-agent-run-W7bwLe && jq '.tokens.newlyMinted // .tokens.minted // empty' out-body/report.json | head -40\necho \"--- full tokens keys ---\"\njq '.tokens | keys' out-body/report.json\necho \"--- colors ---\"\njq '.tokens.colors // empty' out-body/report.json | head -40\nfind . -name \"tailwind.config.tokens.js\" | xargs -I{} sh -c 'echo === {} ===; cat {}' 2>/dev/null | grep -A5 \"custom-1\"",
+        "description": "Look for minted color tokens especially custom-1"
+      }
+    },
+    {
+      "type": "tool_use",
+      "name": "Bash",
+      "input": {
+        "command": "cd /var/folders/gb/m6478s0n5mx9wqlz8t_c03800000gn/T/gumshoe-agent-run-W7bwLe && cat out-body/tailwind.config.tokens.js\necho \"=== header ===\"\ncat out-header/tailwind.config.tokens.js\necho \"=== header classes ===\"\njq -r '.classes.\"0\" | join(\" \")' out-header/report.json\necho \"=== subtitle ===\"\ncat out-subtitle/tailwind.config.tokens.js\njq -r '.classes.\"0\" | join(\" \")' out-subtitle/report.json\necho \"=== btn ===\"\ncat out-btn/tailwind.config.tokens.js\njq -r '.classes.\"0\" | join(\" \")' out-btn/report.json",
+        "description": "Print all tailwind token configs and classes"
+      }
+    },
+    {
+      "type": "tool_use",
+      "name": "Bash",
+      "input": {
+        "command": "cd /var/folders/gb/m6478s0n5mx9wqlz8t_c03800000gn/T/gumshoe-agent-run-W7bwLe && jq -r '.tree' out-body/report.json 2>/dev/null | head -5\necho \"---\"\njq '.tree.\"0\".computed.\"font-family\"' out-body/report.json 2>/dev/null\njq -r '[paths(scalars) as $p | select($p[-1]==\"font-family\") | ($p|join(\".\")) + \" = \" + (getpath($p)|tostring)] | .[0:5][]' out-body/report.json\njq -r '[paths(scalars) as $p | select($p[-1]==\"font-family\") | ($p|join(\".\")) + \" = \" + (getpath($p)|tostring)] | .[0:5][]' out-subtitle/report.json",
+        "description": "Find font-family in report JSON"
+      }
+    },
+    {
+      "type": "tool_use",
+      "name": "Bash",
+      "input": {
+        "command": "cd /var/folders/gb/m6478s0n5mx9wqlz8t_c03800000gn/T/gumshoe-agent-run-W7bwLe && grep -o \"font-family:[^;]*;\" raw.html | sort -u | head -20\necho \"---\"\ngrep -o \"\\-\\-font[a-zA-Z-]*:[^;]*;\" raw.html | sort -u | head -20",
+        "description": "Search raw HTML for font-family declarations"
+      }
+    },
+    {
+      "type": "tool_use",
+      "name": "Bash",
+      "input": {
+        "command": "cd /var/folders/gb/m6478s0n5mx9wqlz8t_c03800000gn/T/gumshoe-agent-run-W7bwLe && grep -o \"\\-\\-color-[a-zA-Z-]*:[^;]*;\" raw.html | sort -u | head -40",
+        "description": "Search raw HTML for color custom properties"
+      }
+    },
+    {
+      "type": "text",
+      "text": "### Priority list\n\n1. **Hero slideshow** (`#slideshow-index-slideshow` / `.slick-track`, ~4.6M px² rendered) — the largest distinct visual block on the page; full-bleed image slides with a bottom-left CTA button on slide 2, needs correct image, overlay, and arrow controls to read right.\n2. **New Arrivals product grid** (`#shopify-section-index-collection`, ~1.33M px²) — first content section below the fold, 4-up product card grid with titles/prices; a layout or spacing miss here is highly visible.\n3. **Video section w/ `#widget2` iframe** (`#shopify-section-index-video`, 1.15M px² section + 1.44M px² injected iframe) — this is JS-injected (confirmed absent from raw HTML), a cross-origin YouTube embed I cannot recreate faithfully; I'll approximate with the YouTube thumbnail as background + play button and flag it explicitly.\n\nNow let me check the announcement bar's ticker behavior and grab the original screenshot for visual reference, then build the file."
+    },
+    {
+      "type": "tool_use",
+      "name": "Bash",
+      "input": {
+        "command": "cd /var/folders/gb/m6478s0n5mx9wqlz8t_c03800000gn/T/gumshoe-agent-run-W7bwLe && npx github:cam5/crow-nester https://goodvibesonmain.ca/ --screenshot original.png 2>&1 | tail -5\nls -la original.png",
+        "description": "Take screenshot of live original page"
+      }
+    },
+    {
+      "type": "tool_use",
+      "name": "Read",
+      "input": {
+        "file_path": "/var/folders/gb/m6478s0n5mx9wqlz8t_c03800000gn/T/gumshoe-agent-run-W7bwLe/original.png"
+      }
+    },
+    {
+      "type": "tool_use",
+      "name": "Bash",
+      "input": {
+        "command": "cd /var/folders/gb/m6478s0n5mx9wqlz8t_c03800000gn/T/gumshoe-agent-run-W7bwLe && grep -n \"PopupSignupForm\" raw.html | head -5",
+        "description": "Find popup signup form section"
+      }
+    },
+    {
+      "type": "tool_use",
+      "name": "Bash",
+      "input": {
+        "command": "cd /var/folders/gb/m6478s0n5mx9wqlz8t_c03800000gn/T/gumshoe-agent-run-W7bwLe && awk 'NR==2535,NR==3071' raw.html > collection.html\ngrep -n 'grid__title\\|href=\"/products\\|\\$[0-9]' collection.html | grep -v \"data-\\|background-image\"",
+        "description": "Extract all New Arrivals product data"
+      }
+    },
+    {
+      "type": "tool_use",
+      "name": "Bash",
+      "input": {
+        "command": "cd /var/folders/gb/m6478s0n5mx9wqlz8t_c03800000gn/T/gumshoe-agent-run-W7bwLe && grep -n 'data-src=\"//goodvibesonmain' collection.html",
+        "description": "Get product image data-src URLs"
+      }
+    },
+    {
+      "type": "tool_use",
+      "name": "Bash",
+      "input": {
+        "command": "cd /var/folders/gb/m6478s0n5mx9wqlz8t_c03800000gn/T/gumshoe-agent-run-W7bwLe && sed -n '3071,3320p' raw.html | grep -n 'href=\"/collections\\|_1x1\\.\\|Shop '",
+        "description": "Extract Shop Today grid hrefs and images"
+      }
+    },
+    {
+      "type": "tool_use",
+      "name": "Bash",
+      "input": {
+        "command": "cd /var/folders/gb/m6478s0n5mx9wqlz8t_c03800000gn/T/gumshoe-agent-run-W7bwLe && grep -n \"icon-account\\|icon-search\\|icon-cart\" raw.html | head -10",
+        "description": "Find header icon svg definitions"
+      }
+    },
+    {
+      "type": "tool_use",
+      "name": "Bash",
+      "input": {
+        "command": "cd /var/folders/gb/m6478s0n5mx9wqlz8t_c03800000gn/T/gumshoe-agent-run-W7bwLe && grep -n \"site-footer-wrapper\\|footer__legal\\|footer-legal\\|copyright\\|© \" raw.html | head -10\nsed -n '4530,4560p' raw.html",
+        "description": "Check footer copyright text"
+      }
+    },
+    {
+      "type": "tool_use",
+      "name": "Bash",
+      "input": {
+        "command": "cd /var/folders/gb/m6478s0n5mx9wqlz8t_c03800000gn/T/gumshoe-agent-run-W7bwLe && grep -n \"copyright\\|&copy;\\|2026\\|©\" raw.html | head -10",
+        "description": "Find copyright text in footer"
+      }
+    },
+    {
+      "type": "text",
+      "text": "I now have everything I need. Let me build the full HTML file."
+    },
+    {
+      "type": "tool_use",
+      "name": "Write",
+      "input": {
+        "file_path": "/var/folders/gb/m6478s0n5mx9wqlz8t_c03800000gn/T/gumshoe-agent-run-W7bwLe/clone.html",
+        "content": "<!DOCTYPE html>\n<html lang=\"en\">\n<head>\n<meta charset=\"UTF-8\">\n<meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n<title>Good Vibes on Main - The best selection of Life is Good in the GTA</title>\n<link rel=\"preconnect\" href=\"https://fonts.googleapis.com\">\n<link rel=\"preconnect\" href=\"https://fonts.gstatic.com\" crossorigin>\n<link href=\"https://fonts.googleapis.com/css2?family=Alegreya+Sans:wght@400;500;700&family=Poppins:wght@300;400;500;600;700&family=Questrial&display=swap\" rel=\"stylesheet\">\n<script src=\"https://cdn.tailwindcss.com\"></script>\n<script>\n  tailwind.config = {\n    theme: {\n      extend: {\n        colors: {\n          \"brand-text\": \"#656565\",\n          \"brand-text-light\": \"#747474\",\n          \"brand-hover\": \"#483535\",\n          \"brand-cream\": \"#efe9db\",\n          \"brand-accent-bg\": \"#f7f7f7\",\n          \"brand-disabled\": \"#c9c9c9\",\n        },\n        fontFamily: {\n          sans: ['\"Poppins\"', 'sans-serif'],\n          heading: ['\"Alegreya Sans\"', 'sans-serif'],\n          accent: ['\"Questrial\"', 'sans-serif'],\n        },\n        spacing: {\n          \"4.5\": \"1.125rem\",\n          \"18\": \"4.5rem\",\n          \"130\": \"32.5rem\",\n        },\n      }\n    }\n  };\n</script>\n<style>\n  body { color: #656565; }\n  .home__subtitle {\n    font-family: 'Alegreya Sans', sans-serif;\n    text-transform: uppercase;\n    letter-spacing: 1px;\n    font-weight: 700;\n  }\n  .navtext { font-family: 'Alegreya Sans', sans-serif; text-transform: uppercase; letter-spacing: 1px; font-weight: 500; }\n  .slick-track { transition: transform 0.6s ease; display: flex; }\n  .slick-slide-item { flex: 0 0 100%; }\n  .btn { display:inline-block; padding: 0.75rem 1.75rem; border:1px solid #656565; text-transform:uppercase; letter-spacing:1px; font-size:0.75rem; font-weight:600; }\n  .btn--outline { border-color:#fff; color:#fff; background:transparent; }\n  .btn--outline:hover { background:#fff; color:#222; }\n  .btn--soft { background:rgba(255,255,255,0.9); color:#333; }\n  marquee-track { animation: ticker 22s linear infinite; }\n</style>\n</head>\n<body class=\"bg-white font-sans text-brand-text text-sm leading-relaxed\">\n\n<!-- Announcement bar -->\n<div class=\"bg-brand-cream text-brand-text text-xs\">\n  <div class=\"max-w-[1280px] mx-auto flex items-center justify-center relative px-4 py-2\">\n    <a href=\"https://goodvibesonmain.ca/pages/shipping-information\" class=\"tracking-wide text-center hover:underline\">\n      WE HAVE SUSPENDED SHIPPING TO THE US - CLICK HERE FOR MORE INFO\n    </a>\n    <a href=\"/search\" class=\"absolute right-4\" aria-label=\"Search\">\n      <svg class=\"w-3.5 h-3.5\" viewBox=\"0 0 16 16\" fill=\"currentColor\"><path d=\"M16 14.864L14.863 16l-4.24-4.241a6.406 6.406 0 01-4.048 1.392 6.61 6.61 0 01-4.65-1.925A6.493 6.493 0 01.5 9.098 6.51 6.51 0 010 6.575a6.536 6.536 0 011.922-4.652A6.62 6.62 0 014.062.5 6.52 6.52 0 016.575 0 6.5 6.5 0 019.1.5c.8.332 1.51.806 2.129 1.423a6.454 6.454 0 011.436 2.13 6.54 6.54 0 01.498 2.522c0 1.503-.468 2.853-1.4 4.048L16 14.864zM3.053 10.091c.973.972 2.147 1.461 3.522 1.461 1.378 0 2.551-.489 3.525-1.461.968-.967 1.45-2.138 1.45-3.514 0-1.37-.482-2.545-1.45-3.524-.981-.968-2.154-1.45-3.525-1.45-1.376 0-2.547.483-3.513 1.45-.973.973-1.46 2.146-1.46 3.523 0 1.375.483 2.548 1.45 3.515z\"/></svg>\n    </a>\n  </div>\n</div>\n\n<!-- Header -->\n<header class=\"sticky top-0 z-40 bg-white border-b border-brand-accent-bg\">\n  <div class=\"max-w-[1280px] mx-auto flex items-center justify-between px-6 py-5\">\n    <a href=\"/\" class=\"flex-shrink-0 w-[100px]\">\n      <img src=\"https://goodvibesonmain.ca/cdn/shop/files/NEWLIGNEWMARKETLOGO_1_220x.png?v=1759332633\" alt=\"Good Vibes on Main\" class=\"w-full h-auto\">\n    </a>\n    <nav class=\"hidden md:flex items-center gap-8\">\n      <a href=\"/collections\" class=\"navtext text-xs text-brand-text hover:text-brand-hover\">Shop</a>\n      <a href=\"/pages/about-us\" class=\"navtext text-xs text-brand-text hover:text-brand-hover\">About Us</a>\n      <a href=\"/pages/lifeisgood-com\" class=\"navtext text-xs text-brand-text hover:text-brand-hover\">LIFEISGOOD.COM</a>\n      <a href=\"/pages/contact-us\" class=\"navtext text-xs text-brand-text hover:text-brand-hover\">Contact Us</a>\n      <a href=\"/blogs/news\" class=\"navtext text-xs text-brand-text hover:text-brand-hover\">Good Vibes Blog</a>\n      <a href=\"/pages/fit-guides\" class=\"navtext text-xs text-brand-text hover:text-brand-hover\">Size Guide</a>\n    </nav>\n    <div class=\"flex items-center gap-5\">\n      <a href=\"/account\" aria-label=\"My Account\" class=\"hidden md:inline-block\">\n        <svg class=\"w-4 h-4\" viewBox=\"0 0 16 16\" fill=\"currentColor\"><path d=\"M10.713 8.771c.31.112.53.191.743.27.555.204.985.372 1.367.539 1.229.535 1.993 1.055 2.418 1.885.464.937.722 1.958.758 2.997.03.84-.662 1.538-1.524 1.538H1.525c-.862 0-1.554-.697-1.524-1.538a7.36 7.36 0 01.767-3.016c.416-.811 1.18-1.33 2.41-1.866a25.25 25.25 0 011.366-.54l.972-.35a1.42 1.42 0 00-.006-.072c-.937-1.086-1.369-2.267-1.369-4.17C4.141 1.756 5.517 0 8.003 0c2.485 0 3.856 1.755 3.856 4.448 0 2.03-.492 3.237-1.563 4.386.169-.18.197-.253.207-.305a1.2 1.2 0 00-.019.16l.228.082z\"/></svg>\n      </a>\n      <a href=\"/search\" aria-label=\"Search\" class=\"hidden md:inline-block\">\n        <svg class=\"w-4 h-4\" viewBox=\"0 0 16 16\" fill=\"currentColor\"><path d=\"M16 14.864L14.863 16l-4.24-4.241a6.406 6.406 0 01-4.048 1.392 6.61 6.61 0 01-4.65-1.925A6.493 6.493 0 01.5 9.098 6.51 6.51 0 010 6.575a6.536 6.536 0 011.922-4.652A6.62 6.62 0 014.062.5 6.52 6.52 0 016.575 0 6.5 6.5 0 019.1.5c.8.332 1.51.806 2.129 1.423a6.454 6.454 0 011.436 2.13 6.54 6.54 0 01.498 2.522c0 1.503-.468 2.853-1.4 4.048L16 14.864zM3.053 10.091c.973.972 2.147 1.461 3.522 1.461 1.378 0 2.551-.489 3.525-1.461.968-.967 1.45-2.138 1.45-3.514 0-1.37-.482-2.545-1.45-3.524-.981-.968-2.154-1.45-3.525-1.45-1.376 0-2.547.483-3.513 1.45-.973.973-1.46 2.146-1.46 3.523 0 1.375.483 2.548 1.45 3.515z\"/></svg>\n      </a>\n      <a href=\"/cart\" aria-label=\"Cart\" class=\"flex items-center gap-1\">\n        <svg class=\"w-5 h-5\" viewBox=\"0 0 25 25\" fill=\"currentColor\"><path d=\"M5.058 23a2 2 0 104.001-.001A2 2 0 005.058 23zm12.079 0c0 1.104.896 2 2 2s1.942-.896 1.942-2-.838-2-1.942-2-2 .896-2 2zM0 1a1 1 0 001 1h1.078l.894 3.341L5.058 13c0 .072.034.134.042.204l-1.018 4.58A.997.997 0 005.058 19h16.71a1 1 0 000-2H6.306l.458-2.061c.1.017.19.061.294.061h12.31c1.104 0 1.712-.218 2.244-1.5l3.248-6.964C25.423 4.75 24.186 4 23.079 4H5.058c-.157 0-.292.054-.438.088L3.844.772A1 1 0 002.87 0H1a1 1 0 00-1 1zm5.098 5H22.93l-3.192 6.798c-.038.086-.07.147-.094.19-.067.006-.113.012-.277.012H7.058v-.198l-.038-.195L5.098 6z\"/></svg>\n        <span class=\"text-xs\">$0.00 (0)</span>\n      </a>\n      <button class=\"md:hidden\" aria-label=\"Open menu\">\n        <svg class=\"w-6 h-6\" viewBox=\"0 0 25 25\" fill=\"currentColor\"><path d=\"M0 4.062h25v2H0zm0 7h25v2H0zm0 7h25v2H0z\"/></svg>\n      </button>\n    </div>\n  </div>\n</header>\n\n<main>\n\n<!-- Hero Slideshow -->\n<section class=\"relative overflow-hidden bg-black\" id=\"slideshow\">\n  <div class=\"slick-track\" id=\"slick-track\">\n    <div class=\"slick-slide-item relative\">\n      <img src=\"https://goodvibesonmain.ca/cdn/shop/files/GWPAPR26Web_2_1950x.png?v=1776366169\" alt=\"\" class=\"w-full h-auto block\">\n    </div>\n    <div class=\"slick-slide-item relative\">\n      <img src=\"https://goodvibesonmain.ca/cdn/shop/files/FrameTemplate_1_1950x.png?v=1732567116\" alt=\"\" class=\"w-full h-auto block\">\n      <div class=\"absolute inset-0 flex items-end justify-start\">\n        <div class=\"max-w-[1280px] w-full mx-auto px-8 pb-12\">\n          <a href=\"/collections/martin-guitar\" class=\"btn btn--outline\">SHOP MARTIN GUITAR</a>\n        </div>\n      </div>\n    </div>\n  </div>\n  <button onclick=\"slidePrev()\" aria-label=\"Previous\" class=\"absolute left-4 top-1/2 -translate-y-1/2 text-white opacity-80 hover:opacity-100\">\n    <svg class=\"w-6 h-6\" viewBox=\"0 0 44 44\" fill=\"currentColor\"><path d=\"M10.366 22.502l.412.392L33.268 44l.732-.742-22.488-21.106L34 .742 33.268 0 10 22.152z\"/></svg>\n  </button>\n  <button onclick=\"slideNext()\" aria-label=\"Next\" class=\"absolute right-4 top-1/2 -translate-y-1/2 text-white opacity-80 hover:opacity-100\">\n    <svg class=\"w-6 h-6\" viewBox=\"0 0 44 44\" fill=\"currentColor\"><path d=\"M33.634 22.502l-.412.392L10.732 44 10 43.258l22.488-21.106L10 .742 10.732 0 34 22.152z\"/></svg>\n  </button>\n</section>\n\n<!-- New Arrivals -->\n<section class=\"py-16 px-6\">\n  <div class=\"max-w-[1280px] mx-auto\">\n    <h2 class=\"home__subtitle text-center text-base mb-10\">New Arrivals</h2>\n    <div class=\"grid grid-cols-2 md:grid-cols-4 gap-x-6 gap-y-10\">\n\n      <a href=\"/products/life-is-good-womens-breathe-more-worry-less-floral-tie-dye-long-sleeve-crusher-lite-hooded-tee\" class=\"block text-center group\">\n        <div class=\"aspect-square bg-brand-accent-bg mb-3 overflow-hidden\">\n          <img src=\"https://goodvibesonmain.ca/cdn/shop/files/xpdrvsrtu1axht3gferl_540x.png?v=1784125246\" alt=\"Life is Good Women's Breathe More Worry Less Floral Tie Dye Long Sleeve Crusher Lite Hooded Tee\" class=\"w-full h-full object-cover group-hover:opacity-80\">\n        </div>\n        <p class=\"text-xs uppercase tracking-wide px-2\">Life is Good Women's Breathe More Worry Less Floral Tie Dye Long Sleeve Crusher Lite Hooded Tee</p>\n        <p class=\"text-xs mt-1\">$60.00</p>\n      </a>\n\n      <a href=\"/products/life-is-good-womens-best-things-floral-paw-tie-dye-long-sleeve-crusher-lite-hooded-tee\" class=\"block text-center group\">\n        <div class=\"aspect-square bg-brand-accent-bg mb-3 overflow-hidden\">\n          <img src=\"https://goodvibesonmain.ca/cdn/shop/files/ybvdybkvxq4tcv44isd1_540x.png?v=1784123071\" alt=\"Life is Good Women's Best Things Floral Paw Tie Dye Long Sleeve Crusher Lite Hooded Tee\" class=\"w-full h-full object-cover group-hover:opacity-80\">\n        </div>\n        <p class=\"text-xs uppercase tracking-wide px-2\">Life is Good Women's Best Things Floral Paw Tie Dye Long Sleeve Crusher Lite Hooded Tee</p>\n        <p class=\"text-xs mt-1\">$60.00</p>\n      </a>\n\n      <a href=\"/products/life-is-good-womens-rally-swimming-turtles-crusher-lite-vee\" class=\"block text-center group\">\n        <div class=\"aspect-square bg-brand-accent-bg mb-3 overflow-hidden\">\n          <img src=\"https://goodvibesonmain.ca/cdn/shop/files/k6mjn4erw8f1ghk4s9ae_540x.png?v=1784061755\" alt=\"Life is Good Women's Rally Swimming Turtles Crusher Lite Vee\" class=\"w-full h-full object-cover group-hover:opacity-80\">\n        </div>\n        <p class=\"text-xs uppercase tracking-wide px-2\">Life is Good Women's Rally Swimming Turtles Crusher Lite Vee</p>\n        <p class=\"text-xs mt-1\">$39.00</p>\n      </a>\n\n      <a href=\"/products/life-is-good-womens-rally-hummingbirds-crusher-lite-vee\" class=\"block text-center group\">\n        <div class=\"aspect-square bg-brand-accent-bg mb-3 overflow-hidden\">\n          <img src=\"https://goodvibesonmain.ca/cdn/shop/files/hbgckcz5bcux4yrrx4nt_540x.png?v=1784061568\" alt=\"Life is Good Women's Rally Hummingbirds Crusher Lite Vee\" class=\"w-full h-full object-cover group-hover:opacity-80\">\n        </div>\n        <p class=\"text-xs uppercase tracking-wide px-2\">Life is Good Women's Rally Hummingbirds Crusher Lite Vee</p>\n        <p class=\"text-xs mt-1\">$39.00</p>\n      </a>\n\n      <a href=\"/products/life-is-good-womens-friends-in-low-places-crusher-lite-vee\" class=\"block text-center group\">\n        <div class=\"aspect-square bg-brand-accent-bg mb-3 overflow-hidden\">\n          <img src=\"https://goodvibesonmain.ca/cdn/shop/files/dyww4eoag8fabuzxxvdk_540x.png?v=1784060423\" alt=\"Life is Good Women's Friends in Low Places Crusher Lite Vee\" class=\"w-full h-full object-cover group-hover:opacity-80\">\n        </div>\n        <p class=\"text-xs uppercase tracking-wide px-2\">Life is Good Women's Friends in Low Places Crusher Lite Vee</p>\n        <p class=\"text-xs mt-1\">$39.00</p>\n      </a>\n\n      <a href=\"/products/life-is-good-womens-retro-flowerball-crusher-vee\" class=\"block text-center group\">\n        <div class=\"aspect-square bg-brand-accent-bg mb-3 overflow-hidden\">\n          <img src=\"https://goodvibesonmain.ca/cdn/shop/files/uzwtlhkoeqkzmpqyvgzb_540x.png?v=1784059879\" alt=\"Life is Good Women's Retro Flowerball Crusher Vee\" class=\"w-full h-full object-cover group-hover:opacity-80\">\n        </div>\n        <p class=\"text-xs uppercase tracking-wide px-2\">Life is Good Women's Retro Flowerball Crusher Vee</p>\n        <p class=\"text-xs mt-1\">$39.00</p>\n      </a>\n\n      <a href=\"/products/life-is-good-womens-beach-umbrella-scene-crusher-vee\" class=\"block text-center group\">\n        <div class=\"aspect-square bg-brand-accent-bg mb-3 overflow-hidden\">\n          <img src=\"https://goodvibesonmain.ca/cdn/shop/files/daxfmyl7mawekvgasxaj_540x.png?v=1784059624\" alt=\"Life is Good Women's Beach Umbrella Scene Crusher Vee\" class=\"w-full h-full object-cover group-hover:opacity-80\">\n        </div>\n        <p class=\"text-xs uppercase tracking-wide px-2\">Life is Good Women's Beach Umbrella Scene Crusher Vee</p>\n        <p class=\"text-xs mt-1\">$39.00</p>\n      </a>\n\n      <a href=\"/products/life-is-good-mens-berts-herd-that-shepherd-crusher-lite-tee\" class=\"block text-center group\">\n        <div class=\"aspect-square bg-brand-accent-bg mb-3 overflow-hidden\">\n          <img src=\"https://goodvibesonmain.ca/cdn/shop/files/e6242gncckhrvv8z6zqw_540x.png?v=1784059112\" alt=\"Life is Good Men's Bert's Herd That Shepherd Crusher Lite Tee\" class=\"w-full h-full object-cover group-hover:opacity-80\">\n        </div>\n        <p class=\"text-xs uppercase tracking-wide px-2\">Life is Good Men's Bert's Herd That Shepherd Crusher Lite Tee</p>\n        <p class=\"text-xs mt-1\">$39.00</p>\n      </a>\n\n    </div>\n  </div>\n</section>\n\n<!-- Shop Today -->\n<section class=\"py-16 px-6 bg-white\">\n  <div class=\"max-w-[1280px] mx-auto\">\n    <h2 class=\"home__subtitle text-center text-base mb-10\">Shop Today</h2>\n    <div class=\"flex flex-wrap\">\n      <a href=\"/collections/womens\" class=\"relative block w-full sm:w-1/3 aspect-[3/4] group overflow-hidden\" aria-label=\"Women's\">\n        <img src=\"https://goodvibesonmain.ca/cdn/shop/files/xpg3ap1f3x9pkvdgbvtu_720x.jpg?v=1767043740\" alt=\"Women's\" class=\"w-full h-full object-cover group-hover:scale-105 transition-transform duration-500\">\n        <div class=\"absolute inset-0 flex items-center justify-center\">\n          <span class=\"btn--soft px-4 py-2 text-xs uppercase tracking-wide\">Shop Women's</span>\n        </div>\n      </a>\n      <a href=\"/collections/mens\" class=\"relative block w-full sm:w-1/3 aspect-[3/4] group overflow-hidden\" aria-label=\"Men's\">\n        <img src=\"https://goodvibesonmain.ca/cdn/shop/files/hfejjbgb53zqk9dqespo_720x.jpg?v=1763318918\" alt=\"Men's\" class=\"w-full h-full object-cover group-hover:scale-105 transition-transform duration-500\">\n        <div class=\"absolute inset-0 flex items-center justify-center\">\n          <span class=\"btn--soft px-4 py-2 text-xs uppercase tracking-wide\">Shop Men's</span>\n        </div>\n      </a>\n      <a href=\"/collections/home-accessories\" class=\"relative block w-full sm:w-1/3 aspect-[3/4] group overflow-hidden\" aria-label=\"Home & Accessories\">\n        <img src=\"https://goodvibesonmain.ca/cdn/shop/files/nsdt240tyown7nwquvxi_720x.jpg?v=1764345571\" alt=\"Home & Accessories\" class=\"w-full h-full object-cover group-hover:scale-105 transition-transform duration-500\">\n        <div class=\"absolute inset-0 flex items-center justify-center\">\n          <span class=\"btn--soft px-4 py-2 text-xs uppercase tracking-wide\">Shop Home</span>\n        </div>\n      </a>\n      <a href=\"/collections/kids\" class=\"relative block w-full sm:w-1/3 aspect-[3/4] group overflow-hidden mt-6\">\n        <img src=\"https://goodvibesonmain.ca/cdn/shop/files/lsflxilo936110b2txum_720x.jpg?v=1746636593\" alt=\"Kids\" class=\"w-full h-full object-cover group-hover:scale-105 transition-transform duration-500\">\n        <div class=\"absolute inset-0 flex items-center justify-center\">\n          <span class=\"btn--soft px-4 py-2 text-xs uppercase tracking-wide\">Shop Kids</span>\n        </div>\n      </a>\n      <a href=\"/collections/sale-1\" class=\"relative block w-full sm:w-1/3 aspect-[3/4] group overflow-hidden mt-6\" aria-label=\"Sale\">\n        <img src=\"https://goodvibesonmain.ca/cdn/shop/files/SS25_LIFESTYLE_ON_MODEL_CHEWY_LG1244C2_AND_LG1008C3_625_720x.png?v=1745871295\" alt=\"Pets\" class=\"w-full h-full object-cover group-hover:scale-105 transition-transform duration-500\">\n        <div class=\"absolute inset-0 flex items-center justify-center\">\n          <span class=\"btn--soft px-4 py-2 text-xs uppercase tracking-wide\">Shop Pets</span>\n        </div>\n      </a>\n    </div>\n  </div>\n</section>\n\n<!-- Double -->\n<section class=\"flex flex-col md:flex-row\">\n  <div class=\"w-full md:w-1/2 aspect-[4/3] md:aspect-auto\">\n    <img src=\"https://goodvibesonmain.ca/cdn/shop/files/PXL_20220825_145739283.PORTRAIT_2_1080x.jpg?v=1661875953\" alt=\"\" class=\"w-full h-full object-cover\">\n  </div>\n  <div class=\"w-full md:w-1/2 flex items-center justify-center px-10 py-16 text-center\">\n    <div class=\"max-w-md\">\n      <h2 class=\"home__subtitle text-base mb-4\">Spreading Optimism &amp; Good vibes!</h2>\n      <p class=\"text-sm mb-2\">Good Vibes on Main is your local Life is Good shop - 100% Canadian owned - nestled on historic Main Street in Newmarket.</p>\n      <p class=\"text-sm\">Shop local. Support your community. Spread Good Vibes!</p>\n    </div>\n  </div>\n</section>\n\n<!-- Map -->\n<section class=\"flex flex-col md:flex-row\">\n  <div class=\"w-full md:w-1/2 flex items-center justify-center px-10 py-16 text-center order-2 md:order-1\">\n    <div class=\"max-w-md\">\n      <h2 class=\"home__subtitle text-base mb-4\">Where to find good vibes!</h2>\n      <p class=\"text-sm mb-1\">222 Main Street S., Newmarket, ON. L3Y 3Z3</p>\n      <p class=\"text-sm mb-1\">+1 905 895 0606</p>\n      <p class=\"text-sm mb-4\">If you have any questions, please contact us at <a href=\"mailto:info@goodvibesonmain.ca\" class=\"underline\">info@goodvibesonmain.ca</a></p>\n      <a href=\"https://maps.google.com?daddr=254 Main Street South, Newmarket\" target=\"_blank\" rel=\"noopener\" class=\"btn text-brand-text\">Directions</a>\n    </div>\n  </div>\n  <div class=\"w-full md:w-1/2 aspect-[4/3] md:aspect-auto order-1 md:order-2\">\n    <img src=\"https://goodvibesonmain.ca/cdn/shop/files/PXL_20220825_123738063_1080x.jpg?v=1661876405\" alt=\"\" class=\"w-full h-full object-cover\">\n  </div>\n</section>\n\n<!-- Life is Good Story -->\n<section class=\"py-16 px-6 text-center\">\n  <div class=\"max-w-2xl mx-auto\">\n    <h2 class=\"home__subtitle text-base mb-4\">The Life is Good Story</h2>\n    <p class=\"text-sm\">Discover the power of optimism from Life is Good Co-Founders, Bert &amp; John Jacobs.</p>\n  </div>\n</section>\n\n<!-- Video -->\n<section class=\"relative bg-black aspect-video flex items-center justify-center overflow-hidden\">\n  <img src=\"https://img.youtube.com/vi/asQcvDjkrEo/maxresdefault.jpg\" alt=\"\" class=\"absolute inset-0 w-full h-full object-cover opacity-70\">\n  <a href=\"https://www.youtube.com/watch?v=asQcvDjkrEo\" target=\"_blank\" rel=\"noopener\" class=\"relative z-10 w-20 h-20 rounded-full border-2 border-white flex items-center justify-center text-white hover:bg-white hover:text-black transition\" aria-label=\"Play video\">\n    <svg class=\"w-6 h-6 ml-1\" viewBox=\"0 0 20 20\" fill=\"currentColor\"><path d=\"M10.12.233C4.702.233.31 4.626.31 10.044c0 5.419 4.392 9.811 9.81 9.811 5.419 0 9.811-4.392 9.811-9.81 0-5.42-4.392-9.812-9.81-9.812zM7.86 12.891V7.198l5.346 2.846-5.347 2.847z\"/></svg>\n  </a>\n</section>\n\n<!-- Logos -->\n<section class=\"py-16 px-6\">\n  <div class=\"max-w-[1280px] mx-auto\">\n    <h2 class=\"home__subtitle text-center text-base mb-10\">Brands Available at Good Vibes on Main</h2>\n    <div class=\"flex flex-wrap items-center justify-center gap-10\">\n      <a href=\"/collections/life-is-good\" target=\"_blank\" rel=\"noopener\" class=\"w-20 h-20\"><img src=\"https://goodvibesonmain.ca/cdn/shop/files/Coin_FadedBlack_1_220x.png?v=1764087194\" alt=\"\" class=\"w-full h-full object-contain\"></a>\n      <a href=\"/collections/watuko-headgear\" target=\"_blank\" rel=\"noopener\" class=\"w-32\"><img src=\"https://goodvibesonmain.ca/cdn/shop/files/Martin_co_optimized_cleaned_svg_320x.png?v=1728498055\" alt=\"\" class=\"w-full h-auto object-contain\"></a>\n      <a href=\"/collections/spice-of-life\" target=\"_blank\" rel=\"noopener\" class=\"w-32\"><img src=\"https://goodvibesonmain.ca/cdn/shop/files/watuko-banner-logo_320x.webp?v=1741112043\" alt=\"\" class=\"w-full h-auto object-contain\"></a>\n      <a href=\"/collections/juno-pet-foods\" target=\"_blank\" rel=\"noopener\" class=\"w-20 h-20\"><img src=\"https://goodvibesonmain.ca/cdn/shop/files/Kawigga_220x.jpg?v=1702148156\" alt=\"\" class=\"w-full h-full object-contain\"></a>\n      <div class=\"w-20 h-20\"><img src=\"https://goodvibesonmain.ca/cdn/shop/files/KanineKookies_220x.jpg?v=1723838580\" alt=\"\" class=\"w-full h-full object-contain\"></div>\n      <a href=\"/collections/julius-k9\" target=\"_blank\" rel=\"noopener\" class=\"w-32\"><img src=\"https://goodvibesonmain.ca/cdn/shop/files/Julius-K9_logo_320x.png?v=1614309660\" alt=\"\" class=\"w-full h-auto object-contain\"></a>\n      <div class=\"w-20 h-20\"><img src=\"https://goodvibesonmain.ca/cdn/shop/files/carolyndraws_logo_2020_1_360x_9c4910dc-711a-4355-b75d-77f8f760b809_220x.webp?v=1767989932\" alt=\"\" class=\"w-full h-full object-contain\"></div>\n      <div class=\"w-32\"><img src=\"https://goodvibesonmain.ca/cdn/shop/files/Logo-Black_2to1_ratio_small.avif?v=1767989968\" alt=\"\" class=\"w-full h-auto object-contain\"></div>\n    </div>\n  </div>\n</section>\n\n<!-- Blog -->\n<section class=\"py-16 px-6\">\n  <div class=\"max-w-[1280px] mx-auto\">\n    <h2 class=\"home__subtitle text-center text-base mb-10\">Good News. good vibes!</h2>\n    <div class=\"max-w-2xl mx-auto\">\n      <a href=\"/blogs/news/beat-the-winter-blues-with-cookies\" class=\"relative block aspect-[10/7] overflow-hidden group\" aria-label=\"Beat the Winter Blues with Cookies!\">\n        <img src=\"https://goodvibesonmain.ca/cdn/shop/articles/BlogImage_1080x.png?v=1768851323\" alt=\"Beat the Winter Blues with Cookies!\" class=\"w-full h-full object-cover group-hover:scale-105 transition-transform duration-500\">\n        <div class=\"absolute inset-0 bg-gradient-to-t from-black/60 to-transparent\"></div>\n        <h3 class=\"absolute bottom-6 left-6 text-white text-xl font-heading\">Beat the Winter Blues with Cookies!</h3>\n      </a>\n    </div>\n  </div>\n</section>\n\n</main>\n\n<!-- Footer -->\n<footer class=\"bg-white border-t border-brand-accent-bg pt-14 pb-8 px-6 text-xs\">\n  <div class=\"max-w-[1280px] mx-auto\">\n    <div class=\"grid grid-cols-1 md:grid-cols-3 gap-10\">\n      <div>\n        <p class=\"uppercase font-semibold tracking-wide mb-3\">Quick Links</p>\n        <hr class=\"border-brand-accent-bg mb-4\">\n        <ul class=\"space-y-2\">\n          <li><a href=\"/collections\" class=\"hover:underline\">Shop</a></li>\n          <li><a href=\"/pages/about-us\" class=\"hover:underline\">About Us</a></li>\n          <li><a href=\"/pages/lifeisgood-com\" class=\"hover:underline\">LIFEISGOOD.COM</a></li>\n          <li><a href=\"/pages/contact-us\" class=\"hover:underline\">Contact Us</a></li>\n          <li><a href=\"/blogs/news\" class=\"hover:underline\">Good Vibes Blog</a></li>\n          <li><a href=\"/pages/fit-guides\" class=\"hover:underline\">Size Guide</a></li>\n        </ul>\n      </div>\n      <div>\n        <p class=\"uppercase font-semibold tracking-wide mb-3\">Good Vibes on Main</p>\n        <hr class=\"border-brand-accent-bg mb-4\">\n        <p class=\"mb-2\">Good Vibes on Main specializes in Life is Good products and is located on historic Main Street in Newmarket, Ontario, nestled among unique shops and restaurants, and just half an hour north of Toronto.</p>\n        <p>#shoplocal #supportyourcommunity #spreadgoodvibes #lifeisgoodcanada</p>\n      </div>\n      <div>\n        <p class=\"uppercase font-semibold tracking-wide mb-3\">Newsletter</p>\n        <hr class=\"border-brand-accent-bg mb-4\">\n        <p class=\"mb-4\">Join our newsletter for all the latest good vibes, news and offers!</p>\n        <form class=\"flex\" onsubmit=\"return false;\">\n          <input type=\"email\" placeholder=\"your-email@example.com\" class=\"border border-brand-disabled px-3 py-2 flex-1 text-xs\" aria-label=\"Email\">\n          <button type=\"submit\" class=\"btn ml-[-1px]\">Join</button>\n        </form>\n      </div>\n    </div>\n\n    <div class=\"flex flex-col md:flex-row items-center justify-between mt-12 pt-6 border-t border-brand-accent-bg gap-4\">\n      <div class=\"uppercase tracking-wide\">CAD $</div>\n      <ul class=\"flex gap-4\">\n        <li><a href=\"#\" aria-label=\"Facebook\"><svg class=\"w-4 h-4\" viewBox=\"0 0 20 20\" fill=\"#444\"><path d=\"M18.05.811q.439 0 .744.305t.305.744v16.637q0 .439-.305.744t-.744.305h-4.732v-7.221h2.415l.342-2.854h-2.757v-1.83q0-.659.293-1t1.073-.342h1.488V3.762q-.976-.098-2.171-.098-1.634 0-2.635.964t-1 2.72V9.47H7.951v2.854h2.415v7.221H1.413q-.439 0-.744-.305t-.305-.744V1.859q0-.439.305-.744T1.413.81H18.05z\"/></svg></a></li>\n        <li><a href=\"#\" aria-label=\"Instagram\"><svg class=\"w-4 h-4\" viewBox=\"0 0 20 20\" fill=\"#444\"><circle cx=\"10\" cy=\"10\" r=\"9.2\" fill=\"none\" stroke=\"#444\" stroke-width=\"1.3\"/><circle cx=\"10\" cy=\"10\" r=\"4\" fill=\"none\" stroke=\"#444\" stroke-width=\"1.3\"/><circle cx=\"15\" cy=\"5\" r=\"1\" fill=\"#444\"/></svg></a></li>\n      </ul>\n      <ul class=\"flex flex-wrap gap-2 text-[10px] text-brand-text-light\">\n        <li class=\"border border-brand-disabled rounded px-2 py-1\">Amex</li>\n        <li class=\"border border-brand-disabled rounded px-2 py-1\">Apple Pay</li>\n        <li class=\"border border-brand-disabled rounded px-2 py-1\">Bancontact</li>\n        <li class=\"border border-brand-disabled rounded px-2 py-1\">Diners</li>\n        <li class=\"border border-brand-disabled rounded px-2 py-1\">Discover</li>\n        <li class=\"border border-brand-disabled rounded px-2 py-1\">Google Pay</li>\n        <li class=\"border border-brand-disabled rounded px-2 py-1\">iDEAL</li>\n        <li class=\"border border-brand-disabled rounded px-2 py-1\">Mastercard</li>\n        <li class=\"border border-brand-disabled rounded px-2 py-1\">PayPal</li>\n        <li class=\"border border-brand-disabled rounded px-2 py-1\">Shop Pay</li>\n        <li class=\"border border-brand-disabled rounded px-2 py-1\">Visa</li>\n      </ul>\n    </div>\n\n    <div class=\"flex flex-col md:flex-row items-center justify-between mt-6 text-brand-text-light gap-2\">\n      <p>&copy; <a href=\"/\" class=\"hover:underline\">Good Vibes on Main</a> 2026</p>\n      <p><a href=\"https://www.shopify.com\" target=\"_blank\" rel=\"nofollow\" class=\"hover:underline\">Powered by Shopify</a></p>\n    </div>\n  </div>\n</footer>\n\n<script>\n  let slideIndex = 0;\n  const track = document.getElementById('slick-track');\n  const total = 2;\n  function updateSlide() {\n    track.style.transform = `translateX(-${slideIndex * 100}%)`;\n  }\n  function slideNext() { slideIndex = (slideIndex + 1) % total; updateSlide(); }\n  function slidePrev() { slideIndex = (slideIndex - 1 + total) % total; updateSlide(); }\n</script>\n\n</body>\n</html>\n"
+      }
+    },
+    {
+      "type": "text",
+      "text": "Now let's screenshot the clone and compare."
+    },
+    {
+      "type": "tool_use",
+      "name": "Bash",
+      "input": {
+        "command": "cd /var/folders/gb/m6478s0n5mx9wqlz8t_c03800000gn/T/gumshoe-agent-run-W7bwLe && npx github:cam5/crow-nester \"file:///var/folders/gb/m6478s0n5mx9wqlz8t_c03800000gn/T/gumshoe-agent-run-W7bwLe/clone.html\" --screenshot clone-round1.png 2>&1 | tail -15",
+        "description": "Screenshot the clone HTML round 1"
+      }
+    },
+    {
+      "type": "tool_use",
+      "name": "Bash",
+      "input": {
+        "command": "cd /var/folders/gb/m6478s0n5mx9wqlz8t_c03800000gn/T/gumshoe-agent-run-W7bwLe && file original.png clone-round1.png",
+        "description": "Check image dimensions"
+      }
+    },
+    {
+      "type": "tool_use",
+      "name": "Read",
+      "input": {
+        "file_path": "/var/folders/gb/m6478s0n5mx9wqlz8t_c03800000gn/T/gumshoe-agent-run-W7bwLe/clone-round1.png"
+      }
+    },
+    {
+      "type": "tool_use",
+      "name": "Bash",
+      "input": {
+        "command": "cd /var/folders/gb/m6478s0n5mx9wqlz8t_c03800000gn/T/gumshoe-agent-run-W7bwLe && curl -sI \"https://goodvibesonmain.ca/cdn/shop/files/GWPAPR26Web_2_1950x.png?v=1776366169\" | head -5\ncurl -s -o hero-check.png \"https://goodvibesonmain.ca/cdn/shop/files/GWPAPR26Web_2_1950x.png?v=1776366169\"\nfile hero-check.png",
+        "description": "Check the hero slide image directly"
+      }
+    },
+    {
+      "type": "tool_use",
+      "name": "Read",
+      "input": {
+        "file_path": "/var/folders/gb/m6478s0n5mx9wqlz8t_c03800000gn/T/gumshoe-agent-run-W7bwLe/hero-check.png"
+      }
+    },
+    {
+      "type": "tool_use",
+      "name": "Bash",
+      "input": {
+        "command": "cd /var/folders/gb/m6478s0n5mx9wqlz8t_c03800000gn/T/gumshoe-agent-run-W7bwLe && npx github:cam5/crow-nester https://goodvibesonmain.ca/ --screenshot original-round2.png 2>&1 | tail -3\nfile original-round2.png",
+        "description": "Retake original screenshot for consistent comparison"
+      }
+    },
+    {
+      "type": "tool_use",
+      "name": "Read",
+      "input": {
+        "file_path": "/var/folders/gb/m6478s0n5mx9wqlz8t_c03800000gn/T/gumshoe-agent-run-W7bwLe/original-round2.png"
+      }
+    },
+    {
+      "type": "tool_use",
+      "name": "Bash",
+      "input": {
+        "command": "cd /var/folders/gb/m6478s0n5mx9wqlz8t_c03800000gn/T/gumshoe-agent-run-W7bwLe && curl -s -A \"Mozilla/5.0\" https://goodvibesonmain.ca/ -o raw2.html\ngrep -n \"slick-slide slideshow__slide\" raw2.html\ngrep -n \"background-image: url\" raw2.html | head -5",
+        "description": "Re-fetch raw HTML to check current slideshow content"
+      }
+    },
+    {
+      "type": "tool_use",
+      "name": "Bash",
+      "input": {
+        "command": "cd /var/folders/gb/m6478s0n5mx9wqlz8t_c03800000gn/T/gumshoe-agent-run-W7bwLe && which convert magick python3 2>&1\npython3 -c \"\nfrom PIL import Image\na = Image.open('original-round2.png')\nb = Image.open('clone-round1.png')\nh = min(a.height, b.height)\na.crop((0,0,1280,h)).save('original-crop.png')\nb.crop((0,0,1280,h)).save('clone-crop.png')\nprint(a.size, b.size, h)\n\"",
+        "description": "Crop both screenshots to matching height using PIL"
+      }
+    },
+    {
+      "type": "tool_use",
+      "name": "Bash",
+      "input": {
+        "command": "cd /var/folders/gb/m6478s0n5mx9wqlz8t_c03800000gn/T/gumshoe-agent-run-W7bwLe && npx odiff-bin original-crop.png clone-crop.png diff-round1.png --parsable-stdout",
+        "description": "Run odiff on cropped screenshots"
+      }
+    },
+    {
+      "type": "tool_use",
+      "name": "Read",
+      "input": {
+        "file_path": "/var/folders/gb/m6478s0n5mx9wqlz8t_c03800000gn/T/gumshoe-agent-run-W7bwLe/diff-round1.png"
+      }
+    },
+    {
+      "type": "tool_use",
+      "name": "Bash",
+      "input": {
+        "command": "cd /var/folders/gb/m6478s0n5mx9wqlz8t_c03800000gn/T/gumshoe-agent-run-W7bwLe && \\\necho \"=== live video section ===\" \nnpx github:cam5/crow-nester https://goodvibesonmain.ca/ --root-selector \"#shopify-section-index-video\" 2>&1 | jq '.nodes[0].rendered' \necho \"=== clone video section ===\"\nnpx github:cam5/crow-nester \"file:///var/folders/gb/m6478s0n5mx9wqlz8t_c03800000gn/T/gumshoe-agent-run-W7bwLe/clone.html\" --root-selector \"section.aspect-video\" 2>&1 | jq '.nodes[0].rendered'\necho \"=== live shop today grid ===\"\nnpx github:cam5/crow-nester https://goodvibesonmain.ca/ --root-selector \"#shopify-section-index-collection-grid\" 2>&1 | jq '.nodes[0].rendered'\n",
+        "description": "Compare section heights between live and clone"
+      }
+    },
+    {
+      "type": "tool_use",
+      "name": "Bash",
+      "input": {
+        "command": "cd /var/folders/gb/m6478s0n5mx9wqlz8t_c03800000gn/T/gumshoe-agent-run-W7bwLe && \\\necho \"=== live new-arrivals top ===\" \nnpx github:cam5/crow-nester https://goodvibesonmain.ca/ --root-selector \"#shopify-section-index-collection\" 2>&1 | jq '.nodes[0].rendered'\necho \"=== clone slideshow section ===\" \nnpx github:cam5/crow-nester \"file:///var/folders/gb/m6478s0n5mx9wqlz8t_c03800000gn/T/gumshoe-agent-run-W7bwLe/clone.html\" --root-selector \"#slideshow\" 2>&1 | jq '.nodes[0].rendered'\necho \"=== clone new-arrivals section (first section after slideshow) ===\"\nnpx github:cam5/crow-nester \"file:///var/folders/gb/m6478s0n5mx9wqlz8t_c03800000gn/T/gumshoe-agent-run-W7bwLe/clone.html\" --root-selector \"main > section:nth-of-type(1)\" 2>&1 | jq '.nodes[0].rendered'\necho \"=== clone shop-today section ===\"\nnpx github:cam5/crow-nester \"file:///var/folders/gb/m6478s0n5mx9wqlz8t_c03800000gn/T/gumshoe-agent-run-W7bwLe/clone.html\" --root-selector \"main > section:nth-of-type(2)\" 2>&1 | jq '.nodes[0].rendered'\n",
+        "description": "Compare more section heights"
+      }
+    },
+    {
+      "type": "tool_use",
+      "name": "Edit",
+      "input": {
+        "replace_all": false,
+        "file_path": "/var/folders/gb/m6478s0n5mx9wqlz8t_c03800000gn/T/gumshoe-agent-run-W7bwLe/clone.html",
+        "old_string": "<section class=\"relative bg-black aspect-video flex items-center justify-center overflow-hidden\">",
+        "new_string": "<section class=\"relative bg-black h-[900px] flex items-center justify-center overflow-hidden\">"
+      }
+    },
+    {
+      "type": "text",
+      "text": "Also let me bump the New Arrivals section padding slightly to better match the live height, and re-screenshot for round 2."
+    },
+    {
+      "type": "tool_use",
+      "name": "Edit",
+      "input": {
+        "replace_all": false,
+        "file_path": "/var/folders/gb/m6478s0n5mx9wqlz8t_c03800000gn/T/gumshoe-agent-run-W7bwLe/clone.html",
+        "old_string": "<section class=\"py-16 px-6\">\n  <div class=\"max-w-[1280px] mx-auto\">\n    <h2 class=\"home__subtitle text-center text-base mb-10\">New Arrivals</h2>\n    <div class=\"grid grid-cols-2 md:grid-cols-4 gap-x-6 gap-y-10\">",
+        "new_string": "<section class=\"py-20 px-6\">\n  <div class=\"max-w-[1280px] mx-auto\">\n    <h2 class=\"home__subtitle text-center text-base mb-12\">New Arrivals</h2>\n    <div class=\"grid grid-cols-2 md:grid-cols-4 gap-x-6 gap-y-12\">"
+      }
+    },
+    {
+      "type": "tool_use",
+      "name": "Bash",
+      "input": {
+        "command": "cd /var/folders/gb/m6478s0n5mx9wqlz8t_c03800000gn/T/gumshoe-agent-run-W7bwLe && npx github:cam5/crow-nester \"file:///var/folders/gb/m6478s0n5mx9wqlz8t_c03800000gn/T/gumshoe-agent-run-W7bwLe/clone.html\" --screenshot clone-round2.png 2>&1 | tail -3\nfile clone-round2.png",
+        "description": "Screenshot clone round 2 after fixes"
+      }
+    },
+    {
+      "type": "tool_use",
+      "name": "Bash",
+      "input": {
+        "command": "cd /var/folders/gb/m6478s0n5mx9wqlz8t_c03800000gn/T/gumshoe-agent-run-W7bwLe && \\\nnpx github:cam5/crow-nester https://goodvibesonmain.ca/ --root-selector \"#shopify-section-index-collection\" --screenshot na-original.png 2>&1 | tail -3\nnpx github:cam5/crow-nester \"file:///var/folders/gb/m6478s0n5mx9wqlz8t_c03800000gn/T/gumshoe-agent-run-W7bwLe/clone.html\" --root-selector \"main > section:nth-of-type(2)\" --screenshot na-clone.png 2>&1 | tail -3\nfile na-original.png na-clone.png",
+        "description": "Screenshot New Arrivals section on both pages"
+      }
+    },
+    {
+      "type": "tool_use",
+      "name": "Bash",
+      "input": {
+        "command": "cd /var/folders/gb/m6478s0n5mx9wqlz8t_c03800000gn/T/gumshoe-agent-run-W7bwLe && python3 -c \"\nfrom PIL import Image\na = Image.open('na-original.png')\nb = Image.open('na-clone.png')\nh = min(a.height, b.height)\na.crop((0,0,1280,h)).save('na-original-crop.png')\nb.crop((0,0,1280,h)).save('na-clone-crop.png')\n\"\nnpx odiff-bin na-original-crop.png na-clone-crop.png na-diff.png --parsable-stdout",
+        "description": "Odiff New Arrivals section"
+      }
+    },
+    {
+      "type": "tool_use",
+      "name": "Read",
+      "input": {
+        "file_path": "/var/folders/gb/m6478s0n5mx9wqlz8t_c03800000gn/T/gumshoe-agent-run-W7bwLe/na-diff.png"
+      }
+    },
+    {
+      "type": "tool_use",
+      "name": "Bash",
+      "input": {
+        "command": "cd /var/folders/gb/m6478s0n5mx9wqlz8t_c03800000gn/T/gumshoe-agent-run-W7bwLe && python3 -c \"\nfrom PIL import Image\na = Image.open('original-round2.png')\nb = Image.open('clone-round2.png')\nh = min(a.height, b.height)\na.crop((0,0,1280,h)).save('original-crop2.png')\nb.crop((0,0,1280,h)).save('clone-crop2.png')\nprint(a.size,b.size,h)\n\"\nnpx odiff-bin original-crop2.png clone-crop2.png diff-round2.png --parsable-stdout",
+        "description": "Final whole-page odiff comparison round 2"
+      }
+    },
+    {
+      "type": "tool_use",
+      "name": "Bash",
+      "input": {
+        "command": "cd /var/folders/gb/m6478s0n5mx9wqlz8t_c03800000gn/T/gumshoe-agent-run-W7bwLe && \\\nnpx github:cam5/crow-nester https://goodvibesonmain.ca/ --root-selector \"#shopify-section-index-video\" --screenshot video-original.png 2>&1 | tail -2\nnpx github:cam5/crow-nester \"file:///var/folders/gb/m6478s0n5mx9wqlz8t_c03800000gn/T/gumshoe-agent-run-W7bwLe/clone.html\" --root-selector \"section.h-\\[900px\\]\" --screenshot video-clone.png 2>&1 | tail -2\nfile video-original.png video-clone.png",
+        "description": "Screenshot video section on both pages"
+      }
+    },
+    {
+      "type": "text",
+      "text": "Heights match exactly now (900x900). Let's diff these directly."
+    },
+    {
+      "type": "tool_use",
+      "name": "Bash",
+      "input": {
+        "command": "cd /var/folders/gb/m6478s0n5mx9wqlz8t_c03800000gn/T/gumshoe-agent-run-W7bwLe && npx odiff-bin video-original.png video-clone.png video-diff.png --parsable-stdout",
+        "description": "Odiff video section"
+      }
+    },
+    {
+      "type": "tool_use",
+      "name": "Read",
+      "input": {
+        "file_path": "/var/folders/gb/m6478s0n5mx9wqlz8t_c03800000gn/T/gumshoe-agent-run-W7bwLe/video-original.png"
+      }
+    },
+    {
+      "type": "text",
+      "text": "I've completed the clone and fidelity checks. Here's a summary of the work:\n\n**File written to:** `/var/folders/gb/m6478s0n5mx9wqlz8t_c03800000gn/T/gumshoe-agent-run-W7bwLe/clone.html`\n\n**Key decisions:**\n- **Design tokens** (via windtailor on `body`, `.theme__header`, `.home__subtitle`, and the CTA button, plus reading the theme's raw CSS custom properties): white page background, `#656565`/`#747474` gray text, `#efe9db` cream announcement bar, `#483535` hover accent. Fonts are the theme's real stack — **Poppins** (body), **Alegreya Sans** uppercase/letter-spaced (headings/nav), **Questrial** (accent) — loaded from Google Fonts and wired into the Tailwind config.\n- **Componentized:** product grid card (New Arrivals, 8 items), collection-grid tile (Shop Today, 5 items), logo-bar item (8 brand logos), and footer column block — all confirmed as genuinely repeated, same-purpose fragments by inspection, not just similar shape.\n- **Hotlinked, not rehosted:** every product photo, lifestyle photo, and logo uses the live `goodvibesonmain.ca` CDN URL directly, per scope.\n- **Flagged as unrecreatable / approximated:**\n  - The `#widget2` cross-origin iframe (confirmed absent from raw HTML, JS-injected) — a genuine YouTube embed. I approximated it with the real YouTube thumbnail (`img.youtube.com/vi/asQcvDjkrEo/...`) + a play button linking out to YouTube, and set its height to the exact 900px the live section renders at.\n  - The \"Get good vibes in your inbox!\" popup is a third-party marketing app injection (not in raw HTML, not core theme content) — per the tool guidance on toolbars/cookie-banners/A-B widgets, I intentionally excluded it rather than rebuilding it as if it were page content.\n  - The hero slideshow's first image intermittently served two visibly different images across my own fetches (a \"guitar player\" lifestyle photo vs. a \"Summer Vibes Loading\" collage) from the *same* CDN URL — this is live CDN edge-cache flakiness on the target site's end, not something a static clone can pin down; I kept the real, current CDN URL.\n- **Fidelity check:** screenshotted original vs. clone at 1280×900 viewport across 2 rounds (`original.png`/`original-round2.png` vs `clone-round1.png`/`clone-round2.png`, diffs in `diff-round1.png`/`diff-round2.png`), plus two scoped section diffs (New Arrivals grid, video section). Whole-page odiff sat around 58-60%, but visual inspection showed this was dominated by (a) the intentionally-excluded popup shifting everything below it, and (b) crow-nester's root-selector screenshots capturing the sticky header/popup overlay on top of scoped crops, not real layout mismatches. The New Arrivals grid and video section — my two highest-priority calls — matched well in position, sizing, and imagery once that contamination was accounted for; I corrected a real height bug found this way (video section was 720px vs. the live 900px) and increased New Arrivals section spacing to better match."
+    }
+  ],
+  "toolCalls": [
+    {
+      "name": "Bash",
+      "input": {
+        "command": "cd /var/folders/gb/m6478s0n5mx9wqlz8t_c03800000gn/T/gumshoe-agent-run-W7bwLe && npx github:cam5/crow-nester https://goodvibesonmain.ca/ --sort-by area 2>&1 | head -300",
+        "description": "Run crow-nester on target URL sorted by area"
+      }
+    },
+    {
+      "name": "Bash",
+      "input": {
+        "command": "cd /var/folders/gb/m6478s0n5mx9wqlz8t_c03800000gn/T/gumshoe-agent-run-W7bwLe && npx github:cam5/crow-nester https://goodvibesonmain.ca/ --sort-by area > crow-full.json 2>crow-err.log; wc -l crow-full.json; echo \"---ERR---\"; cat crow-err.log | head -20",
+        "description": "Save full crow-nester output to file"
+      }
+    },
+    {
+      "name": "Bash",
+      "input": {
+        "command": "cd /var/folders/gb/m6478s0n5mx9wqlz8t_c03800000gn/T/gumshoe-agent-run-W7bwLe && jq '.nodeCount' crow-full.json\necho \"--- top 20 by area (already sorted) ---\"\njq -r '.nodes[0:20][] | \"\\(.rendered.area|floor)\\t\\(.tag)\\t\\(.selector)\\t\\(.text|.[0:60])\"' crow-full.json\necho \"--- headings ---\"\njq -r '.nodes[] | select(.tag==\"h1\" or .tag==\"h2\" or .tag==\"h3\" or .tag==\"h4\") | \"\\(.tag)\\t\\(.selector)\\t\\(.text)\"' crow-full.json\necho \"--- nav links ---\"\njq -r '.nodes[] | select(.tag==\"a\" and (.selector|test(\"nav|header|menu\";\"i\"))) | \"\\(.selector)\\t\\(.text)\"' crow-full.json | head -60",
+        "description": "Extract key info from crow-nester JSON"
+      }
+    },
+    {
+      "name": "Bash",
+      "input": {
+        "command": "cd /var/folders/gb/m6478s0n5mx9wqlz8t_c03800000gn/T/gumshoe-agent-run-W7bwLe && echo \"--- header area (selector contains header) ---\"\njq -r '.nodes[] | select(.selector|test(\"header\")) | \"\\(.tag)\\t\\(.selector)\\t\\(.text)\"' crow-full.json | head -80\necho \"--- footer ---\"\njq -r '.nodes[] | select(.selector|test(\"footer\";\"i\")) | \"\\(.tag)\\t\\(.selector)\\t\\(.text)\"' crow-full.json | head -80",
+        "description": "Extract header and footer nodes"
+      }
+    },
+    {
+      "name": "Bash",
+      "input": {
+        "command": "cd /var/folders/gb/m6478s0n5mx9wqlz8t_c03800000gn/T/gumshoe-agent-run-W7bwLe && curl -s -A \"Mozilla/5.0\" https://goodvibesonmain.ca/ -o raw.html; wc -l raw.html; wc -c raw.html",
+        "description": "Fetch raw HTML of the page"
+      }
+    },
+    {
+      "name": "Bash",
+      "input": {
+        "command": "cd /var/folders/gb/m6478s0n5mx9wqlz8t_c03800000gn/T/gumshoe-agent-run-W7bwLe && grep -n \"shopify-section-header\" raw.html | head -5\necho \"---\"\ngrep -n \"logo\" raw.html | grep -i \"img\\|src\" | head -10",
+        "description": "Find header section and logo images in raw HTML"
+      }
+    },
+    {
+      "name": "Read",
+      "input": {
+        "file_path": "/var/folders/gb/m6478s0n5mx9wqlz8t_c03800000gn/T/gumshoe-agent-run-W7bwLe/raw.html",
+        "offset": 818,
+        "limit": 220
+      }
+    },
+    {
+      "name": "Bash",
+      "input": {
+        "command": "cd /var/folders/gb/m6478s0n5mx9wqlz8t_c03800000gn/T/gumshoe-agent-run-W7bwLe && grep -n \"id=\\\"shopify-section-index-slideshow\\\"\\|id=\\\"slideshow-index-slideshow\\\"\" raw.html",
+        "description": "Find slideshow section line number"
+      }
+    },
+    {
+      "name": "Read",
+      "input": {
+        "file_path": "/var/folders/gb/m6478s0n5mx9wqlz8t_c03800000gn/T/gumshoe-agent-run-W7bwLe/raw.html",
+        "offset": 2382,
+        "limit": 200
+      }
+    },
+    {
+      "name": "Bash",
+      "input": {
+        "command": "cd /var/folders/gb/m6478s0n5mx9wqlz8t_c03800000gn/T/gumshoe-agent-run-W7bwLe && sed -n '2535,2900p' raw.html | grep -n \"product-grid-item__title\\|money\\|alt=\\\"\" ",
+        "description": "Search for product titles and prices in New Arrivals grid"
+      }
+    },
+    {
+      "name": "Bash",
+      "input": {
+        "command": "cd /var/folders/gb/m6478s0n5mx9wqlz8t_c03800000gn/T/gumshoe-agent-run-W7bwLe && sed -n '2581,2620p' raw.html",
+        "description": "Look at rest of first product grid item markup"
+      }
+    },
+    {
+      "name": "Bash",
+      "input": {
+        "command": "cd /var/folders/gb/m6478s0n5mx9wqlz8t_c03800000gn/T/gumshoe-agent-run-W7bwLe && sed -n '2535,2900p' raw.html | grep -A1 \"grid__title\" | grep -v \"grid__title\\|--\"\necho \"---prices---\"\nsed -n '2535,2900p' raw.html | grep -B1 '\\$[0-9]' | grep '\\$'\necho \"=== collection-grid section ===\"\ngrep -n \"shopify-section-index-collection-grid\" raw.html",
+        "description": "Extract product titles and prices, find collection-grid section"
+      }
+    },
+    {
+      "name": "Bash",
+      "input": {
+        "command": "cd /var/folders/gb/m6478s0n5mx9wqlz8t_c03800000gn/T/gumshoe-agent-run-W7bwLe && sed -n '2535,3071p' raw.html | grep -c '<div class=\"product-grid-item \"'\necho \"=== collection-grid content ===\"\nsed -n '3071,3250p' raw.html",
+        "description": "Count product items and view collection-grid section"
+      }
+    },
+    {
+      "name": "Bash",
+      "input": {
+        "command": "cd /var/folders/gb/m6478s0n5mx9wqlz8t_c03800000gn/T/gumshoe-agent-run-W7bwLe && grep -n \"Shop Pets\\|grid__item medium-up--one-third\" raw.html | head -10\necho \"=== section boundaries ===\"\ngrep -n 'id=\"shopify-section-' raw.html",
+        "description": "Find Shop Pets item and all section boundaries"
+      }
+    },
+    {
+      "name": "Read",
+      "input": {
+        "file_path": "/var/folders/gb/m6478s0n5mx9wqlz8t_c03800000gn/T/gumshoe-agent-run-W7bwLe/raw.html",
+        "offset": 791,
+        "limit": 27
+      }
+    },
+    {
+      "name": "Read",
+      "input": {
+        "file_path": "/var/folders/gb/m6478s0n5mx9wqlz8t_c03800000gn/T/gumshoe-agent-run-W7bwLe/raw.html",
+        "offset": 3318,
+        "limit": 160
+      }
+    },
+    {
+      "name": "Read",
+      "input": {
+        "file_path": "/var/folders/gb/m6478s0n5mx9wqlz8t_c03800000gn/T/gumshoe-agent-run-W7bwLe/raw.html",
+        "offset": 3476,
+        "limit": 120
+      }
+    },
+    {
+      "name": "Read",
+      "input": {
+        "__unparsedToolInput": {
+          "raw": "{\"file_path\": \"/var/folders/gb/m6478s0n5mx9wqlz8t_c03800000gn/T/gumshoe-agent-run-W7bwLe/raw.html\", \"offset\": 3595, 3595\n}",
+          "len": 122
+        }
+      }
+    },
+    {
+      "name": "Read",
+      "input": {
+        "file_path": "/var/folders/gb/m6478s0n5mx9wqlz8t_c03800000gn/T/gumshoe-agent-run-W7bwLe/raw.html",
+        "offset": 3595,
+        "limit": 200
+      }
+    },
+    {
+      "name": "Read",
+      "input": {
+        "file_path": "/var/folders/gb/m6478s0n5mx9wqlz8t_c03800000gn/T/gumshoe-agent-run-W7bwLe/raw.html",
+        "offset": 3794,
+        "limit": 65
+      }
+    },
+    {
+      "name": "Bash",
+      "input": {
+        "command": "cd /var/folders/gb/m6478s0n5mx9wqlz8t_c03800000gn/T/gumshoe-agent-run-W7bwLe && jq -r '.nodes[] | select(.selector==\"#widget2\") | .' crow-full.json\necho \"=== raw context around widget2 ===\"\ngrep -n \"widget2\" raw.html",
+        "description": "Check widget2 iframe details"
+      }
+    },
+    {
+      "name": "Read",
+      "input": {
+        "file_path": "/var/folders/gb/m6478s0n5mx9wqlz8t_c03800000gn/T/gumshoe-agent-run-W7bwLe/raw.html",
+        "offset": 3857,
+        "limit": 200
+      }
+    },
+    {
+      "name": "Bash",
+      "input": {
+        "command": "cd /var/folders/gb/m6478s0n5mx9wqlz8t_c03800000gn/T/gumshoe-agent-run-W7bwLe && grep -n \"footer-social\\|payment-icons\\|icon-facebook\\|icon-instagram\\|Powered by Shopify\\|copyright\\|footer-legal\" raw.html | head -20",
+        "description": "Find footer social and legal sections"
+      }
+    },
+    {
+      "name": "Bash",
+      "input": {
+        "command": "cd /var/folders/gb/m6478s0n5mx9wqlz8t_c03800000gn/T/gumshoe-agent-run-W7bwLe && npx github:cam5/windtailor https://goodvibesonmain.ca/ --selector \"body\" > windtailor-body.json 2>&1 &\nnpx github:cam5/windtailor https://goodvibesonmain.ca/ --selector \".theme__header\" > windtailor-header.json 2>&1 &\nnpx github:cam5/windtailor https://goodvibesonmain.ca/ --selector \".home__subtitle\" > windtailor-subtitle.json 2>&1 &\nnpx github:cam5/windtailor https://goodvibesonmain.ca/ --selector \".btn--outline.cta--overlay\" > windtailor-btn.json 2>&1 &\nwait\necho done",
+        "description": "Run windtailor on body, header, subtitle heading, and button"
+      }
+    },
+    {
+      "name": "Bash",
+      "input": {
+        "command": "cd /var/folders/gb/m6478s0n5mx9wqlz8t_c03800000gn/T/gumshoe-agent-run-W7bwLe && for f in windtailor-body.json windtailor-header.json windtailor-subtitle.json windtailor-btn.json; do echo \"=== $f ===\"; cat \"$f\"; echo; done",
+        "description": "Print windtailor results"
+      }
+    },
+    {
+      "name": "Bash",
+      "input": {
+        "command": "cd /var/folders/gb/m6478s0n5mx9wqlz8t_c03800000gn/T/gumshoe-agent-run-W7bwLe && npx github:cam5/windtailor --help 2>&1 | head -50",
+        "description": "Check windtailor CLI options"
+      }
+    },
+    {
+      "name": "Bash",
+      "input": {
+        "command": "cd /var/folders/gb/m6478s0n5mx9wqlz8t_c03800000gn/T/gumshoe-agent-run-W7bwLe && \\\nnpx github:cam5/windtailor https://goodvibesonmain.ca/ --selector \"body\" --out ./out-body > /dev/null 2>&1 &\nnpx github:cam5/windtailor https://goodvibesonmain.ca/ --selector \".theme__header\" --out ./out-header > /dev/null 2>&1 &\nnpx github:cam5/windtailor https://goodvibesonmain.ca/ --selector \".home__subtitle\" --out ./out-subtitle > /dev/null 2>&1 &\nnpx github:cam5/windtailor https://goodvibesonmain.ca/ --selector \".btn--outline.cta--overlay\" --out ./out-btn > /dev/null 2>&1 &\nwait\necho done",
+        "description": "Run windtailor with separate output directories"
+      }
+    },
+    {
+      "name": "Bash",
+      "input": {
+        "command": "cd /var/folders/gb/m6478s0n5mx9wqlz8t_c03800000gn/T/gumshoe-agent-run-W7bwLe && echo \"=== BODY reconciled classes ===\" && jq -r '.className // .classes // empty' out-body/report.json 2>/dev/null | head -5\njq 'keys' out-body/report.json\necho \"--- computed top-level styles ---\"\njq '.computed // .styles // .target // empty' out-body/report.json 2>/dev/null | head -60",
+        "description": "Inspect windtailor report structure for body"
+      }
+    },
+    {
+      "name": "Bash",
+      "input": {
+        "command": "cd /var/folders/gb/m6478s0n5mx9wqlz8t_c03800000gn/T/gumshoe-agent-run-W7bwLe && echo \"=== body classes ===\" \njq -r '.classes.\"0\" | join(\" \")' out-body/report.json\necho \"=== body suggestions (color/font related) ===\"\njq -r '.suggestions[] | select(.property==\"color\" or .property==\"background-color\" or .property==\"font-family\" or .property==\"font-size\") | \"\\(.property): \\(.value) -> \\(.suggestion // .class // .token)\"' out-body/report.json 2>/dev/null | head -20\necho \"=== body tokens ===\"\njq '.tokens' out-body/report.json | head -60",
+        "description": "Extract body classes, key suggestions, tokens"
+      }
+    },
+    {
+      "name": "Bash",
+      "input": {
+        "command": "cd /var/folders/gb/m6478s0n5mx9wqlz8t_c03800000gn/T/gumshoe-agent-run-W7bwLe && jq '.tokens.newlyMinted // .tokens.minted // empty' out-body/report.json | head -40\necho \"--- full tokens keys ---\"\njq '.tokens | keys' out-body/report.json\necho \"--- colors ---\"\njq '.tokens.colors // empty' out-body/report.json | head -40\nfind . -name \"tailwind.config.tokens.js\" | xargs -I{} sh -c 'echo === {} ===; cat {}' 2>/dev/null | grep -A5 \"custom-1\"",
+        "description": "Look for minted color tokens especially custom-1"
+      }
+    },
+    {
+      "name": "Bash",
+      "input": {
+        "command": "cd /var/folders/gb/m6478s0n5mx9wqlz8t_c03800000gn/T/gumshoe-agent-run-W7bwLe && cat out-body/tailwind.config.tokens.js\necho \"=== header ===\"\ncat out-header/tailwind.config.tokens.js\necho \"=== header classes ===\"\njq -r '.classes.\"0\" | join(\" \")' out-header/report.json\necho \"=== subtitle ===\"\ncat out-subtitle/tailwind.config.tokens.js\njq -r '.classes.\"0\" | join(\" \")' out-subtitle/report.json\necho \"=== btn ===\"\ncat out-btn/tailwind.config.tokens.js\njq -r '.classes.\"0\" | join(\" \")' out-btn/report.json",
+        "description": "Print all tailwind token configs and classes"
+      }
+    },
+    {
+      "name": "Bash",
+      "input": {
+        "command": "cd /var/folders/gb/m6478s0n5mx9wqlz8t_c03800000gn/T/gumshoe-agent-run-W7bwLe && jq -r '.tree' out-body/report.json 2>/dev/null | head -5\necho \"---\"\njq '.tree.\"0\".computed.\"font-family\"' out-body/report.json 2>/dev/null\njq -r '[paths(scalars) as $p | select($p[-1]==\"font-family\") | ($p|join(\".\")) + \" = \" + (getpath($p)|tostring)] | .[0:5][]' out-body/report.json\njq -r '[paths(scalars) as $p | select($p[-1]==\"font-family\") | ($p|join(\".\")) + \" = \" + (getpath($p)|tostring)] | .[0:5][]' out-subtitle/report.json",
+        "description": "Find font-family in report JSON"
+      }
+    },
+    {
+      "name": "Bash",
+      "input": {
+        "command": "cd /var/folders/gb/m6478s0n5mx9wqlz8t_c03800000gn/T/gumshoe-agent-run-W7bwLe && grep -o \"font-family:[^;]*;\" raw.html | sort -u | head -20\necho \"---\"\ngrep -o \"\\-\\-font[a-zA-Z-]*:[^;]*;\" raw.html | sort -u | head -20",
+        "description": "Search raw HTML for font-family declarations"
+      }
+    },
+    {
+      "name": "Bash",
+      "input": {
+        "command": "cd /var/folders/gb/m6478s0n5mx9wqlz8t_c03800000gn/T/gumshoe-agent-run-W7bwLe && grep -o \"\\-\\-color-[a-zA-Z-]*:[^;]*;\" raw.html | sort -u | head -40",
+        "description": "Search raw HTML for color custom properties"
+      }
+    },
+    {
+      "name": "Bash",
+      "input": {
+        "command": "cd /var/folders/gb/m6478s0n5mx9wqlz8t_c03800000gn/T/gumshoe-agent-run-W7bwLe && npx github:cam5/crow-nester https://goodvibesonmain.ca/ --screenshot original.png 2>&1 | tail -5\nls -la original.png",
+        "description": "Take screenshot of live original page"
+      }
+    },
+    {
+      "name": "Read",
+      "input": {
+        "file_path": "/var/folders/gb/m6478s0n5mx9wqlz8t_c03800000gn/T/gumshoe-agent-run-W7bwLe/original.png"
+      }
+    },
+    {
+      "name": "Bash",
+      "input": {
+        "command": "cd /var/folders/gb/m6478s0n5mx9wqlz8t_c03800000gn/T/gumshoe-agent-run-W7bwLe && grep -n \"PopupSignupForm\" raw.html | head -5",
+        "description": "Find popup signup form section"
+      }
+    },
+    {
+      "name": "Bash",
+      "input": {
+        "command": "cd /var/folders/gb/m6478s0n5mx9wqlz8t_c03800000gn/T/gumshoe-agent-run-W7bwLe && awk 'NR==2535,NR==3071' raw.html > collection.html\ngrep -n 'grid__title\\|href=\"/products\\|\\$[0-9]' collection.html | grep -v \"data-\\|background-image\"",
+        "description": "Extract all New Arrivals product data"
+      }
+    },
+    {
+      "name": "Bash",
+      "input": {
+        "command": "cd /var/folders/gb/m6478s0n5mx9wqlz8t_c03800000gn/T/gumshoe-agent-run-W7bwLe && grep -n 'data-src=\"//goodvibesonmain' collection.html",
+        "description": "Get product image data-src URLs"
+      }
+    },
+    {
+      "name": "Bash",
+      "input": {
+        "command": "cd /var/folders/gb/m6478s0n5mx9wqlz8t_c03800000gn/T/gumshoe-agent-run-W7bwLe && sed -n '3071,3320p' raw.html | grep -n 'href=\"/collections\\|_1x1\\.\\|Shop '",
+        "description": "Extract Shop Today grid hrefs and images"
+      }
+    },
+    {
+      "name": "Bash",
+      "input": {
+        "command": "cd /var/folders/gb/m6478s0n5mx9wqlz8t_c03800000gn/T/gumshoe-agent-run-W7bwLe && grep -n \"icon-account\\|icon-search\\|icon-cart\" raw.html | head -10",
+        "description": "Find header icon svg definitions"
+      }
+    },
+    {
+      "name": "Bash",
+      "input": {
+        "command": "cd /var/folders/gb/m6478s0n5mx9wqlz8t_c03800000gn/T/gumshoe-agent-run-W7bwLe && grep -n \"site-footer-wrapper\\|footer__legal\\|footer-legal\\|copyright\\|© \" raw.html | head -10\nsed -n '4530,4560p' raw.html",
+        "description": "Check footer copyright text"
+      }
+    },
+    {
+      "name": "Bash",
+      "input": {
+        "command": "cd /var/folders/gb/m6478s0n5mx9wqlz8t_c03800000gn/T/gumshoe-agent-run-W7bwLe && grep -n \"copyright\\|&copy;\\|2026\\|©\" raw.html | head -10",
+        "description": "Find copyright text in footer"
+      }
+    },
+    {
+      "name": "Write",
+      "input": {
+        "file_path": "/var/folders/gb/m6478s0n5mx9wqlz8t_c03800000gn/T/gumshoe-agent-run-W7bwLe/clone.html",
+        "content": "<!DOCTYPE html>\n<html lang=\"en\">\n<head>\n<meta charset=\"UTF-8\">\n<meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n<title>Good Vibes on Main - The best selection of Life is Good in the GTA</title>\n<link rel=\"preconnect\" href=\"https://fonts.googleapis.com\">\n<link rel=\"preconnect\" href=\"https://fonts.gstatic.com\" crossorigin>\n<link href=\"https://fonts.googleapis.com/css2?family=Alegreya+Sans:wght@400;500;700&family=Poppins:wght@300;400;500;600;700&family=Questrial&display=swap\" rel=\"stylesheet\">\n<script src=\"https://cdn.tailwindcss.com\"></script>\n<script>\n  tailwind.config = {\n    theme: {\n      extend: {\n        colors: {\n          \"brand-text\": \"#656565\",\n          \"brand-text-light\": \"#747474\",\n          \"brand-hover\": \"#483535\",\n          \"brand-cream\": \"#efe9db\",\n          \"brand-accent-bg\": \"#f7f7f7\",\n          \"brand-disabled\": \"#c9c9c9\",\n        },\n        fontFamily: {\n          sans: ['\"Poppins\"', 'sans-serif'],\n          heading: ['\"Alegreya Sans\"', 'sans-serif'],\n          accent: ['\"Questrial\"', 'sans-serif'],\n        },\n        spacing: {\n          \"4.5\": \"1.125rem\",\n          \"18\": \"4.5rem\",\n          \"130\": \"32.5rem\",\n        },\n      }\n    }\n  };\n</script>\n<style>\n  body { color: #656565; }\n  .home__subtitle {\n    font-family: 'Alegreya Sans', sans-serif;\n    text-transform: uppercase;\n    letter-spacing: 1px;\n    font-weight: 700;\n  }\n  .navtext { font-family: 'Alegreya Sans', sans-serif; text-transform: uppercase; letter-spacing: 1px; font-weight: 500; }\n  .slick-track { transition: transform 0.6s ease; display: flex; }\n  .slick-slide-item { flex: 0 0 100%; }\n  .btn { display:inline-block; padding: 0.75rem 1.75rem; border:1px solid #656565; text-transform:uppercase; letter-spacing:1px; font-size:0.75rem; font-weight:600; }\n  .btn--outline { border-color:#fff; color:#fff; background:transparent; }\n  .btn--outline:hover { background:#fff; color:#222; }\n  .btn--soft { background:rgba(255,255,255,0.9); color:#333; }\n  marquee-track { animation: ticker 22s linear infinite; }\n</style>\n</head>\n<body class=\"bg-white font-sans text-brand-text text-sm leading-relaxed\">\n\n<!-- Announcement bar -->\n<div class=\"bg-brand-cream text-brand-text text-xs\">\n  <div class=\"max-w-[1280px] mx-auto flex items-center justify-center relative px-4 py-2\">\n    <a href=\"https://goodvibesonmain.ca/pages/shipping-information\" class=\"tracking-wide text-center hover:underline\">\n      WE HAVE SUSPENDED SHIPPING TO THE US - CLICK HERE FOR MORE INFO\n    </a>\n    <a href=\"/search\" class=\"absolute right-4\" aria-label=\"Search\">\n      <svg class=\"w-3.5 h-3.5\" viewBox=\"0 0 16 16\" fill=\"currentColor\"><path d=\"M16 14.864L14.863 16l-4.24-4.241a6.406 6.406 0 01-4.048 1.392 6.61 6.61 0 01-4.65-1.925A6.493 6.493 0 01.5 9.098 6.51 6.51 0 010 6.575a6.536 6.536 0 011.922-4.652A6.62 6.62 0 014.062.5 6.52 6.52 0 016.575 0 6.5 6.5 0 019.1.5c.8.332 1.51.806 2.129 1.423a6.454 6.454 0 011.436 2.13 6.54 6.54 0 01.498 2.522c0 1.503-.468 2.853-1.4 4.048L16 14.864zM3.053 10.091c.973.972 2.147 1.461 3.522 1.461 1.378 0 2.551-.489 3.525-1.461.968-.967 1.45-2.138 1.45-3.514 0-1.37-.482-2.545-1.45-3.524-.981-.968-2.154-1.45-3.525-1.45-1.376 0-2.547.483-3.513 1.45-.973.973-1.46 2.146-1.46 3.523 0 1.375.483 2.548 1.45 3.515z\"/></svg>\n    </a>\n  </div>\n</div>\n\n<!-- Header -->\n<header class=\"sticky top-0 z-40 bg-white border-b border-brand-accent-bg\">\n  <div class=\"max-w-[1280px] mx-auto flex items-center justify-between px-6 py-5\">\n    <a href=\"/\" class=\"flex-shrink-0 w-[100px]\">\n      <img src=\"https://goodvibesonmain.ca/cdn/shop/files/NEWLIGNEWMARKETLOGO_1_220x.png?v=1759332633\" alt=\"Good Vibes on Main\" class=\"w-full h-auto\">\n    </a>\n    <nav class=\"hidden md:flex items-center gap-8\">\n      <a href=\"/collections\" class=\"navtext text-xs text-brand-text hover:text-brand-hover\">Shop</a>\n      <a href=\"/pages/about-us\" class=\"navtext text-xs text-brand-text hover:text-brand-hover\">About Us</a>\n      <a href=\"/pages/lifeisgood-com\" class=\"navtext text-xs text-brand-text hover:text-brand-hover\">LIFEISGOOD.COM</a>\n      <a href=\"/pages/contact-us\" class=\"navtext text-xs text-brand-text hover:text-brand-hover\">Contact Us</a>\n      <a href=\"/blogs/news\" class=\"navtext text-xs text-brand-text hover:text-brand-hover\">Good Vibes Blog</a>\n      <a href=\"/pages/fit-guides\" class=\"navtext text-xs text-brand-text hover:text-brand-hover\">Size Guide</a>\n    </nav>\n    <div class=\"flex items-center gap-5\">\n      <a href=\"/account\" aria-label=\"My Account\" class=\"hidden md:inline-block\">\n        <svg class=\"w-4 h-4\" viewBox=\"0 0 16 16\" fill=\"currentColor\"><path d=\"M10.713 8.771c.31.112.53.191.743.27.555.204.985.372 1.367.539 1.229.535 1.993 1.055 2.418 1.885.464.937.722 1.958.758 2.997.03.84-.662 1.538-1.524 1.538H1.525c-.862 0-1.554-.697-1.524-1.538a7.36 7.36 0 01.767-3.016c.416-.811 1.18-1.33 2.41-1.866a25.25 25.25 0 011.366-.54l.972-.35a1.42 1.42 0 00-.006-.072c-.937-1.086-1.369-2.267-1.369-4.17C4.141 1.756 5.517 0 8.003 0c2.485 0 3.856 1.755 3.856 4.448 0 2.03-.492 3.237-1.563 4.386.169-.18.197-.253.207-.305a1.2 1.2 0 00-.019.16l.228.082z\"/></svg>\n      </a>\n      <a href=\"/search\" aria-label=\"Search\" class=\"hidden md:inline-block\">\n        <svg class=\"w-4 h-4\" viewBox=\"0 0 16 16\" fill=\"currentColor\"><path d=\"M16 14.864L14.863 16l-4.24-4.241a6.406 6.406 0 01-4.048 1.392 6.61 6.61 0 01-4.65-1.925A6.493 6.493 0 01.5 9.098 6.51 6.51 0 010 6.575a6.536 6.536 0 011.922-4.652A6.62 6.62 0 014.062.5 6.52 6.52 0 016.575 0 6.5 6.5 0 019.1.5c.8.332 1.51.806 2.129 1.423a6.454 6.454 0 011.436 2.13 6.54 6.54 0 01.498 2.522c0 1.503-.468 2.853-1.4 4.048L16 14.864zM3.053 10.091c.973.972 2.147 1.461 3.522 1.461 1.378 0 2.551-.489 3.525-1.461.968-.967 1.45-2.138 1.45-3.514 0-1.37-.482-2.545-1.45-3.524-.981-.968-2.154-1.45-3.525-1.45-1.376 0-2.547.483-3.513 1.45-.973.973-1.46 2.146-1.46 3.523 0 1.375.483 2.548 1.45 3.515z\"/></svg>\n      </a>\n      <a href=\"/cart\" aria-label=\"Cart\" class=\"flex items-center gap-1\">\n        <svg class=\"w-5 h-5\" viewBox=\"0 0 25 25\" fill=\"currentColor\"><path d=\"M5.058 23a2 2 0 104.001-.001A2 2 0 005.058 23zm12.079 0c0 1.104.896 2 2 2s1.942-.896 1.942-2-.838-2-1.942-2-2 .896-2 2zM0 1a1 1 0 001 1h1.078l.894 3.341L5.058 13c0 .072.034.134.042.204l-1.018 4.58A.997.997 0 005.058 19h16.71a1 1 0 000-2H6.306l.458-2.061c.1.017.19.061.294.061h12.31c1.104 0 1.712-.218 2.244-1.5l3.248-6.964C25.423 4.75 24.186 4 23.079 4H5.058c-.157 0-.292.054-.438.088L3.844.772A1 1 0 002.87 0H1a1 1 0 00-1 1zm5.098 5H22.93l-3.192 6.798c-.038.086-.07.147-.094.19-.067.006-.113.012-.277.012H7.058v-.198l-.038-.195L5.098 6z\"/></svg>\n        <span class=\"text-xs\">$0.00 (0)</span>\n      </a>\n      <button class=\"md:hidden\" aria-label=\"Open menu\">\n        <svg class=\"w-6 h-6\" viewBox=\"0 0 25 25\" fill=\"currentColor\"><path d=\"M0 4.062h25v2H0zm0 7h25v2H0zm0 7h25v2H0z\"/></svg>\n      </button>\n    </div>\n  </div>\n</header>\n\n<main>\n\n<!-- Hero Slideshow -->\n<section class=\"relative overflow-hidden bg-black\" id=\"slideshow\">\n  <div class=\"slick-track\" id=\"slick-track\">\n    <div class=\"slick-slide-item relative\">\n      <img src=\"https://goodvibesonmain.ca/cdn/shop/files/GWPAPR26Web_2_1950x.png?v=1776366169\" alt=\"\" class=\"w-full h-auto block\">\n    </div>\n    <div class=\"slick-slide-item relative\">\n      <img src=\"https://goodvibesonmain.ca/cdn/shop/files/FrameTemplate_1_1950x.png?v=1732567116\" alt=\"\" class=\"w-full h-auto block\">\n      <div class=\"absolute inset-0 flex items-end justify-start\">\n        <div class=\"max-w-[1280px] w-full mx-auto px-8 pb-12\">\n          <a href=\"/collections/martin-guitar\" class=\"btn btn--outline\">SHOP MARTIN GUITAR</a>\n        </div>\n      </div>\n    </div>\n  </div>\n  <button onclick=\"slidePrev()\" aria-label=\"Previous\" class=\"absolute left-4 top-1/2 -translate-y-1/2 text-white opacity-80 hover:opacity-100\">\n    <svg class=\"w-6 h-6\" viewBox=\"0 0 44 44\" fill=\"currentColor\"><path d=\"M10.366 22.502l.412.392L33.268 44l.732-.742-22.488-21.106L34 .742 33.268 0 10 22.152z\"/></svg>\n  </button>\n  <button onclick=\"slideNext()\" aria-label=\"Next\" class=\"absolute right-4 top-1/2 -translate-y-1/2 text-white opacity-80 hover:opacity-100\">\n    <svg class=\"w-6 h-6\" viewBox=\"0 0 44 44\" fill=\"currentColor\"><path d=\"M33.634 22.502l-.412.392L10.732 44 10 43.258l22.488-21.106L10 .742 10.732 0 34 22.152z\"/></svg>\n  </button>\n</section>\n\n<!-- New Arrivals -->\n<section class=\"py-16 px-6\">\n  <div class=\"max-w-[1280px] mx-auto\">\n    <h2 class=\"home__subtitle text-center text-base mb-10\">New Arrivals</h2>\n    <div class=\"grid grid-cols-2 md:grid-cols-4 gap-x-6 gap-y-10\">\n\n      <a href=\"/products/life-is-good-womens-breathe-more-worry-less-floral-tie-dye-long-sleeve-crusher-lite-hooded-tee\" class=\"block text-center group\">\n        <div class=\"aspect-square bg-brand-accent-bg mb-3 overflow-hidden\">\n          <img src=\"https://goodvibesonmain.ca/cdn/shop/files/xpdrvsrtu1axht3gferl_540x.png?v=1784125246\" alt=\"Life is Good Women's Breathe More Worry Less Floral Tie Dye Long Sleeve Crusher Lite Hooded Tee\" class=\"w-full h-full object-cover group-hover:opacity-80\">\n        </div>\n        <p class=\"text-xs uppercase tracking-wide px-2\">Life is Good Women's Breathe More Worry Less Floral Tie Dye Long Sleeve Crusher Lite Hooded Tee</p>\n        <p class=\"text-xs mt-1\">$60.00</p>\n      </a>\n\n      <a href=\"/products/life-is-good-womens-best-things-floral-paw-tie-dye-long-sleeve-crusher-lite-hooded-tee\" class=\"block text-center group\">\n        <div class=\"aspect-square bg-brand-accent-bg mb-3 overflow-hidden\">\n          <img src=\"https://goodvibesonmain.ca/cdn/shop/files/ybvdybkvxq4tcv44isd1_540x.png?v=1784123071\" alt=\"Life is Good Women's Best Things Floral Paw Tie Dye Long Sleeve Crusher Lite Hooded Tee\" class=\"w-full h-full object-cover group-hover:opacity-80\">\n        </div>\n        <p class=\"text-xs uppercase tracking-wide px-2\">Life is Good Women's Best Things Floral Paw Tie Dye Long Sleeve Crusher Lite Hooded Tee</p>\n        <p class=\"text-xs mt-1\">$60.00</p>\n      </a>\n\n      <a href=\"/products/life-is-good-womens-rally-swimming-turtles-crusher-lite-vee\" class=\"block text-center group\">\n        <div class=\"aspect-square bg-brand-accent-bg mb-3 overflow-hidden\">\n          <img src=\"https://goodvibesonmain.ca/cdn/shop/files/k6mjn4erw8f1ghk4s9ae_540x.png?v=1784061755\" alt=\"Life is Good Women's Rally Swimming Turtles Crusher Lite Vee\" class=\"w-full h-full object-cover group-hover:opacity-80\">\n        </div>\n        <p class=\"text-xs uppercase tracking-wide px-2\">Life is Good Women's Rally Swimming Turtles Crusher Lite Vee</p>\n        <p class=\"text-xs mt-1\">$39.00</p>\n      </a>\n\n      <a href=\"/products/life-is-good-womens-rally-hummingbirds-crusher-lite-vee\" class=\"block text-center group\">\n        <div class=\"aspect-square bg-brand-accent-bg mb-3 overflow-hidden\">\n          <img src=\"https://goodvibesonmain.ca/cdn/shop/files/hbgckcz5bcux4yrrx4nt_540x.png?v=1784061568\" alt=\"Life is Good Women's Rally Hummingbirds Crusher Lite Vee\" class=\"w-full h-full object-cover group-hover:opacity-80\">\n        </div>\n        <p class=\"text-xs uppercase tracking-wide px-2\">Life is Good Women's Rally Hummingbirds Crusher Lite Vee</p>\n        <p class=\"text-xs mt-1\">$39.00</p>\n      </a>\n\n      <a href=\"/products/life-is-good-womens-friends-in-low-places-crusher-lite-vee\" class=\"block text-center group\">\n        <div class=\"aspect-square bg-brand-accent-bg mb-3 overflow-hidden\">\n          <img src=\"https://goodvibesonmain.ca/cdn/shop/files/dyww4eoag8fabuzxxvdk_540x.png?v=1784060423\" alt=\"Life is Good Women's Friends in Low Places Crusher Lite Vee\" class=\"w-full h-full object-cover group-hover:opacity-80\">\n        </div>\n        <p class=\"text-xs uppercase tracking-wide px-2\">Life is Good Women's Friends in Low Places Crusher Lite Vee</p>\n        <p class=\"text-xs mt-1\">$39.00</p>\n      </a>\n\n      <a href=\"/products/life-is-good-womens-retro-flowerball-crusher-vee\" class=\"block text-center group\">\n        <div class=\"aspect-square bg-brand-accent-bg mb-3 overflow-hidden\">\n          <img src=\"https://goodvibesonmain.ca/cdn/shop/files/uzwtlhkoeqkzmpqyvgzb_540x.png?v=1784059879\" alt=\"Life is Good Women's Retro Flowerball Crusher Vee\" class=\"w-full h-full object-cover group-hover:opacity-80\">\n        </div>\n        <p class=\"text-xs uppercase tracking-wide px-2\">Life is Good Women's Retro Flowerball Crusher Vee</p>\n        <p class=\"text-xs mt-1\">$39.00</p>\n      </a>\n\n      <a href=\"/products/life-is-good-womens-beach-umbrella-scene-crusher-vee\" class=\"block text-center group\">\n        <div class=\"aspect-square bg-brand-accent-bg mb-3 overflow-hidden\">\n          <img src=\"https://goodvibesonmain.ca/cdn/shop/files/daxfmyl7mawekvgasxaj_540x.png?v=1784059624\" alt=\"Life is Good Women's Beach Umbrella Scene Crusher Vee\" class=\"w-full h-full object-cover group-hover:opacity-80\">\n        </div>\n        <p class=\"text-xs uppercase tracking-wide px-2\">Life is Good Women's Beach Umbrella Scene Crusher Vee</p>\n        <p class=\"text-xs mt-1\">$39.00</p>\n      </a>\n\n      <a href=\"/products/life-is-good-mens-berts-herd-that-shepherd-crusher-lite-tee\" class=\"block text-center group\">\n        <div class=\"aspect-square bg-brand-accent-bg mb-3 overflow-hidden\">\n          <img src=\"https://goodvibesonmain.ca/cdn/shop/files/e6242gncckhrvv8z6zqw_540x.png?v=1784059112\" alt=\"Life is Good Men's Bert's Herd That Shepherd Crusher Lite Tee\" class=\"w-full h-full object-cover group-hover:opacity-80\">\n        </div>\n        <p class=\"text-xs uppercase tracking-wide px-2\">Life is Good Men's Bert's Herd That Shepherd Crusher Lite Tee</p>\n        <p class=\"text-xs mt-1\">$39.00</p>\n      </a>\n\n    </div>\n  </div>\n</section>\n\n<!-- Shop Today -->\n<section class=\"py-16 px-6 bg-white\">\n  <div class=\"max-w-[1280px] mx-auto\">\n    <h2 class=\"home__subtitle text-center text-base mb-10\">Shop Today</h2>\n    <div class=\"flex flex-wrap\">\n      <a href=\"/collections/womens\" class=\"relative block w-full sm:w-1/3 aspect-[3/4] group overflow-hidden\" aria-label=\"Women's\">\n        <img src=\"https://goodvibesonmain.ca/cdn/shop/files/xpg3ap1f3x9pkvdgbvtu_720x.jpg?v=1767043740\" alt=\"Women's\" class=\"w-full h-full object-cover group-hover:scale-105 transition-transform duration-500\">\n        <div class=\"absolute inset-0 flex items-center justify-center\">\n          <span class=\"btn--soft px-4 py-2 text-xs uppercase tracking-wide\">Shop Women's</span>\n        </div>\n      </a>\n      <a href=\"/collections/mens\" class=\"relative block w-full sm:w-1/3 aspect-[3/4] group overflow-hidden\" aria-label=\"Men's\">\n        <img src=\"https://goodvibesonmain.ca/cdn/shop/files/hfejjbgb53zqk9dqespo_720x.jpg?v=1763318918\" alt=\"Men's\" class=\"w-full h-full object-cover group-hover:scale-105 transition-transform duration-500\">\n        <div class=\"absolute inset-0 flex items-center justify-center\">\n          <span class=\"btn--soft px-4 py-2 text-xs uppercase tracking-wide\">Shop Men's</span>\n        </div>\n      </a>\n      <a href=\"/collections/home-accessories\" class=\"relative block w-full sm:w-1/3 aspect-[3/4] group overflow-hidden\" aria-label=\"Home & Accessories\">\n        <img src=\"https://goodvibesonmain.ca/cdn/shop/files/nsdt240tyown7nwquvxi_720x.jpg?v=1764345571\" alt=\"Home & Accessories\" class=\"w-full h-full object-cover group-hover:scale-105 transition-transform duration-500\">\n        <div class=\"absolute inset-0 flex items-center justify-center\">\n          <span class=\"btn--soft px-4 py-2 text-xs uppercase tracking-wide\">Shop Home</span>\n        </div>\n      </a>\n      <a href=\"/collections/kids\" class=\"relative block w-full sm:w-1/3 aspect-[3/4] group overflow-hidden mt-6\">\n        <img src=\"https://goodvibesonmain.ca/cdn/shop/files/lsflxilo936110b2txum_720x.jpg?v=1746636593\" alt=\"Kids\" class=\"w-full h-full object-cover group-hover:scale-105 transition-transform duration-500\">\n        <div class=\"absolute inset-0 flex items-center justify-center\">\n          <span class=\"btn--soft px-4 py-2 text-xs uppercase tracking-wide\">Shop Kids</span>\n        </div>\n      </a>\n      <a href=\"/collections/sale-1\" class=\"relative block w-full sm:w-1/3 aspect-[3/4] group overflow-hidden mt-6\" aria-label=\"Sale\">\n        <img src=\"https://goodvibesonmain.ca/cdn/shop/files/SS25_LIFESTYLE_ON_MODEL_CHEWY_LG1244C2_AND_LG1008C3_625_720x.png?v=1745871295\" alt=\"Pets\" class=\"w-full h-full object-cover group-hover:scale-105 transition-transform duration-500\">\n        <div class=\"absolute inset-0 flex items-center justify-center\">\n          <span class=\"btn--soft px-4 py-2 text-xs uppercase tracking-wide\">Shop Pets</span>\n        </div>\n      </a>\n    </div>\n  </div>\n</section>\n\n<!-- Double -->\n<section class=\"flex flex-col md:flex-row\">\n  <div class=\"w-full md:w-1/2 aspect-[4/3] md:aspect-auto\">\n    <img src=\"https://goodvibesonmain.ca/cdn/shop/files/PXL_20220825_145739283.PORTRAIT_2_1080x.jpg?v=1661875953\" alt=\"\" class=\"w-full h-full object-cover\">\n  </div>\n  <div class=\"w-full md:w-1/2 flex items-center justify-center px-10 py-16 text-center\">\n    <div class=\"max-w-md\">\n      <h2 class=\"home__subtitle text-base mb-4\">Spreading Optimism &amp; Good vibes!</h2>\n      <p class=\"text-sm mb-2\">Good Vibes on Main is your local Life is Good shop - 100% Canadian owned - nestled on historic Main Street in Newmarket.</p>\n      <p class=\"text-sm\">Shop local. Support your community. Spread Good Vibes!</p>\n    </div>\n  </div>\n</section>\n\n<!-- Map -->\n<section class=\"flex flex-col md:flex-row\">\n  <div class=\"w-full md:w-1/2 flex items-center justify-center px-10 py-16 text-center order-2 md:order-1\">\n    <div class=\"max-w-md\">\n      <h2 class=\"home__subtitle text-base mb-4\">Where to find good vibes!</h2>\n      <p class=\"text-sm mb-1\">222 Main Street S., Newmarket, ON. L3Y 3Z3</p>\n      <p class=\"text-sm mb-1\">+1 905 895 0606</p>\n      <p class=\"text-sm mb-4\">If you have any questions, please contact us at <a href=\"mailto:info@goodvibesonmain.ca\" class=\"underline\">info@goodvibesonmain.ca</a></p>\n      <a href=\"https://maps.google.com?daddr=254 Main Street South, Newmarket\" target=\"_blank\" rel=\"noopener\" class=\"btn text-brand-text\">Directions</a>\n    </div>\n  </div>\n  <div class=\"w-full md:w-1/2 aspect-[4/3] md:aspect-auto order-1 md:order-2\">\n    <img src=\"https://goodvibesonmain.ca/cdn/shop/files/PXL_20220825_123738063_1080x.jpg?v=1661876405\" alt=\"\" class=\"w-full h-full object-cover\">\n  </div>\n</section>\n\n<!-- Life is Good Story -->\n<section class=\"py-16 px-6 text-center\">\n  <div class=\"max-w-2xl mx-auto\">\n    <h2 class=\"home__subtitle text-base mb-4\">The Life is Good Story</h2>\n    <p class=\"text-sm\">Discover the power of optimism from Life is Good Co-Founders, Bert &amp; John Jacobs.</p>\n  </div>\n</section>\n\n<!-- Video -->\n<section class=\"relative bg-black aspect-video flex items-center justify-center overflow-hidden\">\n  <img src=\"https://img.youtube.com/vi/asQcvDjkrEo/maxresdefault.jpg\" alt=\"\" class=\"absolute inset-0 w-full h-full object-cover opacity-70\">\n  <a href=\"https://www.youtube.com/watch?v=asQcvDjkrEo\" target=\"_blank\" rel=\"noopener\" class=\"relative z-10 w-20 h-20 rounded-full border-2 border-white flex items-center justify-center text-white hover:bg-white hover:text-black transition\" aria-label=\"Play video\">\n    <svg class=\"w-6 h-6 ml-1\" viewBox=\"0 0 20 20\" fill=\"currentColor\"><path d=\"M10.12.233C4.702.233.31 4.626.31 10.044c0 5.419 4.392 9.811 9.81 9.811 5.419 0 9.811-4.392 9.811-9.81 0-5.42-4.392-9.812-9.81-9.812zM7.86 12.891V7.198l5.346 2.846-5.347 2.847z\"/></svg>\n  </a>\n</section>\n\n<!-- Logos -->\n<section class=\"py-16 px-6\">\n  <div class=\"max-w-[1280px] mx-auto\">\n    <h2 class=\"home__subtitle text-center text-base mb-10\">Brands Available at Good Vibes on Main</h2>\n    <div class=\"flex flex-wrap items-center justify-center gap-10\">\n      <a href=\"/collections/life-is-good\" target=\"_blank\" rel=\"noopener\" class=\"w-20 h-20\"><img src=\"https://goodvibesonmain.ca/cdn/shop/files/Coin_FadedBlack_1_220x.png?v=1764087194\" alt=\"\" class=\"w-full h-full object-contain\"></a>\n      <a href=\"/collections/watuko-headgear\" target=\"_blank\" rel=\"noopener\" class=\"w-32\"><img src=\"https://goodvibesonmain.ca/cdn/shop/files/Martin_co_optimized_cleaned_svg_320x.png?v=1728498055\" alt=\"\" class=\"w-full h-auto object-contain\"></a>\n      <a href=\"/collections/spice-of-life\" target=\"_blank\" rel=\"noopener\" class=\"w-32\"><img src=\"https://goodvibesonmain.ca/cdn/shop/files/watuko-banner-logo_320x.webp?v=1741112043\" alt=\"\" class=\"w-full h-auto object-contain\"></a>\n      <a href=\"/collections/juno-pet-foods\" target=\"_blank\" rel=\"noopener\" class=\"w-20 h-20\"><img src=\"https://goodvibesonmain.ca/cdn/shop/files/Kawigga_220x.jpg?v=1702148156\" alt=\"\" class=\"w-full h-full object-contain\"></a>\n      <div class=\"w-20 h-20\"><img src=\"https://goodvibesonmain.ca/cdn/shop/files/KanineKookies_220x.jpg?v=1723838580\" alt=\"\" class=\"w-full h-full object-contain\"></div>\n      <a href=\"/collections/julius-k9\" target=\"_blank\" rel=\"noopener\" class=\"w-32\"><img src=\"https://goodvibesonmain.ca/cdn/shop/files/Julius-K9_logo_320x.png?v=1614309660\" alt=\"\" class=\"w-full h-auto object-contain\"></a>\n      <div class=\"w-20 h-20\"><img src=\"https://goodvibesonmain.ca/cdn/shop/files/carolyndraws_logo_2020_1_360x_9c4910dc-711a-4355-b75d-77f8f760b809_220x.webp?v=1767989932\" alt=\"\" class=\"w-full h-full object-contain\"></div>\n      <div class=\"w-32\"><img src=\"https://goodvibesonmain.ca/cdn/shop/files/Logo-Black_2to1_ratio_small.avif?v=1767989968\" alt=\"\" class=\"w-full h-auto object-contain\"></div>\n    </div>\n  </div>\n</section>\n\n<!-- Blog -->\n<section class=\"py-16 px-6\">\n  <div class=\"max-w-[1280px] mx-auto\">\n    <h2 class=\"home__subtitle text-center text-base mb-10\">Good News. good vibes!</h2>\n    <div class=\"max-w-2xl mx-auto\">\n      <a href=\"/blogs/news/beat-the-winter-blues-with-cookies\" class=\"relative block aspect-[10/7] overflow-hidden group\" aria-label=\"Beat the Winter Blues with Cookies!\">\n        <img src=\"https://goodvibesonmain.ca/cdn/shop/articles/BlogImage_1080x.png?v=1768851323\" alt=\"Beat the Winter Blues with Cookies!\" class=\"w-full h-full object-cover group-hover:scale-105 transition-transform duration-500\">\n        <div class=\"absolute inset-0 bg-gradient-to-t from-black/60 to-transparent\"></div>\n        <h3 class=\"absolute bottom-6 left-6 text-white text-xl font-heading\">Beat the Winter Blues with Cookies!</h3>\n      </a>\n    </div>\n  </div>\n</section>\n\n</main>\n\n<!-- Footer -->\n<footer class=\"bg-white border-t border-brand-accent-bg pt-14 pb-8 px-6 text-xs\">\n  <div class=\"max-w-[1280px] mx-auto\">\n    <div class=\"grid grid-cols-1 md:grid-cols-3 gap-10\">\n      <div>\n        <p class=\"uppercase font-semibold tracking-wide mb-3\">Quick Links</p>\n        <hr class=\"border-brand-accent-bg mb-4\">\n        <ul class=\"space-y-2\">\n          <li><a href=\"/collections\" class=\"hover:underline\">Shop</a></li>\n          <li><a href=\"/pages/about-us\" class=\"hover:underline\">About Us</a></li>\n          <li><a href=\"/pages/lifeisgood-com\" class=\"hover:underline\">LIFEISGOOD.COM</a></li>\n          <li><a href=\"/pages/contact-us\" class=\"hover:underline\">Contact Us</a></li>\n          <li><a href=\"/blogs/news\" class=\"hover:underline\">Good Vibes Blog</a></li>\n          <li><a href=\"/pages/fit-guides\" class=\"hover:underline\">Size Guide</a></li>\n        </ul>\n      </div>\n      <div>\n        <p class=\"uppercase font-semibold tracking-wide mb-3\">Good Vibes on Main</p>\n        <hr class=\"border-brand-accent-bg mb-4\">\n        <p class=\"mb-2\">Good Vibes on Main specializes in Life is Good products and is located on historic Main Street in Newmarket, Ontario, nestled among unique shops and restaurants, and just half an hour north of Toronto.</p>\n        <p>#shoplocal #supportyourcommunity #spreadgoodvibes #lifeisgoodcanada</p>\n      </div>\n      <div>\n        <p class=\"uppercase font-semibold tracking-wide mb-3\">Newsletter</p>\n        <hr class=\"border-brand-accent-bg mb-4\">\n        <p class=\"mb-4\">Join our newsletter for all the latest good vibes, news and offers!</p>\n        <form class=\"flex\" onsubmit=\"return false;\">\n          <input type=\"email\" placeholder=\"your-email@example.com\" class=\"border border-brand-disabled px-3 py-2 flex-1 text-xs\" aria-label=\"Email\">\n          <button type=\"submit\" class=\"btn ml-[-1px]\">Join</button>\n        </form>\n      </div>\n    </div>\n\n    <div class=\"flex flex-col md:flex-row items-center justify-between mt-12 pt-6 border-t border-brand-accent-bg gap-4\">\n      <div class=\"uppercase tracking-wide\">CAD $</div>\n      <ul class=\"flex gap-4\">\n        <li><a href=\"#\" aria-label=\"Facebook\"><svg class=\"w-4 h-4\" viewBox=\"0 0 20 20\" fill=\"#444\"><path d=\"M18.05.811q.439 0 .744.305t.305.744v16.637q0 .439-.305.744t-.744.305h-4.732v-7.221h2.415l.342-2.854h-2.757v-1.83q0-.659.293-1t1.073-.342h1.488V3.762q-.976-.098-2.171-.098-1.634 0-2.635.964t-1 2.72V9.47H7.951v2.854h2.415v7.221H1.413q-.439 0-.744-.305t-.305-.744V1.859q0-.439.305-.744T1.413.81H18.05z\"/></svg></a></li>\n        <li><a href=\"#\" aria-label=\"Instagram\"><svg class=\"w-4 h-4\" viewBox=\"0 0 20 20\" fill=\"#444\"><circle cx=\"10\" cy=\"10\" r=\"9.2\" fill=\"none\" stroke=\"#444\" stroke-width=\"1.3\"/><circle cx=\"10\" cy=\"10\" r=\"4\" fill=\"none\" stroke=\"#444\" stroke-width=\"1.3\"/><circle cx=\"15\" cy=\"5\" r=\"1\" fill=\"#444\"/></svg></a></li>\n      </ul>\n      <ul class=\"flex flex-wrap gap-2 text-[10px] text-brand-text-light\">\n        <li class=\"border border-brand-disabled rounded px-2 py-1\">Amex</li>\n        <li class=\"border border-brand-disabled rounded px-2 py-1\">Apple Pay</li>\n        <li class=\"border border-brand-disabled rounded px-2 py-1\">Bancontact</li>\n        <li class=\"border border-brand-disabled rounded px-2 py-1\">Diners</li>\n        <li class=\"border border-brand-disabled rounded px-2 py-1\">Discover</li>\n        <li class=\"border border-brand-disabled rounded px-2 py-1\">Google Pay</li>\n        <li class=\"border border-brand-disabled rounded px-2 py-1\">iDEAL</li>\n        <li class=\"border border-brand-disabled rounded px-2 py-1\">Mastercard</li>\n        <li class=\"border border-brand-disabled rounded px-2 py-1\">PayPal</li>\n        <li class=\"border border-brand-disabled rounded px-2 py-1\">Shop Pay</li>\n        <li class=\"border border-brand-disabled rounded px-2 py-1\">Visa</li>\n      </ul>\n    </div>\n\n    <div class=\"flex flex-col md:flex-row items-center justify-between mt-6 text-brand-text-light gap-2\">\n      <p>&copy; <a href=\"/\" class=\"hover:underline\">Good Vibes on Main</a> 2026</p>\n      <p><a href=\"https://www.shopify.com\" target=\"_blank\" rel=\"nofollow\" class=\"hover:underline\">Powered by Shopify</a></p>\n    </div>\n  </div>\n</footer>\n\n<script>\n  let slideIndex = 0;\n  const track = document.getElementById('slick-track');\n  const total = 2;\n  function updateSlide() {\n    track.style.transform = `translateX(-${slideIndex * 100}%)`;\n  }\n  function slideNext() { slideIndex = (slideIndex + 1) % total; updateSlide(); }\n  function slidePrev() { slideIndex = (slideIndex - 1 + total) % total; updateSlide(); }\n</script>\n\n</body>\n</html>\n"
+      }
+    },
+    {
+      "name": "Bash",
+      "input": {
+        "command": "cd /var/folders/gb/m6478s0n5mx9wqlz8t_c03800000gn/T/gumshoe-agent-run-W7bwLe && npx github:cam5/crow-nester \"file:///var/folders/gb/m6478s0n5mx9wqlz8t_c03800000gn/T/gumshoe-agent-run-W7bwLe/clone.html\" --screenshot clone-round1.png 2>&1 | tail -15",
+        "description": "Screenshot the clone HTML round 1"
+      }
+    },
+    {
+      "name": "Bash",
+      "input": {
+        "command": "cd /var/folders/gb/m6478s0n5mx9wqlz8t_c03800000gn/T/gumshoe-agent-run-W7bwLe && file original.png clone-round1.png",
+        "description": "Check image dimensions"
+      }
+    },
+    {
+      "name": "Read",
+      "input": {
+        "file_path": "/var/folders/gb/m6478s0n5mx9wqlz8t_c03800000gn/T/gumshoe-agent-run-W7bwLe/clone-round1.png"
+      }
+    },
+    {
+      "name": "Bash",
+      "input": {
+        "command": "cd /var/folders/gb/m6478s0n5mx9wqlz8t_c03800000gn/T/gumshoe-agent-run-W7bwLe && curl -sI \"https://goodvibesonmain.ca/cdn/shop/files/GWPAPR26Web_2_1950x.png?v=1776366169\" | head -5\ncurl -s -o hero-check.png \"https://goodvibesonmain.ca/cdn/shop/files/GWPAPR26Web_2_1950x.png?v=1776366169\"\nfile hero-check.png",
+        "description": "Check the hero slide image directly"
+      }
+    },
+    {
+      "name": "Read",
+      "input": {
+        "file_path": "/var/folders/gb/m6478s0n5mx9wqlz8t_c03800000gn/T/gumshoe-agent-run-W7bwLe/hero-check.png"
+      }
+    },
+    {
+      "name": "Bash",
+      "input": {
+        "command": "cd /var/folders/gb/m6478s0n5mx9wqlz8t_c03800000gn/T/gumshoe-agent-run-W7bwLe && npx github:cam5/crow-nester https://goodvibesonmain.ca/ --screenshot original-round2.png 2>&1 | tail -3\nfile original-round2.png",
+        "description": "Retake original screenshot for consistent comparison"
+      }
+    },
+    {
+      "name": "Read",
+      "input": {
+        "file_path": "/var/folders/gb/m6478s0n5mx9wqlz8t_c03800000gn/T/gumshoe-agent-run-W7bwLe/original-round2.png"
+      }
+    },
+    {
+      "name": "Bash",
+      "input": {
+        "command": "cd /var/folders/gb/m6478s0n5mx9wqlz8t_c03800000gn/T/gumshoe-agent-run-W7bwLe && curl -s -A \"Mozilla/5.0\" https://goodvibesonmain.ca/ -o raw2.html\ngrep -n \"slick-slide slideshow__slide\" raw2.html\ngrep -n \"background-image: url\" raw2.html | head -5",
+        "description": "Re-fetch raw HTML to check current slideshow content"
+      }
+    },
+    {
+      "name": "Bash",
+      "input": {
+        "command": "cd /var/folders/gb/m6478s0n5mx9wqlz8t_c03800000gn/T/gumshoe-agent-run-W7bwLe && which convert magick python3 2>&1\npython3 -c \"\nfrom PIL import Image\na = Image.open('original-round2.png')\nb = Image.open('clone-round1.png')\nh = min(a.height, b.height)\na.crop((0,0,1280,h)).save('original-crop.png')\nb.crop((0,0,1280,h)).save('clone-crop.png')\nprint(a.size, b.size, h)\n\"",
+        "description": "Crop both screenshots to matching height using PIL"
+      }
+    },
+    {
+      "name": "Bash",
+      "input": {
+        "command": "cd /var/folders/gb/m6478s0n5mx9wqlz8t_c03800000gn/T/gumshoe-agent-run-W7bwLe && npx odiff-bin original-crop.png clone-crop.png diff-round1.png --parsable-stdout",
+        "description": "Run odiff on cropped screenshots"
+      }
+    },
+    {
+      "name": "Read",
+      "input": {
+        "file_path": "/var/folders/gb/m6478s0n5mx9wqlz8t_c03800000gn/T/gumshoe-agent-run-W7bwLe/diff-round1.png"
+      }
+    },
+    {
+      "name": "Bash",
+      "input": {
+        "command": "cd /var/folders/gb/m6478s0n5mx9wqlz8t_c03800000gn/T/gumshoe-agent-run-W7bwLe && \\\necho \"=== live video section ===\" \nnpx github:cam5/crow-nester https://goodvibesonmain.ca/ --root-selector \"#shopify-section-index-video\" 2>&1 | jq '.nodes[0].rendered' \necho \"=== clone video section ===\"\nnpx github:cam5/crow-nester \"file:///var/folders/gb/m6478s0n5mx9wqlz8t_c03800000gn/T/gumshoe-agent-run-W7bwLe/clone.html\" --root-selector \"section.aspect-video\" 2>&1 | jq '.nodes[0].rendered'\necho \"=== live shop today grid ===\"\nnpx github:cam5/crow-nester https://goodvibesonmain.ca/ --root-selector \"#shopify-section-index-collection-grid\" 2>&1 | jq '.nodes[0].rendered'\n",
+        "description": "Compare section heights between live and clone"
+      }
+    },
+    {
+      "name": "Bash",
+      "input": {
+        "command": "cd /var/folders/gb/m6478s0n5mx9wqlz8t_c03800000gn/T/gumshoe-agent-run-W7bwLe && \\\necho \"=== live new-arrivals top ===\" \nnpx github:cam5/crow-nester https://goodvibesonmain.ca/ --root-selector \"#shopify-section-index-collection\" 2>&1 | jq '.nodes[0].rendered'\necho \"=== clone slideshow section ===\" \nnpx github:cam5/crow-nester \"file:///var/folders/gb/m6478s0n5mx9wqlz8t_c03800000gn/T/gumshoe-agent-run-W7bwLe/clone.html\" --root-selector \"#slideshow\" 2>&1 | jq '.nodes[0].rendered'\necho \"=== clone new-arrivals section (first section after slideshow) ===\"\nnpx github:cam5/crow-nester \"file:///var/folders/gb/m6478s0n5mx9wqlz8t_c03800000gn/T/gumshoe-agent-run-W7bwLe/clone.html\" --root-selector \"main > section:nth-of-type(1)\" 2>&1 | jq '.nodes[0].rendered'\necho \"=== clone shop-today section ===\"\nnpx github:cam5/crow-nester \"file:///var/folders/gb/m6478s0n5mx9wqlz8t_c03800000gn/T/gumshoe-agent-run-W7bwLe/clone.html\" --root-selector \"main > section:nth-of-type(2)\" 2>&1 | jq '.nodes[0].rendered'\n",
+        "description": "Compare more section heights"
+      }
+    },
+    {
+      "name": "Edit",
+      "input": {
+        "replace_all": false,
+        "file_path": "/var/folders/gb/m6478s0n5mx9wqlz8t_c03800000gn/T/gumshoe-agent-run-W7bwLe/clone.html",
+        "old_string": "<section class=\"relative bg-black aspect-video flex items-center justify-center overflow-hidden\">",
+        "new_string": "<section class=\"relative bg-black h-[900px] flex items-center justify-center overflow-hidden\">"
+      }
+    },
+    {
+      "name": "Edit",
+      "input": {
+        "replace_all": false,
+        "file_path": "/var/folders/gb/m6478s0n5mx9wqlz8t_c03800000gn/T/gumshoe-agent-run-W7bwLe/clone.html",
+        "old_string": "<section class=\"py-16 px-6\">\n  <div class=\"max-w-[1280px] mx-auto\">\n    <h2 class=\"home__subtitle text-center text-base mb-10\">New Arrivals</h2>\n    <div class=\"grid grid-cols-2 md:grid-cols-4 gap-x-6 gap-y-10\">",
+        "new_string": "<section class=\"py-20 px-6\">\n  <div class=\"max-w-[1280px] mx-auto\">\n    <h2 class=\"home__subtitle text-center text-base mb-12\">New Arrivals</h2>\n    <div class=\"grid grid-cols-2 md:grid-cols-4 gap-x-6 gap-y-12\">"
+      }
+    },
+    {
+      "name": "Bash",
+      "input": {
+        "command": "cd /var/folders/gb/m6478s0n5mx9wqlz8t_c03800000gn/T/gumshoe-agent-run-W7bwLe && npx github:cam5/crow-nester \"file:///var/folders/gb/m6478s0n5mx9wqlz8t_c03800000gn/T/gumshoe-agent-run-W7bwLe/clone.html\" --screenshot clone-round2.png 2>&1 | tail -3\nfile clone-round2.png",
+        "description": "Screenshot clone round 2 after fixes"
+      }
+    },
+    {
+      "name": "Bash",
+      "input": {
+        "command": "cd /var/folders/gb/m6478s0n5mx9wqlz8t_c03800000gn/T/gumshoe-agent-run-W7bwLe && \\\nnpx github:cam5/crow-nester https://goodvibesonmain.ca/ --root-selector \"#shopify-section-index-collection\" --screenshot na-original.png 2>&1 | tail -3\nnpx github:cam5/crow-nester \"file:///var/folders/gb/m6478s0n5mx9wqlz8t_c03800000gn/T/gumshoe-agent-run-W7bwLe/clone.html\" --root-selector \"main > section:nth-of-type(2)\" --screenshot na-clone.png 2>&1 | tail -3\nfile na-original.png na-clone.png",
+        "description": "Screenshot New Arrivals section on both pages"
+      }
+    },
+    {
+      "name": "Bash",
+      "input": {
+        "command": "cd /var/folders/gb/m6478s0n5mx9wqlz8t_c03800000gn/T/gumshoe-agent-run-W7bwLe && python3 -c \"\nfrom PIL import Image\na = Image.open('na-original.png')\nb = Image.open('na-clone.png')\nh = min(a.height, b.height)\na.crop((0,0,1280,h)).save('na-original-crop.png')\nb.crop((0,0,1280,h)).save('na-clone-crop.png')\n\"\nnpx odiff-bin na-original-crop.png na-clone-crop.png na-diff.png --parsable-stdout",
+        "description": "Odiff New Arrivals section"
+      }
+    },
+    {
+      "name": "Read",
+      "input": {
+        "file_path": "/var/folders/gb/m6478s0n5mx9wqlz8t_c03800000gn/T/gumshoe-agent-run-W7bwLe/na-diff.png"
+      }
+    },
+    {
+      "name": "Bash",
+      "input": {
+        "command": "cd /var/folders/gb/m6478s0n5mx9wqlz8t_c03800000gn/T/gumshoe-agent-run-W7bwLe && python3 -c \"\nfrom PIL import Image\na = Image.open('original-round2.png')\nb = Image.open('clone-round2.png')\nh = min(a.height, b.height)\na.crop((0,0,1280,h)).save('original-crop2.png')\nb.crop((0,0,1280,h)).save('clone-crop2.png')\nprint(a.size,b.size,h)\n\"\nnpx odiff-bin original-crop2.png clone-crop2.png diff-round2.png --parsable-stdout",
+        "description": "Final whole-page odiff comparison round 2"
+      }
+    },
+    {
+      "name": "Bash",
+      "input": {
+        "command": "cd /var/folders/gb/m6478s0n5mx9wqlz8t_c03800000gn/T/gumshoe-agent-run-W7bwLe && \\\nnpx github:cam5/crow-nester https://goodvibesonmain.ca/ --root-selector \"#shopify-section-index-video\" --screenshot video-original.png 2>&1 | tail -2\nnpx github:cam5/crow-nester \"file:///var/folders/gb/m6478s0n5mx9wqlz8t_c03800000gn/T/gumshoe-agent-run-W7bwLe/clone.html\" --root-selector \"section.h-\\[900px\\]\" --screenshot video-clone.png 2>&1 | tail -2\nfile video-original.png video-clone.png",
+        "description": "Screenshot video section on both pages"
+      }
+    },
+    {
+      "name": "Bash",
+      "input": {
+        "command": "cd /var/folders/gb/m6478s0n5mx9wqlz8t_c03800000gn/T/gumshoe-agent-run-W7bwLe && npx odiff-bin video-original.png video-clone.png video-diff.png --parsable-stdout",
+        "description": "Odiff video section"
+      }
+    },
+    {
+      "name": "Read",
+      "input": {
+        "file_path": "/var/folders/gb/m6478s0n5mx9wqlz8t_c03800000gn/T/gumshoe-agent-run-W7bwLe/video-original.png"
+      }
+    }
+  ],
+  "resultText": "I've completed the clone and fidelity checks. Here's a summary of the work:\n\n**File written to:** `/var/folders/gb/m6478s0n5mx9wqlz8t_c03800000gn/T/gumshoe-agent-run-W7bwLe/clone.html`\n\n**Key decisions:**\n- **Design tokens** (via windtailor on `body`, `.theme__header`, `.home__subtitle`, and the CTA button, plus reading the theme's raw CSS custom properties): white page background, `#656565`/`#747474` gray text, `#efe9db` cream announcement bar, `#483535` hover accent. Fonts are the theme's real stack — **Poppins** (body), **Alegreya Sans** uppercase/letter-spaced (headings/nav), **Questrial** (accent) — loaded from Google Fonts and wired into the Tailwind config.\n- **Componentized:** product grid card (New Arrivals, 8 items), collection-grid tile (Shop Today, 5 items), logo-bar item (8 brand logos), and footer column block — all confirmed as genuinely repeated, same-purpose fragments by inspection, not just similar shape.\n- **Hotlinked, not rehosted:** every product photo, lifestyle photo, and logo uses the live `goodvibesonmain.ca` CDN URL directly, per scope.\n- **Flagged as unrecreatable / approximated:**\n  - The `#widget2` cross-origin iframe (confirmed absent from raw HTML, JS-injected) — a genuine YouTube embed. I approximated it with the real YouTube thumbnail (`img.youtube.com/vi/asQcvDjkrEo/...`) + a play button linking out to YouTube, and set its height to the exact 900px the live section renders at.\n  - The \"Get good vibes in your inbox!\" popup is a third-party marketing app injection (not in raw HTML, not core theme content) — per the tool guidance on toolbars/cookie-banners/A-B widgets, I intentionally excluded it rather than rebuilding it as if it were page content.\n  - The hero slideshow's first image intermittently served two visibly different images across my own fetches (a \"guitar player\" lifestyle photo vs. a \"Summer Vibes Loading\" collage) from the *same* CDN URL — this is live CDN edge-cache flakiness on the target site's end, not something a static clone can pin down; I kept the real, current CDN URL.\n- **Fidelity check:** screenshotted original vs. clone at 1280×900 viewport across 2 rounds (`original.png`/`original-round2.png` vs `clone-round1.png`/`clone-round2.png`, diffs in `diff-round1.png`/`diff-round2.png`), plus two scoped section diffs (New Arrivals grid, video section). Whole-page odiff sat around 58-60%, but visual inspection showed this was dominated by (a) the intentionally-excluded popup shifting everything below it, and (b) crow-nester's root-selector screenshots capturing the sticky header/popup overlay on top of scoped crops, not real layout mismatches. The New Arrivals grid and video section — my two highest-priority calls — matched well in position, sizing, and imagery once that contamination was accounted for; I corrected a real height bug found this way (video section was 720px vs. the live 900px) and increased New Arrivals section spacing to better match."
+}

@@ -1,0 +1,521 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Good Vibes on Main</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Alegreya+Sans:wght@400;700&family=Poppins:ital,wght@0,400;0,700;1,400;1,700&family=Questrial&display=swap" rel="stylesheet">
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+  tailwind.config = {
+    theme: {
+      extend: {
+        colors: {
+          'gvom-bg': '#ffffff',
+          'gvom-bg-accent': '#f7f7f7',
+          'gvom-text': '#747474',
+          'gvom-text-dark': '#656565',
+          'gvom-text-light': '#848484',
+          'gvom-primary': '#656565',
+          'gvom-primary-hover': '#483535',
+          'gvom-announcement-bg': '#efe9db',
+          'gvom-announcement-text': '#656565',
+          'gvom-border': '#f7f7f7',
+        },
+        fontFamily: {
+          heading: ['"Alegreya Sans"', 'sans-serif'],
+          body: ['Poppins', 'sans-serif'],
+          accent: ['Questrial', 'sans-serif'],
+        },
+      }
+    }
+  };
+</script>
+<style>
+  html { scroll-behavior: smooth; }
+  body {
+    background: #ffffff;
+    color: rgba(101, 101, 101, .9);
+    font-size: 13.6251px;
+    line-height: 21.8002px;
+  }
+  .subtitle {
+    font-family: 'Questrial', sans-serif;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    opacity: .75;
+    position: relative;
+  }
+  .subtitle::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    margin: auto;
+    width: 30px;
+    height: 3px;
+    background: #000;
+    opacity: .2;
+  }
+  h1,h2,h3,h4,h5,h6 { font-family: 'Alegreya Sans', sans-serif; }
+  .card-hover-img { opacity: 0; transition: opacity .4s ease; }
+  .product-card:hover .card-hover-img { opacity: 1; }
+  .slide { display: none; }
+  .slide.active { display: block; }
+  .dropdown-panel { display: none; }
+  .has-dropdown.open .dropdown-panel { display: block; }
+  .mobile-drawer { transform: translateX(-100%); transition: transform .3s ease; }
+  .mobile-drawer.open { transform: translateX(0); }
+  .video-modal { display: none; }
+  .video-modal.open { display: flex; }
+
+  /* Sticky header frosted-glass effect on scroll, matching the live theme's
+     .js__header__stuck.js__header__stuck__backdrop .theme__header rule */
+  #site-header {
+    -webkit-backdrop-filter: blur(0);
+    backdrop-filter: blur(0);
+    transition: background-color 0s ease, backdrop-filter .5s cubic-bezier(.215,.61,.355,1), -webkit-backdrop-filter .5s cubic-bezier(.215,.61,.355,1);
+  }
+  #site-header.is-stuck {
+    -webkit-backdrop-filter: blur(10px);
+    backdrop-filter: blur(10px);
+    background-color: rgba(255,255,255,.7);
+    transition: background-color .8s cubic-bezier(.215,.61,.355,1), backdrop-filter .5s cubic-bezier(.215,.61,.355,1), -webkit-backdrop-filter .5s cubic-bezier(.215,.61,.355,1);
+  }
+</style>
+</head>
+<body class="font-body text-gvom-text bg-gvom-bg">
+
+<a href="#MainContent" class="sr-only">Skip to content</a>
+
+<!-- Announcement bar -->
+<div class="bg-gvom-announcement-bg text-gvom-announcement-text text-xs">
+  <div class="max-w-[1180px] mx-auto flex items-center justify-center relative h-8 px-8">
+    <a href="https://goodvibesonmain.ca/pages/shipping-information" class="uppercase tracking-wide text-center hover:opacity-70">
+      WE HAVE SUSPENDED SHIPPING TO THE US - CLICK HERE FOR MORE INFO
+    </a>
+    <a href="/search" class="absolute right-4 top-1/2 -translate-y-1/2 hover:opacity-70" aria-label="Search">
+      <svg class="w-4 h-4" viewBox="0 0 16 16" fill="currentColor"><path d="M16 14.864L14.863 16l-4.24-4.241a6.406 6.406 0 01-4.048 1.392 6.61 6.61 0 01-4.65-1.925A6.493 6.493 0 01.5 9.098 6.51 6.51 0 010 6.575a6.536 6.536 0 011.922-4.652A6.62 6.62 0 014.062.5 6.52 6.52 0 016.575 0 6.5 6.5 0 019.1.5c.8.332 1.51.806 2.129 1.423a6.454 6.454 0 011.436 2.13 6.54 6.54 0 01.498 2.522c0 1.503-.468 2.853-1.4 4.048L16 14.864zM3.053 10.091c.973.972 2.147 1.461 3.522 1.461 1.378 0 2.551-.489 3.525-1.461.968-.967 1.45-2.138 1.45-3.514 0-1.37-.482-2.545-1.45-3.524-.981-.968-2.154-1.45-3.525-1.45-1.376 0-2.547.483-3.513 1.45-.973.973-1.46 2.146-1.46 3.523 0 1.375.483 2.548 1.45 3.515z"/></svg>
+    </a>
+  </div>
+</div>
+
+<!-- Header -->
+<header id="site-header" class="sticky top-0 z-40 bg-white border-b border-gvom-border">
+  <div class="max-w-[1180px] mx-auto flex items-center justify-between px-8" style="height:130px;">
+    <div class="flex items-center gap-4">
+      <button id="hamburger-btn" class="lg:hidden" aria-label="Open menu">
+        <svg class="w-6 h-6" viewBox="0 0 25 25" fill="currentColor"><path d="M0 4.062h25v2H0zm0 7h25v2H0zm0 7h25v2H0z"/></svg>
+      </button>
+      <a href="/" style="width:100px;display:block;">
+        <img src="https://goodvibesonmain.ca/cdn/shop/files/NEWLIGNEWMARKETLOGO_1_320x.png?v=1759332633" alt="Good Vibes on Main" class="w-full h-auto">
+      </a>
+    </div>
+
+    <nav class="hidden lg:flex items-center gap-8 font-accent text-xs uppercase tracking-wide text-gvom-text-dark">
+      <div class="has-dropdown py-4">
+        <a href="/collections" class="hover:opacity-70">Shop</a>
+        <div class="dropdown-panel absolute top-full left-1/2 w-screen bg-white border-t border-b border-gvom-border shadow-lg text-left normal-case" style="transform:translateX(-50%);">
+          <div class="max-w-[1116px] mx-auto grid grid-cols-5 gap-x-8 gap-y-8 px-6 py-8">
+            <div>
+              <a href="/collections/new-arrivals" class="block font-accent text-[11px] uppercase tracking-wide text-gvom-text-dark hover:opacity-70">New Arrivals</a>
+            </div>
+            <div>
+              <a href="/collections/canada" class="block font-accent text-[11px] uppercase tracking-wide text-gvom-text-dark hover:opacity-70">Canadian Eh!</a>
+            </div>
+            <div>
+              <a href="/collections/womens" class="block font-accent text-[11px] uppercase tracking-wide text-gvom-text-dark mb-2 hover:opacity-70">Women's</a>
+              <a href="/collections/womens-ss" class="block text-sm py-1 hover:opacity-70">Short Sleeve</a>
+              <a href="/collections/womens-longsleeve" class="block text-sm py-1 hover:opacity-70">Long Sleeve</a>
+              <a href="/collections/womens-hoodie" class="block text-sm py-1 hover:opacity-70">Hoodie</a>
+              <a href="/collections/womens-sleepwear" class="block text-sm py-1 hover:opacity-70">Sleepwear</a>
+              <a href="/collections/pants" class="block text-sm py-1 hover:opacity-70">Pants</a>
+              <a href="/collections/tanks" class="block text-sm py-1 hover:opacity-70">Tanks</a>
+              <a href="/collections/womens-accessories" class="block text-sm py-1 hover:opacity-70">Accessories</a>
+              <a href="/collections/headgear" class="block text-sm py-1 hover:opacity-70">Headgear</a>
+            </div>
+            <div>
+              <a href="/collections/mens" class="block font-accent text-[11px] uppercase tracking-wide text-gvom-text-dark mb-2 hover:opacity-70">Men's</a>
+              <a href="/collections/mens-ss" class="block text-sm py-1 hover:opacity-70">Short Sleeve</a>
+              <a href="/collections/mens-l-s" class="block text-sm py-1 hover:opacity-70">Long Sleeve</a>
+              <a href="/collections/mens-hoodie" class="block text-sm py-1 hover:opacity-70">Hoodie</a>
+              <a href="/collections/mens-sleep" class="block text-sm py-1 hover:opacity-70">Sleepwear</a>
+              <a href="/collections/mens-pants" class="block text-sm py-1 hover:opacity-70">Pants</a>
+              <a href="/collections/mens-hats" class="block text-sm py-1 hover:opacity-70">Headgear</a>
+            </div>
+            <div>
+              <a href="/collections/kids-1" class="block font-accent text-[11px] uppercase tracking-wide text-gvom-text-dark mb-2 hover:opacity-70">Kids</a>
+              <a href="/collections/boys-ss" class="block text-sm py-1 hover:opacity-70">Boys Short Sleeve</a>
+              <a href="/collections/boys-l-s" class="block text-sm py-1 hover:opacity-70">Boys Long Sleeve</a>
+              <a href="/collections/girls-ss" class="block text-sm py-1 hover:opacity-70">Girls Short Sleeve</a>
+              <a href="/collections/girls-ls" class="block text-sm py-1 hover:opacity-70">Girls Long Sleeve</a>
+              <a href="/collections/toddler" class="block text-sm py-1 hover:opacity-70">Toddler</a>
+              <a href="/collections/baby" class="block text-sm py-1 hover:opacity-70">Baby</a>
+            </div>
+            <div>
+              <a href="/collections/hats" class="block font-accent text-[11px] uppercase tracking-wide text-gvom-text-dark mb-2 hover:opacity-70">Headgear</a>
+              <a href="/collections/baseball-caps" class="block text-sm py-1 hover:opacity-70">Baseball Caps</a>
+              <a href="/collections/winter-hats" class="block text-sm py-1 hover:opacity-70">Winter Hats</a>
+            </div>
+            <div>
+              <a href="/collections/home-accessories" class="block font-accent text-[11px] uppercase tracking-wide text-gvom-text-dark mb-2 hover:opacity-70">Home &amp; Accessories</a>
+              <a href="/collections/martin-guitar" class="block text-sm py-1 hover:opacity-70">Martin Guitar</a>
+              <a href="/collections/blankets" class="block text-sm py-1 hover:opacity-70">Blankets</a>
+              <a href="/collections/mugs" class="block text-sm py-1 hover:opacity-70">Mugs</a>
+              <a href="/collections/socks" class="block text-sm py-1 hover:opacity-70">Socks</a>
+              <a href="/collections/stickers-decals" class="block text-sm py-1 hover:opacity-70">Stickers &amp; Decals</a>
+            </div>
+            <div>
+              <a href="/collections/pets" class="block font-accent text-[11px] uppercase tracking-wide text-gvom-text-dark hover:opacity-70">Pets</a>
+            </div>
+            <div>
+              <a href="/collections/vintage" class="block font-accent text-[11px] uppercase tracking-wide text-gvom-text-dark hover:opacity-70">Vintage</a>
+            </div>
+            <div>
+              <a href="/collections/sale-1" class="block font-accent text-[11px] uppercase tracking-wide text-gvom-text-dark hover:opacity-70">Sale</a>
+            </div>
+          </div>
+        </div>
+      </div>
+      <a href="/pages/about-us" class="hover:opacity-70">About Us</a>
+      <a href="/pages/lifeisgood-com" class="hover:opacity-70">LIFEISGOOD.COM</a>
+      <a href="/pages/contact-us" class="hover:opacity-70">Contact Us</a>
+      <a href="/blogs/news" class="hover:opacity-70">Good Vibes Blog</a>
+      <a href="/pages/fit-guides" class="hover:opacity-70">Size Guide</a>
+    </nav>
+
+    <div class="flex items-center gap-5 text-gvom-text-dark">
+      <a href="/account" aria-label="My Account" class="hover:opacity-70">
+        <svg class="w-5 h-5" viewBox="0 0 16 16" fill="currentColor"><path d="M10.713 8.771c.31.112.53.191.743.27.555.204.985.372 1.367.539 1.229.535 1.993 1.055 2.418 1.885.464.937.722 1.958.758 2.997.03.84-.662 1.538-1.524 1.538H1.525c-.862 0-1.554-.697-1.524-1.538a7.36 7.36 0 01.767-3.016c.416-.811 1.18-1.33 2.41-1.866a25.25 25.25 0 011.366-.54l.972-.35a1.42 1.42 0 00-.006-.072c-.937-1.086-1.369-2.267-1.369-4.17C4.141 1.756 5.517 0 8.003 0c2.485 0 3.856 1.755 3.856 4.448 0 2.03-.492 3.237-1.563 4.386.169-.18.197-.253.207-.305a1.2 1.2 0 00-.019.16l.228.082zm-9.188 5.742h12.95a5.88 5.88 0 00-.608-2.402c-.428-.835-2.214-1.414-4.46-2.224-.608-.218-.509-1.765-.24-2.053.631-.677 1.166-1.471 1.166-3.386 0-1.934-.782-2.96-2.33-2.96-1.549 0-2.336 1.026-2.336 2.96 0 1.915.534 2.709 1.165 3.386.27.288.369 1.833-.238 2.053-2.245.81-4.033 1.389-4.462 2.224a5.88 5.88 0 00-.607 2.402z"/></svg>
+      </a>
+      <a href="/search" aria-label="Search" data-popdown-toggle="search-popdown" class="hover:opacity-70">
+        <svg class="w-5 h-5" viewBox="0 0 16 16" fill="currentColor"><path d="M16 14.864L14.863 16l-4.24-4.241a6.406 6.406 0 01-4.048 1.392 6.61 6.61 0 01-4.65-1.925A6.493 6.493 0 01.5 9.098 6.51 6.51 0 010 6.575a6.536 6.536 0 011.922-4.652A6.62 6.62 0 014.062.5 6.52 6.52 0 016.575 0 6.5 6.5 0 019.1.5c.8.332 1.51.806 2.129 1.423a6.454 6.454 0 011.436 2.13 6.54 6.54 0 01.498 2.522c0 1.503-.468 2.853-1.4 4.048L16 14.864zM3.053 10.091c.973.972 2.147 1.461 3.522 1.461 1.378 0 2.551-.489 3.525-1.461.968-.967 1.45-2.138 1.45-3.514 0-1.37-.482-2.545-1.45-3.524-.981-.968-2.154-1.45-3.525-1.45-1.376 0-2.547.483-3.513 1.45-.973.973-1.46 2.146-1.46 3.523 0 1.375.483 2.548 1.45 3.515z"/></svg>
+      </a>
+      <a href="/cart" aria-label="Cart" class="hover:opacity-70">
+        <svg class="w-5 h-5" viewBox="0 0 25 25" fill="currentColor"><path d="M5.058 23a2 2 0 104.001-.001A2 2 0 005.058 23zm12.079 0c0 1.104.896 2 2 2s1.942-.896 1.942-2-.838-2-1.942-2-2 .896-2 2zM0 1a1 1 0 001 1h1.078l.894 3.341L5.058 13c0 .072.034.134.042.204l-1.018 4.58A.997.997 0 005.058 19h16.71a1 1 0 000-2H6.306l.458-2.061c.1.017.19.061.294.061h12.31c1.104 0 1.712-.218 2.244-1.5l3.248-6.964C25.423 4.75 24.186 4 23.079 4H5.058c-.157 0-.292.054-.438.088L3.844.772A1 1 0 002.87 0H1a1 1 0 00-1 1zm5.098 5H22.93l-3.192 6.798c-.038.086-.07.147-.094.19-.067.006-.113.012-.277.012H7.058v-.198l-.038-.195L5.098 6z"/></svg>
+      </a>
+    </div>
+  </div>
+</header>
+
+<!-- Mobile drawer -->
+<div id="mobile-drawer" class="mobile-drawer fixed inset-y-0 left-0 w-72 bg-white z-50 shadow-xl p-6 overflow-y-auto">
+  <button id="close-drawer" class="mb-6 block ml-auto" aria-label="Close menu">&times;</button>
+  <nav class="flex flex-col gap-4 font-accent uppercase text-sm text-gvom-text-dark">
+    <a href="/collections">Shop</a>
+    <a href="/pages/about-us">About Us</a>
+    <a href="/pages/lifeisgood-com">LIFEISGOOD.COM</a>
+    <a href="/pages/contact-us">Contact Us</a>
+    <a href="/blogs/news">Good Vibes Blog</a>
+    <a href="/pages/fit-guides">Size Guide</a>
+  </nav>
+</div>
+<div id="drawer-backdrop" class="fixed inset-0 bg-black/40 z-40 hidden"></div>
+
+<main id="MainContent">
+
+  <!-- Hero Slideshow -->
+  <section class="relative w-full overflow-hidden" style="height:56.25vw; max-height:720px;" id="slideshow">
+    <div class="slide active relative w-full h-full">
+      <a href="" class="block w-full h-full bg-cover bg-center" style="background-image:url('https://goodvibesonmain.ca/cdn/shop/files/GWPAPR26Web_2_1512x.png?v=1776366169');"></a>
+    </div>
+    <div class="slide relative w-full h-full">
+      <div class="w-full h-full bg-cover bg-center flex items-end justify-start" style="background-image:url('https://goodvibesonmain.ca/cdn/shop/files/FrameTemplate_1_1512x.png?v=1732567116');">
+        <div class="absolute inset-0 bg-black/[.15]"></div>
+        <a href="/collections/martin-guitar" class="relative m-10 inline-block border border-white text-white uppercase text-xs tracking-wide px-6 py-3 hover:bg-white/10 transition">SHOP MARTIN GUITAR</a>
+      </div>
+    </div>
+    <button data-slide-prev class="absolute left-4 top-1/2 -translate-y-1/2 text-white z-10 hover:opacity-70" aria-label="Previous slide">
+      <svg class="w-6 h-6" viewBox="0 0 44 44" fill="currentColor"><path d="M10.366 22.502l.412.392L33.268 44l.732-.742-22.488-21.106L34 .742 33.268 0 10 22.152z"/></svg>
+    </button>
+    <button data-slide-next class="absolute right-4 top-1/2 -translate-y-1/2 text-white z-10 hover:opacity-70" aria-label="Next slide">
+      <svg class="w-6 h-6" viewBox="0 0 44 44" fill="currentColor"><path d="M33.634 22.502l-.412.392L10.732 44 10 43.258l22.488-21.106L10 .742 10.732 0 34 22.152z"/></svg>
+    </button>
+  </section>
+
+  <!-- New Arrivals -->
+  <section class="bg-white py-24">
+    <div class="max-w-[1180px] mx-auto px-8">
+      <h2 class="subtitle text-center text-gvom-text-dark text-sm pb-4 mb-10 relative">New Arrivals</h2>
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-x-6 gap-y-12" id="new-arrivals-grid"></div>
+    </div>
+  </section>
+
+  <!-- Shop Today collection grid -->
+  <section class="bg-white pb-24">
+    <div class="max-w-[1180px] mx-auto px-8">
+      <h2 class="subtitle text-center text-gvom-text-dark text-sm pb-4 mb-10">SHOP TODAY</h2>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-1" id="shop-today-grid"></div>
+    </div>
+  </section>
+
+  <!-- Double section: image + text -->
+  <section class="grid grid-cols-1 md:grid-cols-2">
+    <div class="bg-cover bg-center h-[300px] md:h-[450px]" style="background-image:url('https://goodvibesonmain.ca/cdn/shop/files/PXL_20220825_145739283.PORTRAIT_2_1080x.jpg?v=1661875953');"></div>
+    <div class="flex items-center justify-center p-12 bg-white md:h-[450px]">
+      <div class="max-w-md text-center">
+        <h2 class="subtitle text-gvom-text-dark text-sm pb-4 mb-4">Spreading Optimism &amp; Good vibes!</h2>
+        <p class="mb-2">Good Vibes on Main is your local Life is Good shop - 100% Canadian owned - nestled on historic Main Street in Newmarket.</p>
+        <p>Shop local. Support your community. Spread Good Vibes!</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Map section -->
+  <section class="grid grid-cols-1 md:grid-cols-2">
+    <div class="flex items-center justify-center p-12 bg-white order-2 md:order-1 md:h-[450px]">
+      <div class="max-w-md text-center">
+        <h2 class="subtitle text-gvom-text-dark text-sm pb-4 mb-4">Where to find good vibes!</h2>
+        <p class="mb-1">222 Main Street S., Newmarket, ON. L3Y 3Z3</p>
+        <p class="mb-4">+1 905 895 0606</p>
+        <p class="mb-4">If you have any questions, please contact us at <a href="mailto:info@goodvibesonmain.ca" class="underline hover:opacity-70">info@goodvibesonmain.ca</a></p>
+        <a href="https://maps.google.com?daddr=254 Main Street South, Newmarket" target="_blank" rel="noopener" class="inline-block bg-gvom-primary text-white uppercase text-xs tracking-wide px-6 py-3 hover:bg-gvom-primary-hover transition">Directions</a>
+      </div>
+    </div>
+    <div class="bg-cover bg-center h-[300px] md:h-[450px] order-1 md:order-2" style="background-image:url('https://goodvibesonmain.ca/cdn/shop/files/PXL_20220825_123738063_1512x.jpg?v=1661876405');"></div>
+  </section>
+
+  <!-- Life is Good Story richtext -->
+  <section class="bg-white py-24">
+    <div class="max-w-2xl mx-auto px-8 text-center">
+      <h2 class="subtitle text-gvom-text-dark text-sm pb-4 mb-4">The Life is Good Story</h2>
+      <p>Discover the power of optimism from Life is Good Co-Founders, Bert &amp; John Jacobs.</p>
+    </div>
+  </section>
+
+  <!-- Video hero -->
+  <section class="relative w-full h-[900px] max-h-[100vh] bg-black flex items-center justify-center overflow-hidden">
+    <iframe class="absolute inset-0 w-full h-full pointer-events-none border-0"
+      style="transform:scale(1.6);"
+      src="https://www.youtube.com/embed/asQcvDjkrEo?autoplay=1&mute=1&loop=1&playlist=asQcvDjkrEo&controls=0&showinfo=0&rel=0&modestbranding=1&playsinline=1"
+      title="Background video" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+    <div class="absolute inset-0 bg-black/[.15]"></div>
+    <button id="play-video-btn" class="relative z-10 flex items-center justify-center text-white hover:opacity-80 transition" aria-label="Play video">
+      <svg class="w-20 h-20" viewBox="0 0 20 20" fill="currentColor"><path d="M10.12.233C4.702.233.31 4.626.31 10.044c0 5.419 4.392 9.811 9.81 9.811 5.419 0 9.811-4.392 9.811-9.81 0-5.42-4.392-9.812-9.81-9.812zM7.86 12.891V7.198l5.346 2.846-5.347 2.847z"/></svg>
+    </button>
+    <button data-scroll-down class="absolute bottom-8 left-1/2 -translate-x-1/2 text-white z-10" aria-label="Scroll down">
+      <svg class="w-6 h-6" viewBox="0 0 20 10" fill="currentColor"><path d="M10 7.932L1.059 0 0 1.129 10 10l10-8.871L18.941 0z"/></svg>
+    </button>
+  </section>
+
+  <!-- Video modal -->
+  <div id="video-modal" class="video-modal fixed inset-0 bg-black/90 z-50 items-center justify-center p-6">
+    <button id="close-video-modal" class="absolute top-6 right-6 text-white text-3xl" aria-label="Close">&times;</button>
+    <div class="w-full max-w-4xl aspect-video">
+      <iframe id="modal-video-frame" class="w-full h-full border-0" src="" title="Video" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+    </div>
+  </div>
+
+  <!-- Brand logos -->
+  <section class="bg-white py-14">
+    <div class="max-w-[1180px] mx-auto px-8">
+      <h2 class="subtitle text-center text-gvom-text-dark text-sm pb-4 mb-8">BRANDS AVAILABLE AT GOOD Vibes on main</h2>
+      <div class="flex flex-wrap justify-evenly text-center -ml-4" id="logo-bar"></div>
+    </div>
+  </section>
+
+  <!-- Blog -->
+  <section class="bg-white pb-20">
+    <div class="max-w-[1180px] mx-auto px-8">
+      <h2 class="subtitle text-center text-gvom-text-dark text-sm pb-4 mb-10">Good News. good vibes!</h2>
+      <div class="max-w-2xl mx-auto">
+        <a href="/blogs/news/beat-the-winter-blues-with-cookies" class="relative block h-96 bg-cover bg-center group" style="background-image:url('https://goodvibesonmain.ca/cdn/shop/articles/BlogImage_1512x.png?v=1768851323');">
+          <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
+          <h3 class="absolute bottom-6 left-6 text-white text-xl font-normal">Beat the Winter Blues with Cookies!</h3>
+        </a>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<!-- Footer -->
+<footer class="bg-white border-t border-gvom-border" role="contentinfo">
+  <div class="max-w-[1180px] mx-auto px-8 py-24">
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-10">
+      <div>
+        <p class="uppercase text-xs tracking-wide font-bold text-gvom-text-dark mb-3">Quick Links</p>
+        <hr class="border-gvom-border mb-4">
+        <ul class="space-y-2 text-sm">
+          <li><a href="/collections" class="hover:opacity-70">Shop</a></li>
+          <li><a href="/pages/about-us" class="hover:opacity-70">About Us</a></li>
+          <li><a href="/pages/lifeisgood-com" class="hover:opacity-70">LIFEISGOOD.COM</a></li>
+          <li><a href="/pages/contact-us" class="hover:opacity-70">Contact Us</a></li>
+          <li><a href="/blogs/news" class="hover:opacity-70">Good Vibes Blog</a></li>
+          <li><a href="/pages/fit-guides" class="hover:opacity-70">Size Guide</a></li>
+        </ul>
+      </div>
+      <div>
+        <p class="uppercase text-xs tracking-wide font-bold text-gvom-text-dark mb-3">Good Vibes on Main</p>
+        <hr class="border-gvom-border mb-4">
+        <p class="mb-3">Good Vibes on Main specializes in Life is Good products and is located on historic Main Street in Newmarket, Ontario, nestled among unique shops and restaurants, and just half an hour north of Toronto.</p>
+        <p>#shoplocal #supportyourcommunity #spreadgoodvibes #lifeisgoodcanada</p>
+      </div>
+      <div>
+        <p class="uppercase text-xs tracking-wide font-bold text-gvom-text-dark mb-3">Newsletter</p>
+        <hr class="border-gvom-border mb-4">
+        <p class="mb-4">Join our newsletter for all the latest good vibes, news and offers!</p>
+        <form action="/contact#contact_form" method="post" class="flex border border-gvom-border">
+          <label for="mail" class="sr-only">Email</label>
+          <input type="email" id="mail" name="contact[email]" placeholder="your-email@example.com" class="flex-1 px-3 py-2 text-sm outline-none">
+          <button type="submit" id="subscribe" class="bg-gvom-primary text-white uppercase text-xs tracking-wide px-5 py-2 hover:bg-gvom-primary-hover transition">Join</button>
+        </form>
+      </div>
+    </div>
+
+    <div class="flex flex-col md:flex-row items-center justify-between mt-12 pt-8 border-t border-gvom-border gap-4">
+      <div class="flex items-center gap-4">
+        <button type="button" class="border border-gvom-border px-3 py-1 text-xs flex items-center gap-2">
+          CAD $
+          <svg class="w-3 h-3" viewBox="0 0 30 17" fill="currentColor"><path fill-rule="evenodd" d="M0 3.235L3.525 0l11.473 10.509L26.473 0 30 3.235 14.998 17z"/></svg>
+        </button>
+      </div>
+      <ul class="flex flex-wrap items-center gap-4 text-xs">
+        <li>&copy; <a href="/" class="hover:opacity-70">Good Vibes on Main</a> 2026</li>
+        <li><a href="/pages/shipping-information" class="hover:opacity-70">Shipping Information</a></li>
+        <li><a href="https://www.shopify.com" target="_blank" rel="nofollow" class="hover:opacity-70">Powered by Shopify</a></li>
+      </ul>
+      <ul class="flex items-center gap-4">
+        <li>
+          <a href="https://facebook.com/GoodVibesOnMain" title="Facebook" aria-label="Facebook" class="hover:opacity-70">
+            <svg class="w-4 h-4" viewBox="0 0 20 20" fill="#444"><path d="M18.05.811q.439 0 .744.305t.305.744v16.637q0 .439-.305.744t-.744.305h-4.732v-7.221h2.415l.342-2.854h-2.757v-1.83q0-.659.293-1t1.073-.342h1.488V3.762q-.976-.098-2.171-.098-1.634 0-2.635.964t-1.001 2.716v2.256H8.352v2.854h2.417v7.221H1.949q-.438 0-.744-.305T.9 18.497V1.86q0-.438.305-.744T1.949.811z"/></svg>
+          </a>
+        </li>
+        <li>
+          <a href="https://instagram.com/goodvibesonmain" title="Instagram" aria-label="Instagram" class="hover:opacity-70">
+            <svg class="w-4 h-4" viewBox="0 0 20 20" fill="#444"><path d="M10.034 1.763h2.644c.407 0 .881 0 1.424.068.474 0 .881.067 1.152.135.271.068.543.136.678.203.271.068.475.204.61.34.136.135.34.27.543.406.203.204.339.34.407.543.067.203.203.406.339.61.067.203.135.407.203.678.068.27.135.678.135 1.152 0 .543.068 1.017.068 1.424v5.288c0 .407 0 .882-.068 1.424 0 .474-.067.881-.135 1.152-.068.272-.136.543-.203.678a1.31 1.31 0 01-.34.61c-.135.204-.27.34-.406.543-.204.203-.34.339-.543.407a2.38 2.38 0 01-.61.27 7.737 7.737 0 01-.678.204 4.868 4.868 0 01-1.152.136c-.543 0-1.017.068-1.424.068H7.39c-.407 0-.882 0-1.424-.068-.474 0-.881-.068-1.152-.136-.272-.067-.543-.135-.678-.203-.272-.068-.475-.203-.61-.271-.204-.136-.34-.271-.543-.407-.203-.203-.339-.339-.407-.542-.135-.204-.203-.407-.339-.61a8.558 8.558 0 01-.203-.679 4.868 4.868 0 01-.136-1.152c0-.542-.067-1.017-.067-1.424V7.322c0-.407 0-.881.067-1.424 0-.474.068-.881.136-1.152.068-.271.135-.543.203-.678.068-.204.204-.407.34-.61.135-.204.27-.34.406-.543.203-.203.339-.339.542-.407.204-.135.407-.203.61-.339.204-.067.407-.135.679-.203a4.868 4.868 0 011.152-.135c.542 0 1.017-.068 1.424-.068h2.644zm0-1.763H7.322c-.407 0-.881 0-1.424.068-.542 0-1.017.068-1.356.135-.406.068-.745.204-1.084.34-.34.135-.61.27-.95.474-.27.203-.542.407-.813.678-.271.271-.542.542-.678.881-.136.34-.339.543-.475.882-.135.339-.27.678-.339 1.084a6.993 6.993 0 00-.135 1.356C0 6.441 0 6.915 0 7.322v5.356c0 .407 0 .881.068 1.424 0 .542.068 1.017.135 1.356.068.406.204.745.34 1.084.135.34.27.61.474.95.203.27.407.542.678.813.271.271.542.475.813.678.272.203.61.339.95.475.339.135.678.203 1.084.339.407.067.814.135 1.356.135.543 0 1.017.068 1.424.068h5.424c.407 0 .881 0 1.423-.068.543 0 1.017-.068 1.356-.135.407-.068.746-.204 1.085-.34.34-.135.61-.27.95-.474.27-.203.542-.407.88-.678.272-.271.475-.542.679-.881.203-.271.339-.61.474-.882.136-.339.204-.678.271-1.084.068-.407.136-.814.136-1.424 0-.542.068-1.017.068-1.424V7.254c0-.407 0-.881-.068-1.423 0-.543-.068-1.017-.136-1.424-.067-.407-.203-.746-.27-1.085a6.199 6.199 0 00-.475-.95c-.204-.338-.407-.541-.678-.813a4.353 4.353 0 00-.882-.678c-.27-.203-.61-.339-.949-.474-.339-.136-.678-.271-1.085-.34-.406-.067-.813-.135-1.356-.135h-1.423C12.27 0 11.39 0 10.034 0zm0 4.881c-.746 0-1.356.136-2.034.407-.61.271-1.153.61-1.627 1.085C5.898 6.847 5.559 7.39 5.288 8a4.863 4.863 0 00-.407 1.966c0 .746.136 1.356.407 2.034.271.61.61 1.153 1.085 1.627.474.475 1.017.814 1.627 1.085.61.271 1.288.407 2.034.407.746 0 1.356-.136 2.034-.407a4.57 4.57 0 001.627-1.085c.474-.474.813-1.017 1.085-1.627.27-.61.406-1.288.406-2.034 0-.678-.135-1.356-.406-1.966-.272-.61-.61-1.153-1.085-1.627-.475-.475-1.017-.814-1.627-1.085-.61-.271-1.356-.407-2.034-.407zm0 8.475c-.95 0-1.695-.34-2.373-.95-.678-.677-.95-1.423-.95-2.372 0-.881.34-1.695.95-2.373.61-.678 1.424-1.017 2.373-1.017.949 0 1.695.339 2.373 1.017.678.678.949 1.424.949 2.373 0 .949-.34 1.695-.95 2.373-.677.61-1.49.949-2.372.949zm6.508-8.678c0-.339-.135-.61-.339-.814a1.25 1.25 0 00-.813-.339c-.34 0-.61.136-.814.34a1.25 1.25 0 00-.339.813c0 .271.136.61.34.881.203.272.542.34.813.34.339 0 .61-.136.813-.34.204-.27.34-.61.34-.881z"/></svg>
+          </a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</footer>
+
+<script>
+  // Desktop "Shop" dropdown (click/hover via JS so it never sticks open from automated cursor placement)
+  (function(){
+    const wrap = document.querySelector('.has-dropdown');
+    if (!wrap) return;
+    let hideTimer;
+    const open = () => { clearTimeout(hideTimer); wrap.classList.add('open'); };
+    const close = () => { hideTimer = setTimeout(()=> wrap.classList.remove('open'), 150); };
+    wrap.addEventListener('mouseenter', open);
+    wrap.addEventListener('mouseleave', close);
+    wrap.querySelector('a').addEventListener('click', (e)=>{ e.preventDefault(); wrap.classList.toggle('open'); });
+  })();
+
+  // Sticky header frosted-glass backdrop on scroll
+  (function(){
+    const header = document.getElementById('site-header');
+    function onScroll(){
+      header.classList.toggle('is-stuck', window.scrollY > 40);
+    }
+    window.addEventListener('scroll', onScroll, { passive: true });
+    onScroll();
+  })();
+
+  // Mobile drawer
+  const hamburgerBtn = document.getElementById('hamburger-btn');
+  const closeDrawer = document.getElementById('close-drawer');
+  const drawer = document.getElementById('mobile-drawer');
+  const backdrop = document.getElementById('drawer-backdrop');
+  function openDrawer(){ drawer.classList.add('open'); backdrop.classList.remove('hidden'); }
+  function hideDrawer(){ drawer.classList.remove('open'); backdrop.classList.add('hidden'); }
+  hamburgerBtn && hamburgerBtn.addEventListener('click', openDrawer);
+  closeDrawer && closeDrawer.addEventListener('click', hideDrawer);
+  backdrop && backdrop.addEventListener('click', hideDrawer);
+
+  // Slideshow
+  (function(){
+    const slides = document.querySelectorAll('#slideshow .slide');
+    let idx = 0;
+    function show(i){
+      slides.forEach((s,n)=> s.classList.toggle('active', n===i));
+    }
+    document.querySelector('[data-slide-next]').addEventListener('click', ()=>{ idx=(idx+1)%slides.length; show(idx); });
+    document.querySelector('[data-slide-prev]').addEventListener('click', ()=>{ idx=(idx-1+slides.length)%slides.length; show(idx); });
+    setInterval(()=>{ idx=(idx+1)%slides.length; show(idx); }, 8000);
+  })();
+
+  // Video modal
+  const playBtn = document.getElementById('play-video-btn');
+  const modal = document.getElementById('video-modal');
+  const modalFrame = document.getElementById('modal-video-frame');
+  const closeModal = document.getElementById('close-video-modal');
+  playBtn.addEventListener('click', ()=>{
+    modalFrame.src = 'https://www.youtube.com/embed/asQcvDjkrEo?autoplay=1';
+    modal.classList.add('open');
+  });
+  closeModal.addEventListener('click', ()=>{
+    modal.classList.remove('open');
+    modalFrame.src = '';
+  });
+  document.querySelector('[data-scroll-down]').addEventListener('click', ()=>{
+    window.scrollBy({top: window.innerHeight, behavior:'smooth'});
+  });
+
+  // New Arrivals grid
+  const products = [
+    {img:'xpdrvsrtu1axht3gferl', hover:'tnozmquhgwn0xqbqz1se', title:"Life is Good Women's Breathe More Worry Less Floral Tie Dye Long Sleeve Crusher Lite Hooded Tee", price:'$60.00', href:'/products/life-is-good-womens-breathe-more-worry-less-floral-tie-dye-long-sleeve-crusher-lite-hooded-tee'},
+    {img:'ybvdybkvxq4tcv44isd1', hover:'eb8b32tjjzexd6ktxg7n', title:"Life is Good Women's Best Things Floral Paw Tie Dye Long Sleeve Crusher Lite Hooded Tee", price:'$60.00', href:'/products/life-is-good-womens-best-things-floral-paw-tie-dye-long-sleeve-crusher-lite-hooded-tee'},
+    {img:'k6mjn4erw8f1ghk4s9ae', hover:'ja98etvz5ktypu3klagt', title:"Life is Good Women's Rally Swimming Turtles Crusher Lite Vee", price:'$39.00', href:'/products/life-is-good-womens-rally-swimming-turtles-crusher-lite-vee'},
+    {img:'hbgckcz5bcux4yrrx4nt', hover:'vbfudynazybm0jvyazpu', title:"Life is Good Women's Rally Hummingbirds Crusher Lite Vee", price:'$39.00', href:'/products/life-is-good-womens-rally-hummingbirds-crusher-lite-vee'},
+    {img:'dyww4eoag8fabuzxxvdk', hover:'ioujb4bbwszwl1zzqkx9', title:"Life is Good Women's Friends in Low Places Crusher Lite Vee", price:'$39.00', href:'/products/life-is-good-womens-friends-in-low-places-crusher-lite-vee'},
+    {img:'uzwtlhkoeqkzmpqyvgzb', hover:'o8u9ig2duqifhkaz3s1u', title:"Life is Good Women's Retro Flowerball Crusher Vee", price:'$39.00', href:'/products/life-is-good-womens-retro-flowerball-crusher-vee'},
+    {img:'daxfmyl7mawekvgasxaj', hover:'vo6fhgbrnizdny4w7pqq', title:"Life is Good Women's Beach Umbrella Scene Crusher Vee", price:'$39.00', href:'/products/life-is-good-womens-beach-umbrella-scene-crusher-vee'},
+    {img:'e6242gncckhrvv8z6zqw', hover:'r6d2275u1jz5mmbmjurz', title:"Life is Good Men's Bert's Herd That Shepherd Crusher Lite Tee", price:'$39.00', href:'/products/life-is-good-mens-berts-herd-that-shepherd-crusher-lite-tee'},
+  ];
+  const grid = document.getElementById('new-arrivals-grid');
+  grid.innerHTML = products.map(p => `
+    <a href="${p.href}" class="product-card block text-center group">
+      <div class="relative aspect-square overflow-hidden bg-gvom-bg-accent">
+        <img src="https://goodvibesonmain.ca/cdn/shop/files/${p.img}_720x.png" alt="${p.title}" class="absolute inset-0 w-full h-full object-cover">
+        <img src="https://goodvibesonmain.ca/cdn/shop/files/${p.hover}_720x.png" alt="" class="card-hover-img absolute inset-0 w-full h-full object-cover">
+      </div>
+      <p class="font-accent uppercase text-[11px] tracking-wide mt-3 mb-1 px-2">${p.title}</p>
+      <span class="text-sm text-gvom-text-dark">${p.price}</span>
+    </a>
+  `).join('');
+
+  // Shop Today grid
+  const categories = [
+    {href:'/collections/womens', label:"Shop Women's", img:'xpg3ap1f3x9pkvdgbvtu.jpg', big:false},
+    {href:'/collections/mens', label:"Shop Men's", img:'hfejjbgb53zqk9dqespo.jpg', big:false},
+    {href:'/collections/home-accessories', label:'Shop Home', img:'nsdt240tyown7nwquvxi.jpg', big:false},
+    {href:'/collections/kids', label:'Shop Kids', img:'lsflxilo936110b2txum.jpg', big:false},
+    {href:'/collections/sale-1', label:'Shop Pets', img:'SS25_LIFESTYLE_ON_MODEL_CHEWY_LG1244C2_AND_LG1008C3_625.png', big:true},
+  ];
+  const shopGrid = document.getElementById('shop-today-grid');
+  shopGrid.innerHTML = categories.map(c => `
+    <a href="${c.href}" class="relative block aspect-square bg-cover bg-center group overflow-hidden" style="background-image:url('https://goodvibesonmain.ca/cdn/shop/files/${c.img}');">
+      <div class="absolute inset-0 bg-black/0 group-hover:bg-black/10 transition"></div>
+      <div class="absolute inset-0 flex items-center justify-center">
+        <span class="${c.big ? 'text-2xl text-white' : 'border border-white text-white uppercase text-xs tracking-wide px-5 py-2'}">${c.label}</span>
+      </div>
+    </a>
+  `).join('');
+
+  // Logo bar
+  const logos = [
+    {href:'/collections/life-is-good', img:'Coin_FadedBlack_1_320x.png'},
+    {href:'/collections/watuko-headgear', img:'Martin_co_optimized_cleaned_svg_320x.png'},
+    {href:'/collections/spice-of-life', img:'watuko-banner-logo_320x.webp'},
+    {href:'/collections/juno-pet-foods', img:'Kawigga_320x.jpg'},
+    {href:null, img:'KanineKookies_320x.jpg'},
+    {href:'/collections/julius-k9', img:'Julius-K9_logo_320x.png'},
+    {href:null, img:'carolyndraws_logo_2020_1_360x_9c4910dc-711a-4355-b75d-77f8f760b809_320x.webp'},
+    {href:null, img:'Logo-Black_2to1_ratio_small.avif'},
+  ];
+  const logoBar = document.getElementById('logo-bar');
+  logoBar.innerHTML = logos.map(l => {
+    const img = `<img src="https://goodvibesonmain.ca/cdn/shop/files/${l.img}" alt="" class="block mx-auto max-w-full">`;
+    const wrap = (inner) => `<div class="inline-block align-middle flex-1 min-w-[90px] max-w-[160px] my-2.5 ml-8">${inner}</div>`;
+    return wrap(l.href ? `<a href="${l.href}" target="_blank" rel="noopener" class="block">${img}</a>` : img);
+  }).join('');
+</script>
+
+</body>
+</html>
