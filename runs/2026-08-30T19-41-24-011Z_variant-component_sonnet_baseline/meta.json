@@ -1,0 +1,17 @@
+{
+  "fixture": "variant-component",
+  "condition": "baseline",
+  "runGroup": "e1df76d6",
+  "agentName": "cloner-baseline",
+  "model": "sonnet",
+  "totalCostUsd": 0.20936320000000003,
+  "isError": false,
+  "toolCallCount": 9,
+  "screenshotCount": 4,
+  "promptHash": "663ae3cb",
+  "recordedAt": "2026-08-30T19:41:24.011Z",
+  "diffRatio": 0,
+  "diffComparable": true,
+  "qualityScore": 8,
+  "qualityReasoning": "The source page apparently ships no CSS at all, so there are no long utility-class strings to worry about repeating — the agent correctly recognized this and didn't invent Tailwind styling that wasn't there. Repeated markup (the product entries) is expressed via a consistent, semantic class recipe (product-card / badge) rather than copy-pasted utility soup, which is exactly the desired pattern even though those classes carry no CSS. There's no theme config to assess for redundancy since none was needed. The HTML itself is clean, well-structured, and easy to read. Minor deduction: the comments are longer and more explanatory/justifying than the 'only for non-obvious why' guideline calls for, though they do convey legitimate hidden constraints (preflight disabled intentionally, no invented styling).</reasoning>\n</invoke>\n"
+}

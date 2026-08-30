@@ -1,0 +1,17 @@
+{
+  "fixture": "carousel-js-cloned",
+  "condition": "tooled",
+  "runGroup": "da9381c7",
+  "agentName": "cloner",
+  "model": "sonnet",
+  "totalCostUsd": 0.23079799999999998,
+  "isError": false,
+  "toolCallCount": 12,
+  "screenshotCount": 6,
+  "promptHash": "26e2731b",
+  "recordedAt": "2026-08-30T18:42:55.350Z",
+  "diffRatio": 0,
+  "diffComparable": true,
+  "qualityScore": 1,
+  "qualityReasoning": "The file contains no Tailwind CSS at all — no CDN script, no theme config, and no utility classes anywhere in the markup. There is nothing to evaluate against the stated criteria (reusable component patterns vs. copy-pasted utility strings, minimal non-redundant theme tokens) because Tailwind was never used. The HTML itself is minimal and readable, and the JS comment explaining the clone-based infinite-loop simulation is appropriately justified (non-obvious behavior), but as a response to a 'clone this page using Tailwind CSS' task, it fails to attempt the core requirement, so it cannot score above the floor."
+}

@@ -1,0 +1,51 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>Variant component</title>
+
+  <!-- Tailwind is loaded per the required approach, but the source page ships
+       zero CSS of its own -- it renders with the browser's plain default
+       (User-Agent) stylesheet: serif body copy, default h1/p margins, and
+       broken-image placeholders for the (non-existent) product photos.
+       Preflight is disabled so those un-styled defaults are preserved
+       exactly instead of being normalized away by Tailwind's reset. -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      corePlugins: {
+        preflight: false
+      }
+    };
+  </script>
+</head>
+<body>
+  <main id="main">
+    <h1>Shop</h1>
+
+    <!-- Reusable "product-card" component: image + name/price line, with an
+         optional "badge" component (a small "Featured" label) for items
+         that are on sale/highlighted. Neither class carries any CSS in the
+         source, so no visual card/grid treatment is invented here -- the
+         class names are kept as the semantic hooks the source markup used. -->
+    <div class="product-card">
+      <img src="/product-1.jpg" alt="Trail Runner Jacket" />
+      <p>Trail Runner Jacket — $128</p>
+    </div>
+    <div class="product-card">
+      <span class="badge">Featured</span>
+      <img src="/product-2.jpg" alt="Insulated Bottle" />
+      <p>Insulated Bottle — $32</p>
+    </div>
+    <div class="product-card">
+      <img src="/product-3.jpg" alt="Camp Lantern" />
+      <p>Camp Lantern — $45</p>
+    </div>
+    <div class="product-card">
+      <span class="badge">Featured</span>
+      <img src="/product-4.jpg" alt="Rain Shell" />
+      <p>Rain Shell — $96</p>
+    </div>
+  </main>
+</body>
+</html>

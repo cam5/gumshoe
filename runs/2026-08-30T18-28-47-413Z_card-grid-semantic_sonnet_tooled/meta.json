@@ -1,0 +1,17 @@
+{
+  "fixture": "card-grid-semantic",
+  "condition": "tooled",
+  "runGroup": "d5430f59",
+  "agentName": "cloner",
+  "model": "sonnet",
+  "totalCostUsd": 0.2129992,
+  "isError": false,
+  "toolCallCount": 11,
+  "screenshotCount": 4,
+  "promptHash": "58da74e0",
+  "recordedAt": "2026-08-30T18:28:47.414Z",
+  "diffRatio": 0,
+  "diffComparable": true,
+  "qualityScore": 1,
+  "qualityReasoning": "The file contains no Tailwind CSS at all — no CDN script tag, no theme config, and no utility classes anywhere in the markup. It's plain semantic HTML with a bare custom class name (testimonial-card) that has no accompanying styles. Since the task explicitly required Tailwind loaded via CDN with a dynamically configured theme, this submission fails the core requirement entirely, so there's nothing to evaluate in terms of utility-class reuse patterns or theme token minimalism. The HTML itself is clean and semantic, but that alone doesn't satisfy a Tailwind cloning task."
+}

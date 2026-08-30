@@ -1,0 +1,17 @@
+{
+  "fixture": "off-scale-tokens",
+  "condition": "tooled",
+  "runGroup": "81164fc7",
+  "agentName": "cloner",
+  "model": "sonnet",
+  "totalCostUsd": 0.2993672,
+  "isError": false,
+  "toolCallCount": 18,
+  "screenshotCount": 6,
+  "promptHash": "e9c81f61",
+  "recordedAt": "2026-08-30T19:16:45.020Z",
+  "diffRatio": 0,
+  "diffComparable": true,
+  "qualityScore": 4,
+  "qualityReasoning": "The HTML itself is short, clean, and well-commented, but it largely abandons Tailwind for the actual styling. The two buttons are styled with a hand-written <style> block using literal CSS values, while a Tailwind theme config defines \"cta-a\"/\"cta-b\" colors that are never referenced by any Tailwind class (no bg-cta-a is used anywhere) — so the theme config is dead, redundant code that duplicates the hex values already hard-coded in the <style> block. Given the stated purpose of the exercise (off-scale values via a dynamically configured theme), the appropriate approach would have been to use Tailwind's arbitrary-value syntax (e.g. `py-[9px] px-[17px] rounded-[33px] mt-[14px] bg-[#017a07]`) to keep the exact pixel/color precision while remaining within Tailwind utilities — this file does not attempt that at all, undermining the point of using Tailwind. There's no meaningful repeated-markup problem to solve here since the file is tiny (only two buttons), so that criterion is moot, but the redundant/unused theme tokens and near-total bypass of Tailwind utilities for the core styling are real quality problems.</reasoning>\n</invoke>\n"
+}

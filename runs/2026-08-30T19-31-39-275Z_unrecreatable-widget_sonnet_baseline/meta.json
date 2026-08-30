@@ -1,0 +1,17 @@
+{
+  "fixture": "unrecreatable-widget",
+  "condition": "baseline",
+  "runGroup": "7a6b1b48",
+  "agentName": "cloner-baseline",
+  "model": "sonnet",
+  "totalCostUsd": 0.22915600000000005,
+  "isError": false,
+  "toolCallCount": 13,
+  "screenshotCount": 5,
+  "promptHash": "96f3e820",
+  "recordedAt": "2026-08-30T19:31:39.275Z",
+  "diffRatio": 0.004188368055555555,
+  "diffComparable": true,
+  "qualityScore": 9,
+  "qualityReasoning": "The markup is minimal (a heading and a canvas), so there's no repeated pattern that needed extraction into a component class — nothing to fault there. The Tailwind config is empty/non-redundant (just an unused extend stub), which is appropriately minimal given no off-scale values are needed. The HTML is clean, semantic, and readable, with a clear comment explaining why the chart can't be reproduced as markup. Only minor nit: the empty tailwind.config block is unnecessary boilerplate, but it's harmless."
+}

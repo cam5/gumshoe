@@ -1,0 +1,17 @@
+{
+  "fixture": "card-grid-anonymous",
+  "condition": "baseline",
+  "runGroup": "9a97fc25",
+  "agentName": "cloner-baseline",
+  "model": "sonnet",
+  "totalCostUsd": 0.1759474,
+  "isError": false,
+  "toolCallCount": 10,
+  "screenshotCount": 4,
+  "promptHash": "86da0b24",
+  "recordedAt": "2026-08-30T18:23:29.776Z",
+  "diffRatio": 0.011216145833333333,
+  "diffComparable": true,
+  "qualityScore": 6,
+  "qualityReasoning": "The three testimonial cards use an identical, moderately long utility-class string (\"p-4 rounded-lg shadow-md flex flex-col gap-2 bg-white\") copy-pasted three times with no extraction into a component class or shared recipe (e.g., via @apply or a templating construct). With three repetitions of a non-trivial class list, this is a clear case where a named pattern would improve maintainability. There is no Tailwind theme config in this file, so there's nothing redundant to flag there — that criterion is neutral/inapplicable. The HTML itself is otherwise clean, semantic, and readable: proper heading, alt text with names, responsive grid classes, no stray complexity. Overall it's a small, tidy file let down mainly by the lack of abstraction for the repeated card markup."
+}

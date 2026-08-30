@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>Off-scale tokens</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            "cta-a": "#017a07",
+            "cta-b": "#018008"
+          },
+          spacing: {
+            "cta-a-x": "17px",
+            "cta-a-y": "9px",
+            "cta-a-top": "14px",
+            "cta-b-x": "18px",
+            "cta-b-y": "10px",
+            "cta-b-top": "15px"
+          },
+          borderRadius: {
+            "cta-a": "33px",
+            "cta-b": "34px"
+          }
+        }
+      }
+    };
+  </script>
+</head>
+<body class="bg-white text-black">
+  <main id="main">
+    <div id="buttons" class="flex gap-3">
+      <a
+        class="inline-block mt-cta-a-top px-cta-a-x py-cta-a-y rounded-cta-a bg-cta-a text-white underline"
+        href="/start"
+      >Get started</a>
+      <a
+        class="inline-block mt-cta-b-top px-cta-b-x py-cta-b-y rounded-cta-b bg-cta-b text-white underline"
+        href="/pricing"
+      >See pricing</a>
+    </div>
+  </main>
+</body>
+</html>

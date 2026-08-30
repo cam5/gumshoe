@@ -1,0 +1,17 @@
+{
+  "fixture": "variant-component",
+  "condition": "baseline",
+  "runGroup": "e1df76d6",
+  "agentName": "cloner-baseline",
+  "model": "sonnet",
+  "totalCostUsd": 0.1925846,
+  "isError": false,
+  "toolCallCount": 10,
+  "screenshotCount": 4,
+  "promptHash": "eedbdb97",
+  "recordedAt": "2026-08-30T19:45:04.323Z",
+  "diffRatio": 0,
+  "diffComparable": true,
+  "qualityScore": 2,
+  "qualityReasoning": "The file has no Tailwind utility classes anywhere in the body — every element uses bare custom class names (product-card, badge) that are never defined via a <style> block, an @layer components rule, or any CSS at all. There's no evidence the agent used Tailwind to build the component; it just wrote plain HTML with placeholder class names and loaded the CDN script with preflight disabled. The repeated 'product-card' and 'badge' classes are consistently named, but that's meaningless as a 'reusable pattern' criterion since there are no utility strings being deduplicated — there's nothing backing them. No theme config is present either, so there's nothing to check for redundant tokens, but that's because no off-scale values were ever translated into Tailwind at all. The HTML markup itself is tidy and semantic, but as a Tailwind-based implementation this is essentially non-functional/incomplete, which is a serious code quality problem beyond just visual fidelity."
+}

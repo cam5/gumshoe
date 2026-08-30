@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Card grid — anonymous</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            "gray-600": "#4b5563"
+          }
+        }
+      }
+    };
+  </script>
+</head>
+<body class="bg-white text-black">
+  <main id="main" class="p-8 max-w-5xl mx-auto">
+    <h1 class="text-4xl font-bold mb-4">What people say</h1>
+
+    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
+      <!-- Testimonial card component -->
+      <div class="p-4 rounded-lg shadow-md flex flex-col gap-2">
+        <img class="w-12 h-12 rounded-full" src="/avatar-1.jpg" alt="Avatar for Jamie Wren" />
+        <p class="text-sm text-gray-600">"This tool saved us a week of manual work every release."</p>
+      </div>
+      <div class="p-4 rounded-lg shadow-md flex flex-col gap-2">
+        <img class="w-12 h-12 rounded-full" src="/avatar-2.jpg" alt="Avatar for Priya Anand" />
+        <p class="text-sm text-gray-600">"Support answered in minutes, not days."</p>
+      </div>
+      <div class="p-4 rounded-lg shadow-md flex flex-col gap-2">
+        <img class="w-12 h-12 rounded-full" src="/avatar-3.jpg" alt="Avatar for Sam Okafor" />
+        <p class="text-sm text-gray-600">"We onboarded the whole team in an afternoon."</p>
+      </div>
+    </div>
+  </main>
+</body>
+</html>

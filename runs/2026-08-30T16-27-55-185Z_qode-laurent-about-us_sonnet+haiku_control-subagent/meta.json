@@ -1,0 +1,13 @@
+{
+  "fixture": "qode-laurent-about-us",
+  "condition": "control-subagent",
+  "runGroup": null,
+  "agentName": "cloner-control",
+  "model": "sonnet+haiku",
+  "totalCostUsd": 1.9240698000000005,
+  "isError": false,
+  "toolCallCount": 50,
+  "screenshotCount": 0,
+  "promptHash": "5ac9c4a0",
+  "recordedAt": "2026-08-30T16:27:55.188Z"
+}

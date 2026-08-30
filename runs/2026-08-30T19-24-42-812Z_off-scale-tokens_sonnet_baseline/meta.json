@@ -1,0 +1,17 @@
+{
+  "fixture": "off-scale-tokens",
+  "condition": "baseline",
+  "runGroup": "81164fc7",
+  "agentName": "cloner-baseline",
+  "model": "sonnet",
+  "totalCostUsd": 0.15627019999999997,
+  "isError": false,
+  "toolCallCount": 9,
+  "screenshotCount": 5,
+  "promptHash": "d3947088",
+  "recordedAt": "2026-08-30T19:24:42.813Z",
+  "diffRatio": 0.0033350694444444443,
+  "diffComparable": true,
+  "qualityScore": 2,
+  "qualityReasoning": "The theme config is the main problem: cta-a/cta-b colors (#017a07 vs #018008), border radii (33px vs 34px), and three pairs of spacing values are all near-duplicates that differ by 1px or a barely perceptible color shift. These should almost certainly have been a single shared token set (one color, one radius, one spacing scale) rather than eight bespoke keys duplicated per button — this is exactly the redundant-token anti-pattern. On top of that, the two CTA links share an identical structural recipe (inline-block, padding, margin-top, rounded, bg, text-white, underline) but use entirely separate class names for every value instead of extracting a shared '.cta-btn' component class with only the differing color/spacing pulled out, so there's no reuse at all despite the near-identical markup. The HTML itself is short and syntactically clean, but that doesn't offset the theme bloat and copy-pasted-with-no-abstraction button markup."
+}

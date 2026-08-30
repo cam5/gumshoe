@@ -1,0 +1,17 @@
+{
+  "fixture": "carousel-js-cloned",
+  "condition": "baseline",
+  "runGroup": "da9381c7",
+  "agentName": "cloner-baseline",
+  "model": "sonnet",
+  "totalCostUsd": 0.23623160000000004,
+  "isError": false,
+  "toolCallCount": 12,
+  "screenshotCount": 5,
+  "promptHash": "3c0904ed",
+  "recordedAt": "2026-08-30T18:44:51.812Z",
+  "diffRatio": 0.003204861111111111,
+  "diffComparable": true,
+  "qualityScore": 9,
+  "qualityReasoning": "The file is small and clean. The Tailwind theme config only adds a single, necessary fontFamily override — minimal and non-redundant. The repeated markup (two `<li class=\"slide\">` items) carries no duplicated utility-class strings to abstract; the shared `slide` class is a plain JS hook, not a styling recipe, so there's nothing meaningfully copy-pasted that needs componentizing. Remaining classes (`bg-white text-black m-2`, `text-[2em] font-bold my-[0.67em]`, `list-disc pl-10 my-4`) are used once each and read clearly. HTML structure and the accompanying script are concise and easy to follow."
+}

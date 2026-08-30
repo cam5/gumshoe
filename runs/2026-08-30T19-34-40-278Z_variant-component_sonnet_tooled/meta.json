@@ -1,0 +1,17 @@
+{
+  "fixture": "variant-component",
+  "condition": "tooled",
+  "runGroup": "e1df76d6",
+  "agentName": "cloner",
+  "model": "sonnet",
+  "totalCostUsd": 0.18821159999999998,
+  "isError": false,
+  "toolCallCount": 9,
+  "screenshotCount": 4,
+  "promptHash": "019364c0",
+  "recordedAt": "2026-08-30T19:34:40.278Z",
+  "diffRatio": 0,
+  "diffComparable": true,
+  "qualityScore": 2,
+  "qualityReasoning": "The file contains no Tailwind at all — no CDN script tag, no tailwind.config, and no utility classes anywhere. It uses only bare custom class names (product-card, badge) with zero CSS definitions provided anywhere in the document, so the markup would render completely unstyled. While the repeated product-card markup is reasonably factored (same class reused across the four cards, no copy-pasted utility strings), that's the only thing going for it. Since the task explicitly required Tailwind via CDN with a dynamic theme config, and this is entirely absent, the file fails the core deliverable this rubric is built around. There's no theme config to evaluate for redundancy since none exists. The HTML itself is minimal and readable, but as a \"Tailwind clone\" it is non-functional."
+}

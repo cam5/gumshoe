@@ -1,0 +1,17 @@
+{
+  "fixture": "off-scale-tokens",
+  "condition": "baseline",
+  "runGroup": "81164fc7",
+  "agentName": "cloner-baseline",
+  "model": "sonnet",
+  "totalCostUsd": 0.19060700000000003,
+  "isError": false,
+  "toolCallCount": 11,
+  "screenshotCount": 4,
+  "promptHash": "9e4dd3b1",
+  "recordedAt": "2026-08-30T19:21:49.717Z",
+  "diffRatio": 0.0033350694444444443,
+  "diffComparable": true,
+  "qualityScore": 3,
+  "qualityReasoning": "The theme config defines two full sets of near-duplicate custom tokens (cta-a-x/cta-b-x at 17px/18px, cta-a-y/cta-b-y at 9px/10px, cta-a-top/cta-b-top at 14px/15px, cta-a/cta-b border radii at 33px/34px, and cta-a/cta-b colors #017a07/#018008) where the differences are negligible (1px, 1-unit hex shifts). This is precisely the anti-pattern called out in the grading criteria: near-duplicate custom values that should have been consolidated into a single shared token set, then reused across both buttons. A well-factored version would define one set of off-scale tokens (or just one color/spacing/radius) and apply it to both links, varying only what's actually different (href, label). Instead, the config is effectively doubled for no visual/functional reason evident in the markup.\n\nSeparately, the two <a> elements repeat a long, nearly identical utility-class string with no named/reusable pattern (no shared class, no @apply-style component, no template reuse) — a minor duplication given only two instances, but it compounds the same underlying failure to notice these two buttons are essentially the same component.\n\nThe HTML itself is otherwise clean and readable (semantic structure, reasonable ids, no clutter), but the core ask — a minimal, non-redundant theme — is clearly violated in a way that looks like copy-paste-and-tweak rather than intentional design."
+}

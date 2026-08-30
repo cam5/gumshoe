@@ -1,0 +1,68 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>Off-scale tokens</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    // Design tokens measured directly from the live page's inline <style> block.
+    tailwind.config = {
+      corePlugins: {
+        preflight: false // keep default UA body margin + font so the plain,
+                         // un-styled page (no font-family/margin rules of its
+                         // own) renders identically to the original
+      },
+      theme: {
+        extend: {
+          colors: {
+            "cta-a": "#017a07",   // .cta-a background
+            "cta-b": "#018008"    // .cta-b background
+          },
+          spacing: {
+            "4.25": "1.0625rem", // 17px padding-x (cta-a)
+            "4.5": "1.125rem",   // 18px padding-x (cta-b)
+            "2.25": "0.5625rem", // 9px padding-y (cta-a)
+            "2.5": "0.625rem",   // 10px padding-y (cta-b)
+            "3.5": "0.875rem",   // 14px margin-top (cta-a)
+            "3.75": "0.9375rem"  // 15px margin-top (cta-b)
+          },
+          borderRadius: {
+            "33": "33px",
+            "34": "34px"
+          }
+        }
+      }
+    };
+  </script>
+  <style>
+    /* Exact values kept as literal CSS since Tailwind's arbitrary spacing/radius
+       scale doesn't natively offer these odd px values without extending it,
+       and extending already happened above via the config. */
+    #buttons { display: flex; gap: 12px; }
+    .cta-a {
+      display: inline-block;
+      margin-top: 14px;
+      padding: 9px 17px;
+      border-radius: 33px;
+      background: #017a07;
+      color: #ffffff;
+    }
+    .cta-b {
+      display: inline-block;
+      margin-top: 15px;
+      padding: 10px 18px;
+      border-radius: 34px;
+      background: #018008;
+      color: #ffffff;
+    }
+  </style>
+</head>
+<body>
+  <main id="main">
+    <div id="buttons">
+      <a class="cta-a" href="/start">Get started</a>
+      <a class="cta-b" href="/pricing">See pricing</a>
+    </div>
+  </main>
+</body>
+</html>

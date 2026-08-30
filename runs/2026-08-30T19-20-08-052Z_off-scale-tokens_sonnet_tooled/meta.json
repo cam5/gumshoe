@@ -1,0 +1,17 @@
+{
+  "fixture": "off-scale-tokens",
+  "condition": "tooled",
+  "runGroup": "81164fc7",
+  "agentName": "cloner",
+  "model": "sonnet",
+  "totalCostUsd": 0.168804,
+  "isError": false,
+  "toolCallCount": 7,
+  "screenshotCount": 5,
+  "promptHash": "26358103",
+  "recordedAt": "2026-08-30T19:20:08.053Z",
+  "diffRatio": 0,
+  "diffComparable": true,
+  "qualityScore": 2,
+  "qualityReasoning": "The Tailwind theme config (spacing 4.25/4.5/2.25/2.5/3.5/3.75, borderRadius 33/34, colors cta-a/cta-b) is entirely dead code — none of it is ever referenced by a utility class anywhere in the markup. Instead, the buttons are styled with a hand-written plain CSS block that duplicates the exact same values as literal px/hex. So the file effectively isn't using Tailwind's config-driven approach at all; it just declares tokens and then ignores them, which is misleading and adds unused bloat rather than a working recipe.\n\nThe two button classes (.cta-a/.cta-b) are also a clear case of copy-pasted near-duplicate styling instead of a shared, reusable pattern: they share identical `display: inline-block` and `color: #fff`, differing only in margin-top, padding, border-radius, and background — yet each rule fully repeats every property instead of factoring out a common base class/recipe with only the deltas modified. Combined with the near-duplicate config tokens (4.25 vs 4.5, 2.25 vs 2.5, 3.5 vs 3.75, 33 vs 34, two near-identical greens) that were never consolidated or even used, this is close to the canonical anti-pattern the rubric calls out.\n\nThe body markup itself is small and readable, and the comments explain legitimate non-obvious constraints (preflight disabled, arbitrary px values), which is a minor positive. But the core deliverable — an actual Tailwind-based clone using the configured theme — isn't present; what exists is duplicated plain CSS plus inert, redundant config."
+}

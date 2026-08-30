@@ -1,0 +1,17 @@
+{
+  "fixture": "coincidental-shape",
+  "condition": "tooled",
+  "runGroup": "798218dc",
+  "agentName": "cloner",
+  "model": "sonnet",
+  "totalCostUsd": 0.182707,
+  "isError": false,
+  "toolCallCount": 9,
+  "screenshotCount": 4,
+  "promptHash": "c8e339ba",
+  "recordedAt": "2026-08-30T18:58:32.063Z",
+  "diffRatio": 0,
+  "diffComparable": true,
+  "qualityScore": 1,
+  "qualityReasoning": "This file does not use Tailwind CSS at all — there's no Tailwind CDN script tag, no theme configuration, and no utility classes anywhere in the markup. The elements are bare (no class attributes at all), so there is no repeated utility-class markup to evaluate for componentization, and no theme config to evaluate for redundancy. Since the task explicitly required Tailwind via CDN with a dynamic theme, and none of that is present, this fails the core requirement entirely rather than just scoring poorly on style quality."
+}

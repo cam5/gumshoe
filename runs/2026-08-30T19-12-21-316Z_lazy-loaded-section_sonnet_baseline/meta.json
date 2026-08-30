@@ -1,0 +1,17 @@
+{
+  "fixture": "lazy-loaded-section",
+  "condition": "baseline",
+  "runGroup": "5ca2d689",
+  "agentName": "cloner-baseline",
+  "model": "sonnet",
+  "totalCostUsd": 0.20183420000000002,
+  "isError": false,
+  "toolCallCount": 10,
+  "screenshotCount": 4,
+  "promptHash": "3cd6e26e",
+  "recordedAt": "2026-08-30T19:12:21.318Z",
+  "diffRatio": 0,
+  "diffComparable": true,
+  "qualityScore": 2,
+  "qualityReasoning": "The file effectively opts out of Tailwind entirely: preflight is disabled and no Tailwind utility classes are used anywhere in the static markup or in the dynamically generated cards (plain classes like \"placeholder\" and \"product-card\" with zero styling). There's no theme config beyond disabling preflight, so there's nothing to assess for token minimalism, and no repeated utility-class markup to judge for componentization since utilities aren't used at all. As a result the page has no visual styling at all for the recommendation cards. While the HTML itself is clean and the comments explain intent, the task was to clone a page with Tailwind CSS, and this submission provides essentially no Tailwind-based implementation to evaluate — which is a significant shortfall in code quality relative to the assignment."
+}

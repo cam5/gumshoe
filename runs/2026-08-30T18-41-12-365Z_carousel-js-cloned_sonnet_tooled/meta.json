@@ -1,0 +1,17 @@
+{
+  "fixture": "carousel-js-cloned",
+  "condition": "tooled",
+  "runGroup": "da9381c7",
+  "agentName": "cloner",
+  "model": "sonnet",
+  "totalCostUsd": 0.17926720000000002,
+  "isError": false,
+  "toolCallCount": 8,
+  "screenshotCount": 4,
+  "promptHash": "1eb38ae2",
+  "recordedAt": "2026-08-30T18:41:12.367Z",
+  "diffRatio": 0,
+  "diffComparable": true,
+  "qualityScore": 1,
+  "qualityReasoning": "The file does not use Tailwind CSS at all — there's no Tailwind CDN script tag, no theme config, and no Tailwind utility classes anywhere. The only classes present (\"slide\") are undefined/unstyled. Since the task explicitly required cloning the page using Tailwind (via CDN with a configured theme), this submission fails the core requirement entirely, making the requested code-quality criteria (reusable utility patterns, minimal theme config) inapplicable/non-existent. What remains is minimal, unstyled boilerplate HTML plus a scripted DOM-cloning trick, which is clean but trivial and not a Tailwind clone in any sense."
+}

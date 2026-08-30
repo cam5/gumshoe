@@ -1,0 +1,17 @@
+{
+  "fixture": "card-grid-semantic",
+  "condition": "tooled",
+  "runGroup": "d5430f59",
+  "agentName": "cloner",
+  "model": "sonnet",
+  "totalCostUsd": 0.19146720000000003,
+  "isError": false,
+  "toolCallCount": 8,
+  "screenshotCount": 4,
+  "promptHash": "05886a32",
+  "recordedAt": "2026-08-30T18:30:24.611Z",
+  "diffRatio": 0,
+  "diffComparable": true,
+  "qualityScore": 2,
+  "qualityReasoning": "The file contains no Tailwind CSS at all — no CDN script tag and no theme configuration — despite the task requiring Tailwind loaded via CDN with a dynamically configured theme. The markup uses a semantic class name (testimonial-card) repeated cleanly across three instances, which would be a reasonable reuse pattern if backed by actual CSS, but no <style> block or stylesheet defines that class anywhere in the file. So there are no utility classes to assess for duplication, no theme tokens to assess for redundancy, and the one 'component class' present is functionally a no-op — the elements are entirely unstyled. The HTML skeleton itself is minimal and readable, but as a Tailwind clone deliverable it fails to use the required tooling, making the code quality assessment moot beyond basic markup structure.</reasoning>\n</invoke>\n"
+}

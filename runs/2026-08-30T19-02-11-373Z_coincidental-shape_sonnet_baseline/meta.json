@@ -1,0 +1,17 @@
+{
+  "fixture": "coincidental-shape",
+  "condition": "baseline",
+  "runGroup": "798218dc",
+  "agentName": "cloner-baseline",
+  "model": "sonnet",
+  "totalCostUsd": 0.173336,
+  "isError": false,
+  "toolCallCount": 9,
+  "screenshotCount": 4,
+  "promptHash": "6798b96d",
+  "recordedAt": "2026-08-30T19:02:11.374Z",
+  "diffRatio": 0,
+  "diffComparable": true,
+  "qualityScore": 7,
+  "qualityReasoning": "The file is minimal, so there's little repeated markup to assess — only two similar section/div/img/p structures, which isn't enough repetition to demand extraction into a reusable component class; leaving them as-is is reasonable at this scale. There's no theme config with custom values at all (preflight disabled only), so there are no redundant tokens to critique — this is trivially non-redundant. The HTML itself is clean, semantic, and readable, with appropriate ids and structure. The main deduction is that no Tailwind utility classes are used anywhere in the body, meaning there's nothing demonstrating good/bad Tailwind practice (e.g., use of @apply-like patterns, consistent utility recipes) — this is a defensible choice given the documented rationale (unstyled source), but it limits how much \"quality\" can be demonstrated with respect to the specific rubric about utility-class reuse. No sloppiness or bugs present.</reasoning>\n</invoke>\n"
+}

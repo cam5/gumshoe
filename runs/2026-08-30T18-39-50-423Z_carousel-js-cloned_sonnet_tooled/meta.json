@@ -1,0 +1,17 @@
+{
+  "fixture": "carousel-js-cloned",
+  "condition": "tooled",
+  "runGroup": "da9381c7",
+  "agentName": "cloner",
+  "model": "sonnet",
+  "totalCostUsd": 0.24000760000000002,
+  "isError": false,
+  "toolCallCount": 12,
+  "screenshotCount": 4,
+  "promptHash": "babb99f9",
+  "recordedAt": "2026-08-30T18:39:50.424Z",
+  "diffRatio": 0,
+  "diffComparable": true,
+  "qualityScore": 9,
+  "qualityReasoning": "The markup is minimal and there's little to abstract: the two slides share a plain `slide` class rather than a repeated long utility string, which is the right call for such a small repeated unit. The Tailwind theme config is a single, well-justified custom token (fontSize.32) with a comment explaining why it exists and why preflight is disabled — no redundant or near-duplicate values. The HTML is clean, semantic, and the comments explain non-obvious rationale (UA-default reconstruction, why preflight is off, the slick-carousel clone simulation) without over-explaining obvious code. No dead code, no unnecessary complexity for the scope of the file."
+}

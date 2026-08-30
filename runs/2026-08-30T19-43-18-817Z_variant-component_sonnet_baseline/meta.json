@@ -1,0 +1,17 @@
+{
+  "fixture": "variant-component",
+  "condition": "baseline",
+  "runGroup": "e1df76d6",
+  "agentName": "cloner-baseline",
+  "model": "sonnet",
+  "totalCostUsd": 0.20170180000000001,
+  "isError": false,
+  "toolCallCount": 11,
+  "screenshotCount": 4,
+  "promptHash": "672406ef",
+  "recordedAt": "2026-08-30T19:43:18.817Z",
+  "diffRatio": 0.00927951388888889,
+  "diffComparable": true,
+  "qualityScore": 6.5,
+  "qualityReasoning": "The file is clean, readable, and correctly indented, with a minimal, non-redundant theme config (a single custom `badge` color, no near-duplicate tokens). The main weakness is repeated markup: the long `product-card` utility string (`relative flex flex-col rounded-lg border border-gray-200 shadow-sm overflow-hidden bg-white`) is copy-pasted across all four cards, and the `badge` span's utility string is copy-pasted verbatim across both featured items. A `.product-card` class already exists in the `<style>` block (used only to hook the placeholder-image CSS), which was a missed opportunity to also carry the shared layout utilities as a recipe, reducing duplication. That said, the Tailwind CDN setup makes `@apply`-based extraction awkward without the `type=\"text/tailwindcss\"` script variant, and with only 4 short, near-identical cards the repetition is minor and common for static HTML mockups — it doesn't rise to a severe violation. The explanatory comment in the `<style>` block is a bit long-winded but does convey a genuinely non-obvious constraint (placeholder handling for unresolvable image paths)."
+}

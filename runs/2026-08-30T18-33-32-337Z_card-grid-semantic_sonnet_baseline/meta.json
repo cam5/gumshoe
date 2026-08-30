@@ -1,0 +1,17 @@
+{
+  "fixture": "card-grid-semantic",
+  "condition": "baseline",
+  "runGroup": "d5430f59",
+  "agentName": "cloner-baseline",
+  "model": "sonnet",
+  "totalCostUsd": 0.1886842,
+  "isError": false,
+  "toolCallCount": 10,
+  "screenshotCount": 4,
+  "promptHash": "967c69a4",
+  "recordedAt": "2026-08-30T18:33:32.339Z",
+  "diffRatio": 0,
+  "diffComparable": true,
+  "qualityScore": 3,
+  "qualityReasoning": "The file uses a named, reused class (`testimonial-card`) across all three repeated card blocks rather than copy-pasting long utility strings — good in principle. However, that class has no corresponding definition anywhere (no `<style>` block, no Tailwind `@layer components`, no utility classes), so it is a non-functional placeholder rather than an actual reusable styling pattern. The theme config only disables preflight; no theme customization or off-scale tokens are present at all, so there's nothing to assess for redundancy, but it also means the file essentially opts out of using Tailwind entirely (zero utility classes anywhere in the body). The HTML markup itself is minimal, semantic, and readable, with consistent structure and correct alt text, but as a piece of Tailwind-based code it's essentially empty — the CDN script and config exist only to disable preflight, not to implement any styling system. This makes the \"reusable pattern\" criterion technically true in form but hollow in substance, since there's no CSS behind the class name."
+}

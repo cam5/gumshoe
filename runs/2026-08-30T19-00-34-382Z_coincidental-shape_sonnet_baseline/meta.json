@@ -1,0 +1,17 @@
+{
+  "fixture": "coincidental-shape",
+  "condition": "baseline",
+  "runGroup": "798218dc",
+  "agentName": "cloner-baseline",
+  "model": "sonnet",
+  "totalCostUsd": 0.23339179999999998,
+  "isError": false,
+  "toolCallCount": 12,
+  "screenshotCount": 5,
+  "promptHash": "a4e727c4",
+  "recordedAt": "2026-08-30T19:00:34.383Z",
+  "diffRatio": 0.005417534722222222,
+  "diffComparable": true,
+  "qualityScore": 8.5,
+  "qualityReasoning": "The file is minimal and clean. Only two structurally similar blocks (hero/specs sections) exist, each with distinct content and only a couple of utility classes (`my-4`), so there isn't really a \"same long utility-class string copy-pasted many times\" problem to solve — extracting a component class for two short, simple blocks would be premature abstraction. Semantic IDs are used appropriately instead of divitis. The Tailwind theme config is minimal (single fontFamily extension) with a helpful, non-redundant comment explaining why no broader theme was extracted. HTML is well-formed, readable, and appropriately terse for the amount of content. No wasted classes, no redundant tokens, no dead code. Minor nitpick: `text-base leading-[normal]` on body could arguably be omitted since those are Tailwind defaults, and the arbitrary value `leading-[normal]` is slightly odd, but this is a trivial issue in an otherwise clean file."
+}

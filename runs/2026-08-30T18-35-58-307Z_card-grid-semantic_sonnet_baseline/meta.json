@@ -1,0 +1,17 @@
+{
+  "fixture": "card-grid-semantic",
+  "condition": "baseline",
+  "runGroup": "d5430f59",
+  "agentName": "cloner-baseline",
+  "model": "sonnet",
+  "totalCostUsd": 0.2436494,
+  "isError": false,
+  "toolCallCount": 15,
+  "screenshotCount": 6,
+  "promptHash": "f269eb83",
+  "recordedAt": "2026-08-30T18:35:58.309Z",
+  "diffRatio": 0.009041666666666667,
+  "diffComparable": true,
+  "qualityScore": 7,
+  "qualityReasoning": "The file is small and clean HTML overall. Positives: the custom theme tokens (margin.h1-y, margin.p-y, fontSize.h1) are minimal, non-redundant, and clearly named around a real off-scale need (em-based spacing tied to heading/paragraph rhythm) rather than being duplicated ad-hoc values. The three testimonial blocks use a shared `testimonial-card` class name instead of repeating a long utility string, which is the right instinct for a reusable pattern.\n\nNegatives: `testimonial-card` is never actually defined anywhere (no CSS, no @apply, no Tailwind utilities on the div) — it's a component class in name only, so it isn't demonstrating a real \"recipe\" being reused, just a label with no reused declarations behind it. It's defensible given the described source has no chrome to reproduce, but it means the reusable-pattern requirement isn't really being exercised. There's also a large multi-line HTML comment that reads like an agent's internal rationale/commit-message rather than something a human author would leave in shipped markup — it hurts overall cleanliness/professionalism of the file even though it doesn't affect rendering.\n\nNo egregious copy-paste of long utility strings, no redundant theme tokens, structure is simple and readable."
+}

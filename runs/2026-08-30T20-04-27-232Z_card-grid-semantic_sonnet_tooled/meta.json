@@ -1,0 +1,19 @@
+{
+  "fixture": "card-grid-semantic",
+  "condition": "tooled",
+  "runGroup": "85dac8e7",
+  "agentName": "cloner",
+  "model": "sonnet",
+  "totalCostUsd": 0.17842539999999998,
+  "isError": false,
+  "toolCallCount": 7,
+  "screenshotCount": 3,
+  "promptHash": "c6f6bf52",
+  "recordedAt": "2026-08-30T20:04:27.235Z",
+  "diffRatio": 0,
+  "diffComparable": true,
+  "diffBoundingBox": null,
+  "blankMatch": true,
+  "qualityScore": 2,
+  "qualityReasoning": "The file contains no Tailwind CSS at all — no CDN script tag, no utility classes, and no theme configuration. It uses plain semantic class names (e.g., \"testimonial-card\") with no accompanying stylesheet or style block, meaning the classes are inert. Since the grading criteria explicitly ask about repeated markup being pulled into reusable utility patterns and whether the Tailwind theme config is minimal/non-redundant, this file cannot be evaluated favorably on either axis — it simply doesn't attempt the task's core requirement (Tailwind via CDN with a configured theme). The HTML structure itself is clean and semantic (good use of alt text, sensible nesting), but that alone doesn't satisfy the Tailwind-specific code quality bar being assessed here."
+}

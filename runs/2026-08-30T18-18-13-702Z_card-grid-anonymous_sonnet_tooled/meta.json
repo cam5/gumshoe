@@ -1,0 +1,17 @@
+{
+  "fixture": "card-grid-anonymous",
+  "condition": "tooled",
+  "runGroup": "9a97fc25",
+  "agentName": "cloner",
+  "model": "sonnet",
+  "totalCostUsd": 0.20632220000000004,
+  "isError": false,
+  "toolCallCount": 9,
+  "screenshotCount": 4,
+  "promptHash": "09482f55",
+  "recordedAt": "2026-08-30T18:18:13.704Z",
+  "diffRatio": 0,
+  "diffComparable": true,
+  "qualityScore": 2,
+  "qualityReasoning": "The three testimonial cards use an identical long utility-class string (\"p-4 rounded-lg shadow-md flex flex-col gap-2\", \"w-12 h-12 rounded-full\", \"text-sm text-gray-600\") copy-pasted verbatim with no abstraction (no @apply component class, no templating, not even a shared wrapper pattern) — exactly the anti-pattern the rubric penalizes. There is also no Tailwind CDN <script> tag or tailwind.config at all, so the utility classes are inert and there's no theme config to evaluate for redundancy (which would itself be a quality problem if this were meant to render). The HTML itself is short and superficially readable, but the lack of any reusable pattern for clearly repeated markup and the missing Tailwind setup make this poor code quality overall."
+}

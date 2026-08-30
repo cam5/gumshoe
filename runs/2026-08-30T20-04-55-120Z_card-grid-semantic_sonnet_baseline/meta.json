@@ -1,0 +1,19 @@
+{
+  "fixture": "card-grid-semantic",
+  "condition": "baseline",
+  "runGroup": "85dac8e7",
+  "agentName": "cloner-baseline",
+  "model": "sonnet",
+  "totalCostUsd": 0.224365,
+  "isError": false,
+  "toolCallCount": 11,
+  "screenshotCount": 3,
+  "promptHash": "4ef94066",
+  "recordedAt": "2026-08-30T20:04:55.120Z",
+  "diffRatio": 0,
+  "diffComparable": true,
+  "diffBoundingBox": null,
+  "blankMatch": true,
+  "qualityScore": 9,
+  "qualityReasoning": "No Tailwind utility classes are used at all — the markup relies on plain semantic elements with a single custom class (\"testimonial-card\") and a comment explaining the deliberate choice to disable Preflight and avoid styling, matching a bare/unstyled source. Since there are no repeated long utility strings, the \"pull into a reusable pattern\" concern doesn't really apply, and there's no theme config to critique for redundancy (the config only disables preflight). The HTML itself is clean, minimal, and readable, with consistent repeated card markup. Score is high but not a perfect 10 since there's essentially no Tailwind usage to demonstrate componentization skill in this trivial case."
+}

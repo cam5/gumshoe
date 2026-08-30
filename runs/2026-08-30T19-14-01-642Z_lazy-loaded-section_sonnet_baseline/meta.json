@@ -1,0 +1,17 @@
+{
+  "fixture": "lazy-loaded-section",
+  "condition": "baseline",
+  "runGroup": "5ca2d689",
+  "agentName": "cloner-baseline",
+  "model": "sonnet",
+  "totalCostUsd": 0.1825932,
+  "isError": false,
+  "toolCallCount": 8,
+  "screenshotCount": 4,
+  "promptHash": "890d19ca",
+  "recordedAt": "2026-08-30T19:14:01.643Z",
+  "diffRatio": 0,
+  "diffComparable": true,
+  "qualityScore": 2,
+  "qualityReasoning": "The file loads Tailwind but never actually uses it: there are zero Tailwind utility classes anywhere in the markup. The classes present (`placeholder`, `product-card`) are plain, undefined class names with no corresponding styles anywhere (no Tailwind utilities, no tailwind.config theme, no <style> block), so the elements they're applied to are entirely unstyled. There's no repeated-markup pattern to evaluate for reuse quality since there's no styling being repeated, and there's no Tailwind theme config to assess for minimalism since none is defined beyond disabling preflight. As a 'clone a page with Tailwind CSS' deliverable, this doesn't meet the basic bar of using Tailwind at all — it's essentially bare HTML with a Tailwind script tag that does no work. The HTML/JS itself is reasonably clean and the comments explain non-obvious decisions (preflight-off, broken image path) well, but that doesn't offset the near-total absence of the thing being graded.</reasoning>\n</invoke>\n"
+}

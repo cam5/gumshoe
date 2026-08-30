@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Card grid — semantic</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    // Preflight is disabled so the page keeps the browser's default UA
+    // rendering, since the source page ships no CSS of its own at all.
+    tailwind.config = {
+      corePlugins: { preflight: false },
+      theme: { extend: {} }
+    };
+  </script>
+  <style>
+    /* Match default browser UA stylesheet spacing/typography exactly,
+       since the original document has zero authored CSS. */
+    body {
+      margin: 8px;
+      font-family: Arial, Helvetica, sans-serif;
+      color: #000;
+      background: #fff;
+    }
+    h1 {
+      font-size: 2em;
+      font-weight: bold;
+      margin: 0.67em 0;
+    }
+    .testimonial-card p {
+      margin: 1em 0;
+      font-size: 1em;
+    }
+    .testimonial-card img {
+      display: inline;
+    }
+  </style>
+</head>
+<body>
+  <main id="main">
+    <h1>What people say</h1>
+    <!--
+      "testimonial-card" is repeated 3x with identical structure
+      (avatar image + quote paragraph), so it's treated as the one
+      reusable component on this page, even though the source ships
+      no CSS to back it — see summary for details.
+    -->
+    <div class="testimonial-card">
+      <img src="/avatar-1.jpg" alt="Avatar for Jamie Wren" />
+      <p>"This tool saved us a week of manual work every release."</p>
+    </div>
+    <div class="testimonial-card">
+      <img src="/avatar-2.jpg" alt="Avatar for Priya Anand" />
+      <p>"Support answered in minutes, not days."</p>
+    </div>
+    <div class="testimonial-card">
+      <img src="/avatar-3.jpg" alt="Avatar for Sam Okafor" />
+      <p>"We onboarded the whole team in an afternoon."</p>
+    </div>
+  </main>
+</body>
+</html>

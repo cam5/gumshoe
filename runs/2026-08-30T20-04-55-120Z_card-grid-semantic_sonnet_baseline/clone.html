@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>Card grid — semantic</title>
+  <!--
+    Source fidelity note: the original page ships no <link>/<style> at all —
+    it is bare semantic HTML rendered with nothing but the browser's
+    user-agent stylesheet (default black-on-white body, default h1/p
+    margins, and broken image icons because /avatar-*.jpg does not resolve).
+    Tailwind is still wired up per the standard single-CSS-approach
+    requirement, but Preflight (Tailwind's CSS reset) is turned off so it
+    does not strip those default UA styles and diverge from the source.
+  -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      corePlugins: {
+        preflight: false
+      }
+    };
+  </script>
+</head>
+<body>
+  <main id="main">
+    <h1>What people say</h1>
+    <div class="testimonial-card">
+      <img src="/avatar-1.jpg" alt="Avatar for Jamie Wren" />
+      <p>"This tool saved us a week of manual work every release."</p>
+    </div>
+    <div class="testimonial-card">
+      <img src="/avatar-2.jpg" alt="Avatar for Priya Anand" />
+      <p>"Support answered in minutes, not days."</p>
+    </div>
+    <div class="testimonial-card">
+      <img src="/avatar-3.jpg" alt="Avatar for Sam Okafor" />
+      <p>"We onboarded the whole team in an afternoon."</p>
+    </div>
+  </main>
+</body>
+</html>

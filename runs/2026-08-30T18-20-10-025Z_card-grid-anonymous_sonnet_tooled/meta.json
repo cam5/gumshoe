@@ -1,0 +1,17 @@
+{
+  "fixture": "card-grid-anonymous",
+  "condition": "tooled",
+  "runGroup": "9a97fc25",
+  "agentName": "cloner",
+  "model": "sonnet",
+  "totalCostUsd": 0.21606219999999998,
+  "isError": false,
+  "toolCallCount": 8,
+  "screenshotCount": 4,
+  "promptHash": "60c5f325",
+  "recordedAt": "2026-08-30T18:20:10.025Z",
+  "diffRatio": 0,
+  "diffComparable": true,
+  "qualityScore": 3,
+  "qualityReasoning": "The three testimonial cards use an identical long utility-class string (\"p-4 rounded-lg shadow-md flex flex-col gap-2\", \"w-12 h-12 rounded-full\", \"text-sm text-gray-600\") copy-pasted verbatim across all three instances with no extraction into a reusable component class or template pattern — exactly the anti-pattern the rubric penalizes. There's also no Tailwind CDN script or theme config included at all, so beyond the repetition issue the utility classes wouldn't even render as styled; while that's more a functional gap than a redundancy problem, it means there's no config to assess for minimalism. The markup itself is otherwise simple and readable, with sensible semantic structure and alt text, but the lack of any componentization for triplicated markup is the dominant quality issue."
+}

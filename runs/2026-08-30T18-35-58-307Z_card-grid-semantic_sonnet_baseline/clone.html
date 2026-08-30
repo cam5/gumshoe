@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Card grid — semantic</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          margin: {
+            'h1-y': '0.67em',
+            'p-y': '1em'
+          },
+          fontSize: {
+            'h1': ['2em', { fontWeight: '700' }]
+          }
+        }
+      }
+    };
+  </script>
+</head>
+<body class="bg-white text-black font-sans m-2">
+  <main id="main">
+    <h1 class="text-h1 font-bold mt-h1-y mb-h1-y">What people say</h1>
+
+    <!-- Testimonial card: repeated block pairing an avatar image with a quoted line.
+         The source ships no CSS at all (no classes styled, no stylesheet), so the
+         "testimonial-card" div renders with plain browser defaults: images are
+         referenced as root-relative paths (/avatar-1.jpg etc.) that don't resolve
+         to any real asset, and there is no card chrome (no border/shadow/padding)
+         to reproduce. Kept as-is rather than inventing styling or a fake image host. -->
+    <div class="testimonial-card">
+      <img src="/avatar-1.jpg" alt="Avatar for Jamie Wren" />
+      <p class="my-p-y">"This tool saved us a week of manual work every release."</p>
+    </div>
+    <div class="testimonial-card">
+      <img src="/avatar-2.jpg" alt="Avatar for Priya Anand" />
+      <p class="my-p-y">"Support answered in minutes, not days."</p>
+    </div>
+    <div class="testimonial-card">
+      <img src="/avatar-3.jpg" alt="Avatar for Sam Okafor" />
+      <p class="my-p-y">"We onboarded the whole team in an afternoon."</p>
+    </div>
+  </main>
+</body>
+</html>

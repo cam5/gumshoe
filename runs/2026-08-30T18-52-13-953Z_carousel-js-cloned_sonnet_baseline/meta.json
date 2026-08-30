@@ -1,0 +1,17 @@
+{
+  "fixture": "carousel-js-cloned",
+  "condition": "baseline",
+  "runGroup": "da9381c7",
+  "agentName": "cloner-baseline",
+  "model": "sonnet",
+  "totalCostUsd": 0.2871566,
+  "isError": false,
+  "toolCallCount": 16,
+  "screenshotCount": 5,
+  "promptHash": "2cd3362e",
+  "recordedAt": "2026-08-30T18:52:13.954Z",
+  "diffRatio": 0.004688368055555556,
+  "diffComparable": true,
+  "qualityScore": 8,
+  "qualityReasoning": "The file is small and clean. The two `<li class=\"slide\">` items share the same img utility string (`w-full h-auto object-cover rounded`), which is minor duplication — but with only two occurrences and a short class list, extracting a component class would be premature abstraction rather than a real quality problem. Theme config is minimal: a single custom color token (`ink`), no redundant near-duplicate values. Structure is otherwise straightforward semantic HTML (h1, ul/li, img with alt text), well-commented where non-obvious (explaining the slick-carousel choice), and free of clutter. Minor deduction for the small amount of copy-pasted image classes, but overall clean and appropriately minimal."
+}

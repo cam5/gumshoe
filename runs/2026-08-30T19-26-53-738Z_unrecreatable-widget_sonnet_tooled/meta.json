@@ -1,0 +1,17 @@
+{
+  "fixture": "unrecreatable-widget",
+  "condition": "tooled",
+  "runGroup": "7a6b1b48",
+  "agentName": "cloner",
+  "model": "sonnet",
+  "totalCostUsd": 0.1382516,
+  "isError": false,
+  "toolCallCount": 6,
+  "screenshotCount": 4,
+  "promptHash": "8c0497d4",
+  "recordedAt": "2026-08-30T19:26:53.738Z",
+  "diffRatio": 0,
+  "diffComparable": true,
+  "qualityScore": 1,
+  "qualityReasoning": "This file doesn't even use Tailwind CSS at all — no CDN script, no theme config, no utility classes. It's a canvas-drawn chart with no styling in the DOM. There's essentially nothing to grade for Tailwind usage, componentization, or theme config since none of it is present. As a Tailwind clone attempt, it fails entirely: no reusable component classes, no theme tokens, no CSS at all. The HTML itself is minimal and reasonably clean, but the task was to clone a page using Tailwind, and this doesn't attempt that at all."
+}

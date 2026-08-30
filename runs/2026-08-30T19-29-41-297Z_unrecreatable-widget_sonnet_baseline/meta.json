@@ -1,0 +1,17 @@
+{
+  "fixture": "unrecreatable-widget",
+  "condition": "baseline",
+  "runGroup": "7a6b1b48",
+  "agentName": "cloner-baseline",
+  "model": "sonnet",
+  "totalCostUsd": 0.2103062,
+  "isError": false,
+  "toolCallCount": 13,
+  "screenshotCount": 6,
+  "promptHash": "b768e655",
+  "recordedAt": "2026-08-30T19:29:41.298Z",
+  "diffRatio": 0.005378472222222222,
+  "diffComparable": true,
+  "qualityScore": 6,
+  "qualityReasoning": "The file is tiny and has essentially no repeated markup, so there's nothing to extract into a reusable component pattern — that criterion is moot here. There's no Tailwind theme config (no tailwind.config script block), so there's nothing to judge for token redundancy either. The main issue is the arbitrary value `my-[21px]`, a one-off magic number with no theme token backing it; on a page with a CDN-loaded Tailwind and dynamic theme config expected, an odd unscaled pixel value like this should ideally be normalized to a spacing scale or defined as a theme extension rather than left as an arbitrary bracket value. Otherwise the HTML is clean, minimal, and readable, with sensible class usage (`bg-white text-black`, `text-3xl font-bold`, `p-2`)."
+}

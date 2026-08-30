@@ -1,0 +1,17 @@
+{
+  "fixture": "variant-component",
+  "condition": "tooled",
+  "runGroup": "e1df76d6",
+  "agentName": "cloner",
+  "model": "sonnet",
+  "totalCostUsd": 0.2212712,
+  "isError": false,
+  "toolCallCount": 9,
+  "screenshotCount": 4,
+  "promptHash": "e78b3676",
+  "recordedAt": "2026-08-30T19:39:02.826Z",
+  "diffRatio": 0,
+  "diffComparable": true,
+  "qualityScore": 1,
+  "qualityReasoning": "This file fails the core task entirely: there is no Tailwind CDN script included, no Tailwind theme configuration, and no Tailwind utility classes anywhere in the markup. The classes used (\"product-card\", \"badge\") are undefined — no <style> block, no Tailwind config, nothing — so the page is unstyled. Since the task specifically requires cloning a page using Tailwind CSS loaded via CDN with a dynamic theme config, this submission doesn't attempt that at all. Even judged charitably as generic HTML, the repeated product-card markup is reasonably factored, but there's no utility-class copy-paste to evaluate, no theme config to assess for redundancy, and the file doesn't fulfill the stated tooling requirement in any way."
+}

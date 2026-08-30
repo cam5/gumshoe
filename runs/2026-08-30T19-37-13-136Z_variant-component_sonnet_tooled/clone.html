@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>Variant component</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    // Accumulated design-token vocabulary, folded in from windtailor's report
+    // on this page. Note: the source page has no author CSS at all — every
+    // value below is a browser UA default, not a theme choice.
+    tailwind.config = {
+      // The source page ships zero author CSS — every rendered value is a
+      // plain browser UA default (serif body font, inline <img>, default
+      // p/h1 margins, etc). Tailwind's Preflight reset would override those
+      // UA defaults (sans-serif font, block-level <img>, stripped margins)
+      // and actively break fidelity here, so it's disabled.
+      corePlugins: {
+        preflight: false
+      },
+      theme: {
+        extend: {
+          fontSize: {
+            "32": "2rem" // == computed h1 font-size (UA default heading size)
+          },
+          spacing: {
+            "2": "0.5rem" // == computed body margin (8px, UA default)
+          }
+        }
+      }
+    };
+  </script>
+</head>
+<body class="m-2">
+  <main id="main">
+    <h1 class="block text-32 font-bold">Shop</h1>
+    <div class="product-card block">
+      <img src="/product-1.jpg" alt="Trail Runner Jacket" />
+      <p class="block">Trail Runner Jacket — $128</p>
+    </div>
+    <div class="product-card block">
+      <span class="badge">Featured</span>
+      <img src="/product-2.jpg" alt="Insulated Bottle" />
+      <p class="block">Insulated Bottle — $32</p>
+    </div>
+    <div class="product-card block">
+      <img src="/product-3.jpg" alt="Camp Lantern" />
+      <p class="block">Camp Lantern — $45</p>
+    </div>
+    <div class="product-card block">
+      <span class="badge">Featured</span>
+      <img src="/product-4.jpg" alt="Rain Shell" />
+      <p class="block">Rain Shell — $96</p>
+    </div>
+  </main>
+</body>
+</html>

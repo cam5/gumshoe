@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>Coincidental shape</title>
+  <!--
+    This source page ships with no stylesheet at all: it renders using nothing
+    but the browser's default user-agent styles (8px body margin, default
+    paragraph spacing, broken-image placeholder boxes for the two <img>s,
+    whose src attributes are root-relative paths — "/founder.jpg" and
+    "/spec-icon.svg" — that don't resolve to anything, on this fixture or on
+    any real host). There is no color scheme, layout system, nav, or
+    componentry to extract; the two sections are just plain, identical
+    "image + caption" blocks. Tailwind is loaded per the required approach,
+    but its Preflight reset is disabled so the page keeps matching the
+    original's un-reset browser-default look instead of picking up Tailwind's
+    own baseline styles.
+  -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      corePlugins: {
+        preflight: false
+      }
+    };
+  </script>
+</head>
+<body>
+  <main id="main">
+    <section id="hero">
+      <div>
+        <img src="/founder.jpg" alt="Photo of the founder" />
+        <p>Our founder started this company in a garage in 2011.</p>
+      </div>
+    </section>
+    <section id="specs">
+      <div>
+        <img src="/spec-icon.svg" alt="Weight icon" />
+        <p>Weighs 340 grams, shipped in recyclable packaging.</p>
+      </div>
+    </section>
+  </main>
+</body>
+</html>

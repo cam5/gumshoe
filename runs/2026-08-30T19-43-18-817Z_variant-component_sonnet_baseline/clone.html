@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Variant component</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            badge: "#111827"
+          }
+        }
+      }
+    };
+  </script>
+  <style>
+    /* Placeholder treatment for the product images: the source markup
+       references /product-N.jpg paths that don't resolve to real files
+       (this is a local fixture, not a live site with hostable media), so
+       we render a neutral placeholder box behind the broken <img> and
+       still surface the alt text as a caption for legibility. */
+    .product-card img {
+      background-color: #e5e7eb;
+      color: #6b7280;
+    }
+  </style>
+</head>
+<body class="bg-white text-black">
+  <main id="main" class="max-w-5xl mx-auto px-6 py-10">
+    <h1 class="text-4xl font-bold mb-6">Shop</h1>
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+      <div class="product-card relative flex flex-col rounded-lg border border-gray-200 shadow-sm overflow-hidden bg-white">
+        <img src="/product-1.jpg" alt="Trail Runner Jacket" class="w-full aspect-square object-cover" />
+        <p class="p-4 text-base">Trail Runner Jacket — $128</p>
+      </div>
+      <div class="product-card relative flex flex-col rounded-lg border border-gray-200 shadow-sm overflow-hidden bg-white">
+        <span class="badge absolute top-2 left-2 z-10 bg-badge text-white text-xs font-semibold uppercase tracking-wide px-2 py-1 rounded">Featured</span>
+        <img src="/product-2.jpg" alt="Insulated Bottle" class="w-full aspect-square object-cover" />
+        <p class="p-4 text-base">Insulated Bottle — $32</p>
+      </div>
+      <div class="product-card relative flex flex-col rounded-lg border border-gray-200 shadow-sm overflow-hidden bg-white">
+        <img src="/product-3.jpg" alt="Camp Lantern" class="w-full aspect-square object-cover" />
+        <p class="p-4 text-base">Camp Lantern — $45</p>
+      </div>
+      <div class="product-card relative flex flex-col rounded-lg border border-gray-200 shadow-sm overflow-hidden bg-white">
+        <span class="badge absolute top-2 left-2 z-10 bg-badge text-white text-xs font-semibold uppercase tracking-wide px-2 py-1 rounded">Featured</span>
+        <img src="/product-4.jpg" alt="Rain Shell" class="w-full aspect-square object-cover" />
+        <p class="p-4 text-base">Rain Shell — $96</p>
+      </div>
+    </div>
+  </main>
+</body>
+</html>

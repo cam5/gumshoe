@@ -1,0 +1,19 @@
+{
+  "fixture": "card-grid-semantic",
+  "condition": "baseline",
+  "runGroup": "3b0e75c2",
+  "agentName": "cloner-baseline",
+  "model": "sonnet",
+  "totalCostUsd": 0.15500619999999998,
+  "isError": false,
+  "toolCallCount": 7,
+  "screenshotCount": 3,
+  "promptHash": "e19d0de7",
+  "recordedAt": "2026-08-30T19:58:53.076Z",
+  "diffRatio": 0,
+  "diffComparable": true,
+  "diffBoundingBox": null,
+  "blankMatch": true,
+  "qualityScore": 8,
+  "qualityReasoning": "The file barely uses Tailwind utility classes at all (the only Tailwind-related code is the CDN script tag and a config that merely disables Preflight, justified by an explanatory comment about matching the source page's lack of styling). What markup does exist is clean: the repeated card structure uses a single consistent class name (\"testimonial-card\") applied identically across all three cards rather than duplicated inline utility strings, which is good practice for a repeated pattern. The \"theme config\" is trivial (just corePlugins.preflight: false) so there's no redundancy to critique — no near-duplicate custom values. HTML itself is well-formed, uses semantic elements (main, h1), has alt text on images, and is easy to read. The main ding is that since almost no Tailwind utilities are actually used, there isn't much to demonstrate strong componentization/token discipline under real complexity — the file is trivially good because it's trivially simple, not because it solved a hard case well."
+}

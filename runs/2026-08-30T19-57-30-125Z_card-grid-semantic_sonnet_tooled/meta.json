@@ -1,0 +1,19 @@
+{
+  "fixture": "card-grid-semantic",
+  "condition": "tooled",
+  "runGroup": "3b0e75c2",
+  "agentName": "cloner",
+  "model": "sonnet",
+  "totalCostUsd": 0.1356082,
+  "isError": false,
+  "toolCallCount": 5,
+  "screenshotCount": 3,
+  "promptHash": "542a67d8",
+  "recordedAt": "2026-08-30T19:57:30.127Z",
+  "diffRatio": 0,
+  "diffComparable": true,
+  "diffBoundingBox": null,
+  "blankMatch": true,
+  "qualityScore": 1,
+  "qualityReasoning": "This file doesn't use Tailwind CSS at all — there's no Tailwind CDN script tag, no theme config, and no Tailwind utility classes anywhere. It's plain semantic HTML with an undefined custom class ('testimonial-card') that has no associated CSS, so the page would render completely unstyled. While the markup itself is clean and the repeated card structure is reasonably consistent, the task explicitly required Tailwind CSS via CDN with a dynamic theme, and none of that is present. Since the core deliverable (Tailwind-based styling) is entirely missing, this fails the assignment regardless of the tidiness of the bare HTML."
+}

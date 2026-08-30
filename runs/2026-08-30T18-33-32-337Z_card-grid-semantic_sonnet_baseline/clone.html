@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>Card grid — semantic</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    // The source page ships no stylesheet at all -- it renders with the
+    // browser's plain user-agent defaults (default margins, default h1/p
+    // sizing, no card styling). Tailwind's preflight reset would strip those
+    // defaults and make the clone look *less* like the original, so it is
+    // turned off here. Tailwind is loaded only to satisfy the single-CSS-
+    // approach requirement; no utility classes are actually needed because
+    // there is no designed styling in the source to translate.
+    tailwind.config = {
+      corePlugins: {
+        preflight: false
+      }
+    };
+  </script>
+</head>
+<body>
+  <main id="main">
+    <h1>What people say</h1>
+    <div class="testimonial-card">
+      <img src="/avatar-1.jpg" alt="Avatar for Jamie Wren" />
+      <p>"This tool saved us a week of manual work every release."</p>
+    </div>
+    <div class="testimonial-card">
+      <img src="/avatar-2.jpg" alt="Avatar for Priya Anand" />
+      <p>"Support answered in minutes, not days."</p>
+    </div>
+    <div class="testimonial-card">
+      <img src="/avatar-3.jpg" alt="Avatar for Sam Okafor" />
+      <p>"We onboarded the whole team in an afternoon."</p>
+    </div>
+  </main>
+</body>
+</html>

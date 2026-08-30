@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>Variant component</title>
+  <!--
+    The source page (file:///.../page.html) ships with no <link> or
+    <style> at all — every element renders with the browser's plain
+    UA stylesheet (default h1/p margins, default black-on-white, etc).
+    Tailwind is loaded here per the single-CSS-approach requirement,
+    but preflight is disabled so it doesn't strip those defaults out
+    from under the h1/p/img elements and change the page's appearance.
+  -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      corePlugins: {
+        preflight: false
+      }
+    };
+  </script>
+</head>
+<body>
+  <main id="main">
+    <h1>Shop</h1>
+    <div class="product-card">
+      <img src="/product-1.jpg" alt="Trail Runner Jacket" />
+      <p>Trail Runner Jacket — $128</p>
+    </div>
+    <div class="product-card">
+      <span class="badge">Featured</span>
+      <img src="/product-2.jpg" alt="Insulated Bottle" />
+      <p>Insulated Bottle — $32</p>
+    </div>
+    <div class="product-card">
+      <img src="/product-3.jpg" alt="Camp Lantern" />
+      <p>Camp Lantern — $45</p>
+    </div>
+    <div class="product-card">
+      <span class="badge">Featured</span>
+      <img src="/product-4.jpg" alt="Rain Shell" />
+      <p>Rain Shell — $96</p>
+    </div>
+  </main>
+</body>
+</html>

@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Coincidental shape</title>
+
+  <!--
+    NOTE ON FIDELITY:
+    The source page (file:///.../gumshoe-fixture-stage-c8JYsT/page.html) ships
+    with NO <link>/<style> at all -- it is plain, unstyled HTML rendered with
+    the browser's default user-agent stylesheet (black text on white,
+    default paragraph margins, native "broken image" icon + alt text because
+    the referenced images are relative paths that don't resolve to any real
+    file: /founder.jpg and /spec-icon.svg). There is no color palette, no
+    typography choice, and no layout to reverse-engineer -- inventing a
+    "designed" hero/specs section with colors or a grid would be fabricating
+    content that isn't there. So this clone intentionally reproduces the same
+    plain, unstyled look: same two sections, same copy, same image
+    references. Tailwind is loaded per instructions, but Preflight (Tailwind's
+    CSS reset) is turned off so the browser's native default stylesheet still
+    governs headings/paragraphs/images, keeping this visually identical to
+    the source instead of silently changing spacing/fonts.
+  -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      corePlugins: {
+        preflight: false
+      }
+    };
+  </script>
+</head>
+<body>
+  <main id="main">
+    <section id="hero">
+      <div>
+        <img src="/founder.jpg" alt="Photo of the founder" />
+        <p>Our founder started this company in a garage in 2011.</p>
+      </div>
+    </section>
+    <section id="specs">
+      <div>
+        <img src="/spec-icon.svg" alt="Weight icon" />
+        <p>Weighs 340 grams, shipped in recyclable packaging.</p>
+      </div>
+    </section>
+  </main>
+</body>
+</html>

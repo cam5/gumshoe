@@ -1,0 +1,17 @@
+{
+  "fixture": "card-grid-semantic",
+  "condition": "baseline",
+  "runGroup": "d5430f59",
+  "agentName": "cloner-baseline",
+  "model": "sonnet",
+  "totalCostUsd": 0.17746259999999997,
+  "isError": false,
+  "toolCallCount": 10,
+  "screenshotCount": 4,
+  "promptHash": "a8f5add9",
+  "recordedAt": "2026-08-30T18:37:38.168Z",
+  "diffRatio": 0.007346354166666667,
+  "diffComparable": true,
+  "qualityScore": 3,
+  "qualityReasoning": "The HTML itself is clean and the one repeated block (testimonial-card) is pulled into a named class rather than being copy-pasted as long utility strings — good on that narrow axis. The theme config is trivially minimal (empty extend), so there's no redundancy to flag.\n\nHowever, the file essentially opts out of Tailwind entirely: preflight is disabled and every visual rule (body margin, font, h1 sizing, paragraph spacing) is implemented via a hand-written <style> block instead of Tailwind utility classes. There isn't a single Tailwind utility class anywhere in the body markup. Since the task is specifically to produce Tailwind-based code, and the grading dimension is \"Tailwind/code quality,\" a file with zero utility-class usage and no meaningful theme configuration doesn't demonstrate any of the patterns being evaluated (utility reuse, component extraction from utilities, sensible theme tokens) — it sidesteps Tailwind rather than using it well. The \"reusable component\" here is just a bare class name with no Tailwind utilities backing it, so the reuse question is moot rather than well-solved."
+}

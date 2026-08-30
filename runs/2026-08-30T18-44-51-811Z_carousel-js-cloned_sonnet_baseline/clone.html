@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>Carousel — JS-cloned slides</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Times New Roman', 'Times', 'serif']
+          }
+        }
+      }
+    };
+  </script>
+</head>
+<body class="bg-white text-black m-2">
+  <main id="main">
+    <h1 class="text-[2em] font-bold my-[0.67em]">Featured products</h1>
+    <ul id="slides" class="list-disc pl-10 my-4">
+      <li class="slide"><img src="/product-1.jpg" alt="Product one" /></li>
+      <li class="slide"><img src="/product-2.jpg" alt="Product two" /></li>
+    </ul>
+  </main>
+  <script>
+    // Simulates a slick-carousel-style infinite-loop setup: the library
+    // clones the real slides and appends the clones so the loop has no
+    // visible seam. The raw HTML only ever has the two authored slides.
+    (function () {
+      var list = document.getElementById("slides");
+      var originals = Array.prototype.slice.call(list.querySelectorAll("li.slide"));
+      originals.forEach(function (li) {
+        var clone = li.cloneNode(true);
+        clone.setAttribute("aria-hidden", "true");
+        list.appendChild(clone);
+      });
+    })();
+  </script>
+</body>
+</html>

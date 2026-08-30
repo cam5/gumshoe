@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>Card grid — semantic</title>
+  <!--
+    Fidelity note: the source page ships no <link rel="stylesheet"> and no
+    <style> block at all — every visual detail (bold/large h1, paragraph
+    margins, default sans-serif body font, broken-image icons) comes purely
+    from the browser's default UA stylesheet. Tailwind's CDN build is loaded
+    here per the standard workflow, but its Preflight reset is turned off
+    below so it doesn't strip those default UA styles out from under the
+    page — doing otherwise would change the rendered appearance rather than
+    reproduce it.
+  -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      corePlugins: {
+        preflight: false
+      }
+    };
+  </script>
+</head>
+<body>
+  <main id="main">
+    <h1>What people say</h1>
+    <div class="testimonial-card">
+      <img src="/avatar-1.jpg" alt="Avatar for Jamie Wren" />
+      <p>"This tool saved us a week of manual work every release."</p>
+    </div>
+    <div class="testimonial-card">
+      <img src="/avatar-2.jpg" alt="Avatar for Priya Anand" />
+      <p>"Support answered in minutes, not days."</p>
+    </div>
+    <div class="testimonial-card">
+      <img src="/avatar-3.jpg" alt="Avatar for Sam Okafor" />
+      <p>"We onboarded the whole team in an afternoon."</p>
+    </div>
+  </main>
+</body>
+</html>

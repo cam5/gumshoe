@@ -1,0 +1,17 @@
+{
+  "fixture": "unrecreatable-widget",
+  "condition": "baseline",
+  "runGroup": "7a6b1b48",
+  "agentName": "cloner-baseline",
+  "model": "sonnet",
+  "totalCostUsd": 0.15997519999999998,
+  "isError": false,
+  "toolCallCount": 9,
+  "screenshotCount": 4,
+  "promptHash": "37415439",
+  "recordedAt": "2026-08-30T19:32:59.390Z",
+  "diffRatio": 0.012674479166666667,
+  "diffComparable": true,
+  "qualityScore": 9,
+  "qualityReasoning": "The file is minimal and has no repeated markup patterns to abstract — a single heading and a canvas element, so there's nothing that needs componentization. The Tailwind theme config is minimal and non-redundant, adding just one custom fontFamily token with no near-duplicate values. Markup is clean, semantic, and readable, and the code comment appropriately explains a non-obvious fact (that the chart is drawn imperatively into canvas with no DOM/markup representation) rather than restating the obvious. No issues to dock points for."
+}

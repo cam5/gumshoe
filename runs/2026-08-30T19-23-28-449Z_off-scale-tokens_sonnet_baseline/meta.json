@@ -1,0 +1,17 @@
+{
+  "fixture": "off-scale-tokens",
+  "condition": "baseline",
+  "runGroup": "81164fc7",
+  "agentName": "cloner-baseline",
+  "model": "sonnet",
+  "totalCostUsd": 0.2032122,
+  "isError": false,
+  "toolCallCount": 11,
+  "screenshotCount": 5,
+  "promptHash": "4d162859",
+  "recordedAt": "2026-08-30T19:23:28.450Z",
+  "diffRatio": 0.0033350694444444443,
+  "diffComparable": true,
+  "qualityScore": 2,
+  "qualityReasoning": "The theme config is the opposite of minimal/non-redundant: cta-a/cta-b colors (#017a07 vs #018008), spacing tokens (9px/10px, 14px/15px, 17px/18px), and border radii (33px/34px) are near-duplicate pairs that clearly should have been collapsed into single shared tokens (e.g. one 'cta' color, one spacing scale, one radius). Instead the agent created a distinct off-scale token for each of the two buttons individually. Compounding this, the two nearly-identical CTA links are not expressed as a reusable component/class recipe — each is a fully spelled-out, slightly-diverging utility string, so the near-duplication in markup mirrors the near-duplication in the theme config. The file is small and syntactically clean, but it fails both core criteria being graded."
+}

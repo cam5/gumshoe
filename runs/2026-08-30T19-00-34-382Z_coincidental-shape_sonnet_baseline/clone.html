@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Coincidental shape</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          // The source page ships no stylesheet at all, so there is no
+          // custom palette/type-scale to extract. These utilities are used
+          // only to approximate the browser's default (UA-stylesheet) look
+          // that the original page actually renders with.
+          fontFamily: {
+            sans: ['Arial', 'Helvetica', 'sans-serif']
+          }
+        }
+      }
+    };
+  </script>
+</head>
+<body class="bg-white text-black font-sans text-base leading-[normal]">
+  <main id="main">
+    <section id="hero">
+      <div>
+        <img src="/founder.jpg" alt="Photo of the founder" />
+        <p class="my-4">Our founder started this company in a garage in 2011.</p>
+      </div>
+    </section>
+    <section id="specs">
+      <div>
+        <img src="/spec-icon.svg" alt="Weight icon" />
+        <p class="my-4">Weighs 340 grams, shipped in recyclable packaging.</p>
+      </div>
+    </section>
+  </main>
+</body>
+</html>

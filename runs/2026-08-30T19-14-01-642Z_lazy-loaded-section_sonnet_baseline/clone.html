@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>Lazy-loaded section</title>
+  <!--
+    Tailwind is loaded per the standard build approach, but its preflight
+    reset is disabled: the source page ships zero CSS (no <style>, no
+    stylesheet link) and renders with the browser's plain default UA
+    styles (serif heading/body font, default h1/p margins). Preflight
+    would strip that default look, so it's turned off to preserve fidelity
+    to the original bare markup.
+  -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      corePlugins: {
+        preflight: false
+      }
+    };
+  </script>
+</head>
+<body>
+  <main id="main">
+    <h1>Recommended for you</h1>
+    <div id="recommendations">
+      <div class="placeholder"></div>
+      <div class="placeholder"></div>
+      <div class="placeholder"></div>
+    </div>
+  </main>
+  <script>
+    // Reproduces the original: a "recommendations" widget whose static
+    // markup is just empty placeholders, swapped for real product-card
+    // markup client-side after a short delay (simulating an async
+    // fetch). NOTE: the product image path ("/product.jpg") is a
+    // fixture-relative path with no real live host behind it in the
+    // source page itself, so it resolves to a broken image there too —
+    // that is reproduced as-is rather than invented/rehosted.
+    var products = [
+      { name: "Trail Runner Jacket", price: "$128" },
+      { name: "Insulated Bottle", price: "$32" },
+      { name: "Camp Lantern", price: "$45" },
+    ];
+
+    setTimeout(function () {
+      var container = document.getElementById("recommendations");
+      container.innerHTML = "";
+      products.forEach(function (product) {
+        var card = document.createElement("div");
+        card.className = "product-card";
+        card.innerHTML =
+          "<img src=\"/product.jpg\" alt=\"" + product.name + "\" />" +
+          "<p>" + product.name + "</p>" +
+          "<span>" + product.price + "</span>";
+        container.appendChild(card);
+      });
+    }, 150);
+  </script>
+</body>
+</html>

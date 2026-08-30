@@ -1,0 +1,17 @@
+{
+  "fixture": "lazy-loaded-section",
+  "condition": "tooled",
+  "runGroup": "5ca2d689",
+  "agentName": "cloner",
+  "model": "sonnet",
+  "totalCostUsd": 0.23054260000000004,
+  "isError": false,
+  "toolCallCount": 11,
+  "screenshotCount": 4,
+  "promptHash": "8c5d0ec9",
+  "recordedAt": "2026-08-30T19:05:44.582Z",
+  "diffRatio": 0,
+  "diffComparable": true,
+  "qualityScore": 1,
+  "qualityReasoning": "The file contains no Tailwind CSS whatsoever — no CDN script tag, no utility classes, no theme configuration. It uses plain custom class names (placeholder, product-card) with no corresponding stylesheet at all, and the content is just a JS-driven mock widget rather than a page clone styled with Tailwind. Since the grading criteria specifically concern Tailwind usage (reusable component patterns via utility classes, theme config minimalism), none of it is applicable or present. This is effectively a non-attempt at the assigned task from a code-quality-for-Tailwind perspective."
+}

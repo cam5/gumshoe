@@ -1,0 +1,17 @@
+{
+  "fixture": "card-grid-semantic",
+  "condition": "baseline",
+  "runGroup": "59e75178",
+  "agentName": "cloner-baseline",
+  "model": "sonnet",
+  "totalCostUsd": 0.24550080000000005,
+  "isError": false,
+  "toolCallCount": 9,
+  "screenshotCount": 4,
+  "promptHash": "7210f12a",
+  "recordedAt": "2026-08-30T18:16:06.409Z",
+  "diffRatio": 0.010609375,
+  "diffComparable": true,
+  "qualityScore": 4,
+  "qualityReasoning": "The three testimonial cards share identical structure and are given a `testimonial-card` class, which signals an attempt at a reusable component pattern — but the class is never actually defined (no `<style>` block, no `@layer components`, no `@apply`). As a result the full long utility-class string (`flex flex-col items-start gap-4 rounded-xl border border-gray-200 bg-white p-6 shadow-sm`) is still copy-pasted verbatim on every card, so the dedup promised by the semantic class name isn't realized — it's a dangling, purely decorative hook. This is arguably worse than omitting the class entirely, since it creates false signal that a component abstraction exists.\n\nThe theme config itself is minimal and non-redundant (a single `ink` color token, no near-duplicate values), which is good. Markup is otherwise clean, uses semantic alt text, consistent indentation, and reasonable structure for a static three-card grid.\n\nNet: theme config is fine, but the core ask — turning repeated markup into a genuine named/reusable pattern instead of copy-pasted utility strings — was not actually achieved, just gestured at."
+}

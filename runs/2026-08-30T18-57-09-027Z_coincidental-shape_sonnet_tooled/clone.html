@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>Coincidental shape</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    // No custom CSS/tokens exist on the source page (windtailor's report.json
+    // returned only the browser's default UA-stylesheet values: block display,
+    // 8px body margin, no custom color/fontSize/radius tokens). Tailwind's
+    // preflight reset (e.g. zeroing <p> margins) would actually diverge from
+    // the source's real rendering, so it's disabled here to preserve the
+    // page's true default browser styling.
+    tailwind.config = {
+      corePlugins: {
+        preflight: false
+      },
+      theme: {
+        extend: {}
+      }
+    };
+  </script>
+</head>
+<body>
+  <main id="main">
+    <section id="hero">
+      <div>
+        <img src="/founder.jpg" alt="Photo of the founder" />
+        <p>Our founder started this company in a garage in 2011.</p>
+      </div>
+    </section>
+    <section id="specs">
+      <div>
+        <img src="/spec-icon.svg" alt="Weight icon" />
+        <p>Weighs 340 grams, shipped in recyclable packaging.</p>
+      </div>
+    </section>
+  </main>
+</body>
+</html>

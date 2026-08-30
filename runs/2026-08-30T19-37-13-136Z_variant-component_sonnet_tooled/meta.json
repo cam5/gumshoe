@@ -1,0 +1,17 @@
+{
+  "fixture": "variant-component",
+  "condition": "tooled",
+  "runGroup": "e1df76d6",
+  "agentName": "cloner",
+  "model": "sonnet",
+  "totalCostUsd": 0.3096472,
+  "isError": false,
+  "toolCallCount": 13,
+  "screenshotCount": 6,
+  "promptHash": "79592e9d",
+  "recordedAt": "2026-08-30T19:37:13.137Z",
+  "diffRatio": 0,
+  "diffComparable": true,
+  "qualityScore": 3,
+  "qualityReasoning": "The markup uses named classes (product-card, badge) instead of repeating long utility strings, which is the right instinct — but these classes are never actually defined anywhere. There's no <style> block, no @apply, and they aren't Tailwind utilities or theme keys, so with Preflight disabled and no CSS backing, `product-card` and `badge` do nothing at all. This isn't a real reusable component pattern; it's meaningless dead class names dressed up as one, which is arguably worse than copy-pasted utilities since it looks componentized but is non-functional. The theme config itself is reasonably minimal (two focused extend values, no redundant near-duplicates), but is bloated with two overlapping comment blocks that repeat the same explanation about Preflight/UA defaults almost verbatim — redundant and should be a single concise note. Structure is otherwise readable and markup is terse, but the core \"componentization\" claim doesn't hold up under inspection.</reasoning>\n</invoke>\n"
+}

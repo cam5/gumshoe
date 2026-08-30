@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>Carousel — JS-cloned slides</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    // The source page carries zero authored CSS — everything visible is the
+    // browser's own UA stylesheet (8px body margin, 32px/700 h1, disc-bulleted
+    // ul/li). Preflight would strip all of that, so it's disabled and the one
+    // real design token (the h1 size, measured via windtailor) is added
+    // explicitly instead of relying on utility resets to reconstruct defaults.
+    tailwind.config = {
+      corePlugins: {
+        preflight: false
+      },
+      theme: {
+        extend: {
+          fontSize: {
+            "32": "2rem" // == measured h1 font-size (browser UA default, kept explicit)
+          }
+        }
+      }
+    };
+  </script>
+</head>
+<body>
+  <main id="main">
+    <h1 class="text-32 font-bold">Featured products</h1>
+    <ul id="slides">
+      <li class="slide"><img src="/product-1.jpg" alt="Product one" /></li>
+      <li class="slide"><img src="/product-2.jpg" alt="Product two" /></li>
+    </ul>
+  </main>
+  <script>
+    // Simulates a slick-carousel-style infinite-loop setup: the library
+    // clones the real slides and appends the clones so the loop has no
+    // visible seam. The raw HTML only ever has the two authored slides.
+    (function () {
+      var list = document.getElementById("slides");
+      var originals = Array.prototype.slice.call(list.querySelectorAll("li.slide"));
+      originals.forEach(function (li) {
+        var clone = li.cloneNode(true);
+        clone.setAttribute("aria-hidden", "true");
+        list.appendChild(clone);
+      });
+    })();
+  </script>
+</body>
+</html>

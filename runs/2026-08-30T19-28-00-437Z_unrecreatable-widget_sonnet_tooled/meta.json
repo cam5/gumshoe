@@ -1,0 +1,17 @@
+{
+  "fixture": "unrecreatable-widget",
+  "condition": "tooled",
+  "runGroup": "7a6b1b48",
+  "agentName": "cloner",
+  "model": "sonnet",
+  "totalCostUsd": 0.12181819999999999,
+  "isError": false,
+  "toolCallCount": 5,
+  "screenshotCount": 4,
+  "promptHash": "c68d15c6",
+  "recordedAt": "2026-08-30T19:28:00.438Z",
+  "diffRatio": 0,
+  "diffComparable": true,
+  "qualityScore": 1,
+  "qualityReasoning": "The file doesn't use Tailwind at all — there's no CDN script, no theme configuration, and no utility classes anywhere. The entire visible content is a single canvas element whose appearance is drawn imperatively via a JS script, so there's no markup to assess for reuse patterns or component extraction, and no theme tokens to assess for redundancy. Since the task explicitly called for a Tailwind-based clone with a dynamic theme config, and none of that exists, this fails the core requirement rather than merely scoring low on quality nuances."
+}

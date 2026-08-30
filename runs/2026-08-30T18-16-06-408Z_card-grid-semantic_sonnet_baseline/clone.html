@@ -1,0 +1,63 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Card grid — semantic</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            ink: "#111111"
+          }
+        }
+      }
+    };
+  </script>
+</head>
+<body class="bg-white text-ink font-sans">
+  <main id="main" class="max-w-5xl mx-auto px-6 py-16">
+    <h1 class="text-4xl font-bold mb-10">What people say</h1>
+
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+      <div class="testimonial-card flex flex-col items-start gap-4 rounded-xl border border-gray-200 bg-white p-6 shadow-sm">
+        <img
+          src="/avatar-1.jpg"
+          alt="Avatar for Jamie Wren"
+          class="h-14 w-14 rounded-full object-cover bg-gray-100"
+        />
+        <div>
+          <p class="font-semibold text-sm text-gray-900">Jamie Wren</p>
+        </div>
+        <p class="text-gray-700 leading-relaxed">"This tool saved us a week of manual work every release."</p>
+      </div>
+
+      <div class="testimonial-card flex flex-col items-start gap-4 rounded-xl border border-gray-200 bg-white p-6 shadow-sm">
+        <img
+          src="/avatar-2.jpg"
+          alt="Avatar for Priya Anand"
+          class="h-14 w-14 rounded-full object-cover bg-gray-100"
+        />
+        <div>
+          <p class="font-semibold text-sm text-gray-900">Priya Anand</p>
+        </div>
+        <p class="text-gray-700 leading-relaxed">"Support answered in minutes, not days."</p>
+      </div>
+
+      <div class="testimonial-card flex flex-col items-start gap-4 rounded-xl border border-gray-200 bg-white p-6 shadow-sm">
+        <img
+          src="/avatar-3.jpg"
+          alt="Avatar for Sam Okafor"
+          class="h-14 w-14 rounded-full object-cover bg-gray-100"
+        />
+        <div>
+          <p class="font-semibold text-sm text-gray-900">Sam Okafor</p>
+        </div>
+        <p class="text-gray-700 leading-relaxed">"We onboarded the whole team in an afternoon."</p>
+      </div>
+    </div>
+  </main>
+</body>
+</html>

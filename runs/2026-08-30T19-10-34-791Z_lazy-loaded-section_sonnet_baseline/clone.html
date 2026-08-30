@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>Lazy-loaded section</title>
+  <!--
+    The source page ships zero author CSS: everything you see is the
+    browser's default UA stylesheet. It also renders its product list
+    entirely client-side via a setTimeout'd "API" call that swaps
+    <div class="placeholder"> nodes for <div class="product-card"> nodes
+    (see the original inline <script> for the exact logic/data). Since the
+    real content only exists after that JS runs, this clone hard-codes the
+    resolved product-card markup instead of the empty placeholders, so a
+    static view matches what a user actually sees.
+
+    Tailwind is loaded per the standard approach, but preflight is turned
+    off on purpose: enabling it would reset margins/fonts away from the
+    browser defaults this page actually relies on, which would hurt
+    fidelity rather than help it. No utility classes are needed because
+    there is no bespoke design to express beyond the UA defaults.
+  -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      corePlugins: {
+        preflight: false
+      }
+    };
+  </script>
+</head>
+<body>
+  <main id="main">
+    <h1>Recommended for you</h1>
+    <div id="recommendations">
+      <div class="product-card">
+        <img src="/product.jpg" alt="Trail Runner Jacket" />
+        <p>Trail Runner Jacket</p>
+        <span>$128</span>
+      </div>
+      <div class="product-card">
+        <img src="/product.jpg" alt="Insulated Bottle" />
+        <p>Insulated Bottle</p>
+        <span>$32</span>
+      </div>
+      <div class="product-card">
+        <img src="/product.jpg" alt="Camp Lantern" />
+        <p>Camp Lantern</p>
+        <span>$45</span>
+      </div>
+    </div>
+  </main>
+</body>
+</html>

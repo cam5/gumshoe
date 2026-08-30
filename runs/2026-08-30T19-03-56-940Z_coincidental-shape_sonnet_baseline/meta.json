@@ -1,0 +1,17 @@
+{
+  "fixture": "coincidental-shape",
+  "condition": "baseline",
+  "runGroup": "798218dc",
+  "agentName": "cloner-baseline",
+  "model": "sonnet",
+  "totalCostUsd": 0.2127778,
+  "isError": false,
+  "toolCallCount": 12,
+  "screenshotCount": 4,
+  "promptHash": "6b6959c7",
+  "recordedAt": "2026-08-30T19:03:56.942Z",
+  "diffRatio": 0,
+  "diffComparable": true,
+  "qualityScore": 9,
+  "qualityReasoning": "The page has no styling in the source, so correctly no Tailwind utility classes are applied to content; only Preflight is disabled via a minimal, non-redundant config. The two image+caption blocks are structurally identical but appear only twice with no utility-class strings to deduplicate, so there's no meaningful repeated-markup problem to solve. The HTML is clean, semantic, and includes a justified explanatory comment about the unusual no-stylesheet fixture. Nothing to dock points for beyond the inherent triviality of the task."
+}

@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Carousel — JS-cloned slides</title>
+
+  <!-- slick-carousel: the source page's own inline comment says it is emulating a
+       slick-carousel-style infinite loop (clone-and-append the real slides so the
+       loop has no visible seam). Rather than hand-roll that behavior, we pull in
+       the real library from cdnjs and let it do the cloning/looping. -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/slick.min.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/slick-theme.min.css" />
+
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    // The source document has NO <link>/<style> at all — it is 100% browser
+    // default (UA-stylesheet) rendering: Times serif body text, native h1/ul/li
+    // box model and spacing, 8px body margin. Tailwind's Preflight reset would
+    // strip all of that and substitute its own sans-serif/zero-margin baseline,
+    // which is exactly the "default white background layered on top of" trap
+    // to avoid. So Preflight is disabled here and Tailwind is used purely as a
+    // utility layer (for the carousel width) on top of the page's real theme.
+    tailwind.config = {
+      corePlugins: {
+        preflight: false
+      },
+      theme: {
+        extend: {}
+      }
+    };
+  </script>
+  <style>
+    /* slick-theme's default arrow glyphs are white, meant to overlay a photo;
+       on this plain white page they'd be invisible, so nudge them dark enough
+       to read while keeping the library's own markup/JS untouched. */
+    .slick-prev:before,
+    .slick-next:before {
+      color: #000;
+    }
+  </style>
+</head>
+<body>
+  <main id="main">
+    <h1>Featured products</h1>
+
+    <ul id="slides" class="max-w-md mx-8">
+      <li class="slide"><img src="/product-1.jpg" alt="Product one" /></li>
+      <li class="slide"><img src="/product-2.jpg" alt="Product two" /></li>
+    </ul>
+  </main>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/slick.min.js"></script>
+  <script>
+    // Mirrors the original inline script's intent: turn the two authored
+    // slides into an infinite-loop carousel. The original hand-rolled this
+    // by cloning <li> nodes; slick-carousel does the equivalent (and more
+    // robust) clone-and-append internally when infinite:true.
+    $(function () {
+      $('#slides').slick({
+        infinite: true,
+        slidesToShow: 1,
+        slidesToScroll: 1,
+        dots: true,
+        arrows: true,
+        adaptiveHeight: true
+      });
+    });
+  </script>
+</body>
+</html>

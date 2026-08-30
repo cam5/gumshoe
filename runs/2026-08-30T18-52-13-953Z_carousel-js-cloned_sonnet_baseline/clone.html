@@ -1,0 +1,59 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Carousel — JS-cloned slides</title>
+
+  <!-- Tailwind (utility layer) -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            ink: "#1a1a1a",
+          },
+        },
+      },
+    };
+  </script>
+
+  <!-- slick-carousel: the source page's inline script hand-rolls an
+       infinite-loop illusion by cloning the two <li class="slide"> nodes
+       and appending aria-hidden duplicates. That's exactly the seam-hiding
+       trick slick's `infinite: true` option already does properly (real
+       clones, correct ARIA handling, swipe/drag, nav arrows), so rather
+       than reproduce the hand-rolled clone hack we use the real library. -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/slick.min.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/slick-theme.min.css" />
+</head>
+<body class="bg-white text-ink font-sans">
+  <main id="main" class="max-w-3xl mx-auto px-6 py-12">
+    <h1 class="text-3xl font-bold mb-8">Featured products</h1>
+
+    <ul id="slides" class="slick-slider">
+      <li class="slide">
+        <img src="/product-1.jpg" alt="Product one" class="w-full h-auto object-cover rounded" />
+      </li>
+      <li class="slide">
+        <img src="/product-2.jpg" alt="Product two" class="w-full h-auto object-cover rounded" />
+      </li>
+    </ul>
+  </main>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/slick.min.js"></script>
+  <script>
+    $(function () {
+      $("#slides").slick({
+        infinite: true,
+        slidesToShow: 1,
+        slidesToScroll: 1,
+        arrows: true,
+        dots: true,
+      });
+    });
+  </script>
+</body>
+</html>

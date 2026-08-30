@@ -1,0 +1,17 @@
+{
+  "fixture": "card-grid-anonymous",
+  "condition": "baseline",
+  "runGroup": "9a97fc25",
+  "agentName": "cloner-baseline",
+  "model": "sonnet",
+  "totalCostUsd": 0.2410834,
+  "isError": false,
+  "toolCallCount": 14,
+  "screenshotCount": 4,
+  "promptHash": "29b24ffa",
+  "recordedAt": "2026-08-30T18:27:00.025Z",
+  "diffRatio": 0.009946180555555555,
+  "diffComparable": true,
+  "qualityScore": 4,
+  "qualityReasoning": "The three testimonial cards use the exact same long utility-class string (\"p-4 rounded-lg shadow-md flex flex-col gap-2\") copy-pasted verbatim three times with no extraction into a component class or shared pattern — exactly the anti-pattern the grading criteria flags, even though there's a stray comment labeling it as a \"component.\" The Tailwind theme config adds a custom color \"gray-600\": \"#4b5563\", which is literally identical to Tailwind's built-in default gray-600 value — a wholly redundant, unnecessary override rather than a genuine off-scale token, which is worse than a near-duplicate since it doesn't even add new information. Aside from these issues, the markup itself is clean, semantically reasonable, and readable (proper heading, alt text, responsive grid classes)."
+}

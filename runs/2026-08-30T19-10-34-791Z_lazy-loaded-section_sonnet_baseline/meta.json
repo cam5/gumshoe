@@ -1,0 +1,17 @@
+{
+  "fixture": "lazy-loaded-section",
+  "condition": "baseline",
+  "runGroup": "5ca2d689",
+  "agentName": "cloner-baseline",
+  "model": "sonnet",
+  "totalCostUsd": 0.19759859999999996,
+  "isError": false,
+  "toolCallCount": 9,
+  "screenshotCount": 4,
+  "promptHash": "901cf0eb",
+  "recordedAt": "2026-08-30T19:10:34.792Z",
+  "diffRatio": 0,
+  "diffComparable": true,
+  "qualityScore": 8,
+  "qualityReasoning": "The file has no Tailwind utility usage at all, which is a deliberate and well-justified choice (explained in the comment): preflight is disabled and the page relies purely on UA defaults, so there's no bespoke styling to express. Given that premise, there's nothing to evaluate for \"repeated utility-class strings\" since none are used — the repeated product-card markup uses a plain semantic class name (`product-card`) consistently rather than long copy-pasted utility strings, which is fine. There's no theme config to assess for redundancy (config only disables preflight). The HTML itself is clean, minimal, and readable, with consistent structure across the three repeated card blocks. The one demerit is a long, essay-like comment block that arguably oversteps \"self-documenting code\" norms and edges into rationalizing/narrating decisions rather than just being terse, but it does explain genuinely non-obvious reasoning (why preflight is off, why placeholders were resolved to final markup) so it has some justification. Overall this is a well-reasoned, appropriately minimal file for its stated constraints."
+}

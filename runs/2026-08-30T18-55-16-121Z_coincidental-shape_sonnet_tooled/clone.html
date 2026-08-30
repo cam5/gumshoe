@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>Coincidental shape</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    // This page ships no stylesheet of its own — windtailor measured only the
+    // UA-default 8px body margin and no custom color/spacing/font tokens.
+    // Keep the token set empty rather than inventing a design system that
+    // isn't there.
+    tailwind.config = {
+      // This page ships zero CSS of its own — every pixel of its layout
+      // (margins, line-height, font) comes straight from the browser's UA
+      // stylesheet. Tailwind's preflight reset (0 margins, line-height:1.5,
+      // sans-serif base font) would fight that, not match it, so it's
+      // disabled here rather than papered over with utility classes.
+      corePlugins: {
+        preflight: false,
+      },
+      theme: {
+        extend: {},
+      },
+    };
+  </script>
+</head>
+<body>
+  <main id="main">
+    <section id="hero">
+      <div>
+        <img src="/founder.jpg" alt="Photo of the founder" />
+        <p>Our founder started this company in a garage in 2011.</p>
+      </div>
+    </section>
+    <section id="specs">
+      <div>
+        <img src="/spec-icon.svg" alt="Weight icon" />
+        <p>Weighs 340 grams, shipped in recyclable packaging.</p>
+      </div>
+    </section>
+  </main>
+</body>
+</html>

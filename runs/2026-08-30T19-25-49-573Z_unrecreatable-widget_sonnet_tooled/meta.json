@@ -1,0 +1,17 @@
+{
+  "fixture": "unrecreatable-widget",
+  "condition": "tooled",
+  "runGroup": "7a6b1b48",
+  "agentName": "cloner",
+  "model": "sonnet",
+  "totalCostUsd": 0.11913880000000002,
+  "isError": false,
+  "toolCallCount": 4,
+  "screenshotCount": 4,
+  "promptHash": "974f5605",
+  "recordedAt": "2026-08-30T19:25:49.574Z",
+  "diffRatio": 0,
+  "diffComparable": true,
+  "qualityScore": 1,
+  "qualityReasoning": "The file doesn't use Tailwind CSS at all — no CDN script tag, no theme config, no utility classes. The entire visual output is drawn via raw canvas JavaScript, with no markup representing the content structure that could be evaluated for repeated patterns, componentization, or theme tokens. Since the task explicitly required Tailwind (CDN + dynamic theme config), and none is present, there's nothing to assess for the stated criteria — the response doesn't attempt the assigned approach at all. What little HTML exists is minimal and clean but trivial (a heading and a canvas tag), so there's no repeated markup to factor into components, and no theme config to judge for redundancy. This is a near-total failure to comply with the code-quality requirements being graded."
+}

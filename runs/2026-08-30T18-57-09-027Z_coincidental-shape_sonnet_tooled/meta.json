@@ -1,0 +1,17 @@
+{
+  "fixture": "coincidental-shape",
+  "condition": "tooled",
+  "runGroup": "798218dc",
+  "agentName": "cloner",
+  "model": "sonnet",
+  "totalCostUsd": 0.23169859999999998,
+  "isError": false,
+  "toolCallCount": 12,
+  "screenshotCount": 6,
+  "promptHash": "c93c9ebb",
+  "recordedAt": "2026-08-30T18:57:09.028Z",
+  "diffRatio": 0,
+  "diffComparable": true,
+  "qualityScore": 8,
+  "qualityReasoning": "The file is minimal, clean, and well-formed HTML. There's essentially no Tailwind utility usage (all styling relies on default UA stylesheet with preflight disabled), so there's no repeated utility-class markup to worry about extracting into a component pattern — the two sections are structurally similar but carry no classes at all, so there's nothing being copy-pasted. The theme config is appropriately minimal (empty extend, no redundant custom tokens). The inline comment explaining why preflight is disabled is reasonable documentation of a non-obvious decision. Markup itself (ids, semantic sectioning, alt text) is tidy and readable. Docked slightly since the near-total absence of Tailwind usage makes some grading criteria moot rather than demonstrably well-handled, but nothing here is unclean, redundant, or duplicated."
+}

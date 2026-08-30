@@ -1,0 +1,17 @@
+{
+  "fixture": "off-scale-tokens",
+  "condition": "tooled",
+  "runGroup": "81164fc7",
+  "agentName": "cloner",
+  "model": "sonnet",
+  "totalCostUsd": 0.1547992,
+  "isError": false,
+  "toolCallCount": 7,
+  "screenshotCount": 6,
+  "promptHash": "d820f476",
+  "recordedAt": "2026-08-30T19:18:11.862Z",
+  "diffRatio": 0,
+  "diffComparable": true,
+  "qualityScore": 1,
+  "qualityReasoning": "The file doesn't use Tailwind at all — no CDN script tag, no utility classes, no theme config. Instead it uses raw inline <style> with two near-identical custom classes (.cta-a, .cta-b) that differ by trivial amounts (14px vs 15px margin, 9px/17px vs 10px/18px padding, 33px vs 34px radius, #017a07 vs #018008 color) — a textbook case of duplicated near-identical values that should have been consolidated into a single reusable class/token, which is exactly the anti-pattern the rubric calls out. There's no componentization, no design tokens, and the task's explicit requirement (Tailwind via CDN with dynamic theme config for off-scale values) is entirely unmet. As plain HTML/CSS it's terse and legible, but on the axes being graded (Tailwind theme minimalism, reuse via named patterns) it fails badly."
+}

@@ -1,0 +1,17 @@
+{
+  "fixture": "lazy-loaded-section",
+  "condition": "tooled",
+  "runGroup": "5ca2d689",
+  "agentName": "cloner",
+  "model": "sonnet",
+  "totalCostUsd": 0.17254399999999998,
+  "isError": false,
+  "toolCallCount": 8,
+  "screenshotCount": 4,
+  "promptHash": "3d9c8bc9",
+  "recordedAt": "2026-08-30T19:08:52.434Z",
+  "diffRatio": 0,
+  "diffComparable": true,
+  "qualityScore": 1,
+  "qualityReasoning": "This file does not use Tailwind CSS at all — there's no CDN script tag, no theme configuration, and no utility classes anywhere in the markup. The 'product-card' and 'placeholder' classes are unstyled, plain CSS-class hooks with no corresponding styles defined anywhere. There is no repeated markup to evaluate for reuse patterns since the visible HTML is just placeholders, and the dynamically injected cards use raw string concatenation with no Tailwind utilities either. Since the task specifically calls for cloning a page with Tailwind CSS loaded via CDN and a theme config, and neither exists here, this submission fails the core requirement entirely."
+}

@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>Off-scale tokens</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    // Design tokens measured directly from the live page (windtailor).
+    // NOTE: cta-a and cta-b are deliberately off-scale from one another
+    // (padding 9/17px vs 10/18px, radius 33px vs 34px, margin-top 14px vs
+    // 15px, colors #017a07 vs #018008) — kept as exact, distinct values
+    // rather than snapped to a shared Tailwind spacing/radius scale or
+    // merged into one shared token/component.
+    tailwind.config = {
+      // Original page ships no CSS reset, so links keep the browser's
+      // default underline + serif font. Preflight would strip both and
+      // shift button width/metrics away from the source, so disable it.
+      corePlugins: {
+        preflight: false
+      },
+      theme: {
+        extend: {
+          colors: {
+            "cta-a": "#017a07",   // == .cta-a background (rgb(1,122,7))
+            "cta-b": "#018008"    // == .cta-b background (rgb(1,128,8))
+          }
+        }
+      }
+    };
+  </script>
+</head>
+<body>
+  <main id="main">
+    <div id="buttons" class="flex gap-3">
+      <a class="cta-a" href="/start">Get started</a>
+      <a class="cta-b" href="/pricing">See pricing</a>
+    </div>
+  </main>
+
+  <style>
+    /* Exact off-scale values kept as literal CSS (mirrors source) rather
+       than lossy Tailwind scale classes like py-2.5 / px-4 / mt-3.5, which
+       would snap 17px/18px to 16px and blur the two buttons together. */
+    .cta-a {
+      display: inline-block;
+      margin-top: 14px;
+      padding: 9px 17px;
+      border-radius: 33px;
+      background: #017a07;
+      color: #ffffff;
+    }
+    .cta-b {
+      display: inline-block;
+      margin-top: 15px;
+      padding: 10px 18px;
+      border-radius: 34px;
+      background: #018008;
+      color: #ffffff;
+    }
+  </style>
+</body>
+</html>

@@ -1,0 +1,17 @@
+{
+  "fixture": "card-grid-anonymous",
+  "condition": "baseline",
+  "runGroup": "9a97fc25",
+  "agentName": "cloner-baseline",
+  "model": "sonnet",
+  "totalCostUsd": 0.19258100000000003,
+  "isError": false,
+  "toolCallCount": 12,
+  "screenshotCount": 4,
+  "promptHash": "7a122b63",
+  "recordedAt": "2026-08-30T18:25:08.023Z",
+  "diffRatio": 0.01025,
+  "diffComparable": true,
+  "qualityScore": 6,
+  "qualityReasoning": "The file is small and clean, but the card markup (\"p-4 rounded-lg shadow-md flex flex-col gap-2\") is copy-pasted verbatim three times rather than being extracted into a named component class (e.g., via @apply in a style block) or otherwise deduplicated. With three repeated instances of identical utility strings, this is exactly the kind of copy-paste the grading criteria flags. No Tailwind theme config is present, but none is needed since no off-scale values are used, so that's not a deduction. Aside from the repetition, the HTML is readable, semantic enough, and uses reasonable class ordering and descriptive alt text."
+}

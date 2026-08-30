@@ -1,0 +1,26 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>Unrecreatable widget</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-white text-black">
+  <main id="main" class="p-2">
+    <h1 class="text-3xl font-bold my-[21px]">Revenue this quarter</h1>
+    <canvas id="chart" width="480" height="240"></canvas>
+  </main>
+  <script>
+    // Draws directly into a canvas bitmap. Nothing about the chart's
+    // shape, data, or colors exists anywhere in the DOM or markup —
+    // before or after this script runs, the tag is just <canvas>.
+    var ctx = document.getElementById("chart").getContext("2d");
+    var values = [40, 65, 30, 90, 55, 120];
+    var barWidth = 60;
+    ctx.fillStyle = "#017a07";
+    values.forEach(function (v, i) {
+      ctx.fillRect(i * barWidth + 10, 240 - v, barWidth - 10, v);
+    });
+  </script>
+</body>
+</html>

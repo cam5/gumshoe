@@ -1,0 +1,17 @@
+{
+  "fixture": "carousel-js-cloned",
+  "condition": "baseline",
+  "runGroup": "da9381c7",
+  "agentName": "cloner-baseline",
+  "model": "sonnet",
+  "totalCostUsd": 0.5232593999999999,
+  "isError": false,
+  "toolCallCount": 28,
+  "screenshotCount": 7,
+  "promptHash": "088380b4",
+  "recordedAt": "2026-08-30T18:49:24.852Z",
+  "diffRatio": 0.0015850694444444445,
+  "diffComparable": true,
+  "qualityScore": 8,
+  "qualityReasoning": "The file is minimal and clean. There are only two <li class=\"slide\"> items, and they correctly share a single semantic class rather than repeating long utility strings inline — appropriate given the tiny scale of repetition (2 items). Tailwind is used sparingly (just `max-w-md mx-8` on the container), so there's no copy-paste utility bloat to critique. The theme config is intentionally empty (`extend: {}`) with Preflight disabled, which is minimal and non-redundant by construction — no near-duplicate custom tokens exist. Comments are used judiciously to explain non-obvious decisions (why Preflight is off, why slick-carousel is used, why arrow color is overridden) rather than restating what the code does. Markup is otherwise clean and semantic (ul/li/img, single h1). Minor ding: with so little actual Tailwind usage, it's hard to fully assess componentization discipline at scale, but nothing present is poorly done."
+}

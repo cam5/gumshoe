@@ -1,0 +1,17 @@
+{
+  "fixture": "card-grid-semantic",
+  "condition": "tooled",
+  "runGroup": "59e75178",
+  "agentName": "cloner",
+  "model": "sonnet",
+  "totalCostUsd": 0.30165959999999997,
+  "isError": false,
+  "toolCallCount": 14,
+  "screenshotCount": 4,
+  "promptHash": "19c5377f",
+  "recordedAt": "2026-08-30T18:13:55.735Z",
+  "diffRatio": 0,
+  "diffComparable": true,
+  "qualityScore": 1,
+  "qualityReasoning": "The file contains no Tailwind CSS whatsoever — no CDN <script> tag, no tailwind.config, and no utility classes. It uses a single custom class name (testimonial-card) but never defines it anywhere (no <style> block, no linked stylesheet), so the page has zero actual styling. While the semantic HTML itself is clean and the repeated card markup is reasonably consistent, the task explicitly required Tailwind CSS via CDN with a dynamic theme config, and none of that is present. This is a fundamental failure to complete the assigned task's technology requirement, not just a stylistic weakness, so it must be scored very low despite the tidy markup."
+}
