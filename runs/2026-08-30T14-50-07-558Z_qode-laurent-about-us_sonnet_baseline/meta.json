@@ -1,0 +1,13 @@
+{
+  "fixture": "qode-laurent-about-us",
+  "condition": "baseline",
+  "runGroup": "79bc115b",
+  "agentName": "cloner-baseline",
+  "model": "sonnet",
+  "totalCostUsd": 1.2618526,
+  "isError": false,
+  "toolCallCount": 29,
+  "screenshotCount": 3,
+  "promptHash": "e2c3fe01",
+  "recordedAt": "2026-08-30T14:50:07.560Z"
+}

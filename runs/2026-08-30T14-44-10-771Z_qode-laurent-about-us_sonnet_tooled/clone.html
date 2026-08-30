@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>About Us &#8211; Laurent</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css?family=Josefin+Sans:100,300,400,700|Open+Sans+Condensed:300,400,700|Miniver&display=swap" rel="stylesheet">
+
+<style>
+  @font-face{
+    font-family:caviar_dreamsbold;
+    src:url(https://laurent.qodeinteractive.com/wp-content/themes/laurent/assets/fonts/caviardreams_bold-webfont/caviardreams_bold-webfont.woff2) format("woff2"),
+        url(https://laurent.qodeinteractive.com/wp-content/themes/laurent/assets/fonts/caviardreams_bold-webfont/caviardreams_bold-webfont.woff) format("woff");
+    font-weight:700;
+    font-style:normal;
+  }
+</style>
+
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+  tailwind.config = {
+    theme: {
+      extend: {
+        colors: {
+          "custom-1": "#c9ab81",   // gold accent -- == measured --color-accent on .eltdf-st-tagline / .eltdf-st-title
+          "custom-2": "#0b1315",   // page base background, measured on body
+          "custom-3": "#715b3e",   // hairline divider / grid border color
+          "custom-4": "#afb8b8"    // muted testimonial text color
+        },
+        fontFamily: {
+          sans: ['"Josefin Sans"', 'sans-serif'],
+          heading: ['caviar_dreamsbold', 'sans-serif'],
+          script: ['Miniver', 'cursive'],
+          nav: ['"Open Sans Condensed"', 'sans-serif']
+        },
+        letterSpacing: {
+          widest2: '.36em'
+        }
+      }
+    }
+  };
+</script>
+</head>
+<body class="bg-custom-2 text-white font-sans font-light text-[19px] leading-[29px]">
+
+<!-- ============ HEADER ============ -->
+<header class="absolute top-0 left-0 w-full z-50">
+  <div class="h-[110px] flex items-center justify-between px-[55px] border-b border-custom-3/60">
+    <a href="https://laurent.qodeinteractive.com/" class="block">
+      <img src="https://laurent.qodeinteractive.com/wp-content/uploads/2019/10/logo-heder.png" alt="logo" class="h-[66px] w-auto" />
+    </a>
+
+    <nav class="hidden md:block">
+      <ul class="flex items-center gap-2">
+        <li><a href="https://laurent.qodeinteractive.com/" class="font-nav text-[14px] tracking-widest2 uppercase px-[27px] py-2 text-white hover:text-custom-1 transition-colors">Home</a></li>
+        <li><a href="https://laurent.qodeinteractive.com/about-us/" class="font-nav text-[14px] tracking-widest2 uppercase px-[27px] py-2 text-white border-b border-white">Pages</a></li>
+        <li><a href="https://laurent.qodeinteractive.com/gallery-portfolio/" class="font-nav text-[14px] tracking-widest2 uppercase px-[27px] py-2 text-white hover:text-custom-1 transition-colors">Portfolio</a></li>
+        <li><a href="https://laurent.qodeinteractive.com/blog-standard/" class="font-nav text-[14px] tracking-widest2 uppercase px-[27px] py-2 text-white hover:text-custom-1 transition-colors">Blog</a></li>
+        <li><a href="https://laurent.qodeinteractive.com/shop/" class="font-nav text-[14px] tracking-widest2 uppercase px-[27px] py-2 text-white hover:text-custom-1 transition-colors">Shop</a></li>
+      </ul>
+    </nav>
+
+    <button id="side-menu-opener" aria-label="Open menu" class="text-white">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 37 25.2" class="w-[30px] h-[20px]"><line y1="7.6" x2="24" y2="7.6" stroke="currentColor" stroke-width="1.2"/><line x1="4.1" y1="0.5" x2="28.1" y2="0.5" stroke="currentColor" stroke-width="1.2"/><line x1="10.1" y1="24.6" x2="34.1" y2="24.6" stroke="currentColor" stroke-width="1.2"/><line x1="13" y1="17.6" x2="37" y2="17.6" stroke="currentColor" stroke-width="1.2"/></svg>
+    </button>
+  </div>
+</header>
+
+<!-- ============ SIDE MENU (drawer) ============ -->
+<div id="side-menu-overlay" class="fixed inset-0 bg-black/70 z-[60] hidden"></div>
+<aside id="side-menu" class="fixed top-0 right-0 h-full w-[320px] bg-custom-2 z-[70] translate-x-full transition-transform duration-300 px-10 py-12 text-center">
+  <button id="side-menu-closer" aria-label="Close menu" class="absolute top-6 right-6 text-white">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 18.1 18.1" class="w-[18px] h-[18px]"><line x1="0.4" y1="0.4" x2="17.7" y2="17.7" stroke="currentColor" stroke-width="1"/><line x1="0.4" y1="17.7" x2="17.7" y2="0.4" stroke="currentColor" stroke-width="1"/></svg>
+  </button>
+  <a href="https://laurent.qodeinteractive.com/" class="inline-block mt-10">
+    <img src="https://laurent.qodeinteractive.com/wp-content/uploads/2019/10/footer-logo.png" alt="logo" class="mx-auto h-[66px] w-auto" />
+  </a>
+  <div class="border-t border-custom-3/60 mt-9 mb-9"></div>
+  <p class="text-[16px] leading-[36px]">
+    Laurent Fine dining,<br/>
+    <a href="https://www.google.com/maps/place/Iron+Chef+House" target="_blank" rel="noopener noreferrer" class="hover:text-custom-1">107 Duncan Avenue, New York</a><br/>
+    <a href="tel:914-309-7030" class="hover:text-custom-1">914-309-7030,</a><br/>
+    Open: 09:00 am &#8211; 01:00 pm
+  </p>
+  <div class="border-t border-custom-3/60 mt-6 mb-6"></div>
+  <ul class="space-y-2">
+    <li><a target="_blank" rel="noopener noreferrer" href="https://www.facebook.com/QodeInteractive/" class="font-nav uppercase tracking-widest2 text-[13px] hover:text-custom-1">Facebook</a></li>
+    <li><a target="_blank" rel="noopener noreferrer" href="https://www.instagram.com/qodeinteractive/" class="font-nav uppercase tracking-widest2 text-[13px] hover:text-custom-1">Instagram</a></li>
+    <li><a target="_blank" rel="noopener noreferrer" href="https://www.tripadvisor.com/" class="font-nav uppercase tracking-widest2 text-[13px] hover:text-custom-1">Trip Advisor</a></li>
+  </ul>
+</aside>
+
+<!-- ============ HERO / TITLE ============ -->
+<section class="relative h-[530px] bg-cover bg-top flex items-end justify-center pb-[55px]"
+         style="background-image:linear-gradient(rgba(12,19,21,.35),rgba(12,19,21,.55)),url('https://laurent.qodeinteractive.com/wp-content/uploads/2019/12/About-us-title-img.jpg')">
+  <div class="flex items-center gap-6">
+    <svg xmlns="http://www.w3.org/2000/svg" width="41" height="9" viewBox="0 0 41.125 9.146" class="text-custom-1">
+      <path fill="none" stroke="currentColor" stroke-miterlimit="10" d="M40.881 8.576L20.562.591.244 8.576"/>
+      <path fill="none" stroke="currentColor" stroke-miterlimit="10" d="M40.881.591L20.562 8.576.243.591"/>
+    </svg>
+    <h1 class="font-heading font-bold uppercase text-custom-1 text-[41px] tracking-[.1em] leading-none">About Us</h1>
+    <svg xmlns="http://www.w3.org/2000/svg" width="41" height="9" viewBox="0 0 41.125 9.146" class="text-custom-1">
+      <path fill="none" stroke="currentColor" stroke-miterlimit="10" d="M40.881 8.576L20.562.591.244 8.576"/>
+      <path fill="none" stroke="currentColor" stroke-miterlimit="10" d="M40.881.591L20.562 8.576.243.591"/>
+    </svg>
+  </div>
+</section>
+
+<!-- ============ ABOUT US CONTENT ============ -->
+<section class="relative py-[237px]">
+  <div class="max-w-[1060px] mx-auto grid grid-cols-1 lg:grid-cols-12 gap-y-16 items-center px-6">
+
+    <!-- decorative pattern circle -->
+    <div class="lg:col-span-3 flex justify-center lg:justify-start">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 303.083 305.563" class="w-[180px] h-[180px] text-custom-1">
+        <path fill="none" stroke="currentColor" stroke-width="1.5" stroke-miterlimit="10" d="M36.927,251.827L1.428,190.62L72.426,67.954
+	L53.591,35.415 M36.927,251.827l35.499-61.207L12.86,87.705 M107.925,6.621l35.499,61.333L72.426,190.62l65.733,113.572
+ M85.728,290.305l57.696-99.685L72.426,67.954l35.47-61.282 M176.85,3.041l37.572,64.913L143.424,190.62l60.398,104.352
+ M148.419,304.655l66.003-114.035L143.424,67.954L180.614,3.7 M281.166,75.306L214.422,190.62l41.37,71.478 M233.9,279.635
+l51.521-89.015L214.422,67.954l23.047-39.817 M302.023,161.937L285.42,190.62l7.581,13.098 M96.143,10.63v16.348 M60.644,88.311
+V70.871L44.853,43.219 M25.145,149.644v-17.439L7.325,101 M60.644,210.977v-17.439l-23.712-41.521L13.21,193.594v17.383
+ M96.143,272.31V254.87l-23.712-41.521l-23.722,41.578v10.798 M123.73,302.348l-15.8-27.666L96.429,294.84 M192.572,298.572
+l-13.644-23.891l-16.852,29.537 M167.102,272.31V254.87l-23.712-41.521l-23.722,41.578v17.383 M238.139,272.31V254.87
+l-23.712-41.521l-23.722,41.578v17.383 M287.81,217.524l-2.385-4.176l-23.722,41.578v1.114 M131.642,210.977v-17.439l-23.712-41.521
+l-23.722,41.578v17.383 M202.64,210.977v-17.439l-23.712-41.521l-23.722,41.578v17.383 M273.638,210.977v-17.439l-23.712-41.521
+l-23.722,41.578v17.383 M96.143,149.644v-17.439L72.431,90.683l-23.722,41.578v17.383 M167.102,149.644v-17.439L143.39,90.683
+l-23.722,41.578v17.383 M238.139,149.644v-17.439l-23.712-41.521l-23.722,41.578v17.383 M295.99,109.182l-10.564-18.499
+l-23.722,41.578v17.383 M131.642,88.311V70.871L107.93,29.35L84.208,70.928v17.383 M202.64,88.311V70.871L178.928,29.35
+l-23.722,41.578v17.383 M273.638,88.311V70.871l-12.967-22.705 M246.644,35.104l-20.439,35.824v17.383 M167.141,26.978V9.538
+l-4.791-8.391 M123.446,3.043l-3.738,6.552v17.383 M192.453,6.533l-1.747,3.062v17.383 M84.248,15.75v31.78 M60.605,47.53V29.963
+ M48.749,108.863V73.93L36.929,53.236L25.106,73.959v34.904 M13.25,170.196v-34.934L2.607,116.629 M48.749,231.529v-34.934
+l-11.819-20.693l-11.823,20.723v34.904 M84.248,289.6v-31.671l-11.819-20.693l-11.823,20.723v17.433 M180.675,301.633l-1.75-3.064
+l-2.172,3.805 M155.246,292.862v-34.934l-11.819-20.693l-11.823,20.723v34.904 M226.244,284.372v-26.443l-11.819-20.693
+l-11.823,20.723v34.904 M119.747,231.529v-34.934l-11.819-20.693l-11.823,20.723v34.904 M190.745,231.529v-34.934l-11.819-20.693
+l-11.823,20.723v34.904 M261.743,231.529v-34.934l-11.819-20.693L238.1,196.625v34.904 M84.248,170.196v-34.934l-11.819-20.693
+l-11.823,20.723v34.904 M155.207,170.196v-34.934l-11.819-20.693l-11.823,20.723v34.904 M226.244,170.196v-34.934l-11.819-20.693
+l-11.823,20.723v34.904 M297.242,170.196v-34.934l-11.819-20.693l-11.823,20.723v34.904 M119.747,108.863V73.93l-11.819-20.693
+L96.104,73.959v34.904 M190.745,108.863V73.93l-11.819-20.693l-11.823,20.723v34.904 M261.743,108.863V73.93l-11.819-20.693
+L238.1,73.959v34.904 M155.246,47.53V12.597L148.445,0.69 M138.147,1.156l-6.544,11.47V47.53 M226.244,20.976V47.53 M203.878,10.387
+l-1.277,2.239V47.53 M72.426,22.118v45.836 M36.927,73.112v56.051 M1.428,134.444v56.051 M36.927,195.776v56.051 M72.426,257.104
+v26.128 M143.424,257.104v47.4 M214.422,257.104v33.414 M107.925,195.776v56.051 M178.923,195.776v56.051 M249.921,195.776v56.051
+ M72.426,134.444v56.051 M143.424,134.444v56.051 M214.422,134.444v56.051 M285.42,134.444v56.051 M107.925,73.112v56.051
+ M178.923,73.112v56.051 M249.921,73.112v56.051 M143.424,11.903v56.051 M214.422,14.818v53.136 M137.838,304.162"/>
+      </svg>
+    </div>
+
+    <!-- text column -->
+    <div class="lg:col-span-6 text-center px-4">
+      <span class="font-script text-custom-1 text-[19px] block mb-3">Restaurant life</span>
+      <div class="flex items-center justify-center gap-5 mb-6">
+        <svg xmlns="http://www.w3.org/2000/svg" width="41" height="9" viewBox="0 0 41.125 9.146" class="text-custom-1 shrink-0">
+          <path fill="none" stroke="currentColor" stroke-miterlimit="10" d="M40.881 8.576L20.562.591.244 8.576"/>
+          <path fill="none" stroke="currentColor" stroke-miterlimit="10" d="M40.881.591L20.562 8.576.243.591"/>
+        </svg>
+        <h2 class="font-heading font-bold uppercase text-custom-1 text-[41px] leading-[54px]">About Us</h2>
+        <svg xmlns="http://www.w3.org/2000/svg" width="41" height="9" viewBox="0 0 41.125 9.146" class="text-custom-1 shrink-0">
+          <path fill="none" stroke="currentColor" stroke-miterlimit="10" d="M40.881 8.576L20.562.591.244 8.576"/>
+          <path fill="none" stroke="currentColor" stroke-miterlimit="10" d="M40.881.591L20.562 8.576.243.591"/>
+        </svg>
+      </div>
+      <p class="mb-5">Lorem ipsum dolor sit amet, consecte turn se adipisicing elit, sed do eiusmod tempor ens incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exerci reprehenderit in voluptate velit esse cillu sint occaecat error sit volu.</p>
+      <p class="mb-5">Cupidatat non proident, sunt in culpa qui cia deserunt mollit anim id est laborum. Sed utsa tat monullamco laboris nisi ut aliquip exe ne com odoconsequat. Duis aute irure dolor in per spiciamt vsun.</p>
+      <p class="mb-9">aperiam, eaque ipsa quae ab illo inventor veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nem odit aut fugit, sed quia consequ un turmagnido lors.</p>
+      <a href="https://laurent.qodeinteractive.com/meet-the-chef/" class="font-nav uppercase tracking-widest2 text-[13px] border-b border-custom-1 pb-1 hover:text-custom-1 transition-colors">Read More</a>
+    </div>
+
+    <!-- image column -->
+    <div class="lg:col-span-3 flex justify-center lg:justify-end">
+      <img src="https://laurent.qodeinteractive.com/wp-content/uploads/2019/10/inner-pages-img-1.jpg" alt="restaurant" class="w-[220px] h-[220px] object-cover" />
+    </div>
+  </div>
+</section>
+
+<!-- ============ VIDEO PARALLAX ============ -->
+<section class="relative h-[450px] bg-cover bg-center flex items-center justify-center"
+         style="background-image:linear-gradient(rgba(11,19,21,.35),rgba(11,19,21,.35)),url('https://laurent.qodeinteractive.com/wp-content/uploads/2019/12/About-us-video-img.jpg')">
+  <a href="https://vimeo.com/369245407" target="_blank" rel="noopener noreferrer" class="text-custom-1 hover:opacity-80 transition-opacity" aria-label="Play video">
+    <svg xmlns="http://www.w3.org/2000/svg" width="97" height="97" viewBox="0 0 97.094 97.094">
+      <circle fill="none" stroke="currentColor" stroke-miterlimit="10" cx="48.558" cy="48.548" r="48"/>
+      <polygon fill="none" stroke="currentColor" stroke-miterlimit="10" points="42.578,69.964 42.578,27.13 63.994,48.546 "/>
+    </svg>
+  </a>
+</section>
+
+<!-- ============ TESTIMONIALS ============ -->
+<section class="py-[165px] px-6">
+  <div class="max-w-[820px] mx-auto text-center relative">
+    <div class="text-custom-1 text-[64px] leading-none font-script mb-2">&#8221;</div>
+
+    <div id="testimonial-track" class="relative min-h-[180px]">
+      <!-- slide 0 -->
+      <div class="testimonial-slide" data-index="0">
+        <p class="font-script text-custom-4 text-[22px] leading-[39px] px-[10%]">Duis aute irure dolor. Lorem ipsum dolor sit amet, consectetur adipisic sed do eiusmod tempor incidid sens as out labore et. Ut enim ad minim venia quis nostrud exercitation co laboris nisi ut aliquip ex ea commodo conse.</p>
+        <h5 class="mt-8 font-heading font-bold uppercase text-custom-1 text-[16px] tracking-[.15em]">Andrea Chung</h5>
+        <p class="text-white/80 text-[15px] mt-1">Cook</p>
+      </div>
+      <!-- slide 1 -->
+      <div class="testimonial-slide hidden" data-index="1">
+        <p class="font-script text-custom-4 text-[22px] leading-[39px] px-[10%]">Ut enim ad minim venia quis nostrud exercitation co laboris nisi ut aliquip ex ea commodo conse. Duis aute irure dolor. Lorem ipsum dolor sit amet, consectetur adipisic sed do eiusmod tempor incidid sens as out labore et.</p>
+        <h5 class="mt-8 font-heading font-bold uppercase text-custom-1 text-[16px] tracking-[.15em]">Andrea Chung</h5>
+        <p class="text-white/80 text-[15px] mt-1">Cook</p>
+      </div>
+      <!-- slide 2 -->
+      <div class="testimonial-slide hidden" data-index="2">
+        <p class="font-script text-custom-4 text-[22px] leading-[39px] px-[10%]">Lorem ipsum dolor sit amet, consectetur adipisic sed do eiusmod tempor incidid sens as out labore et dolore magna aliqua. Ut enim ad minim venia quis nostrud exercitation co laboris nisi ut aliquip ex ea commodo conse.</p>
+        <h5 class="mt-8 font-heading font-bold uppercase text-custom-1 text-[16px] tracking-[.15em]">Robert Chang</h5>
+        <p class="text-white/80 text-[15px] mt-1">Sommelier</p>
+      </div>
+    </div>
+
+    <button id="testimonial-prev" aria-label="Previous" class="absolute left-0 top-1/2 -translate-y-1/2 text-white hover:text-custom-1">
+      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="22" viewBox="0 0 25.109 34.906"><polyline fill="none" stroke="currentColor" stroke-miterlimit="10" points="24.67,34.59 11.653,17.464 24.67,0.338 "/></svg>
+    </button>
+    <button id="testimonial-next" aria-label="Next" class="absolute right-0 top-1/2 -translate-y-1/2 text-white hover:text-custom-1">
+      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="22" viewBox="0 0 25.109 34.906"><polyline fill="none" stroke="currentColor" stroke-miterlimit="10" points="0.442,34.59 13.459,17.464 0.442,0.338 "/></svg>
+    </button>
+
+    <div id="testimonial-dots" class="flex items-center justify-center gap-3 mt-10">
+      <button class="dot w-2 h-2 rounded-full bg-white/40" data-index="0"></button>
+      <button class="dot w-2 h-2 rounded-full bg-white/40" data-index="1"></button>
+      <button class="dot w-2 h-2 rounded-full bg-white/40" data-index="2"></button>
+    </div>
+  </div>
+</section>
+
+<!-- ============ FOOTER ============ -->
+<footer class="border-t border-custom-3/60 py-[110px] px-6">
+  <div class="max-w-[1060px] mx-auto text-center">
+    <a href="https://laurent.qodeinteractive.com/">
+      <img src="https://laurent.qodeinteractive.com/wp-content/uploads/2019/10/footer-logo.png" alt="logo" class="mx-auto h-[66px] w-auto mb-9" />
+    </a>
+    <div class="border-t border-custom-3/60 max-w-[80px] mx-auto mb-9"></div>
+
+    <p class="text-[15px] leading-[26px]">
+      Laurent Restaurant &amp; Fine dining,
+      <a href="https://www.google.com/maps/place/Iron+Chef+House" target="_blank" rel="noopener noreferrer" class="hover:text-custom-1">71 Madison Ave</a>
+    </p>
+    <p class="text-[15px] leading-[26px]">
+      <a href="https://www.google.com/maps/place/Iron+Chef+House" target="_blank" rel="noopener noreferrer" class="hover:text-custom-1">10013 New York,</a>
+      <a href="tel:914-309-7030" class="hover:text-custom-1">914-309-7030,</a>
+      <a href="mailto:reservations@laurent.com" class="hover:text-custom-1">reservations@laurent.com</a>
+    </p>
+    <p class="text-[15px] leading-[26px] mb-9">Open: 09:00 am &#8211; 01:00 pm</p>
+
+    <div class="border-t border-custom-3/60 w-0 mx-auto mb-9"></div>
+
+    <ul class="space-y-2">
+      <li><a target="_blank" rel="noopener noreferrer" href="https://www.facebook.com/QodeInteractive/" class="font-nav uppercase tracking-widest2 text-[13px] hover:text-custom-1">Facebook</a></li>
+      <li><a target="_blank" rel="noopener noreferrer" href="https://www.instagram.com/qodeinteractive/" class="font-nav uppercase tracking-widest2 text-[13px] hover:text-custom-1">Instagram</a></li>
+      <li><a target="_blank" rel="noopener noreferrer" href="https://www.tripadvisor.com/" class="font-nav uppercase tracking-widest2 text-[13px] hover:text-custom-1">Trip Advisor</a></li>
+    </ul>
+  </div>
+</footer>
+
+<!-- ============ BACK TO TOP ============ -->
+<a id="back-to-top" href="#" aria-label="Back to top" class="fixed bottom-8 right-8 z-40 text-custom-1 opacity-0 pointer-events-none transition-opacity duration-300">
+  <svg xmlns="http://www.w3.org/2000/svg" width="43" height="43" viewBox="0 0 43.047 43.031">
+    <circle fill="none" stroke="currentColor" stroke-miterlimit="10" cx="21.523" cy="21.531" r="20.986"/>
+    <polyline fill="none" stroke="currentColor" stroke-miterlimit="10" points="15.205,23.875 21.523,18.573 27.842,23.875 "/>
+  </svg>
+</a>
+
+<script>
+  // side menu drawer
+  const opener = document.getElementById('side-menu-opener');
+  const closer = document.getElementById('side-menu-closer');
+  const menu = document.getElementById('side-menu');
+  const overlay = document.getElementById('side-menu-overlay');
+  function openMenu(){ menu.classList.remove('translate-x-full'); overlay.classList.remove('hidden'); }
+  function closeMenu(){ menu.classList.add('translate-x-full'); overlay.classList.add('hidden'); }
+  opener.addEventListener('click', openMenu);
+  closer.addEventListener('click', closeMenu);
+  overlay.addEventListener('click', closeMenu);
+
+  // testimonial carousel
+  const slides = document.querySelectorAll('.testimonial-slide');
+  const dots = document.querySelectorAll('.dot');
+  let current = 0;
+  function showSlide(i){
+    slides.forEach((s,idx)=> s.classList.toggle('hidden', idx!==i));
+    dots.forEach((d,idx)=> d.classList.toggle('bg-white/40', idx!==i));
+    dots.forEach((d,idx)=> d.classList.toggle('bg-custom-1', idx===i));
+    current = i;
+  }
+  document.getElementById('testimonial-prev').addEventListener('click', ()=> showSlide((current-1+slides.length)%slides.length));
+  document.getElementById('testimonial-next').addEventListener('click', ()=> showSlide((current+1)%slides.length));
+  dots.forEach(d=> d.addEventListener('click', ()=> showSlide(parseInt(d.dataset.index))));
+  showSlide(0);
+  setInterval(()=> showSlide((current+1)%slides.length), 5000);
+
+  // back to top visibility
+  const backToTop = document.getElementById('back-to-top');
+  window.addEventListener('scroll', ()=>{
+    if(window.scrollY > 400){
+      backToTop.classList.remove('opacity-0','pointer-events-none');
+    } else {
+      backToTop.classList.add('opacity-0','pointer-events-none');
+    }
+  });
+  backToTop.addEventListener('click', (e)=>{ e.preventDefault(); window.scrollTo({top:0, behavior:'smooth'}); });
+</script>
+</body>
+</html>

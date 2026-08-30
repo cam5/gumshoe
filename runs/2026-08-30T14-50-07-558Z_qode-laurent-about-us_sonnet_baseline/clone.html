@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=yes">
+<title>About Us &#8211; Laurent</title>
+
+<link rel="icon" href="https://laurent.qodeinteractive.com/wp-content/uploads/2019/12/cropped-Icon-512-x-512-1-32x32.jpg" sizes="32x32" />
+
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Miniver:100,300,400,700|Josefin+Sans:100,300,400,700|Open+Sans+Condensed:100,300,400,700|Mrs+Saint+Delafield:100,300,400,700|Limelight:100,300,400,700&subset=latin-ext">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Swiper/14.2.0/swiper-bundle.min.css">
+
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+  tailwind.config = {
+    theme: {
+      extend: {
+        colors: {
+          'laurent-bg': '#0b1315',
+          'laurent-bg2': '#0f1d22',
+          'laurent-gold': '#c9ab81',
+          'laurent-gold-dim': '#9c7c57',
+          'laurent-gold-line': '#bc9a6b',
+          'laurent-border': '#715b3e',
+          'laurent-grey': '#afb8b8',
+        },
+        fontFamily: {
+          sans: ['"Josefin Sans"', 'sans-serif'],
+          script: ['Miniver', 'cursive'],
+          display: ['"Josefin Sans"', 'sans-serif'],
+        },
+        letterSpacing: {
+          widest2: '.25em',
+        },
+      }
+    }
+  };
+</script>
+<style>
+  body { background-color:#0b1315; }
+  .title-underline-decor svg path { stroke:#9c7c57; }
+  .nav-dropdown { display:none; }
+  .nav-item:hover .nav-dropdown { display:block; }
+  .fade-link { position:relative; }
+  .fade-link::after{ content:''; position:absolute; left:0; right:0; bottom:-6px; height:1px; background:#c9ab81; transform:scaleX(0); transition:transform .4s ease; }
+  .fade-link:hover::after{ transform:scaleX(1); }
+  .swiper-button-next, .swiper-button-prev{ color:#c9ab81 !important; }
+  .swiper-pagination-bullet{ background:#c9ab81; opacity:.5; width:8px; height:8px; }
+  .swiper-pagination-bullet-active{ opacity:1; }
+  #side-menu { transition: right .5s ease; }
+  #video-modal { transition: opacity .3s ease; }
+</style>
+</head>
+<body class="bg-laurent-bg text-white font-sans font-light" style="font-size:19px; line-height:29px;">
+
+<!-- ============ HEADER ============ -->
+<header class="absolute top-0 left-0 w-full z-50">
+  <div class="bg-laurent-bg/0 border-b border-laurent-border">
+    <div class="max-w-[1300px] mx-auto flex items-center justify-between h-[110px] px-6 lg:px-10">
+      <!-- Logo -->
+      <a href="https://laurent.qodeinteractive.com/" class="shrink-0">
+        <img src="https://laurent.qodeinteractive.com/wp-content/uploads/2019/10/logo.png" width="52" height="76" alt="Laurent logo" />
+      </a>
+
+      <!-- Nav -->
+      <nav class="hidden lg:block">
+        <ul class="flex items-center gap-10 text-[13px] tracking-widest2 uppercase">
+          <li class="nav-item relative py-10">
+            <a href="#" class="fade-link">Home</a>
+            <div class="nav-dropdown absolute top-full left-1/2 -translate-x-1/2 bg-laurent-bg2 border border-laurent-border/50 py-4 px-6 w-64 text-left normal-case tracking-normal text-[15px] shadow-xl">
+              <a href="https://laurent.qodeinteractive.com/" class="block py-1.5 hover:text-laurent-gold">Main Home</a>
+              <a href="https://laurent.qodeinteractive.com/bar-home/" class="block py-1.5 hover:text-laurent-gold">Bar Home</a>
+              <a href="https://laurent.qodeinteractive.com/restaurant-home/" class="block py-1.5 hover:text-laurent-gold">Restaurant Home</a>
+              <a href="https://laurent.qodeinteractive.com/fine-dining/" class="block py-1.5 hover:text-laurent-gold">Fine Dining</a>
+              <a href="https://laurent.qodeinteractive.com/split-screen-showcase/" class="block py-1.5 hover:text-laurent-gold">Split Screen Showcase</a>
+              <a href="https://laurent.qodeinteractive.com/haute-cuisine/" class="block py-1.5 hover:text-laurent-gold">Haute Cuisine</a>
+              <a href="https://laurent.qodeinteractive.com/restaurant-menu/" class="block py-1.5 hover:text-laurent-gold">Restaurant Menu</a>
+              <a href="https://laurent.qodeinteractive.com/fullscreen-showcase/" class="block py-1.5 hover:text-laurent-gold">Fullscreen Showcase</a>
+              <a href="https://laurent.qodeinteractive.com/carousel-showcase/" class="block py-1.5 hover:text-laurent-gold">Carousel Showcase</a>
+              <a href="https://laurent.qodeinteractive.com/landing/" class="block py-1.5 hover:text-laurent-gold">Landing</a>
+            </div>
+          </li>
+          <li class="nav-item relative py-10">
+            <a href="https://laurent.qodeinteractive.com/about-us/" class="fade-link text-laurent-gold">Pages</a>
+            <div class="nav-dropdown absolute top-full left-1/2 -translate-x-1/2 bg-laurent-bg2 border border-laurent-border/50 py-4 px-6 w-64 text-left normal-case tracking-normal text-[15px] shadow-xl">
+              <a href="https://laurent.qodeinteractive.com/about-us/" class="block py-1.5 text-laurent-gold">About Us</a>
+              <a href="https://laurent.qodeinteractive.com/meet-the-chef/" class="block py-1.5 hover:text-laurent-gold">Meet The Chef</a>
+              <a href="https://laurent.qodeinteractive.com/our-chefs/" class="block py-1.5 hover:text-laurent-gold">Our Chefs</a>
+              <a href="https://laurent.qodeinteractive.com/our-menu/" class="block py-1.5 hover:text-laurent-gold">Our Menu</a>
+              <a href="https://laurent.qodeinteractive.com/our-kitchen/" class="block py-1.5 hover:text-laurent-gold">Our Kitchen</a>
+              <a href="https://laurent.qodeinteractive.com/gallery-page/" class="block py-1.5 hover:text-laurent-gold">Gallery Page</a>
+              <a href="https://laurent.qodeinteractive.com/booking-page/" class="block py-1.5 hover:text-laurent-gold">Booking Page</a>
+              <a href="https://laurent.qodeinteractive.com/contact-us/" class="block py-1.5 hover:text-laurent-gold">Contact Us</a>
+              <a href="https://laurent.qodeinteractive.com/coming-soon/" class="block py-1.5 hover:text-laurent-gold">Coming Soon</a>
+            </div>
+          </li>
+          <li class="nav-item relative py-10">
+            <a href="#" class="fade-link">Portfolio</a>
+            <div class="nav-dropdown absolute top-full left-1/2 -translate-x-1/2 bg-laurent-bg2 border border-laurent-border/50 py-4 px-6 w-64 text-left normal-case tracking-normal text-[15px] shadow-xl">
+              <a href="https://laurent.qodeinteractive.com/gallery-portfolio/" class="block py-1.5 hover:text-laurent-gold">Gallery Portfolio</a>
+              <a href="https://laurent.qodeinteractive.com/standard-portfolio/" class="block py-1.5 hover:text-laurent-gold">Standard Portfolio</a>
+              <a href="https://laurent.qodeinteractive.com/slider-portfolio/" class="block py-1.5 hover:text-laurent-gold">Slider Portfolio</a>
+              <a href="https://laurent.qodeinteractive.com/two-columns-portfolio/" class="block py-1.5 hover:text-laurent-gold">Two Col.</a>
+              <a href="https://laurent.qodeinteractive.com/three-columns-portfolio/" class="block py-1.5 hover:text-laurent-gold">Three Col.</a>
+              <a href="https://laurent.qodeinteractive.com/four-columns-portfolio/" class="block py-1.5 hover:text-laurent-gold">Four Col.</a>
+            </div>
+          </li>
+          <li class="nav-item relative py-10">
+            <a href="#" class="fade-link">Blog</a>
+            <div class="nav-dropdown absolute top-full left-1/2 -translate-x-1/2 bg-laurent-bg2 border border-laurent-border/50 py-4 px-6 w-64 text-left normal-case tracking-normal text-[15px] shadow-xl">
+              <a href="https://laurent.qodeinteractive.com/blog-standard/" class="block py-1.5 hover:text-laurent-gold">Blog Standard</a>
+              <a href="https://laurent.qodeinteractive.com/blog-left-sidebar/" class="block py-1.5 hover:text-laurent-gold">Blog Left Sidebar</a>
+              <a href="https://laurent.qodeinteractive.com/blog-no-sidebar/" class="block py-1.5 hover:text-laurent-gold">Blog No Sidebar</a>
+              <a href="https://laurent.qodeinteractive.com/blog-classic/" class="block py-1.5 hover:text-laurent-gold">Blog Classic</a>
+            </div>
+          </li>
+          <li class="nav-item relative py-10">
+            <a href="#" class="fade-link">Shop</a>
+            <div class="nav-dropdown absolute top-full left-1/2 -translate-x-1/2 bg-laurent-bg2 border border-laurent-border/50 py-4 px-6 w-64 text-left normal-case tracking-normal text-[15px] shadow-xl">
+              <a href="https://laurent.qodeinteractive.com/shop/" class="block py-1.5 hover:text-laurent-gold">Product List</a>
+              <a href="https://laurent.qodeinteractive.com/my-account/" class="block py-1.5 hover:text-laurent-gold">My Account</a>
+              <a href="https://laurent.qodeinteractive.com/checkout/" class="block py-1.5 hover:text-laurent-gold">Checkout</a>
+              <a href="https://laurent.qodeinteractive.com/cart/" class="block py-1.5 hover:text-laurent-gold">Cart</a>
+            </div>
+          </li>
+        </ul>
+      </nav>
+
+      <!-- hamburger -->
+      <button id="open-side-menu" aria-label="Open menu" class="text-laurent-gold-line">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 37 25.2" class="w-8 h-6" fill="none" stroke="currentColor" stroke-width="1"><line y1="7.6" x2="24" y2="7.6" /><line x1="4.1" y1="0.5" x2="28.1" y2="0.5" /><line x1="10.1" y1="24.6" x2="34.1" y2="24.6" /><line x1="13" y1="17.6" x2="37" y2="17.6" /></svg>
+      </button>
+    </div>
+  </div>
+</header>
+
+<!-- ============ SIDE MENU ============ -->
+<aside id="side-menu" class="fixed top-0 -right-[370px] w-[370px] max-w-[85vw] h-full bg-laurent-bg2 z-[999] px-10 py-16 overflow-y-auto">
+  <button id="close-side-menu" aria-label="Close menu" class="absolute top-6 right-6 text-white">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 18.1 18.1" class="w-4 h-4" fill="none" stroke="currentColor"><line x1="0.4" y1="0.4" x2="17.7" y2="17.7"/><line x1="0.4" y1="17.7" x2="17.7" y2="0.4"/></svg>
+  </button>
+  <a href="https://laurent.qodeinteractive.com/">
+    <img src="https://laurent.qodeinteractive.com/wp-content/uploads/2019/10/footer-logo.png" width="46" height="66" alt="Laurent" class="mb-8"/>
+  </a>
+  <div class="border-t border-laurent-border/60 pt-8 text-laurent-grey leading-[2]">
+    <p>Laurent Fine dining,<br>
+    <a href="https://www.google.com/maps/place/Iron+Chef+House/@40.6988193,-73.9964619,17z" target="_blank" rel="noopener noreferrer" class="hover:text-laurent-gold">107 Duncan Avenue, New York</a><br>
+    <a href="tel:914-309-7030" class="hover:text-laurent-gold">914-309-7030,</a><br>
+    Open: 09:00 am &#8211; 01:00 pm</p>
+  </div>
+  <div class="border-t border-laurent-border/60 mt-8 pt-8 space-y-3">
+    <a target="_blank" href="https://www.facebook.com/QodeInteractive/" class="block hover:text-laurent-gold">Facebook</a>
+    <a target="_blank" href="https://www.instagram.com/qodeinteractive/" class="block hover:text-laurent-gold">Instagram</a>
+    <a target="_blank" href="https://www.tripadvisor.com/" class="block hover:text-laurent-gold">Trip Advisor</a>
+  </div>
+</aside>
+<div id="side-menu-overlay" class="fixed inset-0 bg-black/60 z-[998] hidden"></div>
+
+<!-- ============ PAGE TITLE / HERO ============ -->
+<div class="relative h-[530px] bg-black bg-cover bg-center" style="background-image:url('https://laurent.qodeinteractive.com/wp-content/uploads/2019/12/About-us-title-img.jpg');">
+  <div class="absolute inset-0 bg-black/25"></div>
+  <div class="relative z-10 flex flex-col items-center justify-end h-full pb-[55px] text-center">
+    <div class="title-underline-decor mb-4">
+      <svg xmlns="http://www.w3.org/2000/svg" width="41" height="9"><path fill="none" stroke="#9C7C57" stroke-miterlimit="10" d="M40.881 8.576L20.562.591.244 8.576"/><path fill="none" stroke="#9C7C57" stroke-miterlimit="10" d="M40.881.591L20.562 8.576.243.591"/></svg>
+    </div>
+    <h1 class="text-4xl md:text-5xl tracking-[0.15em] font-normal uppercase">About Us</h1>
+  </div>
+</div>
+
+<!-- ============ MAIN CONTENT ============ -->
+<main class="max-w-[1300px] mx-auto px-6 lg:px-10 border-x border-laurent-border/20">
+
+  <!-- About section -->
+  <section class="grid grid-cols-1 lg:grid-cols-12 gap-y-16 pt-16 pb-16 lg:pt-[160px] lg:pb-[170px] items-center">
+    <!-- decorative geometric svg -->
+    <div class="hidden lg:flex lg:col-span-3 justify-center opacity-90">
+      <svg xmlns="http://www.w3.org/2000/svg" width="230" height="232" viewBox="0 0 303.083 305.563">
+        <path fill="none" stroke="#9A7D57" stroke-width="1.5" stroke-miterlimit="10" d="M36.927,251.827L1.428,190.62L72.426,67.954
+        L53.591,35.415 M36.927,251.827l35.499-61.207L12.86,87.705 M107.925,6.621l35.499,61.333L72.426,190.62l65.733,113.572
+         M85.728,290.305l57.696-99.685L72.426,67.954l35.47-61.282 M176.85,3.041l37.572,64.913L143.424,190.62l60.398,104.352
+         M148.419,304.655l66.003-114.035L143.424,67.954L180.614,3.7 M281.166,75.306L214.422,190.62l41.37,71.478 M233.9,279.635
+        l51.521-89.015L214.422,67.954l23.047-39.817 M302.023,161.937L285.42,190.62l7.581,13.098 M96.143,10.63v16.348 M60.644,88.311
+        V70.871L44.853,43.219 M25.145,149.644v-17.439L7.325,101 M60.644,210.977v-17.439l-23.712-41.521L13.21,193.594v17.383
+         M96.143,272.31V254.87l-23.712-41.521l-23.722,41.578v10.798 M123.73,302.348l-15.8-27.666L96.429,294.84 M192.572,298.572
+        l-13.644-23.891l-16.852,29.537 M167.102,272.31V254.87l-23.712-41.521l-23.722,41.578v17.383 M238.139,272.31V254.87
+        l-23.712-41.521l-23.722,41.578v17.383 M287.81,217.524l-2.385-4.176l-23.722,41.578v1.114 M131.642,210.977v-17.439l-23.712-41.521
+        l-23.722,41.578v17.383 M202.64,210.977v-17.439l-23.712-41.521l-23.722,41.578v17.383 M273.638,210.977v-17.439l-23.712-41.521
+        l-23.722,41.578v17.383 M96.143,149.644v-17.439L72.431,90.683l-23.722,41.578v17.383 M167.102,149.644v-17.439L143.39,90.683
+        l-23.722,41.578v17.383 M238.139,149.644v-17.439l-23.712-41.521l-23.722,41.578v17.383 M295.99,109.182l-10.564-18.499
+        l-23.722,41.578v17.383 M131.642,88.311V70.871L107.93,29.35L84.208,70.928v17.383 M202.64,88.311V70.871L178.928,29.35
+        l-23.722,41.578v17.383 M273.638,88.311V70.871l-12.967-22.705 M246.644,35.104l-20.439,35.824v17.383 M167.141,26.978V9.538
+        l-4.791-8.391 M123.446,3.043l-3.738,6.552v17.383 M192.453,6.533l-1.747,3.062v17.383 M84.248,15.75v31.78 M60.605,47.53V29.963
+         M48.749,108.863V73.93L36.929,53.236L25.106,73.959v34.904 M13.25,170.196v-34.934L2.607,116.629 M48.749,231.529v-34.934
+        l-11.819-20.693l-11.823,20.723v34.904 M84.248,289.6v-31.671l-11.819-20.693l-11.823,20.723v17.433 M180.675,301.633l-1.75-3.064
+        l-2.172,3.805 M155.246,292.862v-34.934l-11.819-20.693l-11.823,20.723v34.904 M226.244,284.372v-26.443l-11.819-20.693
+        l-11.823,20.723v34.904 M119.747,231.529v-34.934l-11.819-20.693l-11.823,20.723v34.904 M190.745,231.529v-34.934l-11.819-20.693
+        l-11.823,20.723v34.904 M261.743,231.529v-34.934l-11.819-20.693L238.1,196.625v34.904 M84.248,170.196v-34.934l-11.819-20.693
+        l-11.823,20.723v34.904 M155.207,170.196v-34.934l-11.819-20.693l-11.823,20.723v34.904 M226.244,170.196v-34.934l-11.819-20.693
+        l-11.823,20.723v34.904 M297.242,170.196v-34.934l-11.819-20.693l-11.823,20.723v34.904 M119.747,108.863V73.93l-11.819-20.693
+        L96.104,73.959v34.904 M190.745,108.863V73.93l-11.819-20.693l-11.823,20.723v34.904 M261.743,108.863V73.93l-11.819-20.693
+        L238.1,73.959v34.904 M155.246,47.53V12.597L148.445,0.69 M138.147,1.156l-6.544,11.47V47.53 M226.244,20.976V47.53 M203.878,10.387
+        l-1.277,2.239V47.53 M72.426,22.118v45.836 M36.927,73.112v56.051 M1.428,134.444v56.051 M36.927,195.776v56.051 M72.426,257.104
+        v26.128 M143.424,257.104v47.4 M214.422,257.104v33.414 M107.925,195.776v56.051 M178.923,195.776v56.051 M249.921,195.776v56.051
+         M72.426,134.444v56.051 M143.424,134.444v56.051 M214.422,134.444v56.051 M285.42,134.444v56.051 M107.925,73.112v56.051
+         M178.923,73.112v56.051 M249.921,73.112v56.051 M143.424,11.903v56.051 M214.422,14.818v53.136 M137.838,304.162"/>
+      </svg>
+    </div>
+
+    <!-- text column -->
+    <div class="lg:col-span-6 text-center px-0 lg:px-[15%]">
+      <span class="block font-script text-laurent-gold text-xl mb-3">Restaurant life</span>
+      <div class="flex items-center justify-center gap-4 mb-6 max-w-[230px] mx-auto flex-wrap">
+        <svg xmlns="http://www.w3.org/2000/svg" width="41" height="9" class="text-laurent-gold shrink-0"><path fill="none" stroke="#9C7C57" stroke-miterlimit="10" d="M40.881 8.576L20.562.591.244 8.576"/><path fill="none" stroke="#9C7C57" stroke-miterlimit="10" d="M40.881.591L20.562 8.576.243.591"/></svg>
+        <h2 class="text-3xl md:text-4xl tracking-[0.1em] uppercase leading-tight">About Us</h2>
+        <svg xmlns="http://www.w3.org/2000/svg" width="41" height="9" class="text-laurent-gold shrink-0"><path fill="none" stroke="#9C7C57" stroke-miterlimit="10" d="M40.881 8.576L20.562.591.244 8.576"/><path fill="none" stroke="#9C7C57" stroke-miterlimit="10" d="M40.881.591L20.562 8.576.243.591"/></svg>
+      </div>
+      <p class="text-laurent-grey mb-6">Lorem ipsum dolor sit amet, consecte turn se adipisicing elit, sed do eiusmod tempor ens incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exerci reprehenderit in voluptate velit esse cillu sint occaecat error sit volu.</p>
+      <p class="text-laurent-grey mb-6">Cupidatat non proident, sunt in culpa qui cia deserunt mollit anim id est laborum. Sed utsa tat monullamco laboris nisi ut aliquip exe ne com odoconsequat. Duis aute irure dolor in per spiciamt vsun.</p>
+      <p class="text-laurent-grey mb-10">aperiam, eaque ipsa quae ab illo inventor veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nem odit aut fugit, sed quia consequ un turmagnido lors.</p>
+      <a href="https://laurent.qodeinteractive.com/meet-the-chef/" class="fade-link inline-block text-[13px] tracking-widest2 uppercase pb-1 border-b border-laurent-gold">Read More</a>
+    </div>
+
+    <!-- image column -->
+    <div class="lg:col-span-3 flex justify-center lg:justify-start">
+      <img src="https://laurent.qodeinteractive.com/wp-content/uploads/2019/10/inner-pages-img-1.jpg" width="400" height="400" alt="Restaurant interior" class="w-full max-w-[400px] h-auto object-cover" loading="lazy" />
+    </div>
+  </section>
+</main>
+
+<!-- ============ VIDEO PARALLAX ============ -->
+<div class="relative h-[420px] bg-fixed bg-cover bg-center flex items-center justify-center" style="background-image:url('https://laurent.qodeinteractive.com/wp-content/uploads/2019/12/About-us-video-img.jpg');">
+  <div class="absolute inset-0 bg-black/10"></div>
+  <button id="open-video" class="relative z-10 text-laurent-gold hover:text-white transition-colors" aria-label="Play video">
+    <svg xmlns="http://www.w3.org/2000/svg" width="97" height="97" viewBox="0 0 97.094 97.094">
+      <circle fill="none" stroke="currentColor" stroke-miterlimit="10" cx="48.558" cy="48.548" r="48"/>
+      <polygon fill="none" stroke="currentColor" stroke-miterlimit="10" points="42.578,69.964 42.578,27.13 63.994,48.546 "/>
+    </svg>
+  </button>
+</div>
+
+<!-- Video modal -->
+<div id="video-modal" class="fixed inset-0 bg-black/90 z-[1000] hidden items-center justify-center px-4">
+  <button id="close-video" class="absolute top-6 right-6 text-white text-3xl leading-none">&times;</button>
+  <div class="w-full max-w-3xl aspect-video">
+    <iframe id="video-frame" class="w-full h-full" src="" title="Laurent video" frameborder="0" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen></iframe>
+  </div>
+</div>
+
+<!-- ============ TESTIMONIALS ============ -->
+<section class="max-w-[1300px] mx-auto px-6 lg:px-10 border-x border-laurent-border/20 pt-16 pb-16 lg:pt-[167px] lg:pb-[165px]">
+  <div class="max-w-2xl mx-auto text-center">
+    <div class="text-laurent-gold text-5xl font-script leading-none mb-4">&rdquo;</div>
+
+    <div class="swiper testimonial-swiper">
+      <div class="swiper-wrapper">
+        <div class="swiper-slide">
+          <p class="font-script text-2xl leading-relaxed text-laurent-grey mb-8">Duis aute irure dolor. Lorem ipsum dolor sit amet, consectetur adipisic sed do eiusmod tempor incidid sens as out labore et. Ut enim ad minim venia quis nostrud exercitation co laboris nisi ut aliquip ex ea commodo conse.</p>
+          <h5 class="uppercase tracking-widest2 text-sm text-laurent-gold mb-1">Andrea Chung</h5>
+          <p class="text-laurent-grey">Cook</p>
+        </div>
+        <div class="swiper-slide">
+          <p class="font-script text-2xl leading-relaxed text-laurent-grey mb-8">Ut enim ad minim venia quis nostrud exercitation co laboris nisi ut aliquip ex ea commodo conse. Duis aute irure dolor. Lorem ipsum dolor sit amet, consectetur adipisic sed do eiusmod tempor incidid sens as out labore et.</p>
+          <h5 class="uppercase tracking-widest2 text-sm text-laurent-gold mb-1">Andrea Chung</h5>
+          <p class="text-laurent-grey">Cook</p>
+        </div>
+        <div class="swiper-slide">
+          <p class="font-script text-2xl leading-relaxed text-laurent-grey mb-8">Lorem ipsum dolor sit amet, consectetur adipisic sed do eiusmod tempor incidid sens as out labore et dolore magna aliqua. Ut enim ad minim venia quis nostrud exercitation co laboris nisi ut aliquip ex ea commodo conse.</p>
+          <h5 class="uppercase tracking-widest2 text-sm text-laurent-gold mb-1">Robert Chang</h5>
+          <p class="text-laurent-grey">Sommelier</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="flex items-center justify-center gap-6 mt-6">
+      <button class="testimonial-prev text-laurent-gold hover:text-white">
+        <svg xmlns="http://www.w3.org/2000/svg" width="14" height="20" viewBox="0 0 25.109 34.906"><polyline fill="none" stroke="currentColor" stroke-miterlimit="10" points="24.67,34.59 11.653,17.464 24.67,0.338 "/></svg>
+      </button>
+      <div class="testimonial-pagination flex items-center gap-3 text-sm text-laurent-grey"></div>
+      <button class="testimonial-next text-laurent-gold hover:text-white">
+        <svg xmlns="http://www.w3.org/2000/svg" width="14" height="20" viewBox="0 0 25.109 34.906"><polyline fill="none" stroke="currentColor" stroke-miterlimit="10" points="0.442,34.59 13.459,17.464 0.442,0.338 "/></svg>
+      </button>
+    </div>
+  </div>
+</section>
+
+<!-- ============ FOOTER ============ -->
+<footer class="border-t border-laurent-border/40">
+  <div class="max-w-[1300px] mx-auto px-6 lg:px-10 border-x border-laurent-border/20 py-16 text-center">
+    <a href="https://laurent.qodeinteractive.com/" class="inline-block mb-8">
+      <img src="https://laurent.qodeinteractive.com/wp-content/uploads/2019/10/footer-logo.png" width="40" height="57" alt="Laurent" />
+    </a>
+    <div class="w-10 h-px bg-laurent-border mx-auto mb-8"></div>
+
+    <p class="text-laurent-grey leading-relaxed">
+      Laurent Restaurant &amp; Fine dining,
+      <a href="https://www.google.com/maps/place/Iron+Chef+House/@40.6988193,-73.9964619,17z" target="_blank" rel="noopener noreferrer" class="hover:text-laurent-gold">71 Madison Ave</a>
+    </p>
+    <p class="text-laurent-grey leading-relaxed">
+      <a href="https://www.google.com/maps/place/Iron+Chef+House/@40.6988193,-73.9964619,17z" target="_blank" rel="noopener noreferrer" class="hover:text-laurent-gold">10013 New York,</a>
+      <a href="tel:914-309-7030" class="hover:text-laurent-gold">914-309-7030,</a>
+      <a href="mailto:reservations@laurent.com" class="hover:text-laurent-gold">reservations@laurent.com</a>
+    </p>
+    <p class="text-laurent-grey leading-relaxed mb-8">Open: 09:00 am &#8211; 01:00 pm</p>
+
+    <div class="w-10 h-px bg-laurent-border mx-auto mb-8"></div>
+
+    <nav class="flex items-center justify-center gap-8 text-sm">
+      <a target="_blank" href="https://www.facebook.com/QodeInteractive/" class="fade-link">Facebook</a>
+      <a target="_blank" href="https://www.instagram.com/qodeinteractive/" class="fade-link">Instagram</a>
+      <a target="_blank" href="https://www.tripadvisor.com/" class="fade-link">Trip Advisor</a>
+    </nav>
+  </div>
+</footer>
+
+<!-- ============ BACK TO TOP ============ -->
+<a href="#" id="back-to-top" class="fixed bottom-8 right-8 z-40 opacity-0 pointer-events-none transition-opacity">
+  <svg xmlns="http://www.w3.org/2000/svg" width="43" height="43" viewBox="0 0 43.047 43.031">
+    <circle fill="none" stroke="#BC9A6B" stroke-miterlimit="10" cx="21.523" cy="21.531" r="20.986"/>
+    <polyline fill="none" stroke="#BC9A6B" stroke-miterlimit="10" points="15.205,23.875 21.523,18.573 27.842,23.875 "/>
+  </svg>
+</a>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Swiper/14.2.0/swiper-bundle.min.js"></script>
+<script>
+  // testimonials carousel
+  new Swiper('.testimonial-swiper', {
+    loop: true,
+    autoplay: { delay: 5000 },
+    navigation: { nextEl: '.testimonial-next', prevEl: '.testimonial-prev' },
+    pagination: { el: '.testimonial-pagination', clickable: true, type: 'bullets', renderBullet: function (index, className) {
+      return '<span class="' + className + ' cursor-pointer">' + (index + 1) + '</span>';
+    }},
+  });
+
+  // side menu
+  var sideMenu = document.getElementById('side-menu');
+  var overlay = document.getElementById('side-menu-overlay');
+  function openMenu(){ sideMenu.style.right = '0px'; overlay.classList.remove('hidden'); }
+  function closeMenu(){ sideMenu.style.right = '-370px'; overlay.classList.add('hidden'); }
+  document.getElementById('open-side-menu').addEventListener('click', openMenu);
+  document.getElementById('close-side-menu').addEventListener('click', closeMenu);
+  overlay.addEventListener('click', closeMenu);
+
+  // video modal
+  var modal = document.getElementById('video-modal');
+  var frame = document.getElementById('video-frame');
+  document.getElementById('open-video').addEventListener('click', function(){
+    frame.src = 'https://player.vimeo.com/video/369245407?autoplay=1';
+    modal.classList.remove('hidden');
+    modal.classList.add('flex');
+  });
+  document.getElementById('close-video').addEventListener('click', function(){
+    modal.classList.add('hidden');
+    modal.classList.remove('flex');
+    frame.src = '';
+  });
+
+  // back to top
+  var btt = document.getElementById('back-to-top');
+  window.addEventListener('scroll', function(){
+    if (window.scrollY > 600) { btt.style.opacity = '1'; btt.style.pointerEvents = 'auto'; }
+    else { btt.style.opacity = '0'; btt.style.pointerEvents = 'none'; }
+  });
+  btt.addEventListener('click', function(e){ e.preventDefault(); window.scrollTo({top:0, behavior:'smooth'}); });
+</script>
+</body>
+</html>
