@@ -1,0 +1,38 @@
+{
+  "totalElements": 13,
+  "totalDocuments": 1,
+  "options": {
+    "minOccurrences": 2,
+    "shapeDepth": 3,
+    "minDocuments": 1
+  },
+  "groups": [
+    {
+      "id": "shape:div(img,p)",
+      "matchedBy": "shape",
+      "sharedClasses": [],
+      "tagShape": "div(img,p)",
+      "occurrences": 3,
+      "selectors": [
+        "#main > div:nth-child(2)",
+        "#main > div:nth-child(3)",
+        "#main > div:nth-child(4)"
+      ],
+      "sources": [
+        "page.html",
+        "page.html",
+        "page.html"
+      ],
+      "documentCount": 1,
+      "hasOwnStyling": true,
+      "hasSemanticTag": false,
+      "descendantElementCount": 2,
+      "distinctTagShapes": 1,
+      "confidence": 0.35,
+      "reasoning": [
+        "3 occurrences share the same tag structure (\"div(img,p)\") but no common class name",
+        "low structural complexity — could be coincidental repetition rather than an intentional component"
+      ]
+    }
+  ]
+}

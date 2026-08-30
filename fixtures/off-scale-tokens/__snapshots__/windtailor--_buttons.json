@@ -1,0 +1,242 @@
+{
+  "selector": "#buttons",
+  "classes": {
+    "0": [
+      "flex"
+    ],
+    "0.0": [
+      "py-2",
+      "px-4",
+      "rounded-33.5",
+      "block",
+      "mt-3.5",
+      "text-white",
+      "bg-custom-1"
+    ],
+    "0.1": [
+      "py-2.5",
+      "px-4",
+      "rounded-33.5",
+      "block",
+      "mt-3.5",
+      "text-white",
+      "bg-custom-1"
+    ]
+  },
+  "tokens": {
+    "stockMatches": {
+      "spacing": {
+        "14px": "3.5",
+        "9px": "2",
+        "17px": "4",
+        "15px": "3.5",
+        "10px": "2.5",
+        "18px": "4"
+      },
+      "radius": {},
+      "fontSize": {},
+      "color": {
+        "rgb(255, 255, 255)": "white"
+      }
+    },
+    "generated": {
+      "spacing": [],
+      "radius": [
+        {
+          "category": "radius",
+          "key": "33.5",
+          "value": "2.0938rem",
+          "sourceValues": [
+            "33px",
+            "34px"
+          ]
+        }
+      ],
+      "fontSize": [],
+      "color": [
+        {
+          "category": "color",
+          "key": "custom-1",
+          "value": "#017d08",
+          "sourceValues": [
+            "rgb(1, 122, 7)",
+            "rgb(1, 128, 8)"
+          ]
+        }
+      ]
+    },
+    "clamped": {
+      "spacing": {
+        "9px": 1,
+        "17px": 1,
+        "15px": 1,
+        "18px": 2
+      },
+      "radius": {},
+      "fontSize": {},
+      "color": {}
+    }
+  },
+  "suggestions": [
+    {
+      "nodeId": "0.0",
+      "property": "paddingTop",
+      "category": "spacing",
+      "rawValue": "9px",
+      "resolvedClass": "pt-2",
+      "kind": "clamped",
+      "distance": 1,
+      "note": "Snapped to \"pt-2\" — source value 9px was 1px off the exact scale value."
+    },
+    {
+      "nodeId": "0.0",
+      "property": "paddingRight",
+      "category": "spacing",
+      "rawValue": "17px",
+      "resolvedClass": "pr-4",
+      "kind": "clamped",
+      "distance": 1,
+      "note": "Snapped to \"pr-4\" — source value 17px was 1px off the exact scale value."
+    },
+    {
+      "nodeId": "0.0",
+      "property": "paddingBottom",
+      "category": "spacing",
+      "rawValue": "9px",
+      "resolvedClass": "pb-2",
+      "kind": "clamped",
+      "distance": 1,
+      "note": "Snapped to \"pb-2\" — source value 9px was 1px off the exact scale value."
+    },
+    {
+      "nodeId": "0.0",
+      "property": "paddingLeft",
+      "category": "spacing",
+      "rawValue": "17px",
+      "resolvedClass": "pl-4",
+      "kind": "clamped",
+      "distance": 1,
+      "note": "Snapped to \"pl-4\" — source value 17px was 1px off the exact scale value."
+    },
+    {
+      "nodeId": "0.0",
+      "property": "backgroundColor",
+      "category": "color",
+      "rawValue": "rgb(1, 122, 7)",
+      "resolvedClass": "bg-custom-1",
+      "kind": "generated",
+      "note": "Minted a new token for rgb(1, 122, 7) (\"bg-custom-1\") — written to this run's tailwind.config.tokens.js, not your own config."
+    },
+    {
+      "nodeId": "0.0",
+      "property": "borderTopLeftRadius",
+      "category": "radius",
+      "rawValue": "33px",
+      "resolvedClass": "rounded-tl-33.5",
+      "kind": "generated",
+      "note": "Minted a new token for 33px (\"rounded-tl-33.5\") — written to this run's tailwind.config.tokens.js, not your own config."
+    },
+    {
+      "nodeId": "0.0",
+      "property": "borderTopRightRadius",
+      "category": "radius",
+      "rawValue": "33px",
+      "resolvedClass": "rounded-tr-33.5",
+      "kind": "generated",
+      "note": "Minted a new token for 33px (\"rounded-tr-33.5\") — written to this run's tailwind.config.tokens.js, not your own config."
+    },
+    {
+      "nodeId": "0.0",
+      "property": "borderBottomRightRadius",
+      "category": "radius",
+      "rawValue": "33px",
+      "resolvedClass": "rounded-br-33.5",
+      "kind": "generated",
+      "note": "Minted a new token for 33px (\"rounded-br-33.5\") — written to this run's tailwind.config.tokens.js, not your own config."
+    },
+    {
+      "nodeId": "0.0",
+      "property": "borderBottomLeftRadius",
+      "category": "radius",
+      "rawValue": "33px",
+      "resolvedClass": "rounded-bl-33.5",
+      "kind": "generated",
+      "note": "Minted a new token for 33px (\"rounded-bl-33.5\") — written to this run's tailwind.config.tokens.js, not your own config."
+    },
+    {
+      "nodeId": "0.1",
+      "property": "marginTop",
+      "category": "spacing",
+      "rawValue": "15px",
+      "resolvedClass": "mt-3.5",
+      "kind": "clamped",
+      "distance": 1,
+      "note": "Snapped to \"mt-3.5\" — source value 15px was 1px off the exact scale value."
+    },
+    {
+      "nodeId": "0.1",
+      "property": "paddingRight",
+      "category": "spacing",
+      "rawValue": "18px",
+      "resolvedClass": "pr-4",
+      "kind": "clamped",
+      "distance": 2,
+      "note": "Snapped to \"pr-4\" — source value 18px was 2px off the exact scale value."
+    },
+    {
+      "nodeId": "0.1",
+      "property": "paddingLeft",
+      "category": "spacing",
+      "rawValue": "18px",
+      "resolvedClass": "pl-4",
+      "kind": "clamped",
+      "distance": 2,
+      "note": "Snapped to \"pl-4\" — source value 18px was 2px off the exact scale value."
+    },
+    {
+      "nodeId": "0.1",
+      "property": "backgroundColor",
+      "category": "color",
+      "rawValue": "rgb(1, 128, 8)",
+      "resolvedClass": "bg-custom-1",
+      "kind": "generated",
+      "note": "Minted a new token for rgb(1, 128, 8) (\"bg-custom-1\") — written to this run's tailwind.config.tokens.js, not your own config."
+    },
+    {
+      "nodeId": "0.1",
+      "property": "borderTopLeftRadius",
+      "category": "radius",
+      "rawValue": "34px",
+      "resolvedClass": "rounded-tl-33.5",
+      "kind": "generated",
+      "note": "Minted a new token for 34px (\"rounded-tl-33.5\") — written to this run's tailwind.config.tokens.js, not your own config."
+    },
+    {
+      "nodeId": "0.1",
+      "property": "borderTopRightRadius",
+      "category": "radius",
+      "rawValue": "34px",
+      "resolvedClass": "rounded-tr-33.5",
+      "kind": "generated",
+      "note": "Minted a new token for 34px (\"rounded-tr-33.5\") — written to this run's tailwind.config.tokens.js, not your own config."
+    },
+    {
+      "nodeId": "0.1",
+      "property": "borderBottomRightRadius",
+      "category": "radius",
+      "rawValue": "34px",
+      "resolvedClass": "rounded-br-33.5",
+      "kind": "generated",
+      "note": "Minted a new token for 34px (\"rounded-br-33.5\") — written to this run's tailwind.config.tokens.js, not your own config."
+    },
+    {
+      "nodeId": "0.1",
+      "property": "borderBottomLeftRadius",
+      "category": "radius",
+      "rawValue": "34px",
+      "resolvedClass": "rounded-bl-33.5",
+      "kind": "generated",
+      "note": "Minted a new token for 34px (\"rounded-bl-33.5\") — written to this run's tailwind.config.tokens.js, not your own config."
+    }
+  ]
+}

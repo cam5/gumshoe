@@ -1,0 +1,68 @@
+{
+  "totalElements": 18,
+  "totalDocuments": 1,
+  "options": {
+    "minOccurrences": 2,
+    "shapeDepth": 3,
+    "minDocuments": 1
+  },
+  "groups": [
+    {
+      "id": "class:badge",
+      "matchedBy": "class",
+      "sharedClasses": [
+        "badge"
+      ],
+      "tagShape": "span",
+      "occurrences": 2,
+      "selectors": [
+        "#main > div:nth-child(3) > span:nth-child(1)",
+        "#main > div:nth-child(5) > span:nth-child(1)"
+      ],
+      "sources": [
+        "page.html",
+        "page.html"
+      ],
+      "documentCount": 1,
+      "hasOwnStyling": true,
+      "hasSemanticTag": false,
+      "descendantElementCount": 0,
+      "distinctTagShapes": 1,
+      "confidence": 0.85,
+      "reasoning": [
+        "2 occurrences share the class \"badge\""
+      ]
+    },
+    {
+      "id": "class:product-card",
+      "matchedBy": "class",
+      "sharedClasses": [
+        "product-card"
+      ],
+      "tagShape": "div(img,p)",
+      "occurrences": 4,
+      "selectors": [
+        "#main > div:nth-child(2)",
+        "#main > div:nth-child(3)",
+        "#main > div:nth-child(4)",
+        "#main > div:nth-child(5)"
+      ],
+      "sources": [
+        "page.html",
+        "page.html",
+        "page.html",
+        "page.html"
+      ],
+      "documentCount": 1,
+      "hasOwnStyling": true,
+      "hasSemanticTag": false,
+      "descendantElementCount": 3,
+      "distinctTagShapes": 2,
+      "confidence": 0.65,
+      "reasoning": [
+        "4 occurrences share the class \"product-card\"",
+        "occurrences don't share one tag structure (2 distinct shapes) — likely a generic utility class applied to different kinds of elements rather than one component"
+      ]
+    }
+  ]
+}

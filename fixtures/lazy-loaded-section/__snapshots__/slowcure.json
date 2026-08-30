@@ -1,0 +1,49 @@
+{
+  "settledBy": "quiet",
+  "drift": [
+    {
+      "id": "class:placeholder",
+      "matchedBy": "class",
+      "status": "clientRemoved",
+      "raw": {
+        "occurrences": 3,
+        "tagShape": "div",
+        "distinctTagShapes": 1,
+        "confidence": 0.85,
+        "selectors": [
+          "#recommendations > div:nth-child(1)",
+          "#recommendations > div:nth-child(2)",
+          "#recommendations > div:nth-child(3)"
+        ]
+      },
+      "settled": null,
+      "confidence": 0.85,
+      "reasoning": [
+        "only appears in the raw HTML (3 occurrence(s)) — gone by the time the DOM settles",
+        "backed by a shared author class name, not just tag shape, in at least one snapshot"
+      ]
+    },
+    {
+      "id": "class:product-card",
+      "matchedBy": "class",
+      "status": "clientAdded",
+      "raw": null,
+      "settled": {
+        "occurrences": 3,
+        "tagShape": "div(img,p,span)",
+        "distinctTagShapes": 1,
+        "confidence": 0.85,
+        "selectors": [
+          "#recommendations > div:nth-child(1)",
+          "#recommendations > div:nth-child(2)",
+          "#recommendations > div:nth-child(3)"
+        ]
+      },
+      "confidence": 0.85,
+      "reasoning": [
+        "only appears after the DOM settles (3 occurrence(s)), not in the raw HTML at all",
+        "backed by a shared author class name, not just tag shape, in at least one snapshot"
+      ]
+    }
+  ]
+}

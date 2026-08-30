@@ -1,0 +1,37 @@
+{
+  "settledBy": "quiet",
+  "drift": [
+    {
+      "id": "class:slide",
+      "matchedBy": "class",
+      "status": "drifted",
+      "raw": {
+        "occurrences": 2,
+        "tagShape": "li(img)",
+        "distinctTagShapes": 1,
+        "confidence": 0.85,
+        "selectors": [
+          "#slides > li:nth-child(1)",
+          "#slides > li:nth-child(2)"
+        ]
+      },
+      "settled": {
+        "occurrences": 4,
+        "tagShape": "li(img)",
+        "distinctTagShapes": 1,
+        "confidence": 0.85,
+        "selectors": [
+          "#slides > li:nth-child(1)",
+          "#slides > li:nth-child(2)",
+          "#slides > li:nth-child(3)",
+          "#slides > li:nth-child(4)"
+        ]
+      },
+      "confidence": 0.65,
+      "reasoning": [
+        "occurrences changed from 2 to 4 after settling",
+        "backed by a shared author class name, not just tag shape, in at least one snapshot"
+      ]
+    }
+  ]
+}

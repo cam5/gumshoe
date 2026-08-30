@@ -1,0 +1,10 @@
+{
+  "totalElements": 5,
+  "totalDocuments": 1,
+  "options": {
+    "minOccurrences": 2,
+    "shapeDepth": 3,
+    "minDocuments": 1
+  },
+  "groups": []
+}

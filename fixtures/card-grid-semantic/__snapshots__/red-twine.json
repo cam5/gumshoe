@@ -1,0 +1,39 @@
+{
+  "totalElements": 13,
+  "totalDocuments": 1,
+  "options": {
+    "minOccurrences": 2,
+    "shapeDepth": 3,
+    "minDocuments": 1
+  },
+  "groups": [
+    {
+      "id": "class:testimonial-card",
+      "matchedBy": "class",
+      "sharedClasses": [
+        "testimonial-card"
+      ],
+      "tagShape": "div(img,p)",
+      "occurrences": 3,
+      "selectors": [
+        "#main > div:nth-child(2)",
+        "#main > div:nth-child(3)",
+        "#main > div:nth-child(4)"
+      ],
+      "sources": [
+        "page.html",
+        "page.html",
+        "page.html"
+      ],
+      "documentCount": 1,
+      "hasOwnStyling": true,
+      "hasSemanticTag": false,
+      "descendantElementCount": 2,
+      "distinctTagShapes": 1,
+      "confidence": 0.85,
+      "reasoning": [
+        "3 occurrences share the class \"testimonial-card\""
+      ]
+    }
+  ]
+}

@@ -1,0 +1,62 @@
+{
+  "totalElements": 11,
+  "totalDocuments": 1,
+  "options": {
+    "minOccurrences": 2,
+    "shapeDepth": 3,
+    "minDocuments": 1
+  },
+  "groups": [
+    {
+      "id": "shape:section(div(img,p))",
+      "matchedBy": "shape",
+      "sharedClasses": [],
+      "tagShape": "section(div(img,p))",
+      "occurrences": 2,
+      "selectors": [
+        "#hero",
+        "#specs"
+      ],
+      "sources": [
+        "page.html",
+        "page.html"
+      ],
+      "documentCount": 1,
+      "hasOwnStyling": true,
+      "hasSemanticTag": true,
+      "descendantElementCount": 3,
+      "distinctTagShapes": 1,
+      "confidence": 0.65,
+      "reasoning": [
+        "2 occurrences share the same tag structure (\"section(div(img,p))\") but no common class name",
+        "structurally rich enough that coincidence is unlikely (~3 descendant elements on average)",
+        "every occurrence uses a semantic HTML tag"
+      ]
+    },
+    {
+      "id": "shape:div(img,p)",
+      "matchedBy": "shape",
+      "sharedClasses": [],
+      "tagShape": "div(img,p)",
+      "occurrences": 2,
+      "selectors": [
+        "#hero > div:nth-child(1)",
+        "#specs > div:nth-child(1)"
+      ],
+      "sources": [
+        "page.html",
+        "page.html"
+      ],
+      "documentCount": 1,
+      "hasOwnStyling": false,
+      "hasSemanticTag": false,
+      "descendantElementCount": 2,
+      "distinctTagShapes": 1,
+      "confidence": 0.35,
+      "reasoning": [
+        "2 occurrences share the same tag structure (\"div(img,p)\") but no common class name",
+        "low structural complexity — could be coincidental repetition rather than an intentional component"
+      ]
+    }
+  ]
+}
