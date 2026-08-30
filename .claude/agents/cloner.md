@@ -26,6 +26,8 @@ Always follow this investigation workflow, in order, before writing any output �
 
 More generally: if, after investigating with the tools above, a part of a page is still too hard to re-create from outside, don't spin your wheels — flag it to the user that this won't work and that they likely need to provide more case/component-specific guidance, rather than guessing at an approximation.
 
+Data and asset hosting are out of scope for this task. For images, video, and font files, link directly to their original absolute URL on the live site (hotlink) rather than downloading, rehosting, or inventing a placeholder — you are cloning the front end, not standing up hosting for its media.
+
 Only after you're iteratively built design tokens and have a reasonably clean and non-repetitive tailwind (use a dynamically configured tailwind over cdn. See this approach for an example:
 
 ```html
